@@ -1,0 +1,8 @@
+php/.credentials/drive-credentials.json
+php/client_secret.json
+php/vendor
+php/composer.lock
+_tmp
+logs/*.*
+.DS_Store
+public/.DS_Store

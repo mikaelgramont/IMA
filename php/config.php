@@ -1,0 +1,17 @@
+<?php
+set_include_path(__DIR__.'/../php/');
+require_once 'vendor/autoload.php';
+
+
+define('DEBUG', true);
+
+/* Google client API constants */
+define('APPLICATION_NAME', 'IMA Website');
+define('CREDENTIALS_PATH', __DIR__ . '/.credentials/drive-credentials.json');
+define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
+
+// If modifying these scopes, delete your previously saved credentials
+// at CREDENTIALS_PATH
+define('SCOPES', implode(' ', array(
+  Google_Service_Drive::DRIVE_METADATA_READONLY)
+));
