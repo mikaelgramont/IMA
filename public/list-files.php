@@ -15,20 +15,25 @@ try {
 $client = Helpers::getGoogleClientForWeb($accessToken);
 $service = new Google_Service_Drive($client);
 
-// Print the names and IDs for up to 10 files.
-$optParams = array(
-  'pageSize' => 10,
-  'fields' => 'nextPageToken, files(id, name, modifiedTime)'
-);
-$results = $service->files->listFiles($optParams);
+$files = Helpers::getFileList($service);
+$details = Helpers::getDetailedFileList($service, $files);
 
-if (count($results->getFiles()) == 0) {
-  print "No files found.\n";
+//echo '<pre>'.var_export($details, true).'</pre>';
+
+
+if (count($details) == 0) {
+  print "<p>No files found.</p>\n";
 } else {
-  print "Files:\n";
+  print "<p>Files:</p>\n";
   print "<ul>\n";
-  foreach ($results->getFiles() as $file) {
-    printf("<li>%s (%s) - %s</li>\n", $file->getName(), $file->getId(), $file->getModifiedTime());
+  foreach ($details as $file) {
+    printf(
+      "<li><a href='%s'><img src='%s' alt=''>%s</a>- %s</li>\n",      
+      $file["webViewLink"],
+      $file["iconLink"],
+      $file["name"],
+      date("Y-m-d H:i:s", $file["modifiedTime"])
+    );
   }
   print "</ul>\n";
 }

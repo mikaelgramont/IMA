@@ -1,5 +1,5 @@
 php/.credentials/drive-credentials.json
-php/client_secret.json
+php/client_secret*
 php/vendor
 php/composer.lock
 _tmp

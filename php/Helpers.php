@@ -19,6 +19,42 @@ class Helpers
 		return $client;
 	}
 
+	public static function getFileList(Google_Service_Drive $service)
+	{
+		// Print the names and IDs for up to 10 files.
+		$optParams = array(
+		  'pageSize' => 10,
+		  'fields' => 'nextPageToken, files(id)'
+		);
+		$results = $service->files->listFiles($optParams);
+		return $results;
+	}
+
+	public static function getDetailedFileList(Google_Service_Drive $service, $files)
+	{
+		$detailedInfo = array();
+		$optParams = array(
+			"fields" => "*"
+		);
+		foreach ($files->getFiles() as $file) {
+			$results = $service->files->get($file->getId(), $optParams);
+			//$detailedInfo[] = $results;
+			//continue;
+			
+			$detailedInfo[] = array(
+				//"webContentLink" => $results["webContentLink"],
+				"webViewLink" => $results["webViewLink"],
+				"iconLink" => $results["iconLink"],
+				//"hasThumbnail" => $results["hasThumbnail"],
+				//"thumbnailLink" => $results["thumbnailLink"],
+				"modifiedTime" => strtotime($results["modifiedTime"]),
+				"name" => $results["name"],
+				//"thumbnailLink" => $results["thumbnailLink"],
+			);
+		}
+		return $detailedInfo;
+	}
+
 	public static function storeInitialAccessToken()
 	{
 		$client = self::_getGoogleClient();
