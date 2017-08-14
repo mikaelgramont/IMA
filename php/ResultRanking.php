@@ -7,13 +7,13 @@ class ResultRanking
 
 	private $_position;
 
-	public function __construct($firstName, $lastName, $position) {
+	public function __construct($position, $firstName, $lastName) {
 		$this->_firstName = $firstName;
 		$this->_lastName = $lastName;
 		$this->_position = $position;
 	}
 
-	public function getName()
+	public function getFullName()
 	{
 		return $this->_firstName . " " . $this->_lastName;
 	}

@@ -1,14 +1,13 @@
+#!/usr/bin/env php
 <?php
 require_once __DIR__.'/../php/config.php';
 require_once 'Helpers.php';
 require_once 'Logger.php';
-require_once 'Utils.php';
 
 require_once 'ResultCategory.php';
 require_once 'ResultEntry.php';
 require_once 'ResultParser.php';
 require_once 'ResultRanking.php';
-require_once 'ResultTemplateGenerator.php';
 require_once 'ResultYear.php';
 
 if (!file_exists(CREDENTIALS_PATH)) {
@@ -25,30 +24,28 @@ $logger = new Logger();
 // Cache setup
 $driver = new Stash\Driver\FileSystem(array('path' => CACHE_PATH));
 $pool = new Stash\Pool($driver);
-//$pool->clear();
 $cacheId = RESULTS_CACHE_PATH;
 $cacheItem = $pool->getItem($cacheId);
 
-if ($cacheItem->isMiss()) {
+// Get the API client and construct the service object.
+$client = Helpers::getGoogleClientForWeb($accessToken);
+$driveService = new Google_Service_Drive($client);
+$sheetsService = new Google_Service_Sheets($client);
 
-	// Get the API client and construct the service object.
-	$client = Helpers::getGoogleClientForWeb($accessToken);
-	$driveService = new Google_Service_Drive($client);
-	$sheetsService = new Google_Service_Sheets($client);
+$results = ResultParser::buildResults($driveService, $sheetsService, $logger, RESULTS_FOLDER_ID);
+echo "Parsed results\n";
 
-	$cacheItem->lock();
-	$results = ResultParser::buildResults($driveService, $sheetsService, $logger, RESULTS_FOLDER_ID);
-	$cacheItem->set($results);
-	$pool->save($cacheItem);
-} else {
-	$results = $cacheItem->get();
+$cacheItem->set($results);
+$cacheItem->lock();
+$pool->save($cacheItem);
+echo "Cached results\n";
+
+foreach ($results as $result) {
+	$generator = new ResultTemplateGenerator($result, RESULTS_HTML_PATH);
+	$generator->run();
 }
 
-//foreach ($results as $result) {
-	$generator = new ResultTemplateGenerator($results[1], RESULTS_HTML_PATH);
-	echo $generator->run();
-//}
+echo "Saved HTML\n";
 
-//echo '<pre>'.var_export($results, true).'</pre>';
 
-//$logger->dumpHtml();
+echo "Done\n";

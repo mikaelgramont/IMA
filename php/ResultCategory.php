@@ -14,9 +14,9 @@ class ResultCategory
 		$this->_rankings[] = $ranking;
 	}
 
-	public function getCategories()
+	public function getRankings()
 	{
-		return $this->_categories;
+		return $this->_rankings;
 	}
 
 	public function getName()

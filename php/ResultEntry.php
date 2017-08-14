@@ -1,12 +1,12 @@
 <?php
 class ResultEntry
 {
-	private $_location;
+	private $_name;
 
 	private $_categories = array();
 
-	public function __construct($location) {
-		$this->_location = $location;
+	public function __construct($name) {
+		$this->_name = $name;
 	}
 
 	public function addCategory(ResultCategory $category)
@@ -19,8 +19,8 @@ class ResultEntry
 		return $this->_categories;
 	}
 
-	public function getLocation()
+	public function getName()
 	{
-		return $this->_location;
+		return $this->_name;
 	}
 }

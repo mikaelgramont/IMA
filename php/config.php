@@ -1,5 +1,9 @@
 <?php
-set_include_path(__DIR__.'/../php/:'.__DIR__.'/../php/vendor/tedivm/stash/src/');
+set_include_path(
+	__DIR__.'/../php/:'.
+	__DIR__.'/../php/results-html/'.
+	__DIR__.'/../php/vendor/tedivm/stash/src/'
+);
 require_once 'vendor/autoload.php';
 
 
@@ -11,6 +15,8 @@ define('CREDENTIALS_PATH', __DIR__ . '/.credentials/credentials.json');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 define('CACHE_PATH', __DIR__ . '/../php/cache/');
 define('RESULTS_CACHE_PATH', 'results/');
+
+define('RESULTS_HTML_PATH', '');
 
 // If modifying these scopes, delete your previously saved credentials
 // at CREDENTIALS_PATH

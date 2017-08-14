@@ -9,7 +9,7 @@ require_once 'Helpers.php';
 
 // Load previously authorized credentials from a file.
 if (file_exists(CREDENTIALS_PATH)) {
-	printf ("File exists");
+	printf ("File exists\n");
 	exit();
 }
 
