@@ -6,7 +6,7 @@ require_once 'vendor/autoload.php';
 define('DEBUG', true);
 
 /* Google client API constants */
-define('APPLICATION_NAME', 'IMA Website');
+define('APPLICATION_NAME', '');
 define('CREDENTIALS_PATH', __DIR__ . '/.credentials/drive-credentials.json');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 
@@ -17,4 +17,4 @@ define('SCOPES', implode(' ', array(
 ));
 
 // The ID of the folder containing public documents.
-define('PUBLIC_FOLDER_ID', '0B1zQszUhxFKDVlV6TWZ3UldYRmM');
+define('PUBLIC_FOLDER_ID', '');

@@ -19,38 +19,59 @@ class Helpers
 		return $client;
 	}
 
-	public static function getFileList(Google_Service_Drive $service)
+	/**
+	 * Builds and returns a list of files in the folder identified by its id in $parentId.
+	 *
+	 * @param Google_Service_Drive $service The service object.
+	 * @param string $parentId The id of the parent.
+	 * @return Google_Client the authorized client object
+	 */
+	public static function getFileList(Google_Service_Drive $service, $parentId)
 	{
 		// Print the names and IDs for up to 10 files.
+		$query = "'$parentId' IN parents";
 		$optParams = array(
 		  'pageSize' => 10,
-		  'fields' => 'nextPageToken, files(id)'
+		  'fields' => 'nextPageToken, files(id)',
+		  'q' => $query
 		);
 		$results = $service->files->listFiles($optParams);
 		return $results;
 	}
 
+	/**
+	 * Builds and returns an array of detailed information for the files passed in $files.
+	 *
+	 * @param Google_Service_Drive $service The service object.
+	 * @param array $files The list of files to get details for.
+	 * @return Google_Client the authorized client object
+	 */
 	public static function getDetailedFileList(Google_Service_Drive $service, $files)
 	{
 		$detailedInfo = array();
 		$optParams = array(
 			"fields" => "*"
 		);
+		$properties = array(
+			"id",
+			"mimeType",
+			"webViewLink",
+			"iconLink",
+			"modifiedTime",
+			"name",
+		);
 		foreach ($files->getFiles() as $file) {
 			$results = $service->files->get($file->getId(), $optParams);
-			//$detailedInfo[] = $results;
-			//continue;
 			
-			$detailedInfo[] = array(
-				//"webContentLink" => $results["webContentLink"],
-				"webViewLink" => $results["webViewLink"],
-				"iconLink" => $results["iconLink"],
-				//"hasThumbnail" => $results["hasThumbnail"],
-				//"thumbnailLink" => $results["thumbnailLink"],
-				"modifiedTime" => strtotime($results["modifiedTime"]),
-				"name" => $results["name"],
-				//"thumbnailLink" => $results["thumbnailLink"],
-			);
+			$info = array();
+			foreach ($properties as $k) {
+				if($k == "modifiedTime") {
+					$info[$k] = date("Y-m-d H:i:s", strtotime($results[$k]));
+				} else {
+					$info[$k] = $results[$k];
+				}
+			}
+			$detailedInfo[] = $info;
 		}
 		return $detailedInfo;
 	}

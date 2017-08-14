@@ -15,7 +15,7 @@ try {
 $client = Helpers::getGoogleClientForWeb($accessToken);
 $service = new Google_Service_Drive($client);
 
-$files = Helpers::getFileList($service);
+$files = Helpers::getFileList($service, PUBLIC_FOLDER_ID);
 $details = Helpers::getDetailedFileList($service, $files);
 
 //echo '<pre>'.var_export($details, true).'</pre>';
@@ -28,11 +28,13 @@ if (count($details) == 0) {
   print "<ul>\n";
   foreach ($details as $file) {
     printf(
-      "<li><a href='%s'><img src='%s' alt=''>%s</a>- %s</li>\n",      
+      "<li><a href='%s' title='%s'><img src='%s' alt=''>%s</a> - %s - %s</li>\n",            
       $file["webViewLink"],
+      $file["mimeType"],
       $file["iconLink"],
       $file["name"],
-      date("Y-m-d H:i:s", $file["modifiedTime"])
+      $file["modifiedTime"],
+      $file["id"]
     );
   }
   print "</ul>\n";

@@ -2,6 +2,7 @@ php/.credentials/drive-credentials.json
 php/client_secret*
 php/vendor
 php/composer.lock
+php/config.php
 _tmp
 logs/*.*
 .DS_Store
