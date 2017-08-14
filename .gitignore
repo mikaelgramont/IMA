@@ -1,4 +1,4 @@
-php/.credentials/drive-credentials.json
+php/.credentials/*.json
 php/client_secret*
 php/vendor
 php/composer.lock

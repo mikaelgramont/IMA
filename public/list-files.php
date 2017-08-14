@@ -14,19 +14,14 @@ try {
 // Get the API client and construct the service object.
 $client = Helpers::getGoogleClientForWeb($accessToken);
 $service = new Google_Service_Drive($client);
+$files = Helpers::getFileList($service, PUBLIC_DOCUMENTS_FOLDER_ID);
 
-$files = Helpers::getFileList($service, PUBLIC_FOLDER_ID);
-$details = Helpers::getDetailedFileList($service, $files);
-
-//echo '<pre>'.var_export($details, true).'</pre>';
-
-
-if (count($details) == 0) {
+if (count($files) == 0) {
   print "<p>No files found.</p>\n";
 } else {
   print "<p>Files:</p>\n";
   print "<ul>\n";
-  foreach ($details as $file) {
+  foreach ($files as $file) {
     printf(
       "<li><a href='%s' title='%s'><img src='%s' alt=''>%s</a> - %s - %s</li>\n",            
       $file["webViewLink"],

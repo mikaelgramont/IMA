@@ -1,6 +1,9 @@
 <?php
 class Helpers
 {
+	const MIME_TYPE_FOLDER = 'application/vnd.google-apps.folder';
+	const MIME_TYPE_SPREADSHEET = 'application/vnd.google-apps.spreadsheet';
+
 	/**
 	 * Returns an authorized API client.
 	 * @param string $accessToken The access token to be used.
@@ -26,13 +29,16 @@ class Helpers
 	 * @param string $parentId The id of the parent.
 	 * @return Google_Client the authorized client object
 	 */
-	public static function getFileList(Google_Service_Drive $service, $parentId)
+	public static function getFileList(Google_Service_Drive $service, $parentId, $foldersOnly = false)
 	{
 		// Print the names and IDs for up to 10 files.
-		$query = "'$parentId' IN parents";
+		$query = "'$parentId' IN parents AND NOT trashed";
+		if ($foldersOnly) {
+			$query .= " AND mimeType = '" . self::MIME_TYPE_FOLDER . "'";
+		}
 		$optParams = array(
 		  'pageSize' => 10,
-		  'fields' => 'nextPageToken, files(id)',
+		  'fields' => 'nextPageToken, files(id, mimeType, webViewLink, iconLink, modifiedTime, name)',
 		  'q' => $query
 		);
 		$results = $service->files->listFiles($optParams);
@@ -76,6 +82,17 @@ class Helpers
 		return $detailedInfo;
 	}
 
+	public static function getFoldersFromFileList($files)
+	{
+		$folders = array();
+		foreach ($files as $file) {
+			if ($file["mimeType"] == self::MIME_TYPE_FOLDER) {
+				$folders[] = $file;
+			}
+		}
+		return $folders;
+	}
+
 	public static function storeInitialAccessToken()
 	{
 		$client = self::_getGoogleClient();
@@ -105,6 +122,10 @@ class Helpers
 		$client->setAuthConfig(CLIENT_SECRET_PATH);
 		$client->setAccessType('offline');
 		return $client;		
+	}
+
+	public static function isSpreadsheet($file) {
+		return $file["mimeType"] == self::MIME_TYPE_SPREADSHEET;
 	}
 
 }
