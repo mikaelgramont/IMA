@@ -5,18 +5,21 @@ set_include_path(
 	__DIR__.'/../php/vendor/tedivm/stash/src/'
 );
 require_once 'vendor/autoload.php';
-
+require_once 'PageHelper.php';
+require_once 'Pages.php';
 
 define('DEBUG', true);
 
-/* Google client API constants */
+/******************************************************************************
+ * GOOGLE DOCS PROCESSING CONSTANTS
+ *****************************************************************************/
 define('APPLICATION_NAME', 'IMA Website');
 define('CREDENTIALS_PATH', __DIR__ . '/.credentials/credentials.json');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 define('CACHE_PATH', __DIR__ . '/../php/cache/');
 define('RESULTS_CACHE_PATH', 'results/');
 
-define('RESULTS_HTML_PATH', '');
+define('RESULTS_HTML_PATH', './../pages/generated/results/');
 
 // If modifying these scopes, delete your previously saved credentials
 // at CREDENTIALS_PATH
@@ -29,3 +32,9 @@ define('SCOPES', implode(' ', array(
 define('PUBLIC_DOCUMENTS_FOLDER_ID', '0B1zQszUhxFKDVlV6TWZ3UldYRmM');
 define('RESULTS_FOLDER_ID', '0B1zQszUhxFKDbjVvSjJQQ05IbkU');
 define('EVENTS_FOLDER_ID', '0B1zQszUhxFKDRFJrUWc1V21ZZjg');
+
+
+/******************************************************************************
+ * SITE CONTENT DEFINITION CONSTANTS
+ *****************************************************************************/
+define('BASE_URL', PageHelper::getBaseUrl());

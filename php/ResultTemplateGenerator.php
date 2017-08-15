@@ -5,6 +5,7 @@ class ResultTemplateGenerator
 	private $_outputPath;
 	private $_outputHeaderParts = array();
 	private $_outputBodyParts = array();
+	private $_fullOutput = "";
 
 
 	public function __construct(ResultYear $resultYear, $path)
@@ -14,7 +15,7 @@ class ResultTemplateGenerator
 		$this->_outputPath = $path;
 	}
 
-	public function run()
+	public function buildHTML()
 	{
 		foreach ($this->_resultYear->getEntries() as $resultEntry) {
 			list($header, $body) = self::_processEntry($resultEntry);
@@ -22,7 +23,18 @@ class ResultTemplateGenerator
 			$this->_outputBodyParts[] = $body;
 		}
 
-		return implode("\n", $this->_outputHeaderParts) . "\n<hr>\n" . implode("\n", $this->_outputBodyParts);
+		$this->_fullOutput = implode("\n", $this->_outputHeaderParts) . "\n<hr>\n" . implode("\n", $this->_outputBodyParts);
+	}
+
+	public function getFullOutput()
+	{
+		return $this->_fullOutput;
+	}
+
+	public function saveToDisk()
+	{
+		$fullPath = $this->_outputPath . $this->_year . '.php';
+		file_put_contents($fullPath, $this->_fullOutput);
 	}
 
 	private function _processEntry(ResultEntry $resultEntry) 
@@ -30,7 +42,11 @@ class ResultTemplateGenerator
 		$entryName = $resultEntry->getName();
 		$entryAnchorName = $this->_getAnchorName($entryName);
 
-		$header = "<a href='#{$entryAnchorName}'>{$entryName}</a>\n";
+		$header = "";
+		if ($this->_hasMultipleEntries()) {
+			// Only add an anchor if it makes sense.
+			$header .= "<a href='#{$entryAnchorName}'>{$entryName}</a>\n";
+		}
 		$header .= "<ul>\n";
 
 		$body = "<h1 id='{$entryAnchorName}'>{$entryName}</h1>\n";
@@ -58,21 +74,13 @@ class ResultTemplateGenerator
 	{
 		$categoryName = $category->getName();
 		$categoryAnchorName = $this->_getAnchorName($categoryName);
-		
+
 		$rankings = array();
 		foreach ($category->getRankings() as $ranking) {
 			$rankings[$ranking->getPosition()] = $ranking;
 		}
 		ksort($rankings);
 
-		/*
-			<table>
-		<caption>Freestyle - Open</caption>
-		<tr>
-			<td>1</td>
-			<td>Matt Brind</td>
-		</tr>
-		*/
 		$out = "<a name='{$categoryAnchorName}'></a>\n";
 		$out .= "<table>\n";
 		$out .= "\t<caption>{$categoryName}</caption>\n";
@@ -86,7 +94,7 @@ class ResultTemplateGenerator
 
 	private function _hasMultipleEntries()
 	{
-		return sizeof($this->resultYear->getEntries()) > 1;
+		return sizeof($this->_resultYear->getEntries()) > 1;
 	}
 
 	private function _getAnchorName($name)

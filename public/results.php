@@ -44,11 +44,9 @@ if ($cacheItem->isMiss()) {
 	$results = $cacheItem->get();
 }
 
-//foreach ($results as $result) {
-	$generator = new ResultTemplateGenerator($results[1], RESULTS_HTML_PATH);
-	echo $generator->run();
-//}
-
-//echo '<pre>'.var_export($results, true).'</pre>';
-
-//$logger->dumpHtml();
+foreach ($results as $result) {
+	$generator = new ResultTemplateGenerator($result, RESULTS_HTML_PATH);
+	$generator->buildHTML();
+	echo $generator->getFullOutput();
+	$generator->saveToDisk();
+}
