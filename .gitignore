@@ -3,6 +3,8 @@ php/config.php
 php/client_secret*
 php/vendor
 php/composer.lock
+pages/generated/events/*.php
+pages/generated/results/*.php
 _tmp
 logs/*.*
 .DS_Store
