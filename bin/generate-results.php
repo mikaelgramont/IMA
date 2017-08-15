@@ -8,6 +8,7 @@ require_once 'ResultCategory.php';
 require_once 'ResultEntry.php';
 require_once 'ResultParser.php';
 require_once 'ResultRanking.php';
+require_once 'ResultTemplateGenerator.php';
 require_once 'ResultYear.php';
 
 if (!file_exists(CREDENTIALS_PATH)) {

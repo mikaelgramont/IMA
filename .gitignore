@@ -1,8 +1,8 @@
 php/.credentials/*.json
+php/config.php
 php/client_secret*
 php/vendor
 php/composer.lock
-php/config.php
 _tmp
 logs/*.*
 .DS_Store
