@@ -38,7 +38,7 @@ class Helpers
 		}
 		$optParams = array(
 		  'pageSize' => 10,
-		  'fields' => 'nextPageToken, files(id, mimeType, webViewLink, iconLink, modifiedTime, name)',
+		  'fields' => 'nextPageToken, files(id, mimeType, webViewLink, iconLink, modifiedTime, name, description)',
 		  'q' => $query
 		);
 		$results = $service->files->listFiles($optParams);
@@ -65,6 +65,7 @@ class Helpers
 			"iconLink",
 			"modifiedTime",
 			"name",
+			"description",
 		);
 		foreach ($files->getFiles() as $file) {
 			$results = $service->files->get($file->getId(), $optParams);

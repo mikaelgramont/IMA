@@ -4,7 +4,7 @@ class Utils
     public static function escape($data)
     {
         if(!is_array($data)){
-            $return = html_entity_decode($data, ENT_QUOTES, 'UTF-8');
+            $return = htmlentities($data, ENT_QUOTES, 'UTF-8');
         } else {
             $return = array();
             foreach($data as $key=>$value){

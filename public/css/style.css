@@ -1,0 +1,18 @@
+body {
+	margin: 0;
+	background-color: #101010;	
+	color: #efefef;
+}
+
+a,
+a:visited {
+	color: #efefef;
+}
+
+h2 {
+	font-size: 1.25em;
+}
+
+select {
+	background: #eee;
+}

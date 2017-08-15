@@ -44,7 +44,11 @@
 	echo "<p>Displaying results for year $currentYear</p>";
 	foreach ($years as $year) {
 		$url = BASE_URL . "results?$yearArg=" . $year;
-		echo "<a href='$url'>$year</a>\n";
+		if ($currentYear != $year) {
+			echo "<a href='$url'>$year</a>\n";
+		} else {
+			echo "$year\n";
+		}
 	}
 	echo "<div class='results-container'>\n";
 	require(RESULTS_HTML_PATH . $currentYear . ".php");

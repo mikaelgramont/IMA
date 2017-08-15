@@ -5,6 +5,8 @@ set_include_path(
 	__DIR__.'/../php/vendor/tedivm/stash/src/'
 );
 require_once 'vendor/autoload.php';
+require_once 'Head.php';
+require_once 'Helpers.php';
 require_once 'PageHelper.php';
 require_once 'Pages.php';
 
@@ -38,3 +40,5 @@ define('EVENTS_FOLDER_ID', '0B1zQszUhxFKDRFJrUWc1V21ZZjg');
  * SITE CONTENT DEFINITION CONSTANTS
  *****************************************************************************/
 define('BASE_URL', PageHelper::getBaseUrl());
+define('SITE_NAME', 'IMA - International Mountainboard Association');
+define('KEYWORDS', 'IMA, international mountainboard association, mountainboard, dirtboard, allterrainboard, ATBA');

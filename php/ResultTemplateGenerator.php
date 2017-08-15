@@ -11,6 +11,9 @@ class ResultTemplateGenerator
 	public function __construct(ResultYear $resultYear, $path)
 	{
 		$this->_year = $resultYear->getYear();
+		if (!is_numeric($this->_year)) {
+			throw new Exception("Non numeric year: '$this->_year'");
+		}
 		$this->_resultYear = $resultYear;
 		$this->_outputPath = $path;
 	}
@@ -18,7 +21,7 @@ class ResultTemplateGenerator
 	public function buildHTML()
 	{
 		foreach ($this->_resultYear->getEntries() as $resultEntry) {
-			list($header, $body) = self::_processEntry($resultEntry);
+			list($header, $body) = self::_renderEntry($resultEntry);
 			$this->_outputHeaderParts[] = $header;
 			$this->_outputBodyParts[] = $body;
 		}
@@ -37,10 +40,10 @@ class ResultTemplateGenerator
 		file_put_contents($fullPath, $this->_fullOutput);
 	}
 
-	private function _processEntry(ResultEntry $resultEntry) 
+	private function _renderEntry(ResultEntry $resultEntry) 
 	{
-		$entryName = $resultEntry->getName();
-		$entryAnchorName = $this->_getAnchorName($entryName);
+		$entryName = Utils::escape($resultEntry->getName());
+		$entryAnchorName = $this->_getAnchorName($resultEntry->getName());
 
 		$header = "";
 		if ($this->_hasMultipleEntries()) {
@@ -59,8 +62,8 @@ class ResultTemplateGenerator
 		ksort($categories);
 
 		foreach ($categories as $i => $category) {
-			$categoryName = $category->getName();
-			$categoryAnchorName = $this->_getAnchorName($categoryName);
+			$categoryName = Utils::escape($category->getName());
+			$categoryAnchorName = $this->_getAnchorName($category->getName());
 
 			$header .= "<li><a href='#{$categoryAnchorName}'>{$categoryName}</a></li>\n";
 			$body .= $this->_renderCategory($category);
@@ -72,8 +75,8 @@ class ResultTemplateGenerator
 
 	private function _renderCategory(ResultCategory $category)
 	{
-		$categoryName = $category->getName();
-		$categoryAnchorName = $this->_getAnchorName($categoryName);
+		$categoryName = Utils::escape($category->getName());
+		$categoryAnchorName = $this->_getAnchorName($category->getName());
 
 		$rankings = array();
 		foreach ($category->getRankings() as $ranking) {
@@ -85,7 +88,9 @@ class ResultTemplateGenerator
 		$out .= "<table>\n";
 		$out .= "\t<caption>{$categoryName}</caption>\n";
 		foreach ($rankings as $ranking) {
-			$out .= "\t<tr>\n\t\t<td>{$ranking->getPosition()}</td>\n\t\t<td>{$ranking->getFullName()}</td>\n\t</tr>\n";
+			$position = Utils::escape($ranking->getPosition());
+			$fullName = Utils::escape($ranking->getFullName());
+			$out .= "\t<tr>\n\t\t<td>{$position}</td>\n\t\t<td>{$fullName}</td>\n\t</tr>\n";
 		}
 		$out .= "</table>\n";
 

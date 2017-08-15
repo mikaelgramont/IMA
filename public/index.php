@@ -5,7 +5,7 @@ $pageInfo = PageHelper::getPageInfo(Pages::getList(), $currentPageId);
 ?>
 <html>
 	<head>
-
+<?php echo Head::content(KEYWORDS, $pageInfo, 'css/style.css'); ?>
 	</head>
 	<body>
 		<div class="wrapper">

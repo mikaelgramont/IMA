@@ -1,3 +1,11 @@
+<a href='#mountainboard-world-championship-lt-script-gt-alert-039-xss-entry-name-039-lt-script-gt'>Mountainboard World Championship &lt;script&gt;alert(&#039;xss entry name&#039;)&lt;/script&gt;</a>
+<ul>
+<li><a href='#overall-ladies-lt-script-gt-alert-039-xss-cat-039-lt-script-gt'>Overall - Ladies &lt;script&gt;alert(&#039;xss cat&#039;)&lt;/script&gt;</a></li>
+<li><a href='#overall-masters'>Overall - Masters</a></li>
+<li><a href='#overall-open'>Overall - Open</a></li>
+<li><a href='#overall-under-16'>Overall - Under 16</a></li>
+</ul>
+
 <a href='#atba-uk-championship'>ATBA UK Championship</a>
 <ul>
 <li><a href='#overall-ladies'>Overall - Ladies</a></li>
@@ -6,20 +14,12 @@
 <li><a href='#overall-under-16'>Overall - Under 16</a></li>
 </ul>
 
-<a href='#mountainboard-world-championship'>Mountainboard World Championship</a>
-<ul>
-<li><a href='#overall-ladies'>Overall - Ladies</a></li>
-<li><a href='#overall-masters'>Overall - Masters</a></li>
-<li><a href='#overall-open'>Overall - Open</a></li>
-<li><a href='#overall-under-16'>Overall - Under 16</a></li>
-</ul>
-
 <hr>
-<h1 id='atba-uk-championship'>ATBA UK Championship</h1>
-<a name='atba-uk-championship'></a>
-<a name='overall-ladies'></a>
+<h1 id='mountainboard-world-championship-lt-script-gt-alert-039-xss-entry-name-039-lt-script-gt'>Mountainboard World Championship &lt;script&gt;alert(&#039;xss entry name&#039;)&lt;/script&gt;</h1>
+<a name='mountainboard-world-championship-lt-script-gt-alert-039-xss-entry-name-039-lt-script-gt'></a>
+<a name='overall-ladies-lt-script-gt-alert-039-xss-cat-039-lt-script-gt'></a>
 <table>
-	<caption>Overall - Ladies</caption>
+	<caption>Overall - Ladies &lt;script&gt;alert(&#039;xss cat&#039;)&lt;/script&gt;</caption>
 	<tr>
 		<td>1</td>
 		<td>Ola Tomalczyk</td>
@@ -31,6 +31,10 @@
 	<tr>
 		<td>3</td>
 		<td>Natasha Chernikova</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>&lt;script&gt;alert(&#039;xss first name&#039;)&lt;/script&gt; &eacute;glantine</td>
 	</tr>
 </table>
 <a name='overall-masters'></a>
@@ -82,8 +86,8 @@
 	</tr>
 </table>
 
-<h1 id='mountainboard-world-championship'>Mountainboard World Championship</h1>
-<a name='mountainboard-world-championship'></a>
+<h1 id='atba-uk-championship'>ATBA UK Championship</h1>
+<a name='atba-uk-championship'></a>
 <a name='overall-ladies'></a>
 <table>
 	<caption>Overall - Ladies</caption>

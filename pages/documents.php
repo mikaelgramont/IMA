@@ -1,7 +1,4 @@
 <?php
-require_once __DIR__.'/../php/config.php';
-require_once 'Helpers.php';
-
 if (!file_exists(CREDENTIALS_PATH)) {
   throw new Exception("No token file at " . CREDENTIALS_PATH);
 }
@@ -23,11 +20,12 @@ if (count($files) == 0) {
   print "<ul>\n";
   foreach ($files as $file) {
     printf(
-      "<li><a href='%s' title='%s'><img src='%s' alt=''>%s</a> - %s - %s</li>\n",            
+      "<li><a href='%s' title='%s'><img src='%s' alt=''>%s</a> - %s - %s - %s</li>\n",            
       $file["webViewLink"],
       $file["mimeType"],
       $file["iconLink"],
       $file["name"],
+      $file["description"],
       $file["modifiedTime"],
       $file["id"]
     );
