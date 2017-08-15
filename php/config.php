@@ -18,10 +18,12 @@ define('DEBUG', true);
 define('APPLICATION_NAME', 'IMA Website');
 define('CREDENTIALS_PATH', __DIR__ . '/.credentials/credentials.json');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
-define('CACHE_PATH', __DIR__ . '/../php/cache/');
+define('CACHE_PATH', realpath(__DIR__ . '/../php/cache/'));
 define('RESULTS_CACHE_PATH', 'results/');
+define('EVENTS_CACHE_PATH', 'events/');
 
 define('RESULTS_HTML_PATH', './../pages/generated/results/');
+define('EVENTS_HTML_PATH', './../pages/generated/events/');
 
 // If modifying these scopes, delete your previously saved credentials
 // at CREDENTIALS_PATH
@@ -34,6 +36,7 @@ define('SCOPES', implode(' ', array(
 define('PUBLIC_DOCUMENTS_FOLDER_ID', '0B1zQszUhxFKDVlV6TWZ3UldYRmM');
 define('RESULTS_FOLDER_ID', '0B1zQszUhxFKDbjVvSjJQQ05IbkU');
 define('EVENTS_FOLDER_ID', '0B1zQszUhxFKDRFJrUWc1V21ZZjg');
+define('EVENTS_RESPONSE_SHEET_ID', '1EqMf72dGEAq-OtrNVTSTfFeRgne-JP5NtAZfBJ6C3i4');
 
 
 /******************************************************************************

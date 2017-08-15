@@ -1,6 +1,8 @@
 # IMA
 
 ## Installation
+Copy `php/config.php.template` to `php/config.php` and give all constants a value.
+
 Copy your Google API client secret into `php/client_secret.json`.
 
 The following folders need to be writable by the server, and by other manual process run from `bin` or through cron jobs:
