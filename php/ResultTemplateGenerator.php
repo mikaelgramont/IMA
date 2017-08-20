@@ -65,10 +65,7 @@ class ResultTemplateGenerator
 		ksort($categories);
 		$body .= "<ol class=\"category-list\">\n";
 		foreach ($categories as $i => $category) {
-			$categoryName = Utils::escape($category->getName());
-			$categoryAnchorName = $this->_getAnchorName($category->getName());
-
-			$body .= $this->_renderCategory($category);
+			$body .= $this->_renderCategory($category, $entryAnchorName);
 		}
 		$body .= "</ol>\n";
 		$body .= "</div>\n";
@@ -76,10 +73,10 @@ class ResultTemplateGenerator
 		return array($header, $body);
 	}
 
-	private function _renderCategory(ResultCategory $category)
+	private function _renderCategory(ResultCategory $category, $entryAnchorName)
 	{
 		$categoryName = Utils::escape($category->getName());
-		$categoryAnchorName = $this->_getAnchorName($category->getName());
+		$categoryAnchorName = $entryAnchorName . "-" . $this->_getAnchorName($category->getName());
 
 		$rankings = array();
 		foreach ($category->getRankings() as $ranking) {
@@ -87,15 +84,19 @@ class ResultTemplateGenerator
 		}
 		ksort($rankings);
 
-		$out = "<li class=\"category\"><table>\n";
-		$out .= "\t<caption><a name='{$categoryAnchorName}'></a>\n<a href=\"$categoryAnchorName\">{$categoryName}</a></caption>\n";
+		$out = "<li class=\"category\">\n<table>\n";
+		$out .= "\t<caption>\n";
+		$out .= "\t\t<a name=\"{$categoryAnchorName}\"></a>\n";
+		$out .= "\t\t<span class=\"category-name\">{$categoryName}</span>\n";
+		$out .= "\t\t<a class=\"link-icon\" href=\"?year={$this->_year}#$categoryAnchorName\"></a>\n";
+		$out .= "\t</caption>\n";
 		foreach ($rankings as $ranking) {
 			$out .= $this->_renderRanking($ranking);
 		}
 		if ($ranking->getPosition() > self::LAST_INITIALLY_DISPLAYED_RANK) {
 			$out .= $this->_renderExpandButtonRow();
 		}
-		$out .= "</table></li>\n";
+		$out .= "</table>\n</li>\n";
 
 		return $out;
 	}
@@ -106,8 +107,7 @@ class ResultTemplateGenerator
 		$fullName = Utils::escape($ranking->getFullName());
 		$country = Utils::escape($ranking->getCountry());
 
-		$rowClass = $position > self::LAST_INITIALLY_DISPLAYED_RANK ? "hidden-result" : "";
-
+		$rowClass = $position > self::LAST_INITIALLY_DISPLAYED_RANK ? "hidden-result no-highlight" : "";
 		$out = "\t<tr class=\"$rowClass\">\n\t\t<td class=\"position\">{$position}</td>\n";
 		$out .= "\t\t<td class=\"fullname\">{$fullName}";
 

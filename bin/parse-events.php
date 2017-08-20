@@ -38,16 +38,30 @@ if ($cacheItem->isMiss()) {
 	$sheetsService = new Google_Service_Sheets($client);
 
 	$cacheItem->lock();
-	$events = EventParser::buildEvents($driveService, $sheetsService, $logger, EVENTS_RESPONSE_SHEET_ID);
-	$cacheItem->set($events);
-	$pool->save($cacheItem);
+	try {
+		$events = EventParser::buildEvents($driveService, $sheetsService, $logger, EVENTS_RESPONSE_SHEET_ID);
+		$cacheItem->set($events);
+		$pool->save($cacheItem);
+	} catch (Exception $e) {
+		echo $logger->dumpText()."\n";
+		die("There were errors");
+	}
 } else {
 	$events = $cacheItem->get();
 }
 
+$out = "";
+$generator = "";
 foreach ($events as $event) {
 	$generator = new EventTemplateGenerator($event, EVENTS_HTML_PATH);
 	$generator->buildHTML($driveService);
-	echo $generator->getFullOutput();
-	$generator->saveToDisk();
+	$eventOut = $generator->getFullOutput();
+	$out .= $eventOut;
+	echo $eventOut;
 }
+
+if ($generator) {
+	$generator->saveToDisk($out);
+}
+$logger->log("All done.");
+echo $logger->dumpText()."\n";

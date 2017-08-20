@@ -86,11 +86,17 @@ class EventEntry
 
 	public function getFirstDayTimeStamp()
 	{
+		if (!isset($this->_values[self::FIRST_DAY_COLUMN])) {
+			return "";
+		}
 		return $this->_getTimeStamp($this->_values[self::FIRST_DAY_COLUMN]);
 	}
 
 	public function getLastDayTimeStamp()
 	{
+		if (!isset($this->_values[self::LAST_DAY_COLUMN])) {
+			return "";
+		}
 		return $this->_getTimeStamp($this->_values[self::LAST_DAY_COLUMN]);
 	}
 
@@ -103,11 +109,17 @@ class EventEntry
 
 	public function getFirstDayDate()
 	{
+		if (!isset($this->_values[self::LAST_DAY_COLUMN])) {
+			return "";
+		}
 		return $this->_formatDate($this->_values[self::FIRST_DAY_COLUMN]);
 	}
 
 	public function getLastDayDate()
 	{
+		if (!isset($this->_values[self::LAST_DAY_COLUMN])) {
+			return "";
+		}
 		return $this->_formatDate($this->_values[self::LAST_DAY_COLUMN]);
 	}
 
@@ -119,26 +131,26 @@ class EventEntry
 
 	public function getLocation()
 	{
-		return $this->_values[self::LOCATION_COLUMN];
+		return isset($this->_values[self::LOCATION_COLUMN]) ? $this->_values[self::LOCATION_COLUMN] : "";
 	}
 
 	public function getCountry()
 	{
-		return $this->_values[self::COUNTRY_COLUMN];
+		return isset($this->_values[self::COUNTRY_COLUMN]) ? $this->_values[self::COUNTRY_COLUMN] : "";
 	}
 
 	public function getDescription()
 	{
-		return $this->_values[self::DESCRIPTION_COLUMN];
+		return isset($this->_values[self::DESCRIPTION_COLUMN]) ? $this->_values[self::DESCRIPTION_COLUMN] : "";
 	}
 
 	public function getContact()
 	{
-		return $this->_values[self::ORGANISER_CONTACT_COLUMN];
+		return isset($this->_values[self::ORGANISER_CONTACT_COLUMN]) ? $this->_values[self::ORGANISER_CONTACT_COLUMN] : "";
 	}
 
 	public function getWebsite()
 	{
-		return $this->_values[self::WEBSITE_COLUMN];
+		return isset($this->_values[self::WEBSITE_COLUMN]) ? $this->_values[self::WEBSITE_COLUMN] : "";
 	}
 }

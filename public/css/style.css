@@ -254,3 +254,16 @@ body {
     width: 12px;
     height: 10px;
 }
+.country-flag.big {
+	width: 20px;
+	height: 16px;
+}
+
+.link-icon {
+	display: inline-block;
+	margin: 0 3px;
+    width: 12px;
+    height: 12px;
+    background-size: cover;
+    background-image: url('../images/link.svg');
+}

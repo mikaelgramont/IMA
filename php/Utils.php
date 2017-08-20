@@ -337,6 +337,7 @@ class Utils
         // Other abbreviations for user's sakes:
         switch ($country) {
             case "UK": return "GB";
+            case "USA": return "US";
             case "England": return "GB";
         }
         return "";

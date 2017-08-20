@@ -7,9 +7,9 @@ class Logger
 		$this->_log[] = $content;
 	}
 
-	public function dump()
+	public function dumpText()
 	{
-		return implode("\n", $this->_log());
+		return implode("\n", $this->_log);
 	}
 
 	public function dumpHtml()

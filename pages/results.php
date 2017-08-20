@@ -87,6 +87,9 @@
     	padding: 0 5px;
     	box-sizing: border-box;
 	}
+	.category-name {
+		color: #E82020;
+	}
 
 	@media screen and (min-width: 640px) {
 		.category {
@@ -122,6 +125,9 @@
 
 	.fullname {
 		font-weight: bold;
+	}
+	.no-highlight .fullname {
+		font-weight: normal;
 	}
 
 	.hidden-result {
