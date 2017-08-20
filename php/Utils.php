@@ -65,4 +65,9 @@ class Utils
         $clean = strtolower($clean);
         return $clean;
     }	
+
+    public static function getFlagFileForCountry($country)
+    {
+        return "";
+    }
 }

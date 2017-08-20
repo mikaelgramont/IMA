@@ -21,19 +21,19 @@ class ResultParser
 		      $logger->log(sprintf("Skipping non-spreadsheet file '%s': '%s'", $file['name'], $file['mimeType']));
 		      continue;
 		    }
-		    $resultEntry = new ResultEntry($file['name']);
+		    $resultEntry = new ResultEntry($file['name'], $file['description']);
 		    $spreadsheetResponse = $sheetsService->spreadsheets->get($file['id']);
 		    
 		    foreach ($spreadsheetResponse->sheets as $sheet) {
 		      $sheetTitle = $sheet['properties']['title'];
 		      $resultCategory = new ResultCategory($sheetTitle);
-		      $range = sprintf("'%s'!A2:C", $sheetTitle);
+		      $range = sprintf("'%s'!A2:D", $sheetTitle);
 		      
 		      $sheetContentResponse = $sheetsService->spreadsheets_values->get($file['id'], $range);
 		      $values = $sheetContentResponse->getValues();
 		      
 		      foreach ($values as $index => $value) {
-		        $ranking = new ResultRanking($value[0], $value[1], isset($value[2]) ? $value[2] : 'NULL');
+		        $ranking = new ResultRanking($value[0], $value[1], isset($value[2]) ? $value[2] : 'NULL', isset($value[3]) ? $value[3] : 'NULL');
 		        $resultCategory->addRanking($ranking);
 		      }
 

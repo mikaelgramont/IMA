@@ -7,6 +7,7 @@ class ResultTemplateGenerator
 	private $_outputBodyParts = array();
 	private $_fullOutput = "";
 
+	const  LAST_INITIALLY_DISPLAYED_RANK = 3;
 
 	public function __construct(ResultYear $resultYear, $path)
 	{
@@ -26,7 +27,7 @@ class ResultTemplateGenerator
 			$this->_outputBodyParts[] = $body;
 		}
 
-		$this->_fullOutput = implode("\n", $this->_outputHeaderParts) . "\n<hr>\n" . implode("\n", $this->_outputBodyParts);
+		$this->_fullOutput = implode("\n", $this->_outputHeaderParts) . "\n" . implode("\n", $this->_outputBodyParts);
 	}
 
 	public function getFullOutput()
@@ -44,31 +45,33 @@ class ResultTemplateGenerator
 	{
 		$entryName = Utils::escape($resultEntry->getName());
 		$entryAnchorName = $this->_getAnchorName($resultEntry->getName());
+		$entryDescription = Utils::escape($resultEntry->getDescription());
 
 		$header = "";
-		if ($this->_hasMultipleEntries()) {
-			// Only add an anchor if it makes sense.
-			$header .= "<a href='#{$entryAnchorName}'>{$entryName}</a>\n";
-		}
-		$header .= "<ul>\n";
+		$body = "<div class=\"results-entry\">\n";
+		$body .= "\t<h2 id=\"{$entryAnchorName}\" class=\"display-font entry-title\">{$entryName}</h2>\n";
+		$body .= "\t<a name='{$entryAnchorName}'></a>\n";
 
-		$body = "<h1 id='{$entryAnchorName}'>{$entryName}</h1>\n";
-		$body .= "<a name='{$entryAnchorName}'></a>\n";
+		if ($entryDescription) {
+			$body .= "\t<p class=\"event-description\">{$entryDescription}</p>\n";
+		} else {
+			$body .= "\t<!-- No description -->";
+		}
 		
 		$categories = array();
 		foreach ($resultEntry->getCategories() as $category) {
 			$categories[$category->getName()] = $category;
 		}
 		ksort($categories);
-
+		$body .= "<ol class=\"category-list\">\n";
 		foreach ($categories as $i => $category) {
 			$categoryName = Utils::escape($category->getName());
 			$categoryAnchorName = $this->_getAnchorName($category->getName());
 
-			$header .= "<li><a href='#{$categoryAnchorName}'>{$categoryName}</a></li>\n";
 			$body .= $this->_renderCategory($category);
 		}
-		$header .= "</ul>\n";
+		$body .= "</ol>\n";
+		$body .= "</div>\n";
 
 		return array($header, $body);
 	}
@@ -84,17 +87,44 @@ class ResultTemplateGenerator
 		}
 		ksort($rankings);
 
-		$out = "<a name='{$categoryAnchorName}'></a>\n";
-		$out .= "<table>\n";
-		$out .= "\t<caption>{$categoryName}</caption>\n";
+		$out = "<li class=\"category\"><table>\n";
+		$out .= "\t<caption><a name='{$categoryAnchorName}'></a>\n<a href=\"$categoryAnchorName\">{$categoryName}</a></caption>\n";
 		foreach ($rankings as $ranking) {
-			$position = Utils::escape($ranking->getPosition());
-			$fullName = Utils::escape($ranking->getFullName());
-			$out .= "\t<tr>\n\t\t<td>{$position}</td>\n\t\t<td>{$fullName}</td>\n\t</tr>\n";
+			$out .= $this->_renderRanking($ranking);
 		}
-		$out .= "</table>\n";
+		if ($ranking->getPosition() > self::LAST_INITIALLY_DISPLAYED_RANK) {
+			$out .= $this->_renderExpandButtonRow();
+		}
+		$out .= "</table></li>\n";
 
 		return $out;
+	}
+
+	private function _renderRanking(ResultRanking $ranking)
+	{
+		$position = Utils::escape($ranking->getPosition());
+		$fullName = Utils::escape($ranking->getFullName());
+		$country = Utils::escape($ranking->getCountry());
+
+		$rowClass = $position > self::LAST_INITIALLY_DISPLAYED_RANK ? "hidden-result" : "";
+
+		$out = "\t<tr class=\"$rowClass\">\n\t\t<td class=\"position\">{$position}</td>\n";
+		$out .= "\t\t<td class=\"fullname\">{$fullName}";
+
+		if ($country) {
+			$src = Utils::getFlagFileForCountry($country);
+			if ($src) {
+				$out .= "<img alt=\"\" src=\"$src\" class=\"country-flag\">\n";
+			}
+		}
+		$out .= "</td>\n\t</tr>\n";
+		return $out;		
+	}
+
+	private function _renderExpandButtonRow()
+	{
+		return "<tr><td class=\"expand-cell\" colspan=\"2\">Expand</td></tr>\n";
+
 	}
 
 	private function _hasMultipleEntries()

@@ -5,25 +5,34 @@ class Pages
 	{
 		return array(
 			(object) [
-				'title' => '',
+				'title' => 'Home',
 				'url' => '',
-				'file' => 'home.php'
+				'file' => 'home.php',
+				'headerClass' => 'home',
 			],
 			(object) [
-				'title' => 'Public documents',
-				'url' => 'public-documents',
-				'file' => 'documents.php'
+				'title' => 'Organizers',
+				'url' => 'organizers',
+				'file' => 'organizers.php',
+				'headerClass' => 'organizers',
 			],
 			(object) [
 				'title' => 'Events',
 				'url' => 'events',
-				'file' => 'events.php'
+				'file' => 'events.php',
+				'headerClass' => 'events',
 			],
 			(object) [
-				'skipMenuEntry' => true,
 				'title' => 'results',
 				'url' => 'results',
-				'file' => 'results.php'
+				'file' => 'results.php',
+				'headerClass' => 'results',
+			],
+			(object) [
+				'title' => 'about',
+				'url' => 'about',
+				'file' => 'about.php',
+				'headerClass' => 'about',
 			],
 		);
 	}

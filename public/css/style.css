@@ -1,18 +1,112 @@
+/**
+ * Colors:
+ * white #F7F7F7
+ * gray #D8D8D8
+ * red #E82020
+ * black #1A1705
+ */
+
+
+/**
+ * Fonts
+ */
+
+
+/**
+ * Resets and overall styles
+ */
 body {
 	margin: 0;
-	background-color: #101010;	
-	color: #efefef;
+	background-color: #F7F7F7;	
+	color: #1A1705;
+	font-family: 'Raleway';
+	font-size: 16px;
 }
 
 a,
 a:visited {
-	color: #efefef;
+	color: #1A1705;
+}
+
+h1 {
+	font-size: 2em;
 }
 
 h2 {
-	font-size: 1.25em;
+	font-size: 1.5em;
 }
 
 select {
 	background: #eee;
+}
+
+.display-font {
+	margin: 0;
+	font-family: 'Pathway Gothic One';
+	text-transform: uppercase;
+	font-weight: 100;
+}
+
+/**
+ * Layout
+ */
+
+body {
+	position: relative;
+}
+
+.wrapper {
+
+}
+
+.main {
+	padding: 0 9px;
+}
+
+.page-header {
+	margin-bottom: 30px;
+}
+
+.banner {
+	display: block;
+	margin: 15px auto 0;
+	width: 330px;
+	height: 87px;
+	background: url('../images/logo.png');
+	background-size: cover;
+} 
+
+.navigation-menu {
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	height: 50px;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+    align-items: center;
+    align-content: space-around;	
+	background: #D8D8D8;
+}
+
+.navigation-menu__entry {
+	flex: 1 0;
+	list-style: none;
+	text-align: center;	
+}
+
+.navigation-menu__entry-link {
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: PunkRockShow;
+}
+
+.navigation-menu__entry.selected .navigation-menu__entry-link {
+	color: #E82020;
+}
+
+.page-title-container {
+	background: #D8D8D8;
+	margin: 0 -9px 15px;
+	padding: 9px 9px;
 }
