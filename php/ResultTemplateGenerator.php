@@ -114,7 +114,7 @@ class ResultTemplateGenerator
 		if ($country) {
 			$src = Utils::getFlagFileForCountry($country);
 			if ($src) {
-				$out .= "<img alt=\"\" src=\"$src\" class=\"country-flag\">\n";
+				$out .= "<img src=\"$src\" class=\"country-flag\">\n";
 			}
 		}
 		$out .= "</td>\n\t</tr>\n";
@@ -123,8 +123,14 @@ class ResultTemplateGenerator
 
 	private function _renderExpandButtonRow()
 	{
-		return "<tr><td class=\"expand-cell\" colspan=\"2\">Expand</td></tr>\n";
+		return <<<HTML
+		<tr>
+			<td class="expand-cell" colspan="2">
+				<button class="expand-cell-button" data-collapsed-text="Show more" data-expanded-text="Hide">Show more</button>
+			</td>
+		</tr>
 
+HTML;
 	}
 
 	private function _hasMultipleEntries()

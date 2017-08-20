@@ -11,22 +11,22 @@ class Pages
 				'headerClass' => 'home',
 			],
 			(object) [
-				'title' => 'Organizers',
-				'url' => 'organizers',
-				'file' => 'organizers.php',
-				'headerClass' => 'organizers',
-			],
-			(object) [
 				'title' => 'Events',
 				'url' => 'events',
 				'file' => 'events.php',
-				'headerClass' => 'events',
+				'headerClass' => 'calendar',
 			],
 			(object) [
 				'title' => 'results',
 				'url' => 'results',
 				'file' => 'results.php',
 				'headerClass' => 'results',
+			],
+			(object) [
+				'title' => 'Organizers',
+				'url' => 'organizers',
+				'file' => 'organizers.php',
+				'headerClass' => 'organizers',
 			],
 			(object) [
 				'title' => 'about',

@@ -82,13 +82,18 @@
 	}
 
 	.category {
-		margin-bottom: 30px;
-		width: 50%;
+	    margin: 0 auto 30px;
+		width: 300px;
     	padding: 0 5px;
     	box-sizing: border-box;
-    	max-width: 300px;
 	}
 
+	@media screen and (min-width: 640px) {
+		.category {
+    		width: 50%;
+		    margin: 0 0 30px;
+    	}
+	}
 	table {
 		width: 100%;
 		border-collapse: collapse;
@@ -122,10 +127,24 @@
 	.hidden-result {
 		display: none;
 	}
+	table.expanded .hidden-result {
+		display: table-row;
+	}
 
 	.expand-cell {
 		text-align: center;
+		font-weight: normal;
 	}
+	.expand-cell-button {
+		padding: 3px 6px;
+		border: 0;
+		opacity: .8;
+		background: transparent;		
+	}
+	.expand-cell-button:hover {
+		cursor: pointer;
+	}
+	expand-cell
 </style>
 
 
@@ -166,9 +185,25 @@
 		};
 		window.addEventListener("load", makeOverflowObvious);
 		window.addEventListener('resize', makeOverflowObvious);
+
+		// CLICK ON EXPAND BUTTONS
+	    on('.wrapper', 'click', '.expand-cell-button', function(e) {
+	    	function getTableParent(child) {
+	    		if (child.parentNode.tagName == 'TABLE') {
+	    			return child.parentNode;
+	    		} else {
+	    			return getTableParent(child.parentNode);
+	    		}
+	    	}
+	    	var buttonEl = e.target;
+	    	var tableEl = getTableParent(buttonEl);
+	    	if (buttonEl.innerText == buttonEl.getAttribute('data-collapsed-text')) {
+	    		tableEl.classList.add('expanded');
+	    		buttonEl.innerText = buttonEl.getAttribute('data-expanded-text');
+	    	} else {
+				tableEl.classList.remove('expanded');
+				buttonEl.innerText = buttonEl.getAttribute('data-collapsed-text');
+	    	}
+	    });
 	})();
 </script>
-
-
-
-

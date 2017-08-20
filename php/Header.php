@@ -23,7 +23,10 @@ class Header
 			
 			$output .= <<<HTML
 				<li class="{$class}">
-					<a href="{$url}" class="navigation-menu__entry-link">{$label}</a>
+					<a href="{$url}" class="navigation-menu__entry-link">
+						<span class="navigation-menu__entry-image"></span>
+						{$label}
+					</a>
 				</li>
 
 HTML;
