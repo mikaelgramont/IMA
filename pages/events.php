@@ -1,5 +1,7 @@
 <style>
-
+.event {
+    margin-bottom: 30px;
+}
 </style>
 <div class="page-title-container">
   <h1 class="display-font">Upcoming events</h1>

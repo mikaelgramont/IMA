@@ -29,7 +29,7 @@ $logger = new Logger();
 // Cache setup
 $driver = new Stash\Driver\FileSystem(array('path' => CACHE_PATH));
 $pool = new Stash\Pool($driver);
-//$pool->clear();
+$pool->clear();
 $cacheId = RESULTS_CACHE_PATH;
 $cacheItem = $pool->getItem($cacheId);
 

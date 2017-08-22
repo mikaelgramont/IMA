@@ -30,16 +30,18 @@ class EventTemplateGenerator
 		}
 
 
-		$out =  "<section>\n";
+		$out =  "<section class=\"event\">\n";
 		$out .= "\t<h2 class=\"display-font\">$name {$img}</h2>\n";
 		$out .= "\t<p class=\"event-date-location\">\n";
-		$out .= "\t<span class=\"\">$date</span> <span class=\"location\">$location, $country</span>\n";
+		$out .= "\t<span class=\"\">$date</span><span aria-hidden=\"true\"> - </span><span class=\"location\">$location, $country</span>\n";
 		$out .= "\t</p>\n";
 		$out .= "\t<p class=\"paragraph description\">$description</p>\n";
+		if ($contact) {
+			$out .= "\t<p class=\"contact\">Contact: $contact</p>\n";
+		}
 		if ($website) {
 			$out .= "\t<p class=\"website\"><a href=\"$website\">More information</a></p>\n";
 		}
-		$out .= "\t<p class=\"contact\">$contact</p>\n";
 
 		$out .= "</section>\n";
 		$this->_fullOutput = $out;

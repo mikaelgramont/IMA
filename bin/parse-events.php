@@ -8,7 +8,6 @@ require_once 'Helpers.php';
 require_once 'Logger.php';
 require_once 'Utils.php';
 
-require_once 'EventEntry.php';
 require_once 'EventParser.php';
 require_once 'EventTemplateGenerator.php';
 

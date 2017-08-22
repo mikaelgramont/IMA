@@ -23,8 +23,7 @@ body {
 	font-size: 16px;
 }
 
-a,
-a:visited {
+a {
 	color: #1A1705;
 }
 
@@ -61,6 +60,7 @@ p {
 
 .paragraph {
 	text-align: justify;
+	max-width: 50em;
 }
 
 /**
@@ -99,7 +99,7 @@ body {
 	}
 
 	.banner {
-		margin: 15px;
+		margin: 15px 9px;
 	}
 }
 
@@ -211,10 +211,12 @@ body {
 	background-image: url('../images/about-selected.svg');
 }
 
+.page-title-container {
+	margin: 0 -9px 15px;
+}
 .page-title-container,
 .footer {
 	background: #D8D8D8;
-	margin: 0 -9px 15px;
 	padding: 9px 9px;
 }
 
