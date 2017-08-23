@@ -5,6 +5,7 @@
 
 ## Layout
 * Allow for multiple actions when tapping bottom bar entries (which display the multiple above it)
+* Handle menu transitions between 960 and 640
 
 ## Results page
 * Remove the overflow stuff around the list of years, and replace that with a simple client-side pagination through the years (next/prev).
@@ -28,4 +29,4 @@
 
 ## Flags
 * Clean up and resize them
-* Maybe use a spritesheet instead
+* Maybe use a spritesheet instead 

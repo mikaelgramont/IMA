@@ -96,9 +96,12 @@ body {
 @media screen and (min-width: 640px) {
 	.page-header {
 		position: relative;
+		display: flex;
+		align-items: center;
 	}
 
 	.banner {
+		flex-shrink: 0;
 		margin: 15px 9px;
 	}
 }
@@ -112,7 +115,8 @@ body {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-    align-items: center;
+	flex-wrap: wrap;
+	align-items: center;
     align-content: space-around;	
 	background: #D8D8D8;
 }
@@ -136,9 +140,10 @@ body {
 
 @media screen and (min-width: 640px) {
 	.navigation-menu {
-		position: absolute;
-		top: 20px;
-		right: 0;
+		flex: 1 1;
+		position: static;
+		top: auto;
+		right: auto;
 		width: auto;
 		background: transparent;
 	}
