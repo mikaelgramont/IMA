@@ -12,6 +12,7 @@ require_once 'Header.php';
 require_once 'Helpers.php';
 require_once 'PageHelper.php';
 require_once 'Pages.php';
+require_once 'Utils.php';
 
 define('DEBUG', true);
 
@@ -48,3 +49,4 @@ define('EVENTS_RESPONSE_SHEET_ID', '');
 define('BASE_URL', PageHelper::getBaseUrl());
 define('SITE_NAME', '');
 define('KEYWORDS', '');
+define('INSTAGRAM_USERNAME', '');

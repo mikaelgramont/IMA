@@ -93,6 +93,15 @@ body {
 	background-size: cover;
 }
 
+@media screen and (max-width: 320px) {
+	.banner {
+		width: 100%;
+		margin: 15px 0;
+		height: 0;
+		padding-top: 26.37%;
+	}
+}
+
 @media screen and (min-width: 640px) {
 	.page-header {
 		position: relative;

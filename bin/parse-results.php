@@ -43,6 +43,7 @@ if ($cacheItem->isMiss()) {
 	$cacheItem->lock();
 	$results = ResultParser::buildResults($driveService, $sheetsService, $logger, RESULTS_FOLDER_ID);
 	$cacheItem->set($results);
+	$cacheItem->expiresAfter(24 * 3600 * 2);
 	$pool->save($cacheItem);
 } else {
 	$results = $cacheItem->get();

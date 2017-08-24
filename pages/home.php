@@ -1,14 +1,24 @@
 <?php
+	function renderImage($url, $caption) {
 
+
+	}
 	$driver = new Stash\Driver\FileSystem(array('path' => CACHE_PATH));
 	$pool = new Stash\Pool($driver);
 	$cacheId = EVENTS_CACHE_PATH;
 	$cacheItem = $pool->getItem($cacheId);
 
-	$events = null;
+	$eventNameEscaped = "";
 	if (!$cacheItem->isMiss()) {
 		$events = $cacheItem->get();
+		if ($events && sizeof($events) > 0) {
+			$event = array_pop($events);
+			$eventNameEscaped = Utils::escape($event->getName());
+		}
 	}
+
+	$scraper = new Instagram(INSTAGRAM_USERNAME, $pool, array(), true);
+	$photos = $scraper->getPhotos();
 ?>
 <style>
 	.carousel-container {
@@ -102,7 +112,6 @@
 
 	/* Rest of the page */
 	.content-wrapper {
-		display: flex;
 		flex-wrap: nowrap;
 	}
 	.content-main {
@@ -110,7 +119,28 @@
 	}
 	.content-aside {
 		flex: 1 0;
-		margin-left: 15px;
+	}
+
+	@media screen and (min-width: 640px) {
+		.content-wrapper {
+			display: flex;
+		}
+		.content-aside {
+			margin-left: 30px;
+		}
+	}
+
+	.ig-photos {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.ig-photo {
+		margin: 15px 0;
+	}
+	.ig-image {
+		width: 200px;
+		display: block;
 	}
 </style>
 <div id="home-carousel" class="carousel-container">
@@ -147,15 +177,31 @@
 	</div>
 
 	<aside class="content-aside">
-		<?php if ($events && sizeof($events) > 0) {	?>
-			<div class="upcoming-event">
-				<h2 class="display-font">Next upcoming event</h2>
-				<?php
-					$event = array_pop($events);
-					echo $event->getName();
-				?>
+		<?php
+			if ($eventNameEscaped) { ?>
+				<div class="upcoming-event">
+					<h2 class="display-font">Next upcoming event</h2>
+					<p><?php echo $eventNameEscaped; ?> <a href="<?php echo BASE_URL ?>events">More info</a></p>
+				</div><?php
+			}
+			if ($photos) { ?>
+			<div class="ig">
+				<h2 class="display-font">The IMA on Instagram</h2>
+				<ul class="ig-photos">
+					<?php foreach ($photos as $photo) {
+						$url = str_replace("s640x640", "s320x320", $photo["thumbnail_src"]);
+						$url = str_replace("s480x480", "s320x320", $url);
+						echo "<li class=\"ig-photo\">\n";
+						echo "<a href=\"https://www.instagram.con/p/".$photo["code"]."\">\n";
+						echo "<img class=\"ig-image\" src=\"".$url."\">\n";
+						echo $photo["caption"]."\n";
+						echo "</a>\n";
+						echo "</li>\n";
+					} ?>
+				</ul>
 			</div>
-		<?php } ?>
+			<?php } ?>
+		</div>
 	</aside>
 </div>
 <script src="<?php echo BASE_URL?>scripts/siema.min.js"></script>

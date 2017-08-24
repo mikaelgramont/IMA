@@ -40,6 +40,11 @@ $files = Helpers::getFileList($service, PUBLIC_DOCUMENTS_FOLDER_ID);
     font-size: 0.75em;
     opacity: .6;
   }
+  @media screen and (max-width: 640px) {
+    .description {
+      text-align: left;
+    }
+  }
 </style>
 <div class="page-title-container">
   <h1 class="display-font">Resources for Organizers</h1>
