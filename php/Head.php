@@ -10,12 +10,26 @@ class Head
 	}
 
 	private static function meta_($keywords) {
+		$title = OG_TITLE;
+		$description = OG_DESCRIPTION;
+		$url = OG_URL;
+		$siteName = OG_SITE_NAME;
+		$image = OG_IMAGE;
+
 		$content = <<<HTML
 			<meta name="Content-Type" content="text/html; charset=utf-8" >
 			<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width" >
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
 			<meta name="Content-Language" content="en" >
-			<meta name="keywords" content="{$keywords}">	
+			<meta name="keywords" content="{$keywords}">
+
+			<meta property="og:title" content="{$title}"/>
+			<meta property="og:description" content="{$description}"/>
+			<meta property="og:type" content="website"/>
+			<meta property="og:url" content="{$url}"/>
+			<meta property="og:site_name" content="{$siteName}"/>
+			<meta property="og:image" content="{$image}"/>
+
 
 HTML;
 		return $content;		
