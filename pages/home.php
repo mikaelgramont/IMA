@@ -17,8 +17,11 @@
 		}
 	}
 
+	$photos = array();
+	/*	
 	$scraper = new Instagram(INSTAGRAM_USERNAME, $pool, array(), true);
 	$photos = $scraper->getPhotos();
+	*/
 ?>
 <style>
 	.carousel-container {

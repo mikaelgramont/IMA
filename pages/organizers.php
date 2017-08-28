@@ -50,6 +50,12 @@ $files = Helpers::getFileList($service, PUBLIC_DOCUMENTS_FOLDER_ID);
   <h1 class="display-font">Resources for Organizers</h1>
 </div>
 
+<h2 class="display-font">Event submission form</h1>
+<p class="paragraph">
+  In order to submit a new event, please follow the <a href="<?php echo EVENT_SUBMISSION_FORM_URL ?>">event submission form</a>.
+</p>
+
+<h2 class="display-font">Documents</h1>
 <p class="paragraph">
   Below is a list of documents the IMA has prepared over the years, which we hope will be useful for organizing events, building venues and promoting mountainboarding in general.
 </p>
