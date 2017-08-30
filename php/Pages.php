@@ -17,7 +17,7 @@ class Pages
 				'headerClass' => 'calendar',
 			],
 			(object) [
-				'title' => 'results',
+				'title' => 'Results',
 				'url' => 'results',
 				'file' => 'results.php',
 				'headerClass' => 'results',
@@ -29,10 +29,29 @@ class Pages
 				'headerClass' => 'organizers',
 			],
 			(object) [
-				'title' => 'about',
+				'title' => 'About',
 				'url' => 'about',
 				'file' => 'about.php',
 				'headerClass' => 'about',
+			],
+			(object) [
+				'title' => 'Admin',
+				'url' => 'admin',
+				'file' => 'admin.php',
+				'skipMenuEntry' => true,
+			],
+			(object) [
+				'title' => '',
+				'url' => 'perform-update',
+				'file' => 'perform-update.php',
+				'skipMenuEntry' => true,
+				'noContent' => true
+			],
+			(object) [
+				'title' => '',
+				'url' => 'done-updating',
+				'file' => 'done-updating.php',
+				'skipMenuEntry' => true
 			],
 		);
 	}

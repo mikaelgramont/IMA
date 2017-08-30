@@ -14,6 +14,7 @@
 * Skip empty tab, and report error.
 
 ## Events page
+* Regenerate cache once a day
 * Link for instructions on how to add one.
 
 ## Home page

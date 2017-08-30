@@ -34,8 +34,8 @@ class ResultRanking
 	public function getLogText()
 	{
 		return <<<TXT
-		Rannking {$this->_position} {$this->_firstName} {$this->_lastName} {$this->_country}
-		
+		Ranking {$this->_position} {$this->_firstName} {$this->_lastName} {$this->_country}
+
 TXT;
 	}
 }

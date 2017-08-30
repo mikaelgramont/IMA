@@ -4,6 +4,7 @@ if (php_sapi_name() != 'cli') {
   throw new Exception('This application must be run on the command line.');
 }
 require_once __DIR__.'/../php/config.php';
+require_once 'Cache.php';
 require_once 'Helpers.php';
 require_once 'Logger.php';
 require_once 'Utils.php';
@@ -23,8 +24,7 @@ try {
 $logger = new Logger();
 
 // Cache setup
-$driver = new Stash\Driver\FileSystem(array('path' => CACHE_PATH));
-$pool = new Stash\Pool($driver);
+$pool = Cache::getPool();
 @$pool->clear();
 $cacheId = EVENTS_CACHE_PATH;
 $cacheItem = $pool->getItem($cacheId);

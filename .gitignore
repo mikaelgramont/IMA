@@ -3,6 +3,7 @@ php/config.php
 php/client_secret*
 php/vendor
 php/composer.lock
+php/cache/
 pages/generated/events/*.php
 pages/generated/results/*.php
 _tmp

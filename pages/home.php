@@ -3,8 +3,7 @@
 
 
 	}
-	$driver = new Stash\Driver\FileSystem(array('path' => CACHE_PATH));
-	$pool = new Stash\Pool($driver);
+	$pool = Cache::getPool();
 	$cacheId = EVENTS_CACHE_PATH;
 	$cacheItem = $pool->getItem($cacheId);
 

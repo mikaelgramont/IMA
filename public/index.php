@@ -3,6 +3,7 @@ require_once __DIR__.'/../php/config.php';
 $pages = Pages::getList();
 $currentPageId = PageHelper::getCurrentPageId($_SERVER['REQUEST_URI']);
 $pageInfo = PageHelper::getPageInfo($pages, $currentPageId);
+if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
 ?>
 <html>
 	<head>
@@ -42,7 +43,11 @@ $pageInfo = PageHelper::getPageInfo($pages, $currentPageId);
 			</header>
 			<main role="main" class="main">
 				<section>
-<?php echo PageHelper::getPageContent($pageInfo); ?>
+<?php
+}
+echo PageHelper::getPageContent($pageInfo);
+if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
+?>
 				</section>
 			</main>
 <?php echo Footer::renderFooter() ?>			
@@ -50,3 +55,6 @@ $pageInfo = PageHelper::getPageInfo($pages, $currentPageId);
 
 	</body>
 </html>
+<?php
+}
+?>
