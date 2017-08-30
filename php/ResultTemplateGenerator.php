@@ -78,11 +78,15 @@ class ResultTemplateGenerator
 		$categoryName = Utils::escape($category->getName());
 		$categoryAnchorName = $entryAnchorName . "-" . $this->_getAnchorName($category->getName());
 
-		$rankings = array();
-		foreach ($category->getRankings() as $ranking) {
-			$rankings[$ranking->getPosition()] = $ranking;
-		}
-		ksort($rankings);
+		$rankings = $category->getRankings();
+		uasort($rankings, function($a, $b) {
+			if ($a->getPosition() == $b->getPosition()) {
+				// If the position is the same, sort by name.
+				return ($a->getFullName() < $b->getFullName()) ? -1 : 1;
+			}
+			// Otherwise sort by position.
+			return ($a->getPosition() < $b->getPosition()) ? -1 : 1;
+		});
 
 		$out = "<li class=\"category\">\n<table>\n";
 		$out .= "\t<caption>\n";

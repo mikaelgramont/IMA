@@ -52,6 +52,8 @@ if ($cacheItem->isMiss()) {
 foreach ($results as $result) {
 	$generator = new ResultTemplateGenerator($result, RESULTS_HTML_PATH);
 	$generator->buildHTML();
-	echo $generator->getFullOutput();
+	//echo $generator->getFullOutput();
 	$generator->saveToDisk();
 }
+
+echo $logger->dumpText();
