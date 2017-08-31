@@ -1,7 +1,7 @@
 # TODO
 
 ## Generation
-* Create a (password-protected?) page to regenerate cached content.
+* Link to results and events pages
 
 ## Layout
 * Allow for multiple actions when tapping bottom bar entries (which display the multiple above it)
@@ -14,7 +14,7 @@
 * Skip empty tab, and report error.
 
 ## Events page
-* Regenerate cache once a day
+* Regenerate cache once a day by curling to the events page
 * Link for instructions on how to add one.
 
 ## Home page

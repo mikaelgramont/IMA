@@ -15,18 +15,9 @@
 ?>
 <style>
 	.results-title {
-		display: flex;
-		flex-wrap: nowrap;
-		align-items: center;
 	}
 
 	.results-title__h1 {
-		display: inline-block;
-		flex-shrink: 0;
-		margin-right: 15px;
-		/* Compensate for empty space at the top of letters in the font. */
-		position: relative;
-		top: -2px;
 	}
 
 	.results-title__year-list {
@@ -154,7 +145,7 @@
 </style>
 
 
-<div class="page-title-container results-title">
+<div class="page-title-container with-cta results-title">
 	<h1 class="results-title__h1 display-font">Competition results</h1>
 	<ol class="results-title__year-list">
 
