@@ -6,7 +6,7 @@
 <div class="page-title-container with-cta display-font">
   <h1 class="display-font">Upcoming events</h1>
   	<div class="cta">
-  		<a href="<?php echo EVENT_SUBMISSION_FORM_URL ?>">Submit new event</a>
+  		<a href="<?php echo EVENT_SUBMISSION_FORM_URL ?>">New event</a>
 	</div>
 </div>
 

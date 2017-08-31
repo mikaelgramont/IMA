@@ -116,14 +116,14 @@
 	.content-wrapper {
 		flex-wrap: nowrap;
 	}
-	.content-main {
-		width: 600px;
-	}
 	.content-aside {
 		flex: 1 0;
 	}
 
 	@media screen and (min-width: 640px) {
+		.content-main {
+			width: 600px;
+		}
 		.content-wrapper {
 			display: flex;
 		}
