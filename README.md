@@ -13,6 +13,8 @@ The following folders need to be writable by the server, and by other manual pro
 * `pages/generated` - Machine-generated HTML chunks (results and events).
 * `logs` - server log files.
 
+On top of that, should cron jobs execute the shell scripts in `bin`, the `logs` folder will need to be writable by the cron user as well.
+
 Go to `bin`. Make `initial-setup.php` executable and run it or do `php initial-setup.php`. This will generate and save the necessary OAuth tokens.
 Further token updates will be managed directly by the Google client code.
 

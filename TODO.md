@@ -1,7 +1,7 @@
 # TODO
 
 ## Generation
-* Link to results and events pages
+* Display errors after generation
 
 ## Layout
 * Allow for multiple actions when tapping bottom bar entries (which display the multiple above it)
@@ -10,12 +10,11 @@
 ## Results page
 * Remove the overflow stuff around the list of years, and replace that with a simple client-side pagination through the years (next/prev).
 * Link for instructions on how to add results.
-* Lowercase and capitalize names
+* Lowercase and capitalize names+
 * Skip empty tab, and report error.
 
 ## Events page
 * Regenerate cache once a day by curling to the events page
-* Link for instructions on how to add one.
 
 ## Home page
 * Integrate Instagram feed
@@ -31,6 +30,8 @@
 ## Flags
 * Clean up and resize them
 * Maybe use a spritesheet instead 
+
+# V2
 
 ## Clubs
 * Add a page

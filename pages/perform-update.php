@@ -1,25 +1,41 @@
 <?php
 set_time_limit(60);
-$isError = false;
+$errorMessage = "";
 
-if (!in_array($_REQUEST['type'], array('events', 'results'))) {
-	$isError = true;
-	$errorMessage = "Unrecognized type";
+$actionMap = array(
+	'events' => 'events',
+	'events-cron' => 'events',
+	'results' => 'results'
+);
+
+if (isset($_POST['type'])) {
+	if (!in_array($_POST['type'], array('events', 'results'))) {
+		$errorMessage = "Unrecognized type";
+	} else {
+		$action = $actionMap[$_POST['type']];
+	}
+} else if (isset($_GET['type'])) {
+	if (!in_array($_GET['type'], array('events-cron'))) {
+		$errorMessage = "Unrecognized type";
+	} else {
+		$action = $actionMap[$_GET['type']];
+	}
+} else {
+	$errorMessage = "No type";
 }
 
+
 if (!file_exists(CREDENTIALS_PATH)) {
-	$isError = true;
 	$errorMessage = "No token file";
 } else {
 	try {
 	  $accessToken = json_decode(file_get_contents(CREDENTIALS_PATH), true);
 	} catch (Exception $e) {
-		$isError = true;
 		$errorMessage = "Could not decode the token";
 	}
 }
 
-if (!$isError) {
+if (!$errorMessage) {
 	// Get the API client and construct the service object.
 	$client = Helpers::getGoogleClientForWeb($accessToken);
 	$driveService = new Google_Service_Drive($client);
@@ -27,7 +43,7 @@ if (!$isError) {
 	$logger = new Logger();
 	$pool = Cache::getPool();
 
-	switch ($_REQUEST['type']) {
+	switch ($action) {
 		case 'results':
 			require_once 'ResultCategory.php';
 			require_once 'ResultEntry.php';
@@ -43,7 +59,6 @@ if (!$isError) {
 					$generator->saveToDisk();
 				}
 			} catch (Exception $e) {
-				$isError = true;
 				$errorMessage = "Could not update results. Please contact the admin.";
 			}
 			$redirectUrl = BASE_URL . 'done-updating?type=results';
@@ -73,7 +88,6 @@ if (!$isError) {
 					$generator->saveToDisk($out);
 				}
 			} catch (Exception $e) {
-				$isError = true;
 				$errorMessage = "Could not update events. Please contact the admin.";
 			}
 			$redirectUrl = BASE_URL . 'done-updating?type=events';
@@ -81,7 +95,7 @@ if (!$isError) {
 	}
 }
 
-if ($isError) {
+if ($errorMessage) {
 	$redirectUrl = BASE_URL . 'done-updating?error='.urlencode($errorMessage);
 }
 header("Location: " . $redirectUrl);
