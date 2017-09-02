@@ -1,4 +1,24 @@
 <?php
+	function generateYearChangeForm($years, $currentYear) {
+		$action = BASE_URL . "results";
+		$options = array();
+		foreach ($years as $year) {
+			$selected = $year == $currentYear ? " selected=\"selected\"" : "";
+			$options[] = "<option $selected value=\"$year\">$year</option>";
+		}
+		$options = implode("\n", $options);
+
+		$out = <<<HTML
+		<form id="year-form" class="year-form" action="{$action}" method="GET">
+			<select id="year-select" name="year">
+				{$options}
+			</select>
+		</form>
+HTML;
+		return $out;
+	}
+
+	$errorMsg = "";
 	$years = PageHelper::getAvailableYears();
 	if (empty($years)) {
 		throw new Exception("No available results.");
@@ -9,53 +29,21 @@
 	} else {
 		$currentYear = $_GET[$yearArg];
 		if (!in_array($_GET[$yearArg], $years)) {
-			throw new Exception("No results for year '{$currentYear}'");
+			$errorMsg = "No results for year '{$currentYear}'";
 		}
+	}
+	$resultsFile = RESULTS_HTML_PATH . $currentYear . ".php";
+	if (!file_exists($resultsFile)) {
+		$errorMsg = "No results file for year '{$currentYear}'";
 	}
 ?>
 <style>
-	.results-title {
-	}
-
-	.results-title__h1 {
-	}
-
-	.results-title__year-list {
-		display: inline-flex;
-		padding: 0;
-		font-size: 1.5em;
+	.year-form {
 		margin: 0;
-		/*flex-wrap: wrap;*/
-		/* Use this instead of flex-wrap to get horizontal scrolling, to be styled with .is-overflowing */
-		overflow-x: auto;
+	} 
+	.year-form select {
+		font-size: 16px;
 	}
-
-	.results-title__year-list.is-overflowing::after {
-		content: "...";
-		position: absolute;
-		right: 0;
-		font-size: .8em;
-		margin-top: .25em;
-	}
-
-	.results-title__year-list__entry {
-		flex: 1 0;
-		list-style: none;
-		text-align: center;	
-		margin: 0 .5em;
-	}
-
-	.results-title__year-list__entry__content {
-		padding: 0 .5em;
-		border-radius: 1.5em;
-		text-decoration: none;
-	}
-
-	.results-title__year-list__entry .selected {
-		background: #E82020;
-		color: #F7F7F7;
-	}
-
 	.results-entry {
 		margin-bottom: 30px;
 	}
@@ -147,41 +135,22 @@
 
 <div class="page-title-container with-cta results-title">
 	<h1 class="results-title__h1 display-font">Competition results</h1>
-	<ol class="results-title__year-list">
-
+	<?php echo generateYearChangeForm($years, $currentYear); ?>
+</div>
 <?php
-	foreach ($years as $year) {
-		$url = BASE_URL . "results?$yearArg=" . $year;
-		echo "<li class=\"results-title__year-list__entry\">\n";
-		if ($currentYear != $year) {
-			echo "<a class=\"display-font results-title__year-list__entry__content\" href='$url'>$year</a>\n";
-		} else {
-			echo "<div class=\"display-font results-title__year-list__entry__content selected\">$year</div>\n";
-		}
-		echo "</li>\n";
+	if ($errorMsg) {
+		echo "<p>".$errorMsg."</p>\n";
+	} else {
+		echo "<div class=\"results\">\n";
+		require($resultsFile);
+		echo "</div>\n";
 	}
 ?>
-	</ol>
-</div>
-<?php	
-	echo "<div class='results'>\n";
-	require(RESULTS_HTML_PATH . $currentYear . ".php");
-	echo "</div>\n";
-?>
 <script>
-	/* Detect overflow in the list of years, and apply a class to make scrolling obvious */
 	(function() {
-		var listEl = document.getElementsByClassName('results-title__year-list')[0];
-
-		var isOverflowing = function() {
-			return listEl.scrollWidth > listEl.clientWidth;
-		};
-
-		var makeOverflowObvious = function() {
-			listEl.classList.toggle("is-overflowing", isOverflowing());
-		};
-		window.addEventListener("load", makeOverflowObvious);
-		window.addEventListener('resize', makeOverflowObvious);
+		document.getElementById("year-select").addEventListener("change", function() {
+			document.getElementById("year-form").submit();
+		});
 
 		// CLICK ON EXPAND BUTTONS
 	    on('.wrapper', 'click', '.expand-cell-button', function(e) {

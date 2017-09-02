@@ -277,6 +277,10 @@ body {
 		margin: 0 -90px 15px;
 		padding: 9px 90px;
 	}
+	.footer {
+		margin-left: -81px;
+		margin-right: -81px;
+	}
 }
 
 .footer-social-media-links {

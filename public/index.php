@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__.'/../php/config.php';
+session_start();
 $pages = Pages::getList();
 $currentPageId = PageHelper::getCurrentPageId($_SERVER['REQUEST_URI']);
 $pageInfo = PageHelper::getPageInfo($pages, $currentPageId);

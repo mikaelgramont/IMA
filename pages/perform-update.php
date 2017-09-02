@@ -2,6 +2,13 @@
 set_time_limit(60);
 $errorMessage = "";
 
+if (isset($_SESSION['update-log'])) {
+	unset($_SESSION['update-log']);
+}
+if (isset($_SESSION['error-log'])) {
+	unset($_SESSION['error-log']);
+}
+
 $actionMap = array(
 	'events' => 'events',
 	'events-cron' => 'events',
@@ -95,8 +102,11 @@ if (!$errorMessage) {
 	}
 }
 
+$_SESSION['update-log'] = $logger->dumpText();
+
 if ($errorMessage) {
-	$redirectUrl = BASE_URL . 'done-updating?error='.urlencode($errorMessage);
+	$_SESSION['update-error'] = $errorMessage;
+	$redirectUrl = BASE_URL . 'done-updating';
 }
 header("Location: " . $redirectUrl);
 exit();

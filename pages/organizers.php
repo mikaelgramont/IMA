@@ -50,9 +50,14 @@ $files = Helpers::getFileList($service, PUBLIC_DOCUMENTS_FOLDER_ID);
   <h1 class="display-font">Resources for Organizers</h1>
 </div>
 
-<h2 class="display-font">Event submission form</h1>
+<h2 class="display-font">Events</h1>
 <p class="paragraph">
   In order to submit a new event, please follow the <a href="<?php echo EVENT_SUBMISSION_FORM_URL ?>">event submission form</a>.
+</p>
+
+<h2 class="display-font">Competition results</h1>
+<p class="paragraph">
+  If you would like to submit new results, <a href="<?php echo RESULTS_SUBMISSION_DOC_URL ?>">please see the instructions here</a>.
 </p>
 
 <h2 class="display-font">Documents</h1>

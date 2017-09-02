@@ -10,15 +10,15 @@ class ResultRanking
 	private $_country;
 
 	public function __construct($position, $firstName, $lastName, $country) {
-		$this->_firstName = $firstName;
-		$this->_lastName = $lastName;
+		$this->_firstName = strtolower($firstName);
+		$this->_lastName = strtolower($lastName);
 		$this->_position = $position;
-		$this->_country = $country;
+		$this->_country = strtolower($country);
 	}
 
 	public function getFullName()
 	{
-		return $this->_firstName . " " . $this->_lastName;
+		return ucfirst($this->_firstName) . " " . ucfirst($this->_lastName);
 	}
 
 	public function getPosition()

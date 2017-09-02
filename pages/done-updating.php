@@ -1,7 +1,14 @@
+<style>
+	.error {
+		color: #E82020;
+	}
+
+</style>
 <?php
-if (isset($_REQUEST['error'])) {
-	$errorMessage = Utils::escape(urldecode($_REQUEST['error']));
-	echo "<p class=\"paragraph\">{$errorMessage}</p>";
+if (isset($_SESSION['update-error'])) {
+	$errorMessage = $_SESSION['update-error'];
+	echo "<p>There were errors, sorry!</p>";
+	echo "<p class=\"paragraph error\">{$errorMessage}</p>";
 } else {
 	switch ($_REQUEST['type']) {
 		case 'results':
@@ -13,4 +20,9 @@ if (isset($_REQUEST['error'])) {
 			echo "<p class=\"paragraph\"><a href=\"".BASE_URL."events\">Check them out!</a></p>";
 			break;
 	}
+}
+
+if (isset($_SESSION['update-log'])) {	
+	echo "<p>Scan log:</p>";
+	echo '<pre>'.$_SESSION['update-log'].'</pre>';
 }

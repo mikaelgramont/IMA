@@ -10,21 +10,25 @@ class EventParser
 		$rows = $sheetContentResponse->getValues();
 		$hasErrors = false;
 
+		$logger->log("Reading events listed in the spreadsheet...");
+
 		foreach ($rows as $index => $row) {
 			// +2 because sheets start at 1, not 0, and the first row is header.
 			$rowId = $index + 2;
+			$logMsg = "- reading event on row $rowId:";
 			$event = self::_buildEvent($row);
 			if (self::_isInThePast($event)) {
-				$logger->log("Skipping past event on line {$rowId}");
+				$logger->log($logMsg .  " skipping because it's in the past.");
 				continue;
 			}
 			$errors = self::_validateEvent($event);
 			if (sizeof($errors) > 0) {
 				$hasErrors = true;
 				$errorsAsString = implode(" // ", $errors);
-				$logger->log("Skipping event on line {$rowId} because it has the following errors: {$errorsAsString}");
+				$logger->log($logMsg .  "skipping because it has the following errors: {$errorsAsString}.");
 				continue;
 			}
+			$logger->log($logMsg. " ok.");
 
 			 $timestamp = $event->getFirstDayTimeStamp();
 			 $events[$timestamp] = $event;
