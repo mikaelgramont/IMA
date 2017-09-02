@@ -4,11 +4,13 @@ class EventTemplateGenerator
 	private $_event;
 	private $_outputPath;
 	private $_fullOutput = "";	
+	private $_logger = "";	
 
-	public function __construct(EventEntry $event, $path)
+	public function __construct(EventEntry $event, $path, Logger $logger)
 	{
 		$this->_event = $event;
 		$this->_outputPath = $path;
+		$this->_logger = $logger;
 	}
 
 	public function buildHTML(Google_Service_Drive $driveService)
@@ -21,8 +23,11 @@ class EventTemplateGenerator
 		$website = Utils::escape($this->_event->getWebsite());
 		$contact = Utils::escape($this->_event->getContact());
 
+		$logMsg = "Building HTML for $name... ";
+
 		$img = "";
 		if ($country) {
+		
 			$src = Utils::getFlagFileForCountry($country);
 			if ($src) {
 				$img = "<img src=\"$src\" class=\"country-flag big\">\n";
@@ -45,6 +50,8 @@ class EventTemplateGenerator
 
 		$out .= "</section>\n";
 		$this->_fullOutput = $out;
+
+		$this->_logger->log($logMsg . " ok.");
 	}
 
 	public function getFullOutput()

@@ -61,7 +61,7 @@ if (!$errorMessage) {
 			try {
 				$results = ResultParser::buildResults($driveService, $sheetsService, $logger, RESULTS_FOLDER_ID);
 				foreach ($results as $result) {
-					$generator = new ResultTemplateGenerator($result, RESULTS_HTML_PATH);
+					$generator = new ResultTemplateGenerator($result, RESULTS_HTML_PATH, $logger);
 					$generator->buildHTML();
 					$generator->saveToDisk();
 				}
@@ -85,12 +85,13 @@ if (!$errorMessage) {
 				$out = "";
 				$generator = "";
 				foreach ($events as $event) {
-					$generator = new EventTemplateGenerator($event, EVENTS_HTML_PATH);
+					$generator = new EventTemplateGenerator($event, EVENTS_HTML_PATH, $logger);
 					$generator->buildHTML($driveService);
 					$eventOut = $generator->getFullOutput();
 					$out .= $eventOut;
 				}
 
+				$logger->log("Finished building HTML");
 				if ($generator) {
 					$generator->saveToDisk($out);
 				}

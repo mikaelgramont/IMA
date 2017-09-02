@@ -6,10 +6,11 @@ class ResultTemplateGenerator
 	private $_outputHeaderParts = array();
 	private $_outputBodyParts = array();
 	private $_fullOutput = "";
+	private $_logger = "";	
 
 	const  LAST_INITIALLY_DISPLAYED_RANK = 3;
 
-	public function __construct(ResultYear $resultYear, $path)
+	public function __construct(ResultYear $resultYear, $path, Logger $logger)
 	{
 		$this->_year = $resultYear->getYear();
 		if (!is_numeric($this->_year)) {
@@ -17,6 +18,7 @@ class ResultTemplateGenerator
 		}
 		$this->_resultYear = $resultYear;
 		$this->_outputPath = $path;
+		$this->_logger = $logger;
 	}
 
 	public function buildHTML()
@@ -115,7 +117,7 @@ class ResultTemplateGenerator
 		$out = "\t<tr class=\"$rowClass\">\n\t\t<td class=\"position\">{$position}</td>\n";
 		$out .= "\t\t<td class=\"fullname\">{$fullName}";
 
-		if ($country) {
+		if ($country != null && $country != 'null') {
 			$src = Utils::getFlagFileForCountry($country);
 			if ($src) {
 				$out .= "<img src=\"$src\" class=\"country-flag\">\n";
