@@ -5,12 +5,14 @@ set_include_path(
 	__DIR__.'/../php/vendor/tedivm/stash/src/'
 );
 require_once 'vendor/autoload.php';
+require_once 'Cache.php';
 require_once 'EventEntry.php';
 require_once 'Footer.php';
 require_once 'Head.php';
 require_once 'Header.php';
 require_once 'Helpers.php';
 require_once 'Instagram.php';
+require_once 'Logger.php';
 require_once 'PageHelper.php';
 require_once 'Pages.php';
 require_once 'Utils.php';
@@ -29,6 +31,7 @@ define('EVENTS_CACHE_PATH', 'events/');
 define('EVENTS_HTML_PATH', './../pages/generated/events/');
 
 define('RESULTS_HTML_PATH', '');
+define('EVENTS_HTML_PATH', '');
 
 // If modifying these scopes, delete your previously saved credentials
 // at CREDENTIALS_PATH
@@ -40,6 +43,8 @@ define('SCOPES', implode(' ', array(
 // The ID of the folder containing public documents.
 define('PUBLIC_DOCUMENTS_FOLDER_ID', '');
 define('RESULTS_FOLDER_ID', '');
+define('RESULTS_SUBMISSION_DOC_URL', '');
+
 define('EVENTS_FOLDER_ID', '');
 define('EVENTS_RESPONSE_SHEET_ID', '');
 define('EVENT_SUBMISSION_FORM_URL', '');
