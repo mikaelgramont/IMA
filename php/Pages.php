@@ -9,6 +9,7 @@ class Pages
 				'url' => '',
 				'file' => 'home.php',
 				'headerClass' => 'home',
+				'skipTitleInHead' => true,
 			],
 			(object) [
 				'title' => 'Events',

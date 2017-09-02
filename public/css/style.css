@@ -104,6 +104,10 @@ body {
 }
 
 @media screen and (min-width: 640px) {
+	.main {
+		padding: 0 0 20px;
+	}
+	
 	.page-header {
 		position: relative;
 		display: flex;

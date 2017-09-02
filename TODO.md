@@ -1,15 +1,14 @@
 # For V1
 
+## Results
+Cron job
+
 ## Home page
 * Integrate Instagram feed
 * Start presentation and link to about page
 
 ## Social Media
 * Update logo on Instagram
-
-## About page
-* List goals
-* Contact page
 
 # For V2
 
@@ -19,3 +18,8 @@
 
 ## Layout
 * Allow for multiple actions when tapping bottom bar entries (which display the multiple above it)
+
+## About page
+* List goals
+* Contact page
+

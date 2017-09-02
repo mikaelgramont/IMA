@@ -36,8 +36,15 @@ HTML;
 	}
 
 	private static function title_($pageInfo) {
+
 		$name = SITE_NAME;
-		$fullName = ($pageInfo && $pageInfo->title) ? ucfirst($pageInfo->title). ' - ' .$name : $name;
+		if ($pageInfo && $pageInfo->title &&
+			(!property_exists($pageInfo, 'skipTitleInHead') || !$pageInfo->skipTitleInHead)) {
+			$fullName = ucfirst($pageInfo->title);
+		} else {
+			$fullName = $name;
+		}
+		
 		return <<<HTML
 		<title>
 			{$fullName}

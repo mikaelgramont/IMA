@@ -17,15 +17,21 @@
 	}
 
 	$photos = array();
-	/*	
-	$scraper = new Instagram(INSTAGRAM_USERNAME, $pool, array(), true);
-	$photos = $scraper->getPhotos();
-	*/
+	// $scraper = new Instagram(INSTAGRAM_USERNAME, $pool, array(), true);
+	// $photos = $scraper->getPhotos();
+
+	$news = "";
 ?>
 <style>
+	.homepage-title-container {
+		background: #D8D8D8;
+	    padding: 9px 9px;
+	    margin: 0 -9px 5px -9px;
+	}
+
 	.carousel-container {
 		position: relative;
-		margin: 0 -9px 20px;
+		margin: 0 0 20px;
 	}
 	.carousel {
 		height: 200px;
@@ -128,7 +134,7 @@
 			display: flex;
 		}
 		.content-aside {
-			margin-left: 30px;
+			margin-left: 40px;
 		}
 	}
 
@@ -136,13 +142,17 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
+		overflow: hidden;
 	}
 	.ig-photo {
 		margin: 15px 0;
 	}
 	.ig-image {
-		width: 200px;
 		display: block;
+	}
+	.ig-caption {
+		display: inline-block;
+		margin-top: 5px;
 	}
 </style>
 <div id="home-carousel" class="carousel-container">
@@ -172,38 +182,53 @@
 		<p class="paragraph">
 			Hi there, welcome to the IMA's little corner of the internet.
 		</p>
-
 		<p class="paragraph">
 			Whether you're an event organizer looking for help, or a mountainboarder looking for official IMA-sanctioned competition results and event calendar, we hope to provide you with the most up-to-date information.
 		</p>
+
+		<?php if ($news) { ?>
+		<div class="homepage-title-container">
+			<h1 class="display-font">Latest news</h1>
+		</div>
+		<p class="paragraph">
+			Some news
+		</p>
+		<?php } ?>
 	</div>
 
 	<aside class="content-aside">
 		<?php
-			if ($eventNameEscaped) { ?>
+			if ($eventNameEscaped) {
+				?>
 				<div class="upcoming-event">
 					<h2 class="display-font">Next upcoming event</h2>
-					<p><?php echo $eventNameEscaped; ?> <a href="<?php echo BASE_URL ?>events">More info</a></p>
-				</div><?php
+					<p>
+						<?php echo $eventNameEscaped; ?><br>
+						<a href="<?php echo BASE_URL ?>events">More info</a>
+					</p>
+				</div>
+				<?php
 			}
-			if ($photos) { ?>
-			<div class="ig">
-				<h2 class="display-font">The IMA on Instagram</h2>
-				<ul class="ig-photos">
-					<?php foreach ($photos as $photo) {
-						$url = str_replace("s640x640", "s320x320", $photo["thumbnail_src"]);
-						$url = str_replace("s480x480", "s320x320", $url);
-						echo "<li class=\"ig-photo\">\n";
-						echo "<a href=\"https://www.instagram.con/p/".$photo["code"]."\">\n";
-						echo "<img class=\"ig-image\" src=\"".$url."\">\n";
-						echo $photo["caption"]."\n";
-						echo "</a>\n";
-						echo "</li>\n";
-					} ?>
-				</ul>
-			</div>
-			<?php } ?>
-		</div>
+			if ($photos) {
+				?>
+				<div class="ig">
+					<h2 class="display-font">The IMA on Instagram</h2>
+					<ul class="ig-photos">
+						<?php foreach ($photos as $photo) {
+							$url = str_replace("s640x640", "s320x320", $photo["thumbnail_src"]);
+							$url = str_replace("s480x480", "s320x320", $url);
+							echo "<li class=\"ig-photo\">\n";
+							echo "<a href=\"https://www.instagram.con/p/".$photo["code"]."\">\n";
+							echo "<img class=\"ig-image\" src=\"".$url."\">\n";
+							echo "<span class=\"ig-caption\">".$photo["caption"]."</span>\n";
+							echo "</a>\n";
+							echo "</li>\n";
+						}
+						?>
+					</ul>
+				</div>
+				<?php
+			} ?>
 	</aside>
 </div>
 <script src="<?php echo BASE_URL?>scripts/siema.min.js"></script>
