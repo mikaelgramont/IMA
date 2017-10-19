@@ -78,7 +78,7 @@ class EventEntry
 			$day2 = date("d", $this->getLastDayTimeStamp());
 
 			$year = date("Y", $this->getFirstDayTimeStamp());
-			return "$month1 $day1 - $month1 $day2 $year";
+			return "$month1 $day1 - $month2 $day2 $year";
 		}
 
 		return "date";
