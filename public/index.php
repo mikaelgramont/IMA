@@ -2,7 +2,9 @@
 require_once __DIR__.'/../php/config.php';
 session_start();
 $pages = Pages::getList();
-$currentPageId = PageHelper::getCurrentPageId($_SERVER['REQUEST_URI']);
+$fullUrl = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+list($currentPageId, $params) = PageHelper::getPageIdAndParams(BASE_URL, FULL_URL);
 $pageInfo = PageHelper::getPageInfo($pages, $currentPageId);
 if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
 ?>

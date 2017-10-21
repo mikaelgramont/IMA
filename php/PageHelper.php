@@ -18,6 +18,19 @@ HTML;
             return $content;
     }
 
+    public static function getPageIdAndParams($baseUrl, $fullUrl)
+    {
+        $queryUrl = $fullUrl;
+        if (substr($queryUrl, 0, strlen($baseUrl)) == $baseUrl) {
+            $queryUrl = substr($queryUrl, strlen($baseUrl));
+        }
+
+        $parts = explode('/', $queryUrl);
+        $id = array_shift($parts);
+        $params = $parts;
+        return array($id, $params);
+    }
+
     public static function getPageInfo($items, $currentUrl)
     {
             foreach ($items as $item) {
@@ -26,6 +39,11 @@ HTML;
                     }
             }
             return null;
+    }
+
+    public static function getFullUrl()
+    {
+        return $fullUrl = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
 
     public static function getBaseUrl()
