@@ -2,16 +2,16 @@
 require_once __DIR__.'/../php/config.php';
 session_start();
 $pages = Pages::getList();
-$fullUrl = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 list($currentPageId, $params) = PageHelper::getPageIdAndParams(BASE_URL, FULL_URL);
+define("PAGE_PARAMS"	, $params);
 $pageInfo = PageHelper::getPageInfo($pages, $currentPageId);
 if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
 ?>
 <html>
 	<head>
 		<link href="https://fonts.googleapis.com/css?family=Pathway+Gothic+One|Raleway:500,700" rel="stylesheet">
-<?php echo Head::content(KEYWORDS, $pageInfo, 'css/style.css'); ?>
+<?php echo Head::content(KEYWORDS, $pageInfo, BASE_URL . 'css/style.css'); ?>
 	</head>
 	<body>
 		<script>

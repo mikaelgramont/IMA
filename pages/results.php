@@ -24,14 +24,15 @@ HTML;
 		throw new Exception("No available results.");
 	}
 	$yearArg = "year";
-	if (!isset($_GET[$yearArg])) {
+	if (!isset(PAGE_PARAMS[0])) {
 		$currentYear = $years[0];
 	} else {
-		$currentYear = $_GET[$yearArg];
-		if (!in_array($_GET[$yearArg], $years)) {
+		$currentYear = PAGE_PARAMS[0];
+		if (!in_array($currentYear, $years)) {
 			$errorMsg = "No results for year '{$currentYear}'";
 		}
 	}
+
 	$resultsFile = RESULTS_HTML_PATH . $currentYear . ".php";
 	if (!file_exists($resultsFile)) {
 		$errorMsg = "No results file for year '{$currentYear}'";
