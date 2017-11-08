@@ -53,8 +53,9 @@ if ($cacheItem->isMiss()) {
 $out = "";
 $generator = "";
 foreach ($events as $event) {
-	$generator = new EventTemplateGenerator($event, EVENTS_HTML_PATH);
+	$generator = new EventTemplateGenerator($event, EVENTS_HTML_PATH, $logger);
 	$generator->buildHTML($driveService);
+	$generator->saveIndividualEventToDisk();
 	$eventOut = $generator->getFullOutput();
 	$out .= $eventOut;
 	echo $eventOut;

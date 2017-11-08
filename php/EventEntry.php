@@ -84,6 +84,11 @@ class EventEntry
 		return "date";
 	}
 
+	public function getFirstDayYear()
+	{
+		return date("Y", $this->getFirstDayTimeStamp());
+	}
+
 	public function getFirstDayTimeStamp()
 	{
 		if (!isset($this->_values[self::FIRST_DAY_COLUMN])) {

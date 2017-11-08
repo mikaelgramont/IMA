@@ -4,6 +4,7 @@ class EventTemplateGenerator
 	private $_event;
 	private $_outputPath;
 	private $_fullOutput = "";	
+	private $_resultsByPath = array();
 	private $_logger = "";	
 
 	public function __construct(EventEntry $event, $path, Logger $logger)
@@ -23,6 +24,9 @@ class EventTemplateGenerator
 		$website = Utils::escape($this->_event->getWebsite());
 		$contact = Utils::escape($this->_event->getContact());
 
+		$entryAnchorName = $this->_getAnchorName();
+		$url =  'events/' . $entryAnchorName;
+
 		$logMsg = "Building HTML for $name... ";
 
 		$img = "";
@@ -34,9 +38,10 @@ class EventTemplateGenerator
 			}
 		}
 
-
 		$out =  "<section class=\"event\">\n";
-		$out .= "\t<h2 class=\"display-font\">$name {$img}</h2>\n";
+		$out .= "\t<h2 class=\"display-font\">$name {$img}\n";
+		$out .= "\t\t<a class=\"link-icon\" href=\"$url\"></a>\n";
+		$out .= "\t</h2>\n";
 		$out .= "\t<p class=\"event-date-location\">\n";
 		$out .= "\t<span class=\"\">$date</span><span aria-hidden=\"true\"> - </span><span class=\"location\">$location, $country</span>\n";
 		$out .= "\t</p>\n";
@@ -65,4 +70,19 @@ class EventTemplateGenerator
 		file_put_contents($fullPath, $fullOutput);
 	}
 
+	public function saveIndividualEventToDisk()
+	{
+		$eventPath = $this->_outputPath . $this->_getAnchorName() . '.php';
+		file_put_contents($eventPath, $this->_fullOutput);
+	}
+
+	private function _getAnchorName()
+	{
+		$name = Utils::cleanStringForUrl($this->_event->getName());
+		if (!is_numeric(substr($name, 0, 1))) {
+			$name = $this->_event->getFirstDayYear() . '-' . $name;
+		}
+
+		return $name;
+	}
 }

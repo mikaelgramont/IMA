@@ -6,8 +6,6 @@ class ResultParser
 		$results = array();
 		$logger->log("Scanning for result year folders...");
 
-		$resultId = 1;
-
 		// Each folder must contain results for a given year
 		$folders = Helpers::getFileList($driveService, $folder, true /* Folders only */);
 		foreach ($folders as $folder) {
@@ -26,8 +24,7 @@ class ResultParser
 		      		continue;
 		    	}
 	      		$logger->log(sprintf(" - Reading spreadsheet file '%s'", $file['name']));
-		    	$resultEntry = new ResultEntry($year, $resultId, $file['name'], $file['description']);
-		      	$resultId += 1;
+		    	$resultEntry = new ResultEntry($year, $file['name'], $file['description']);
 		    	$spreadsheetResponse = $sheetsService->spreadsheets->get($file['id']);
 		    
 			    foreach ($spreadsheetResponse->sheets as $sheet) {
