@@ -89,6 +89,8 @@ if (!$errorMessage) {
 					$generator->buildHTML($driveService);
 					$eventOut = $generator->getFullOutput();
 					$out .= $eventOut;
+
+					$generator->saveIndividualEventToDisk();
 				}
 
 				$logger->log("Finished building HTML");
