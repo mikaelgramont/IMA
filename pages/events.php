@@ -12,13 +12,7 @@
 
 
 <div class="events-container">
-	<pre>
-		<?php
-			echo var_export(PAGE_PARAMS, true);
-		?>
-	</pre>
 <?php
-
 require(EVENTS_HTML_PATH . "events.php");
 ?>
 </div>
