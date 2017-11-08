@@ -25,9 +25,14 @@ HTML;
             $queryUrl = substr($queryUrl, strlen($baseUrl));
         }
 
-        $parts = explode('/', $queryUrl);
+        $parts = explode('?', $queryUrl);
+        $path = array_shift($parts);
+
+        $parts = explode('/', $path);
+
         $id = array_shift($parts);
         $params = $parts;
+        
         return array($id, $params);
     }
 

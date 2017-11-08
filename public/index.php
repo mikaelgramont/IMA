@@ -4,8 +4,11 @@ session_start();
 $pages = Pages::getList();
 
 list($currentPageId, $params) = PageHelper::getPageIdAndParams(BASE_URL, FULL_URL);
-define("PAGE_PARAMS"	, $params);
+define("PAGE_PARAMS", $params);
 $pageInfo = PageHelper::getPageInfo($pages, $currentPageId);
+if (!$pageInfo) {
+	throw new Exception("No routing found");
+}
 if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
 ?>
 <html>

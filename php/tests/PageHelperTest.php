@@ -16,6 +16,13 @@ final class PageHelperTest extends TestCase
 		$this->assertEquals(array(), $params);
 	}
 
+	public function testUrlWithSingleSectionAndQueryString()
+	{
+		list($pageId, $params) = PageHelper::getPageIdAndParams($this->_baseUrl, "http://www.local.dev/IMA/public/results?foo=bar");
+		$this->assertEquals("results", $pageId);
+		$this->assertEquals(array(), $params);
+	}
+
 	public function testUrlWithTwoSections()
 	{
 		list($pageId, $params) = PageHelper::getPageIdAndParams($this->_baseUrl, "http://www.local.dev/IMA/public/results/2016");
