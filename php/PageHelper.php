@@ -48,6 +48,9 @@ HTML;
 
     public static function getFullUrl()
     {
+        if (!isset($_SERVER['HTTP_HOST'])) {
+            return '';
+        }
         return $fullUrl = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }
 
@@ -93,7 +96,9 @@ HTML;
 		$years = array();
 		$files = scandir(RESULTS_HTML_PATH);
 		foreach ($files as $file) {
-			if (substr($file, -4) == ".php") {
+            $extension = substr($file, -4);
+            $name = substr($file, 0, -4);
+			if (is_numeric($name) && $extension == ".php") {
 				$years[] = substr($file, 0, -4);
 			}
 		}

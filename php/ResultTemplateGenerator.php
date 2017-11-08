@@ -3,8 +3,8 @@ class ResultTemplateGenerator
 {
 	private $_resultYear;
 	private $_outputPath;
-	private $_outputHeaderParts = array();
 	private $_outputBodyParts = array();
+	private $_resultsByPath = array();
 	private $_fullOutput = "";
 	private $_logger = "";	
 
@@ -24,12 +24,14 @@ class ResultTemplateGenerator
 	public function buildHTML()
 	{
 		foreach ($this->_resultYear->getEntries() as $resultEntry) {
-			list($header, $body) = self::_renderEntry($resultEntry);
-			$this->_outputHeaderParts[] = $header;
+			$body = self::_renderEntry($resultEntry);
 			$this->_outputBodyParts[] = $body;
+
+			$path = $this->_outputPath . Utils::cleanStringForUrl($resultEntry->getName()) . '.php';
+			$this->_resultsByPath[$path] = $body;
 		}
 
-		$this->_fullOutput = implode("\n", $this->_outputHeaderParts) . "\n" . implode("\n", $this->_outputBodyParts);
+		$this->_fullOutput = implode("\n", $this->_outputBodyParts);
 	}
 
 	public function getFullOutput()
@@ -41,17 +43,23 @@ class ResultTemplateGenerator
 	{
 		$fullPath = $this->_outputPath . $this->_year . '.php';
 		file_put_contents($fullPath, $this->_fullOutput);
+
+		foreach($this->_resultsByPath as $path => $content) {
+			file_put_contents($path, $content);
+		}
 	}
 
 	private function _renderEntry(ResultEntry $resultEntry) 
 	{
 		$entryName = Utils::escape($resultEntry->getName());
 		$entryAnchorName = $this->_getAnchorName($resultEntry->getName());
+		$url =  'results/' . $entryAnchorName;
 		$entryDescription = Utils::escape($resultEntry->getDescription());
 
-		$header = "";
 		$body = "<div class=\"results-entry\">\n";
-		$body .= "\t<h2 id=\"{$entryAnchorName}\" class=\"display-font entry-title\">{$entryName}</h2>\n";
+		$body .= "\t<h2 id=\"{$entryAnchorName}\" class=\"display-font entry-title\">{$entryName}\n";
+		$body .= "\t\t<a class=\"link-icon\" href=\"$url\"></a>\n";
+		$body .= "\t</h2>\n";
 		$body .= "\t<a name='{$entryAnchorName}'></a>\n";
 
 		if ($entryDescription) {
@@ -72,7 +80,7 @@ class ResultTemplateGenerator
 		$body .= "</ol>\n";
 		$body .= "</div>\n";
 
-		return array($header, $body);
+		return $body;
 	}
 
 	private function _renderCategory(ResultCategory $category, $entryAnchorName)

@@ -23,19 +23,29 @@ HTML;
 	if (empty($years)) {
 		throw new Exception("No available results.");
 	}
-	$yearArg = "year";
-	if (!isset(PAGE_PARAMS[0])) {
-		$currentYear = $years[0];
-	} else {
-		$currentYear = PAGE_PARAMS[0];
-		if (!in_array($currentYear, $years)) {
-			$errorMsg = "No results for year '{$currentYear}'";
-		}
-	}
 
-	$resultsFile = RESULTS_HTML_PATH . $currentYear . ".php";
-	if (!file_exists($resultsFile)) {
-		$errorMsg = "No results file for year '{$currentYear}'";
+	if (empty(PAGE_PARAMS)) {
+		$isYearMode = true;
+		// Displaying a whole year
+		$yearArg = "year";
+		if (!isset($_GET[$yearArg])) {
+			$currentYear = $years[0];
+		} else {
+			$currentYear = $_GET[$yearArg];
+			if (!in_array($_GET[$yearArg], $years)) {
+				$errorMsg = "No results for year '{$currentYear}'";
+			}
+		}
+		$resultsFile = RESULTS_HTML_PATH . $currentYear . ".php";
+		if (!file_exists($resultsFile)) {
+			$errorMsg = "No results file for year '{$currentYear}'";
+		}
+	} else {
+		$isYearMode = false;
+		// Displaying a single event's results.
+		$resultsParam = PAGE_PARAMS[0];
+		// Format: 2017-foo-bar;
+		$resultsFile = RESULTS_HTML_PATH . $resultsParam . ".php";
 	}
 ?>
 <style>
@@ -130,13 +140,26 @@ HTML;
 	.expand-cell-button:hover {
 		cursor: pointer;
 	}
-	expand-cell
+	<?php
+		if (!$isYearMode) {
+	?>
+		.link-icon {
+			display: none;
+		}
+	<?php
+		}
+	?>
+
 </style>
 
 
 <div class="page-title-container with-cta results-title">
 	<h1 class="results-title__h1 display-font">Competition results</h1>
-	<?php echo generateYearChangeForm($years, $currentYear); ?>
+	<?php
+		if ($isYearMode) {
+			echo generateYearChangeForm($years, $currentYear);
+		}
+	?>
 </div>
 <?php
 	if ($errorMsg) {
@@ -149,10 +172,15 @@ HTML;
 ?>
 <script>
 	(function() {
+		<?php
+			if ($isYearMode) {
+		?>
 		document.getElementById("year-select").addEventListener("change", function() {
 			document.getElementById("year-form").submit();
 		});
-
+		<?php
+			}
+		?>
 		// CLICK ON EXPAND BUTTONS
 	    on('.wrapper', 'click', '.expand-cell-button', function(e) {
 	    	function getTableParent(child) {
