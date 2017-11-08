@@ -20,7 +20,7 @@
 	// $scraper = new Instagram(INSTAGRAM_USERNAME, $pool, array(), true);
 	// $photos = $scraper->getPhotos();
 
-	$news = "";
+	$news = PageHelper::getNewsArticlesHTML();
 ?>
 <style>
 	.homepage-title-container {
@@ -126,6 +126,18 @@
 		flex: 1 0;
 	}
 
+	.news {
+		list-style: none; 
+		margin: 0;
+		padding: 0;
+	}
+	.news-link {
+		text-decoration: none;
+	}
+	.news-link h2 {
+		text-decoration: underline;
+	}
+
 	@media screen and (min-width: 640px) {
 		.content-main {
 			width: 600px;
@@ -186,14 +198,16 @@
 			Whether you're an event organizer looking for help, or a mountainboarder looking for official IMA-sanctioned competition results and event calendar, we hope to provide you with the most up-to-date information.
 		</p>
 
-		<?php if ($news) { ?>
-		<div class="homepage-title-container">
-			<h1 class="display-font">Latest news</h1>
-		</div>
-		<p class="paragraph">
-			Some news
-		</p>
-		<?php } ?>
+		<?php
+			if ($news) {
+		?>
+			<div class="homepage-title-container">
+				<h1 class="display-font">Latest news</h1>
+			</div>
+		<?php
+				echo $news;
+			}
+		?>
 	</div>
 
 	<aside class="content-aside">
@@ -201,7 +215,7 @@
 			if ($eventNameEscaped) {
 				?>
 				<div class="upcoming-event">
-					<h2 class="display-font">Next upcoming event</h2>
+					<h2 class="display-font homepage-title-container">Next upcoming event</h2>
 					<p>
 						<?php echo $eventNameEscaped; ?><br>
 						<a href="<?php echo BASE_URL ?>events">More info</a>

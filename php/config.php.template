@@ -32,6 +32,9 @@ define('EVENTS_HTML_PATH', './../pages/generated/events/');
 
 define('RESULTS_HTML_PATH', '');
 define('EVENTS_HTML_PATH', '');
+define('NEWS_HTML_PATH', '');
+define('NEWS_SEPARATOR', '');
+define('NEWS_COUNT', 2);
 
 // If modifying these scopes, delete your previously saved credentials
 // at CREDENTIALS_PATH
@@ -54,6 +57,7 @@ define('EVENT_SUBMISSION_FORM_URL', '');
  * SITE CONTENT DEFINITION CONSTANTS
  *****************************************************************************/
 define('BASE_URL', PageHelper::getBaseUrl());
+define('FULL_URL', PageHelper::getBaseUrl());
 define('SITE_NAME', '');
 define('KEYWORDS', '');
 define('INSTAGRAM_USERNAME', '');

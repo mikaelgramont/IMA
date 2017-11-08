@@ -54,6 +54,12 @@ class Pages
 				'file' => 'done-updating.php',
 				'skipMenuEntry' => true
 			],
+			(object) [
+				'title' => 'News',
+				'url' => 'news',
+				'file' => 'news.php',
+				'skipMenuEntry' => true,
+			],
 		);
 	}
 }

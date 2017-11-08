@@ -99,10 +99,40 @@ HTML;
             $extension = substr($file, -4);
             $name = substr($file, 0, -4);
 			if (is_numeric($name) && $extension == ".php") {
-				$years[] = substr($file, 0, -4);
+				$years[] = $name;
 			}
 		}
 		rsort($years);
 		return $years;		
 	}
+
+    public static function getNewsArticlesHTML() {
+        $news = array();
+        $files = scandir(NEWS_HTML_PATH);
+        foreach ($files as $file) {
+            $extension = substr($file, -4);
+            $name = substr($file, 0, -4);
+            if ($extension != ".php") {
+                continue;
+            }
+            $content = file_get_contents(NEWS_HTML_PATH . '/' . $file);
+            $parts = explode(NEWS_SEPARATOR, $content);
+
+            $url = BASE_URL . 'news/'.$name;
+            $news[$name] = '<li><a class="news-link" href="'.$url.'">' . $parts[0] . '</a></li>';
+        }
+        krsort($news);
+
+        $ret = array();
+        $i = 0;
+        foreach($news as $key => $val) {
+            if ($i >= NEWS_COUNT) {
+                break;
+            }
+            $ret[] = $val;
+            $i++;
+        }
+
+        return '<ul class="news">' . implode("\n", $ret) . '</ul>';
+    }
 }
