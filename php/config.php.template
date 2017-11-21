@@ -61,7 +61,7 @@ define('FULL_URL', PageHelper::getBaseUrl());
 define('SITE_NAME', '');
 define('KEYWORDS', '');
 define('INSTAGRAM_USERNAME', '');
-
+define('ANALYTICS_ID', '');
 
 /******************************************************************************
  * OPEN GRAPH

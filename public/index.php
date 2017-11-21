@@ -58,7 +58,7 @@ if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
 			</main>
 <?php echo Footer::renderFooter() ?>			
 		</div>
-
+<?php echo Utils::analytics('UA-87612341-1'); ?>
 	</body>
 </html>
 <?php
