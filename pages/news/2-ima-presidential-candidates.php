@@ -169,7 +169,7 @@ SEPARATOR
 						III. Promotion of sport<br>
 					</dd>
 				</dl>
-				<p><a class="candidate-pdf-link" href="https://goo.gl/vJpB8h">Download Flavio's program as a PDF file</a></p>
+				<p><a class="candidate-pdf-link" href="../images/news/election-candidate-flavio-nottalgiovanni-sambucetti.pdf">Download Flavio's program as a PDF file</a></p>
 			</div>
 		</div>
 	</li><li>
