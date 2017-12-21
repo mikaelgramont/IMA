@@ -59,6 +59,41 @@ if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
 <?php echo Footer::renderFooter() ?>			
 		</div>
 <?php echo Utils::analytics(ANALYTICS_ID); ?>
+	<div class="modal">
+		<button class="modal-close" aria-label="Close">
+			<img src="<?php echo BASE_URL ?>images/close.svg" width="16" height="16" alt="">
+		</button>
+		<div class="modal-wrapper"></div>
+	</div>
+	<div class="overlay"></div>
+	<script>
+		(function() {
+			var modalEl = document.querySelector('.modal-wrapper');
+			function closeModal() {
+				document.body.classList.remove('modal-visible');
+				modalEl.innerHTML = '';		
+			}
+			function openModal() {
+				document.body.classList.add('modal-visible');
+				modalEl.scrollTop = 0;
+			}
+
+			on('.wrapper', 'click', '.modal-button', function(e) {
+				var buttonEl = e.target;
+				var modalContentEl = e.target.parentElement.querySelector('.modal-content');
+				modalEl.innerHTML = modalContentEl.innerHTML;
+				openModal();
+			});
+			on('body', 'click', '.modal-close', function(e) {
+				closeModal();
+			});
+			document.body.addEventListener('keyup', function(e) {
+				if (e.keyCode == 27)  { //ESC
+					closeModal();
+				}
+			});
+		})()
+	</script>
 	</body>
 </html>
 <?php
