@@ -1,7 +1,17 @@
+<!-- META -->
+<meta property="og:title" content="2018 IMA elections"/>
+<meta property="og:description" content="Take part in the IMA presidential election!"/>
+
+SEPARATOR
+
+<!-- SNIPPET -->
+
 <h2 class="display-font">2018 Elections</h2>
 <p>Take part in the IMA presidential election!</p>
 
 SEPARATOR
+
+<!-- CONTENT -->
 
 <h1 class="display-font">2018 Elections</h1>
 

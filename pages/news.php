@@ -10,4 +10,4 @@
 	$content = file_get_contents($file);
 	$parts = explode(NEWS_SEPARATOR, $content);
 
-	echo $parts[1];
+	echo $parts[2];

@@ -1,8 +1,16 @@
+<!-- META -->
+<meta property="og:title" content="IMA presidential candidates for 2018"/>
+<meta property="og:description" content="The people running for the 2018 election, along with their plan, and their board members."/>
+
+SEPARATOR
+
+<!-- SNIPPET -->
 <h2 class="display-font">IMA presidential candidates for 2018</h2>
 <p>The people running for the 2018 election, along with their plan, and their board members.</p>
 
 SEPARATOR
 
+<!-- CONTENT -->
 <style>
 	.candidate-photo {
 		width: 300px;

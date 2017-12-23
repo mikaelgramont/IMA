@@ -3,18 +3,30 @@ class Head
 {
 	public static function content($keywords, $pageInfo, $css)
 	{
-		$content = self::meta_($keywords);
+		$content = self::meta_($keywords, $pageInfo);
 		$content .= self::title_($pageInfo);
 		$content .= self::css_($css);
 		return $content;
 	}
 
-	private static function meta_($keywords) {
-		$title = OG_TITLE;
-		$description = OG_DESCRIPTION;
-		$url = OG_URL;
+	private static function meta_($keywords, $pageInfo) {
 		$siteName = OG_SITE_NAME;
 		$image = OG_IMAGE;
+		$url = FULL_URL;
+		
+		if (PageHelper::isNewsPage($pageInfo)) {
+			$OGMeta = PageHelper::getNewsArticleMeta($pageInfo);
+		} else {
+			$title = OG_TITLE;
+			$description = OG_DESCRIPTION;
+
+			$OGMeta = <<<HTML
+
+				<meta property="og:title" content="{$title}"/>
+				<meta property="og:description" content="{$description}"/>
+
+HTML;
+		}
 
 		$content = <<<HTML
 			<meta name="Content-Type" content="text/html; charset=utf-8" >
@@ -23,13 +35,11 @@ class Head
 			<meta name="Content-Language" content="en" >
 			<meta name="keywords" content="{$keywords}">
 
-			<meta property="og:title" content="{$title}"/>
-			<meta property="og:description" content="{$description}"/>
-			<meta property="og:type" content="website"/>
+			{$OGMeta}
 			<meta property="og:url" content="{$url}"/>
+			<meta property="og:type" content="website"/>
 			<meta property="og:site_name" content="{$siteName}"/>
 			<meta property="og:image" content="{$image}"/>
-
 
 HTML;
 		return $content;		

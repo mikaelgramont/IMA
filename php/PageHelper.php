@@ -38,12 +38,14 @@ HTML;
 
     public static function getPageInfo($items, $currentUrl)
     {
+            $ret = null;
             foreach ($items as $item) {
                     if ($item->url == $currentUrl) {
-                            return $item;
+                        $ret = $item;
+                            break;
                     }
             }
-            return null;
+            return $ret;
     }
 
     public static function getFullUrl()
@@ -79,6 +81,11 @@ HTML;
 		$matches = null;
 		preg_match($preg, $path, $matches);
 		return sizeof($matches) == 3 ? $matches[2] : '';
+    }
+
+    public static function isNewsPage($pageInfo)
+    {
+        return $pageInfo->url == 'news';
     }
 
 	public static function getPageContent($pageInfo) {
@@ -119,7 +126,7 @@ HTML;
             $parts = explode(NEWS_SEPARATOR, $content);
 
             $url = BASE_URL . 'news/'.$name;
-            $news[$name] = '<li><a class="news-link" href="'.$url.'">' . $parts[0] . '</a></li>';
+            $news[$name] = '<li><a class="news-link" href="'.$url.'">' . $parts[1] . '</a></li>';
         }
         krsort($news);
 
@@ -134,5 +141,18 @@ HTML;
         }
 
         return '<ul class="news">' . implode("\n", $ret) . '</ul>';
+    }
+
+    public static function getNewsArticleMeta($pageInfo) {
+        $param = PAGE_PARAMS[0];
+        // Format: baz-foo-bar;
+        $file = NEWS_HTML_PATH . $param . ".php";
+        if (!file_exists($file)) {
+            $errorMsg = "No news by that name found";
+        }
+        
+        $content = file_get_contents($file);
+        $parts = explode(NEWS_SEPARATOR, $content);
+        return $parts[0];
     }
 }
