@@ -1,0 +1,46 @@
+<!-- META -->
+<meta property="og:title" content="2018 IMA elections are open!"/>
+<meta property="og:description" content="From Jan 1st to Jan 15th, you can vote to elect the next president of the IMA!"/>
+
+SEPARATOR
+
+<!-- SNIPPET -->
+
+<h2 class="display-font">2018 elections are open!</h2>
+<p>From Jan 1st to Jan 15th, you can vote to elect the next president of the IMA!</p>
+
+SEPARATOR
+
+<!-- CONTENT -->
+
+<style>
+	.vote-link  {
+		display: inline-block;
+		margin: 1em auto;
+		color: #fff;
+		background: #E82020;
+		border: 2px solid #C80000;
+		font-size: 1em;
+		padding: .5em 1em;
+	}
+
+	.disclaimer {
+		font-size: .75em;
+	}
+
+	.button-wrapper {
+		margin: 1em 0;
+		text-align: center;
+	}
+</style>
+
+
+<h2 class="display-font">2018 elections are open!</h2>
+<p>We recently <a href="../news/2-ima-presidential-candidates">listed the candidates</a> for the 2018 presidential election.</p>
+<p>The election is now open, and from Jan 1st to Jan 15th 2018, you can vote to elect the next president of the IMA! All you need is to fill out the form linked below.</p>
+
+<div class="button-wrapper">
+	<a href="https://goo.gl/forms/2T0XnvmWqL2cSPlI3" target="_blank" class="vote-link">Vote!</a>
+</div>
+
+<p class="disclaimer">Note: For the sake of transparency, please take note of the following. The form linked above is not anonymous. It records the Google email address for each vote. This is so that each user can only vote once. Sadly Google Forms do not allow use to record anonymous votes while guaranteeing a single vote per user.</p>
