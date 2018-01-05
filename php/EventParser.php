@@ -31,7 +31,7 @@ class EventParser
 			$logger->log($logMsg. " ok.");
 
 			 $timestamp = $event->getFirstDayTimeStamp();
-			 $events[$timestamp] = $event;
+			 $events[$timestamp . '-' . $rowId] = $event;
 		}
 
 		if ($hasErrors) {
