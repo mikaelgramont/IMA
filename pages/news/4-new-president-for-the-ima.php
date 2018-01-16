@@ -45,6 +45,18 @@ SEPARATOR
 		text-align: right;
 		margin-right: 3em;
 	}
+
+	.graphic-small {
+		width: 480px;
+		margin: 0 auto;
+		display: block;
+	}
+
+	@media screen and (max-width: 640px) {
+		.graphic-small {
+			width: 240px;
+		}
+	}
 </style>
 
 <h1 class="display-font">The 2018 elections are over, the IMA has a new president!</h1>
@@ -76,6 +88,10 @@ SEPARATOR
 	<p class="signature">- Kody</p>
 </div>
 
+<!--
+<h2 class="display-font">A word from outgoing President Dave Stiefvater</h2>
+<p>63</p>
+-->
 
 <h2 class="display-font">The numbers</h2>
 
@@ -104,15 +120,17 @@ SEPARATOR
 	</li>
 </ul>
 
+<h2 class="display-font">Votes per country</h2>
+<p>
+	<a href="../images/news/2018-elections-vote-per-country.png" target="_blank">
+		<img class="graphic-small" src="../images/news/2018-elections-vote-per-country.png" alt="A graphic representing the number of vote per country for each candidate">
+	</a>
+</p>
+
 <h2 class="display-font">Methodology</h2>
 <p>Each individual vote was recorded in a spreadsheet by the Google Form, and after the voting window closed, it was analyzed by current IMA President Dave Stiefvater, IMA founder Diego Anderson, Argentinian rider German Hermo and election organizer Mikael Gramont (disclaimer: Mikael wass also running as part of Kody Stewart's team). We are now publishing results as everyone is in agreement.</p>
 
 <p>The <a href="https://docs.google.com/spreadsheets/d/1HNyZDYBSdqhmV6Vpuez_4stZbCVbpJPlyRvtGWJyeyM/edit?usp=sharing">anonymous results can be seen in this spreadsheet</a>.</p>
-
-<!--
-<h2 class="display-font">A word from outgoing President Dave Stiefvater</h2>
-<p>63</p>
--->
 
 <h2 class="display-font">Thank you's</h2>
 <p>First of all, the IMA would like to thank the candidates who spent time thinking about the future of the sport and pouring their hearts into their campaigns, as well as everyone who took the time to vote and read the candidates' proposals.</p>
