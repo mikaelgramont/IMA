@@ -79,10 +79,6 @@ SEPARATOR
 
 	<p>I do look forward to working with the other candidates to have a well-rounded IMA. Small beneficial changes will be made this year to set the ground work for bigger changes in the future. We will keep all of you up to date on the progress and start discussions on some topics to receive feedback</p>
 
-	<p>We'll need some time to bed in, but we want to make some quick, small changes in our first year and be looking to start making bigger changes in our second year.</p>
-
-	<p>We'll keep you posted on what we are up to and we hope you'll be pumped on the changes</p>
-
 	<p>So let's do it! Another year on the board. Let's ride more, enjoy each other's company, and see where we can take mountainboarding!</p>		
 
 	<p class="signature">- Kody</p>
