@@ -1,0 +1,124 @@
+<!-- META -->
+<meta property="og:title" content="The 2018 elections are over, the IMA has a new president!"/>
+<meta property="og:description" content="The two-week voting period is over, the results are in."/>
+<meta property="og:image" content="$OG_URL/images/news/2018-elections.png"/>
+
+SEPARATOR
+
+<!-- SNIPPET -->
+<h2 class="display-font">The 2018 elections are over, the IMA has a new president!</h2>
+<p>The two-week voting period is over, the results are in.</p>
+
+SEPARATOR
+
+<!-- CONTENT -->
+<style>
+	.president-photo {
+		width: 100%;
+		max-width: 300px;
+	}
+	
+	.president {
+		margin: 0 auto 1em;
+		width: 50%;
+		text-align: center;
+	}
+
+	.candidate-result-percentage  {
+		font-weight: bold;
+	}
+
+	.quote {
+		text-align: justify;
+		font-style: italic;
+		margin: 0 auto;
+		max-width: 50em;
+	}
+
+	@media screen and (max-width: 640px) {
+		.quote {
+			margin: 0 1em;
+		}
+	}
+
+	.signature {
+		text-align: right;
+		margin-right: 3em;
+	}
+</style>
+
+<h1 class="display-font">The 2018 elections are over, the IMA has a new president!</h1>
+
+<p>Let's not waste time. With an absolute majority (60.7% of the votes), our new President is:</p>
+<div class="president">
+	<img class="president-photo" src="../images/news/election-candidate-kody-stewart.jpg" alt="A photo of Kody Stewart, newly elected president of the IMA in 2018.">
+	<div class="president-name">
+		<h2 class="display-font">Kody Stewart</h2>
+	</div>
+</div>
+
+<h2 class="display-font">A word from our new President</h2>
+<div class="quote">
+	<p>I never thought I would get to this point when I stepped on a mountainboard 18 years ago. It is my honor to become the next president of the IMA! Following in the footsteps of Diego and Dave is unfathomable. Both were riders before my time and people I look up to. Thank you to Mika and Matt for all their support. This truly wouldn't be happening if they hadn't stepped in to help support me. I can't thank everyone enough that voted for any candidate. You are our sport and it was refreshing to see heated debates and listen to what people wanted to see change.</p>
+
+	<p>We have a wonderful sport with even greater people within it. Mountainboarders are a hardy bunch and the family atmosphere that flows through us is unmatched in any other sport.</p>
+
+	<p>Taking this position isn't about me personally. It's about us. I'm just one person and it is going to take everyone in order to make big things happen. We need to come to events to support the athletes putting them on. We need to teach others not only how to mountainboard but show them why this sport is so great, and we need to come together as a family in order to push this sport as a whole. Mika, Matt, and I have an idea of what we want to do but we're always going to be open to listen to what other riders have to say.</p>
+
+	<p>I do look forward to working with the other candidates to have a well-rounded IMA. Small beneficial changes will be made this year to set the ground work for bigger changes in the future. We will keep all of you up to date on the progress and start discussions on some topics to receive feedback</p>
+
+	<p>We'll need some time to bed in, but we want to make some quick, small changes in our first year and be looking to start making bigger changes in our second year.</p>
+
+	<p>We'll keep you posted on what we are up to and we hope you'll be pumped on the changes</p>
+
+	<p>So let's do it! Another year on the board. Let's ride more, enjoy each other's company, and see where we can take mountainboarding!</p>		
+
+	<p class="signature">- Kody</p>
+</div>
+
+
+<h2 class="display-font">The numbers</h2>
+
+<p>We had a pretty decent voter turnout: we got 229 votes, from at least 32 different countries (a few people did not wish to say where they were from, so there may have been a few more).</p>
+
+<ul>
+	<li>
+		<span class="candidate-result-name">Alex Rossiter</span>
+		<span class="candidate-result-numbers">9 votes</span> <span class="candidate-result-percentage">(3.9%)</span>
+	</li>
+	<li>
+		<span class="candidate-result-name">Carlos Alberto Sabino</span>
+		<span class="candidate-result-numbers">22 votes</span> <span class="candidate-result-percentage">(9.6%)</span>
+	</li>
+	<li>
+		<span class="candidate-result-name">Flavio Nottalgiovanni Sambucetti</span>
+		<span class="candidate-result-numbers">57 votes</span> <span class="candidate-result-percentage">(24.9%)</span>
+	</li>
+	<li>
+		<span class="candidate-result-name">Kody Stewart</span>
+		<span class="candidate-result-numbers">139 votes</span> <span class="candidate-result-percentage">(60.7%)</span>
+	</li>
+	<li>
+		<span class="candidate-result-name">Blank / Neither of these</span>
+		<span class="candidate-result-numbers">2 votes</span> <span class="candidate-result-percentage">(0.9%)</span>
+	</li>
+</ul>
+
+<h2 class="display-font">Methodology</h2>
+<p>Each individual vote was recorded in a spreadsheet by the Google Form, and after the voting window closed, it was analyzed by current IMA President Dave Stiefvater, IMA founder Diego Anderson, Argentinian rider German Hermo and election organizer Mikael Gramont (disclaimer: Mikael wass also running as part of Kody Stewart's team). We are now publishing results as everyone is in agreement.</p>
+
+<p>The <a href="https://docs.google.com/spreadsheets/d/1HNyZDYBSdqhmV6Vpuez_4stZbCVbpJPlyRvtGWJyeyM/edit?usp=sharing">anonymous results can be seen in this spreadsheet</a>.</p>
+
+<!--
+<h2 class="display-font">A word from outgoing President Dave Stiefvater</h2>
+<p>63</p>
+-->
+
+<h2 class="display-font">Thank you's</h2>
+<p>First of all, the IMA would like to thank the candidates who spent time thinking about the future of the sport and pouring their hearts into their campaigns, as well as everyone who took the time to vote and read the candidates' proposals.</p>
+
+<p>For those who've witnessed drama on Facebook groups, or generally did not care for the political substance of the conversations, don't let that bring you down. Mountainboarders are generally not very much into politics, so it is expected that it will bore you or upset you. We would all rather be riding in the sun indeed, but at least the activity that was generated proves that people care and that there is a potential to revitalise our sport which has been slowing down in the past decade.</p>
+
+<h2 class="display-font">What now?</h2>
+<p>As Kody said, the new administration will need a bit of time to get started, but will be sure to communicate with everyone. Stay tuned!</p>
+

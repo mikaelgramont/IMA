@@ -153,6 +153,14 @@ HTML;
         
         $content = file_get_contents($file);
         $parts = explode(NEWS_SEPARATOR, $content);
-        return $parts[0];
+
+        $meta = $parts[0]; 
+        $meta = str_replace("\$OG_URL/", OG_URL, $meta);
+        return $meta;
+    }
+
+    public static function hasImageMeta($meta) {
+        $key = "og:image";
+        return strpos($meta, $key) !== FALSE;
     }
 }

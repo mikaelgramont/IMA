@@ -11,11 +11,17 @@ class Head
 
 	private static function meta_($keywords, $pageInfo) {
 		$siteName = OG_SITE_NAME;
-		$image = OG_IMAGE;
 		$url = FULL_URL;
 		
 		if (PageHelper::isNewsPage($pageInfo)) {
 			$OGMeta = PageHelper::getNewsArticleMeta($pageInfo);
+			
+			if (PageHelper::hasImageMeta($OGMeta)) {
+				$additionalOGImageMeta = "";
+			} else {
+				$image = OG_IMAGE;
+				$additionalOGImageMeta = "<meta property=\"og:image\" content=\"{$image}\"/>";
+			}
 		} else {
 			$title = OG_TITLE;
 			$description = OG_DESCRIPTION;
@@ -27,7 +33,6 @@ class Head
 
 HTML;
 		}
-
 		$content = <<<HTML
 			<meta name="Content-Type" content="text/html; charset=utf-8" >
 			<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width" >
@@ -36,10 +41,10 @@ HTML;
 			<meta name="keywords" content="{$keywords}">
 
 			{$OGMeta}
+			{$additionalOGImageMeta}
 			<meta property="og:url" content="{$url}"/>
 			<meta property="og:type" content="website"/>
 			<meta property="og:site_name" content="{$siteName}"/>
-			<meta property="og:image" content="{$image}"/>
 
 HTML;
 		return $content;		
