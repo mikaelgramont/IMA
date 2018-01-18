@@ -62,7 +62,7 @@ class Pages
 			],
 			(object) [
 				'title' => 'Subscribe to the IMA newsletter.',
-				'url' => 'newssletter',
+				'url' => 'newsletter',
 				'file' => 'newsletter-subscription.php',
 				'skipMenuEntry' => true,
 			],

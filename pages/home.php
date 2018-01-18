@@ -166,7 +166,22 @@
 		display: inline-block;
 		margin-top: 5px;
 	}
+	.newsletter-content-wrapper {
+		display: flex;
+	}
+	.newsletter-link {
+		flex: 1 0 40%;
+	}
+	.link-as-button {
+		background: #E82020;
+		display: inline-block;
+		border-radius: .5em;
+		padding: .5em;
+		color: #fff;
+		text-decoration: none;
+	}	
 </style>
+
 <div id="home-carousel" class="carousel-container">
 	<div class="carousel">
 		<div class="carousel-item carousel-item-1">
@@ -223,6 +238,17 @@
 				</div>
 				<?php
 			}
+			?>
+				<div class="newsletter">
+					<h2 class="display-font homepage-title-container">The IMA Newsletter</h2>
+					<div class="newsletter-content-wrapper">
+						<p>Keep up with what's going on in the community, sign up for our newsletter!</p>
+						<p class="newsletter-link">
+							<a class="link-as-button" href="<?php echo BASE_URL ?>newsletter">Check it out</a>
+						</p>
+					</div>
+				</div>
+			<?php
 			if ($photos) {
 				?>
 				<div class="ig">
