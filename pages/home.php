@@ -1,18 +1,16 @@
 <?php
-	function renderImage($url, $caption) {
-
-
-	}
 	$pool = Cache::getPool();
 	$cacheId = EVENTS_CACHE_PATH;
 	$cacheItem = $pool->getItem($cacheId);
 
 	$eventNameEscaped = "";
+	$eventUrl = "";
 	if (!$cacheItem->isMiss()) {
 		$events = $cacheItem->get();
 		if ($events && sizeof($events) > 0) {
 			$event = array_pop($events);
 			$eventNameEscaped = Utils::escape($event->getName());
+			$eventUrl = $event->getUrl();
 		}
 	}
 
@@ -168,6 +166,7 @@
 	}
 	.newsletter-content-wrapper {
 		display: flex;
+		align-items: center;
 	}
 	.newsletter-link {
 		flex: 1 0 40%;
@@ -233,7 +232,7 @@
 					<h2 class="display-font homepage-title-container">Next upcoming event</h2>
 					<p>
 						<?php echo $eventNameEscaped; ?><br>
-						<a href="<?php echo BASE_URL ?>events">More info</a>
+						<a href="<?php echo $eventUrl ?>">More info</a>
 					</p>
 				</div>
 				<?php

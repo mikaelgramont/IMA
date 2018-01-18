@@ -78,11 +78,6 @@ class EventTemplateGenerator
 
 	private function _getAnchorName()
 	{
-		$name = Utils::cleanStringForUrl($this->_event->getName());
-		if (!is_numeric(substr($name, 0, 1))) {
-			$name = $this->_event->getFirstDayYear() . '-' . $name;
-		}
-
-		return $name;
+		return $this->_event->getAnchorName();
 	}
 }

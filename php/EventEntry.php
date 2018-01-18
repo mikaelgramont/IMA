@@ -158,4 +158,19 @@ class EventEntry
 	{
 		return isset($this->_values[self::WEBSITE_COLUMN]) ? $this->_values[self::WEBSITE_COLUMN] : "";
 	}
+
+	public function getAnchorName()
+	{
+		$name = Utils::cleanStringForUrl($this->getName());
+		if (!is_numeric(substr($name, 0, 1))) {
+			$name = $this->getFirstDayYear() . '-' . $name;
+		}
+
+		return $name;
+	}
+
+	public function getUrl()
+	{
+		return 'events/' . $this->getAnchorName();
+	}	
 }
