@@ -135,6 +135,8 @@ SEPARATOR
 		<li>Events - upcoming and highlights</li>
 		<li>Recent videos and photos</li>
 		<li>Stories from early mountainboarding history</li>
+		<li>‘Get to know us’ - a bio on one of the IMA board members</li>
+		<li>‘What we’re up to’ - what the IMA is doing or aiming for in the next month, because accountability is important.</li>
 		<li>Other things!</li>
 	</ul>
 
