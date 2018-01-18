@@ -7,10 +7,6 @@ list($currentPageId, $params) = PageHelper::getPageIdAndParams(BASE_URL, FULL_UR
 define("PAGE_PARAMS", $params);
 $pageInfo = PageHelper::getPageInfo($pages, $currentPageId);
 $pageContent = PageHelper::getPageContent($pageInfo);
-$meta = '';
-if (PageHelper::isNewsPage($pageInfo)) {
-	$meta = PageHelper::getNewsArticleMeta($pageInfo);
-}
 if (!$pageInfo) {
 	throw new Exception("No routing found");
 }
@@ -18,7 +14,6 @@ if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
 ?>
 <html>
 	<head>
-		<?php echo $meta; ?>
 		<link href="https://fonts.googleapis.com/css?family=Pathway+Gothic+One|Raleway:500,700" rel="stylesheet">
 <?php echo Head::content(KEYWORDS, $pageInfo, BASE_URL . 'css/style.css'); ?>
 	</head>

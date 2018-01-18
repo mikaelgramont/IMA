@@ -60,6 +60,12 @@ class Pages
 				'file' => 'news.php',
 				'skipMenuEntry' => true,
 			],
+			(object) [
+				'title' => 'Subscribe to the IMA newsletter.',
+				'url' => 'newssletter',
+				'file' => 'newsletter-subscription.php',
+				'skipMenuEntry' => true,
+			],
 		);
 	}
 }
