@@ -1,3 +1,10 @@
+<!-- META -->
+<meta property="og:title" content="Subscribe to the IMA newsletter!"/>
+<meta property="og:description" content="There is a lot going on around the world and we want you to see it, so sign up for our newsletter and we'll deliver it right into your inbox!"/>
+<meta property="og:image" content="$OG_URL/images/newsletter.png"/>
+
+SEPARATOR
+
 <!-- Begin MailChimp Signup Form -->
 <style type="text/css">
 	.newsletter-content {
