@@ -15,9 +15,13 @@ class Head
 		$defaultImage = OG_IMAGE;
 		$additionalOGImageMeta = "";
 
-		if (PageHelper::isNewsPage($pageInfo)) {
-			$OGMeta = PageHelper::getNewsArticleMeta($pageInfo);			
-			if (!PageHelper::hasImageMeta($OGMeta)) {
+		if (PageHelper::pageContentHasImageMeta($pageInfo)) {
+			if(PageHelper::isNewsPage($pageInfo)) {
+				$OGMeta = PageHelper::getNewsArticleMeta($pageInfo);			
+			} else {
+				$OGMeta = PageHelper::getPageMeta($pageInfo);
+			}
+			if (!PageHelper::metaHasImage($OGMeta)) {
 				// OG Image is already part of $OGMeta
 				$additionalOGImageMeta = "<meta property=\"og:image\" content=\"{$defaultImage}\"/>";
 			}

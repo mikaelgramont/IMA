@@ -72,7 +72,7 @@ HTML;
         } else {
         	$base_url = 'http://localhost/';
         }
-    return $base_url;
+        return $base_url;
     }
 
     public static function getCurrentPageId($path)
@@ -85,7 +85,23 @@ HTML;
 
     public static function isNewsPage($pageInfo)
     {
-        return $pageInfo->url == 'news';
+        return $pageInfo->url == 'news';   
+    }
+
+    public static function pageContentHasImageMeta ($pageInfo)
+    {
+        if ($pageInfo->url == 'news') {
+            return true;
+        }
+
+        $file = '../pages/' . $pageInfo->file;
+        if (!file_exists($file)) {
+            return false;
+        }
+        $content = file_get_contents($file);
+        $parts = explode(NEWS_SEPARATOR, $content);
+        $meta = $parts[0];
+        return self::metaHasImage($meta);
     }
 
 	public static function getPageContent($pageInfo) {
@@ -94,10 +110,30 @@ HTML;
 		}
 		ob_start();
 	    include '../pages/' . $pageInfo->file;
-	    $content = ob_get_contents();
+	    $fileContent = ob_get_contents();
+        $parts = explode(NEWS_SEPARATOR, $fileContent);
+        // Only keep the last part, in case the file contains metas at the top.
+        $content = array_pop($parts);
+
 	    ob_end_clean();
 		return $content.PHP_EOL;
 	}
+
+    public static function getPageMeta($pageInfo) {
+        if (!$pageInfo) {
+            return '';
+        }
+        ob_start();
+        include '../pages/' . $pageInfo->file;
+        $fileContent = ob_get_contents();
+        $parts = explode(NEWS_SEPARATOR, $fileContent);
+        // Only keep the last part, in case the file contains metas at the top.
+        $content = $parts[0];
+        $content = str_replace("\$OG_URL/", OG_URL, $content);
+
+        ob_end_clean();
+        return $content.PHP_EOL;
+    }   
 
 	public static function getAvailableYears() {
 		$years = array();
@@ -159,7 +195,7 @@ HTML;
         return $meta;
     }
 
-    public static function hasImageMeta($meta) {
+    public static function metaHasImage($meta) {
         $key = "og:image";
         return strpos($meta, $key) !== FALSE;
     }
