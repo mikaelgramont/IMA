@@ -9,7 +9,7 @@ class Footer
 			<p>Find us on social media :</p>
 			<ul class="footer-social-media-links">
 				<li class="footer-social-media-link">
-					<a href="https://www.facebook.com/groups/mountainboardworld">
+					<a href="https://www.facebook.com/imountainboard/">
 						<svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><path d="M50,2c26.492,0 48,21.508 48,48c0,26.492 -21.508,48 -48,48c-26.492,0 -48,-21.508 -48,-48c0,-26.492 21.508,-48 48,-48Zm16.334,23.5l-32.667,0c-4.492,0 -8.167,3.676 -8.167,8.168l0,32.664c0,4.495 3.675,8.168 8.167,8.168l32.666,0c4.493,0.001 8.167,-3.672 8.167,-8.167l0,-32.664c0,-4.492 -3.674,-8.168 -8.166,-8.169Zm1.999,10.65l-6.849,0c-2.034,-0.003 -2.285,1.06 -2.285,3.039l-0.012,3.797l9.188,0l-1.215,7.014l0,0l-7.972,0l0,21.438l-9.188,-0.001l0,-21.437l-4.427,0l0,-7.014l4.427,0.001l0,-4.555c0,-6.189 2.67,-9.87 9.947,-9.87l8.386,0l0,7.588Z" style="fill:#1A1705;"></path></svg>
 					</a>
 				</li>
