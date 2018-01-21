@@ -360,4 +360,55 @@ HTML;
         return "";
     }
 
+    public static function getOGMetaFromUrl($url) {
+        if (strpos($url, "youtube.com") !== false) {
+            // Because of course YT can't do normal OG stuff.
+            return self::getYouTubeMetaFromUrl($url);
+        }
+
+        $obj = new stdClass();
+        $obj->title = "";
+        $obj->image = "";
+
+        $page = file_get_contents($url);
+        $doc = new DOMDocument();
+        @$doc->loadHTML($page);
+        $title_div = $doc->getElementsByTagName('title')[0];
+        if ($title_div) {
+            $obj->title = $title_div->nodeValue;
+        }
+
+        $metas = $doc->getElementsByTagName('meta');
+        foreach ($metas as $meta) {
+            if (!$meta->getAttribute('property')) {
+                continue;
+            }
+            if ($meta->getAttribute('property') == "og:title") {
+                $obj->title = $meta->getAttribute('content');
+                continue;
+            }
+            if ($meta->getAttribute('property') == "og:image") {
+                $obj->image = $meta->getAttribute('content');
+                continue;
+            }
+        }
+
+        //die('<pre>'.var_export($obj, true).'</pre>');
+        return $obj;
+    }
+
+    /* This is pretty damn fragile. */
+    public static function getYouTubeMetaFromUrl($url) {
+        $obj = new stdClass();
+
+        $page = file_get_contents($url);
+        $doc = new DOMDocument();
+        $doc->loadHTML($page);
+        $title_div = $doc->getElementsByTagName('title')[0];
+        $obj->title = $title_div->nodeValue;
+
+        preg_match("/\?v=([a-zA-Z_\-0-9]*)/", $url, $res);
+        $obj->image = "https://i.ytimg.com/vi/" . $res[1]. "/hqdefault.jpg";
+        return $obj;
+    }
 }

@@ -12,6 +12,8 @@ The following folders need to be writable by the server, and by other manual pro
 * `php/cache` - Filesystem-based cache location (using Stash)
 * `pages/generated` - Machine-generated HTML chunks (results and events).
 * `logs` - server log files.
+* The newsletter cache file (see the `NEWSLETTER_CONTENT_CACHE_PATH` constant).
+
 
 On top of that, should cron jobs execute the shell scripts in `bin`, the `logs` folder will need to be writable by the cron user as well.
 

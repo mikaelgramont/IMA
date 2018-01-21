@@ -40,19 +40,22 @@ class Pages
 				'url' => 'admin',
 				'file' => 'admin.php',
 				'skipMenuEntry' => true,
+				'adminOnly' => true,
 			],
 			(object) [
 				'title' => '',
 				'url' => 'perform-update',
 				'file' => 'perform-update.php',
 				'skipMenuEntry' => true,
-				'noContent' => true
+				'noContent' => true,
+				'adminOnly' => true,
 			],
 			(object) [
 				'title' => '',
 				'url' => 'done-updating',
 				'file' => 'done-updating.php',
-				'skipMenuEntry' => true
+				'skipMenuEntry' => true,
+				'adminOnly' => true,
 			],
 			(object) [
 				'title' => 'News',
@@ -65,6 +68,13 @@ class Pages
 				'url' => 'newsletter',
 				'file' => 'newsletter-subscription.php',
 				'skipMenuEntry' => true,
+			],
+			(object) [
+				'title' => 'IMA newsletter content backlog',
+				'url' => 'newsletter-content',
+				'file' => 'newsletter-content.php',
+				'skipMenuEntry' => true,
+				'adminOnly' => true,
 			],
 		);
 	}

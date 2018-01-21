@@ -13,3 +13,6 @@
 	<input type="hidden" name="type" value="events">
 	<input type="submit" value="Update">
 </form>
+
+<h2 class="display-font">Newsletter content</h2>
+List of all the <a href="<?php echo BASE_URL ?>newsletter-content">potential content for IMA newsletters </a>

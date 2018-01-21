@@ -52,6 +52,8 @@ define('EVENTS_FOLDER_ID', '');
 define('EVENTS_RESPONSE_SHEET_ID', '');
 define('EVENT_SUBMISSION_FORM_URL', '');
 
+define('NEWSLETTER_CONTENT_SPREADSHEET_ID', '');
+
 
 /******************************************************************************
  * SITE CONTENT DEFINITION CONSTANTS
@@ -71,3 +73,9 @@ define('OG_DESCRIPTION', 'The official International Mountainboard Association s
 define('OG_URL', 'https://www.mountainboardworld.org/');
 define('OG_SITE_NAME', 'International Mountainboard Association');
 define('OG_IMAGE', 'https://www.mountainboardworld.org/images/logo.png');
+
+/******************************************************************************
+ * NEWSLETTER
+ *****************************************************************************/
+define('OGINFO_PATH', '');
+define('NEWSLETTER_CONTENT_CACHE_PATH', 'newsletter/');
