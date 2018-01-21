@@ -1,15 +1,10 @@
 <?php
 class NewsletterContentList
 {
-	public function __construct(array $content, $dateFrom = '', $dateTo = '', $showUsed = false, $showHidden = false, $onlyShowCategory = '', $fromPoster = "")
+	public function __construct(array $content, array $issues)
 	{
 		$this->content = $content;
-		$this->dateFrom = $dateFrom;
-		$this->dateTo = $dateTo;
-		$this->showUsed = $showUsed;
-		$this->showHidden = $showHidden;
-		$this->onlyShowCategory = $onlyShowCategory;
-		$this->fromPoster = $fromPoster;
+		$this->issues = $issues;
 	}
 
 	public function __toString()

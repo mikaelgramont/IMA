@@ -6,7 +6,7 @@ class ExpandButton extends React.Component {
 	}
 
 	render() {
-		return <button onClick={this.props.onClick} className="expand-button">{this.props.label}</button>;
+		return <button className="expand-button" onClick={this.props.onClick} className="expand-button">{this.props.label}</button>;
 	}
 }
 

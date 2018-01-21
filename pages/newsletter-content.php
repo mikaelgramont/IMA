@@ -14,8 +14,22 @@
 		cursor: pointer;	
 	}
 
+	/* Controls */
+	.controls-wrapper {
+		margin: 1em 0;
+	}
+ 	.control {
+ 		display: inline-block;
+ 		margin: 0 1em 0;
+ 	}
+ 	.issueLabel{
+ 		display: inline-block;
+ 		margin-right: .25em;
+ 	}
+
 	/* Table */
 	.content-table {
+		width: 100%;
 		border-collapse: collapse;
 	}
 	.content-table th {
@@ -30,8 +44,19 @@
 	.content-row:nth-child(odd) {
 		background: #fff;
 	}
+	.discarded-row,
+	.used-row {
+		opacity: .4;
+	}
+	.row-status {
+		font-size: .75em	;
+	}
 
 	/* Content */
+	.id {
+		text-align: right;
+		font-family: monospace;
+	}
 	.timestamp {
 		white-space: pre-line;
 		text-align: center;
@@ -46,11 +71,26 @@
 		display: initial;
 	}
 	.preview h2 {
-		display: inline-block;
+		display: inline-flex;
+		width: 100%;
+		margin: .25em 0;
+		align-items: center;
 		font-size: 1em;
-		font-weight: normal;
 	}
-	.image {
+	.entry-title {
+		flex: 1 0;
+	}
+	.preview-content dt {
+		font-weight: bold;
+		margin-bottom: .25em
+	}
+	.preview-content dd {
+		margin: 0 2em .5em;
+	}
+	.preview .link {
+		word-break: break-all;
+	}
+	.preview .image {
 		max-width: 100%;
 	}
 
@@ -62,10 +102,8 @@
 
 <p>TODO</p>
 <ul>
-	<li>For videos, fetch thumbnails and display them on the client</li>
 	<li>Add admin auth check</li>
 	<li>Add controls fetch new data. New data updates states which re-renders.</li>
-	<li>Initial load always fetches from Google. Subsequent Ajax loads get from cache. Writes wipe cache out.</li>
 </ul>
 
 <?php
@@ -98,18 +136,11 @@ if ($errorMessage) {
 	
 	$ogInfo = OGInfoCache::getInstance(OGINFO_PATH);
 
-	// Always write content to cache on initial load.
-	// $pool = Cache::getPool();
-	// $cacheId = NEWSLETTER_CONTENT_CACHE_PATH;
-	// $cacheItem = $pool->getItem($cacheId);
-	// $cacheItem->lock();
-	$contentList = NewsletterContentParser::buildContentList($driveService, $sheetsService, $logger, $spreadsheetId, $ogInfo);
+	$startMonth = FIRST_NEWSLETTER_MONTH;
+	$contentList = NewsletterContentParser::buildContentList($driveService, $sheetsService, $logger, $spreadsheetId, $ogInfo, $startMonth, false, false);
 	if ($ogInfo->isDirty()) {
 		$ogInfo->writeToDisk();
 	}
-	// $cacheItem->set($contentList);
-	// $cacheItem->expiresAfter(3600);	
-	// $pool->save($cacheItem);
 ?>
 <div id="seed">
 <?php echo $contentList ?>

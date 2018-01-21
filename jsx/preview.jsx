@@ -13,7 +13,6 @@ class Preview extends React.Component {
 	}
 
 	onExpandClick() {
-		console.log("Expand toggle");
 		this.setState({
 			expanded: !this.state.expanded
 		});
@@ -23,28 +22,43 @@ class Preview extends React.Component {
 		return (
 			<div>
 				<h2>
-					{this.props.previewData.title}
+					<span className="entry-title">{this.props.previewData.title}</span>
 					<ExpandButton onClick={this.onExpandClick} label={this.state.expanded ? "Collapse" : "Expand"} />
 				</h2>				
-				<div className={this.state.expanded ? "preview-content expanded" : "preview-content"}>
-					<p>Submitted by {this.props.previewData.email}</p>
-					<p>
-						<a href={this.props.previewData.url} target="_blank">{this.props.previewData.url}</a>
-					</p>
-					<p>
-						<img className="image" src={this.props.previewData.image} />
-					</p>
-					<div>Description:
-						<p>{this.props.previewData.description}</p>
-					</div>
-					<div>IMA comment:
-						<p>{this.props.previewData.IMAComment}</p>
-					</div>
-					<p><span className="hidden">Hide</span></p>
-					<p><span className="hidden">Mark as used</span></p>
-				</div>
+				<dl className={this.state.expanded ? "preview-content expanded" : "preview-content"}>
+					<dt>Submitted by</dt>
+					<dd>{this.props.previewData.email}</dd>
+
+					<dt>Date</dt>
+					<dd>{this.props.previewData.timestamp}</dd>
+					
+					<dt>Link</dt>
+					<dd><a className="link" href={this.props.previewData.url} target="_blank">{this.props.previewData.url}</a></dd>
+
+					<dt>Image</dt>
+					<dd>
+						{this.renderImage()}
+					</dd>
+
+					<dt>Description</dt>
+					<dd>{this.props.previewData.description ? this.props.previewData.description : "N/A"}</dd>
+
+					<dt>IMA comment</dt>
+					<dd>{this.props.previewData.IMAComment ? this.props.previewData.IMAComment : "N/A"}</dd>
+					
+					<dt></dt><dd><span className="hidden">Discard</span></dd>
+					<dt></dt><dd><span className="hidden">Mark as used</span></dd>
+				</dl>
 			</div>
 		);
+	}
+
+	renderImage() {
+		if (!this.props.previewData.image) {
+			return <span>No image</span>;
+		}
+
+		return <img className="image" src={this.props.previewData.image} />;
 	}
 }
 

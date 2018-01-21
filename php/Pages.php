@@ -76,6 +76,14 @@ class Pages
 				'skipMenuEntry' => true,
 				'adminOnly' => true,
 			],
+			(object) [
+				'title' => 'IMA newsletter content ajax endpoint',
+				'url' => 'newsletter-ajax',
+				'file' => 'newsletter-ajax.php',
+				'skipMenuEntry' => true,
+				'adminOnly' => true,
+				'noContent' => true,
+			],
 		);
 	}
 }
