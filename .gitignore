@@ -10,3 +10,5 @@ _tmp
 logs/*.*
 .DS_Store
 public/.DS_Store
+package-lock.json
+node_modules
