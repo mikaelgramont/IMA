@@ -18303,7 +18303,7 @@ class ContentTable extends React.Component {
 						this.state.issues.map(issue => {
 							return React.createElement(
 								'option',
-								{ key: issue.time, value: issue.time },
+								{ value: 0, key: issue.time, value: issue.time },
 								issue.name
 							);
 						})
@@ -18383,10 +18383,12 @@ class ContentTable extends React.Component {
 
 	componentDidMount() {
 		const seed = JSON.parse(document.getElementById('seed').innerText);
+		const currentIssueTime = seed.issues.length > 0 ? seed.issues[0].time : 0;
+
 		this.setState({
 			content: seed.content,
 			issues: seed.issues,
-			currentIssueTime: seed.issues[0].time
+			currentIssueTime: currentIssueTime
 		});
 	}
 

@@ -29,7 +29,7 @@
 		
 		$ogInfo = OGInfoCache::getInstance(OGINFO_PATH);
 
-		$startMonth = isset($_POST['currentIssueTime']) ? date('Y-M', $_POST['currentIssueTime']) : FIRST_NEWSLETTER_MONTH;
+		$currentTime = isset($_POST['currentIssueTime']) ? $_POST['currentIssueTime'] : strtotime(FIRST_NEWSLETTER_MONTH);
 		
 		$showUsed = false;
 		if (isset($_POST['showUsed'])) {
@@ -41,16 +41,17 @@
 			$showDiscarded = $_POST['showDiscarded'] == "true" ? true : false;
 		}
 
-		$contentList = NewsletterContentParser::buildContentList($driveService, $sheetsService, $logger, $spreadsheetId, $ogInfo, $startMonth, $showUsed, $showDiscarded);
+		$contentList = NewsletterContentParser::buildContentList($driveService, $sheetsService, $logger, $spreadsheetId, $ogInfo, $currentTime, $showUsed, $showDiscarded, true /* useCacheForRead */);
 		if ($ogInfo->isDirty()) {
 			$ogInfo->writeToDisk();
 		}
 		
 		$obj = new stdClass();
 		$obj->content = $contentList->content;
-		$obj->startMonth = $startMonth;
+		$obj->currentTime = $currentTime;
 		$obj->showUsed = $showUsed;
 		$obj->showDiscarded = $showDiscarded;
+		//$obj->log = $logger->dumpText();
 
 	}
 	echo json_encode($obj);

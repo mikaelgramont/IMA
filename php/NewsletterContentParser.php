@@ -1,16 +1,45 @@
 <?php
 class NewsletterContentParser
 {
-	public static function buildContentList(Google_Service_Drive $driveService, Google_Service_Sheets $sheetsService, Logger $logger, $spreadsheetId, $ogInfo, $startTime, $showUsed = false, $showDiscarded = false)
+	public static function buildContentList(Google_Service_Drive $driveService, Google_Service_Sheets $sheetsService, Logger $logger, $spreadsheetId, $ogInfo, $currentTime, $showUsed = false, $showDiscarded = false, $useCacheForRead = false)
 	{
-		$spreadsheetResponse = $sheetsService->spreadsheets->get($spreadsheetId);
-		$sheet = $spreadsheetResponse->sheets[0];
-            $sheetTitle = $sheet['properties']['title'];
-      	$range = sprintf("'%s'!A2:H", $sheetTitle);
-      	$sheetContentResponse = $sheetsService->spreadsheets_values->get($spreadsheetId, $range);
-      	$rows = $sheetContentResponse->getValues();
+            $pool = Cache::getPool();
+            $cacheItem = $pool->getItem(NEWSLETTER_CONTENT_CACHE_PATH);
+
+            $rows = null;
+		if ($useCacheForRead) {
+                  $logger->log("Using cache.\n");
+                  if ($cacheItem->isMiss()) {
+                        $logger->log("Cache miss.\n");
+                        $rows = self::_fetchData($sheetsService, $spreadsheetId, $logger);
+                        $cacheItem->set($rows);
+                        $cacheItem->expiresAfter(3600);     
+                        $pool->save($cacheItem);
+                  } else {
+                        $logger->log("Cache hit.\n");
+                        $rows = $cacheItem->get();      
+                  }                  
+            } else {
+                  $rows = self::_fetchData($sheetsService, $spreadsheetId, $logger);
+                  $cacheItem->set($rows);
+                  $pool->save($cacheItem);
+            }
+
+            $size = sizeof($rows);
+            $logger->log("Got $size rows.\n");
 
       	$contentList = array();
+
+            // Shift everything by one month because we prepare things a month ahead:
+            // Things listed during January are for the February newsletter.
+            $actualMonthEndTime = $currentTime;
+            $actualMonthStartTime = strtotime(@date('Y-M-01', $currentTime) . "-1 month");
+
+            $dateEnd = date('Y-M-01', $actualMonthEndTime);
+            $dateStart = date('Y-M-01', $actualMonthStartTime);
+
+            $logger->log("Start of month: $actualMonthStartTime or $dateStart\n");
+            $logger->log("End of month: $actualMonthEndTime or $dateEnd\n");
 
       	foreach($rows as $index => $rowValues) {
       		// Insert index as React will need a key to work with.
@@ -25,22 +54,38 @@ class NewsletterContentParser
                         continue;
                   }
 
+                  $entryTime = strtotime($entry->preview->timestamp);
+
+                  if ($entryTime < $actualMonthStartTime || $entryTime > $actualMonthEndTime) {
+                        continue;
+                  }
+
                   $contentList[] = $entry;
       	}
 
-            $issues = self::_buildIssuesList($startTime);
-
-      	// TODO: set filters on object so it can be re-rendered.
-      	return new NewsletterContentList($contentList, $issues);
+      	return new NewsletterContentList($contentList,$currentTime);
 	}
 
-      private static function _buildIssuesList($startMonth = 0)
+      private static function _fetchData($sheetsService, $spreadsheetId, $logger)
       {
-            if (empty($startMonth)) {
-                  throw new Exception("Start month must be set in order to build the list of issues.");
+            $logger->log("Fetching rows from Google Sheets.\n");
+
+            $spreadsheetResponse = $sheetsService->spreadsheets->get($spreadsheetId);
+            $sheet = $spreadsheetResponse->sheets[0];
+            $sheetTitle = $sheet['properties']['title'];
+            $range = sprintf("'%s'!A2:H", $sheetTitle);
+            $sheetContentResponse = $sheetsService->spreadsheets_values->get($spreadsheetId, $range);
+            $rows = $sheetContentResponse->getValues();
+            return $rows;            
+      }
+
+      public static function buildIssuesList($monthStartTime = null)
+      {
+            if (empty($monthStartTime)) {
+                  throw new Exception("Start month time must be set in order to build the list of issues.");
             }
-            $thisMonth = date("Y-M");
-            $months = self::_getMonths(strtotime($startMonth), strtotime($thisMonth));
+            $thisMonthTime = strtotime(date("Y-M"));
+            $months = self::_getMonths($thisMonthTime, $monthStartTime);
             return $months;
       }
 
@@ -54,17 +99,17 @@ class NewsletterContentParser
        * @param  int $end Unix timestamp
        * @return array
        */
-      private static function _getMonths($start, $end)
+      private static function _getMonths($thisMonthTime, $firstMonthTime)
       {
-
+            //die("$thisMonthTime, $firstMonthTime");
             // -1 to force inclusion of start month
-            $current = $start - 1;
+            $current = $firstMonthTime - 1;
 
-            // +1 to force inclusion of last month
-            $end = $end + 1;
+            // +1 to force inclusion of end month
+            $end = $thisMonthTime + 1;
             $ret = array();
 
-            while( $current < $end ){
+            while($current < $end){
                   $next = @date('Y-M-01', $current) . "+1 month";
                   $current = @strtotime($next);
                   $ret[] = array(

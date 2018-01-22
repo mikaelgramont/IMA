@@ -1,10 +1,10 @@
 <?php
 class NewsletterContentList
 {
-	public function __construct(array $content, array $issues)
+	public function __construct(array $content, $currentTime)
 	{
 		$this->content = $content;
-		$this->issues = $issues;
+		$this->currentTime = $currentTime;
 	}
 
 	public function __toString()

@@ -31,6 +31,7 @@
 	.content-table {
 		width: 100%;
 		border-collapse: collapse;
+		margin: 1em 0;
 	}
 	.content-table th {
 		margin-bottom: .5em;
@@ -135,12 +136,16 @@ if ($errorMessage) {
 	$spreadsheetId = NEWSLETTER_CONTENT_SPREADSHEET_ID;
 	
 	$ogInfo = OGInfoCache::getInstance(OGINFO_PATH);
+	
+	// We want to see next month's issue on first load.
+	$monthStartTime = strtotime(date('Y-M') . '+1 Month');
 
-	$startMonth = FIRST_NEWSLETTER_MONTH;
-	$contentList = NewsletterContentParser::buildContentList($driveService, $sheetsService, $logger, $spreadsheetId, $ogInfo, $startMonth, false, false);
+	$contentList = NewsletterContentParser::buildContentList($driveService, $sheetsService, $logger, $spreadsheetId, $ogInfo, $monthStartTime);
 	if ($ogInfo->isDirty()) {
 		$ogInfo->writeToDisk();
 	}
+
+	$contentList->issues = NewsletterContentParser::buildIssuesList(strtotime(FIRST_NEWSLETTER_MONTH));
 ?>
 <div id="seed">
 <?php echo $contentList ?>
