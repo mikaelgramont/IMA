@@ -1,6 +1,14 @@
 <?php
 class NewsletterContentParser
 {
+      // The first day of the month. Change this if we go from say the 15th to the 15th.
+      protected static $_monthStartFormat = "Y-M-01";
+
+      protected static function _getDate($time)
+      {
+            return @date(self::$_monthStartFormat, $time);
+      }
+
 	public static function buildContentList(Google_Service_Drive $driveService, Google_Service_Sheets $sheetsService, Logger $logger, $spreadsheetId, $ogInfo, $currentTime, $showUsed = false, $showDiscarded = false, $useCacheForRead = false)
 	{
             $pool = Cache::getPool();
@@ -33,10 +41,10 @@ class NewsletterContentParser
             // Shift everything by one month because we prepare things a month ahead:
             // Things listed during January are for the February newsletter.
             $actualMonthEndTime = $currentTime;
-            $actualMonthStartTime = strtotime(@date('Y-M-01', $currentTime) . "-1 month");
+            $actualMonthStartTime = strtotime(self::_getDate($currentTime) . "-1 month");
 
-            $dateEnd = date('Y-M-01', $actualMonthEndTime);
-            $dateStart = date('Y-M-01', $actualMonthStartTime);
+            $dateEnd = self::_getDate($actualMonthEndTime);
+            $dateStart = self::_getDate($actualMonthStartTime);
 
             $logger->log("Start of month: $actualMonthStartTime or $dateStart\n");
             $logger->log("End of month: $actualMonthEndTime or $dateEnd\n");
@@ -110,7 +118,7 @@ class NewsletterContentParser
             $ret = array();
 
             while($current < $end){
-                  $next = @date('Y-M-01', $current) . "+1 month";
+                  $next = self::_getDate($current) . "+1 month";
                   $current = @strtotime($next);
                   $ret[] = array(
                         "name" => date('Y-M', $current),

@@ -10,7 +10,8 @@
 		border: 2px solid #C80000;
 		font-size: 1em;		
 	}
-	.expand-button:hover {
+	.expand-button:hover,
+	.entry-action:hover {
 		cursor: pointer;	
 	}
 
@@ -81,6 +82,32 @@
 	.entry-title {
 		flex: 1 0;
 	}
+	@media (max-width: 640px) {
+		.entry-title {
+			word-break: break-all;
+		}
+	}
+
+	.actions > *{
+		vertical-align: middle;
+		margin: .25em;
+	}
+	@media (max-width: 640px) {
+		.actions {
+			flex: initial;
+			width: 80px;
+		}
+	}
+	.entry-action {
+		display: inline-block;
+		width: 1.5em;
+	}
+	@media (max-width: 640px) {
+		.entry-action {
+			margin: .5em;
+		}
+	}
+
 	.preview-content dt {
 		font-weight: bold;
 		margin-bottom: .25em
@@ -104,7 +131,7 @@
 <p>TODO</p>
 <ul>
 	<li>Add admin auth check</li>
-	<li>Add controls fetch new data. New data updates states which re-renders.</li>
+	<li>Update used/discarded</li>
 </ul>
 
 <?php

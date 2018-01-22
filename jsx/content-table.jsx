@@ -12,7 +12,9 @@ class ContentTable extends React.Component {
 
 			showUsed: false,
 			showDiscarded: false,
-			currentIssueTime: 0
+			currentIssueTime: 0,
+
+			loading: true
 		};
 
 		this.issueEl = null;
@@ -20,11 +22,14 @@ class ContentTable extends React.Component {
 		this.onShowUsedChange = this.onShowUsedChange.bind(this);
 		this.onShowDiscardedChange = this.onShowDiscardedChange.bind(this);
 		this.onCurrentIssueChange = this.onCurrentIssueChange.bind(this);
+		this.onEntryMarkAsUsed = this.onEntryMarkAsUsed.bind(this);
+		this.onEntryDiscard = this.onEntryDiscard.bind(this);
 	}
 
 	render() {
 		return (
 			<div>
+				<p>{this.state.loading ? "Loading..." : "Ready."}</p>
 				<div className="controls-wrapper">
 					<label className="control">
 						<span className="issueLabel">Show content for issue:</span>
@@ -63,7 +68,7 @@ class ContentTable extends React.Component {
 									{this.renderCategory(row)}
 								</td>
 								<td className="preview">
-									<Preview previewData={row.preview} actionData={row.actions}/>
+									<Preview id={row.metadata.id} previewData={row.preview} actionData={row.actions} onMarkAsUsed={this.onEntryMarkAsUsed} onDiscard={this.onEntryDiscard} />
 								</td>
 							</tr>;
 						})}
@@ -78,6 +83,7 @@ class ContentTable extends React.Component {
 		const currentIssueTime = seed.issues.length > 0 ? seed.issues[0].time : 0;
 
 		this.setState({
+			loading: false,
 			content: seed.content,
 			issues: seed.issues,
 			currentIssueTime: currentIssueTime
@@ -108,6 +114,70 @@ class ContentTable extends React.Component {
 		console.log("Selected issue time:", this.issueEl.value);
 	}
 
+	findRow(content, id) {
+		const rowId = Object.keys(content).find((el) => {
+			return content[el].metadata.id == id;
+		});
+		if (typeof rowId == 'undefined') {
+			throw new Error("Could not find row " + id);
+		}
+		return content[rowId];
+	}
+
+	onEntryMarkAsUsed(id, currentMarkAsUsed) {
+		let content = this.state.content.slice();
+		let row = this.findRow(content, id);
+		
+		row.actions.markAsUsed = !currentMarkAsUsed;
+
+		// Optimistic update.
+		this.setState({content});
+
+		// Call backend and maybe update state again (in case of error).
+		this.updateRow(row);
+	}
+
+	onEntryDiscard(id, currentDiscarded) {
+		let content = this.state.content.slice();
+		let row = this.findRow(content, id);
+		
+		row.actions.discarded = !currentDiscarded;
+		// Optimistic update.
+		this.setState({content});
+
+		// Call backend and maybe update state again (in case of error).
+		this.updateRow(row);
+	}
+
+	updateRow(newRow) {
+		const url = "./newsletter-entry-update";
+		let formData = new FormData();
+		formData.append('id', newRow.metadata.id);
+		formData.append('markAsUsed', newRow.actions.markAsUsed);
+		formData.append('discarded', newRow.actions.discarded);
+
+		this.setState({loading: true});
+		fetch(url, {
+			method: 'POST',
+			body: formData
+		}).then((response) => {
+			return response.json();
+		}).then((json) => {
+			// Copy content
+			let content = this.state.content.slice();
+			// Find the row
+			let stateRow = this.findRow(content, newRow.metadata.id);
+
+			// Update it
+			stateRow.metadata = json.row.metadata;
+			stateRow.actions = json.row.actions;
+			stateRow.preview = json.row.preview;
+
+			const loading = false;
+			this.setState({content, loading});
+		});
+	}
+
 	updateContent() {
 		const url = "./newsletter-ajax";
 		let formData = new FormData();
@@ -115,15 +185,18 @@ class ContentTable extends React.Component {
 		formData.append('showDiscarded', this.state.showDiscarded);
 		formData.append('currentIssueTime', this.state.currentIssueTime);
 
+		this.setState({loading: true});
+
 		fetch(url, {
 			method: 'POST',
 			body: formData
 		}).then((response) => {
 			return response.json();
 		}).then((json) => {
-			console.log('json', json);
+			const loading = false;
 			this.setState({
-				content: json.content
+				content: json.content,
+				loading: loading
 			});
 		});
 	}

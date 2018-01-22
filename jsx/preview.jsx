@@ -9,7 +9,8 @@ class Preview extends React.Component {
 			expanded: false
 		};
 		this.onExpandClick = this.onExpandClick.bind(this);
-
+		this.onMarkAsUsedClick = this.onMarkAsUsedClick.bind(this);
+		this.onDiscardClick = this.onDiscardClick.bind(this);
 	}
 
 	onExpandClick() {
@@ -23,7 +24,11 @@ class Preview extends React.Component {
 			<div>
 				<h2>
 					<span className="entry-title">{this.props.previewData.title}</span>
-					<ExpandButton onClick={this.onExpandClick} label={this.state.expanded ? "Collapse" : "Expand"} />
+					<div className="actions">
+						<ExpandButton onClick={this.onExpandClick} label={this.state.expanded ? "Collapse" : "Expand"} />
+						<img className="entry-action" onClick={this.onMarkAsUsedClick} src="./images/check-mark.svg" title={this.props.actionData.markAsUsed ? "Mark this entry as new" : "Mark this entry as used"} />
+						<img className="entry-action" onClick={this.onDiscardClick} src="./images/delete.svg" title={this.props.actionData.discarded ? "Take this entry back" : "Discard this entry"} />
+					</div>
 				</h2>				
 				<dl className={this.state.expanded ? "preview-content expanded" : "preview-content"}>
 					<dt>Submitted by</dt>
@@ -46,8 +51,6 @@ class Preview extends React.Component {
 					<dt>IMA comment</dt>
 					<dd>{this.props.previewData.IMAComment ? this.props.previewData.IMAComment : "N/A"}</dd>
 					
-					<dt></dt><dd><span className="hidden">Discard</span></dd>
-					<dt></dt><dd><span className="hidden">Mark as used</span></dd>
 				</dl>
 			</div>
 		);
@@ -59,6 +62,14 @@ class Preview extends React.Component {
 		}
 
 		return <img className="image" src={this.props.previewData.image} />;
+	}
+
+	onMarkAsUsedClick() {
+		this.props.onMarkAsUsed(this.props.id, this.props.actionData.markAsUsed);
+	}
+
+	onDiscardClick() {
+		this.props.onDiscard(this.props.id, this.props.actionData.discarded);
 	}
 }
 
