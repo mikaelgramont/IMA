@@ -18474,6 +18474,7 @@ class ContentTable extends React.Component {
 		formData.append('id', newRow.metadata.id);
 		formData.append('markAsUsed', newRow.actions.markAsUsed);
 		formData.append('discarded', newRow.actions.discarded);
+		formData.append('currentTime', this.state.currentIssueTime);
 
 		this.setState({ loading: true });
 		fetch(url, {
@@ -18482,6 +18483,9 @@ class ContentTable extends React.Component {
 		}).then(response => {
 			return response.json();
 		}).then(json => {
+			console.log("Updated json", json);
+			document.getElementById('pre').innerText = json.contentList;
+
 			// Copy content
 			let content = this.state.content.slice();
 			// Find the row

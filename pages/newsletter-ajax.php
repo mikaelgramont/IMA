@@ -22,7 +22,6 @@
 
 		// Get the API client and construct the service object.
 		$client = Helpers::getGoogleClientForWeb($accessToken);
-		$driveService = new Google_Service_Drive($client);
 		$sheetsService = new Google_Service_Sheets($client);
 		$logger = new Logger();
 		$spreadsheetId = NEWSLETTER_CONTENT_SPREADSHEET_ID;
@@ -41,7 +40,7 @@
 			$showDiscarded = $_POST['showDiscarded'] == "true" ? true : false;
 		}
 
-		$contentList = NewsletterContentParser::buildContentList($driveService, $sheetsService, $logger, $spreadsheetId, $ogInfo, $currentTime, $showUsed, $showDiscarded, true /* useCacheForRead */);
+		$contentList = NewsletterContentParser::buildContentList($sheetsService, $logger, $spreadsheetId, $ogInfo, $currentTime, $showUsed, $showDiscarded, true /* useCacheForRead */);
 		if ($ogInfo->isDirty()) {
 			$ogInfo->writeToDisk();
 		}

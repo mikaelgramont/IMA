@@ -11,6 +11,13 @@
 */
 class NewsletterContentEntry
 {
+	public static $firstColumn = "A";
+	public static $lastColumn = "H";
+	public static $firstRow = "2";
+	
+	public static $markAsUsedColumn = "G";
+	public static $discardedColumn = "H";
+
 	public function __construct($values, $ogInfo)
 	{
 		// $i refers to the columns

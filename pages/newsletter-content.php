@@ -131,7 +131,9 @@
 <p>TODO</p>
 <ul>
 	<li>Add admin auth check</li>
-	<li>Update used/discarded</li>
+	<li>Productionize JS</li>
+	<li>Fix caching</li>
+	<li>Add proper loading icon</li>
 </ul>
 
 <?php
@@ -157,7 +159,6 @@ if ($errorMessage) {
 
 	// Get the API client and construct the service object.
 	$client = Helpers::getGoogleClientForWeb($accessToken);
-	$driveService = new Google_Service_Drive($client);
 	$sheetsService = new Google_Service_Sheets($client);
 	$logger = new Logger();
 	$spreadsheetId = NEWSLETTER_CONTENT_SPREADSHEET_ID;
@@ -167,7 +168,7 @@ if ($errorMessage) {
 	// We want to see next month's issue on first load.
 	$monthStartTime = strtotime(date('Y-M') . '+1 Month');
 
-	$contentList = NewsletterContentParser::buildContentList($driveService, $sheetsService, $logger, $spreadsheetId, $ogInfo, $monthStartTime);
+	$contentList = NewsletterContentParser::buildContentList($sheetsService, $logger, $spreadsheetId, $ogInfo, $monthStartTime);
 	if ($ogInfo->isDirty()) {
 		$ogInfo->writeToDisk();
 	}
@@ -177,6 +178,9 @@ if ($errorMessage) {
 <div id="seed">
 <?php echo $contentList ?>
 </div>
+
+<pre id="pre">
+</pre>
 
 <div id="table-container">
 	<p>Loading</p>

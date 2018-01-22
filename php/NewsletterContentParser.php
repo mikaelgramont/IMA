@@ -9,7 +9,7 @@ class NewsletterContentParser
             return @date(self::$_monthStartFormat, $time);
       }
 
-	public static function buildContentList(Google_Service_Drive $driveService, Google_Service_Sheets $sheetsService, Logger $logger, $spreadsheetId, $ogInfo, $currentTime, $showUsed = false, $showDiscarded = false, $useCacheForRead = false)
+	public static function buildContentList(Google_Service_Sheets $sheetsService, Logger $logger, $spreadsheetId, $ogInfo, $currentTime, $showUsed = false, $showDiscarded = false, $useCacheForRead = false)
 	{
             $pool = Cache::getPool();
             $cacheItem = $pool->getItem(NEWSLETTER_CONTENT_CACHE_PATH);
@@ -81,7 +81,13 @@ class NewsletterContentParser
             $spreadsheetResponse = $sheetsService->spreadsheets->get($spreadsheetId);
             $sheet = $spreadsheetResponse->sheets[0];
             $sheetTitle = $sheet['properties']['title'];
-            $range = sprintf("'%s'!A2:H", $sheetTitle);
+            $range = sprintf(
+                  "'%s'!%s%s:%s",
+                  $sheetTitle,
+                  NewsletterContentEntry::$firstColumn,
+                  NewsletterContentEntry::$firstRow,
+                  NewsletterContentEntry::$lastColumn
+            );
             $sheetContentResponse = $sheetsService->spreadsheets_values->get($spreadsheetId, $range);
             $rows = $sheetContentResponse->getValues();
             return $rows;            
