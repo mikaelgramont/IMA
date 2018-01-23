@@ -40,7 +40,7 @@ define('NEWS_COUNT', 2);
 // at CREDENTIALS_PATH
 define('SCOPES', implode(' ', array(
   Google_Service_Drive::DRIVE_METADATA_READONLY),
-  Google_Service_Sheets::SPREADSHEETS_READONLY
+  Google_Service_Sheets::SPREADSHEETS
 ));
 
 // The ID of the folder containing public documents.

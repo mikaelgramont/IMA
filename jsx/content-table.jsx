@@ -1,5 +1,6 @@
 const React = require('react');
 
+const Debounce = require('./debounce.js');
 const Preview = require('./preview.jsx');
 
 class ContentTable extends React.Component {
@@ -14,7 +15,7 @@ class ContentTable extends React.Component {
 			showDiscarded: false,
 			currentIssueTime: 0,
 
-			loading: true
+			loading: true,
 		};
 
 		this.issueEl = null;
@@ -24,6 +25,8 @@ class ContentTable extends React.Component {
 		this.onCurrentIssueChange = this.onCurrentIssueChange.bind(this);
 		this.onEntryMarkAsUsed = this.onEntryMarkAsUsed.bind(this);
 		this.onEntryDiscard = this.onEntryDiscard.bind(this);
+		this.onEntryDescriptionChange = Debounce(this.onEntryDescriptionChange.bind(this), 1000);
+		this.onEntryCommentChange = Debounce(this.onEntryCommentChange.bind(this), 1000);
 	}
 
 	render() {
@@ -51,7 +54,7 @@ class ContentTable extends React.Component {
 				<table className="content-table">
 					<thead>
 						<tr>
-							<th>Id</th>
+							<th align="right">Id</th>
 							<th>Category</th>
 							<th>Content</th>
 						</tr>
@@ -63,12 +66,19 @@ class ContentTable extends React.Component {
 							rowClasses.push(row.actions.markAsUsed ? "used-row" : "");
 
 							return <tr key={row.metadata.id} className={rowClasses.join(" ")}>
-								<td className="id">{row.metadata.id}</td>
-								<td className="category">
+								<td className="id" width="25">{row.metadata.id}</td>
+								<td className="category" width="110">
 									{this.renderCategory(row)}
 								</td>
 								<td className="preview">
-									<Preview id={row.metadata.id} previewData={row.preview} actionData={row.actions} onMarkAsUsed={this.onEntryMarkAsUsed} onDiscard={this.onEntryDiscard} />
+									<Preview
+										id={row.metadata.id}
+										previewData={row.preview}
+										actionData={row.actions}
+										onMarkAsUsed={this.onEntryMarkAsUsed}
+										onDiscard={this.onEntryDiscard}
+										onDescriptionChange={this.onEntryDescriptionChange}
+										onCommentChange={this.onEntryCommentChange} />
 								</td>
 							</tr>;
 						})}
@@ -111,7 +121,6 @@ class ContentTable extends React.Component {
 
 	onCurrentIssueChange() {
 		this.setState({currentIssueTime: this.issueEl.value}, this.updateContent.bind(this));
-		console.log("Selected issue time:", this.issueEl.value);
 	}
 
 	findRow(content, id) {
@@ -122,6 +131,32 @@ class ContentTable extends React.Component {
 			throw new Error("Could not find row " + id);
 		}
 		return content[rowId];
+	}
+
+	onEntryDescriptionChange(id, description) {
+		let content = this.state.content.slice();
+		let row = this.findRow(content, id);
+		
+		row.preview.description = description;
+
+		// Optimistic update.
+		this.setState({content});
+
+		// Call backend and maybe update state again (in case of error).
+		this.updateRow(row);
+	}
+
+	onEntryCommentChange(id, IMAComment) {
+		let content = this.state.content.slice();
+		let row = this.findRow(content, id);
+		
+		row.preview.IMAComment = IMAComment;
+
+		// Optimistic update.
+		this.setState({content});
+
+		// Call backend and maybe update state again (in case of error).
+		this.updateRow(row);
 	}
 
 	onEntryMarkAsUsed(id, currentMarkAsUsed) {
@@ -155,6 +190,8 @@ class ContentTable extends React.Component {
 		formData.append('id', newRow.metadata.id);
 		formData.append('markAsUsed', newRow.actions.markAsUsed);
 		formData.append('discarded', newRow.actions.discarded);
+		formData.append('description', newRow.preview.description);
+		formData.append('IMAComment', newRow.preview.IMAComment);
 		formData.append('currentTime', this.state.currentIssueTime);
 
 		this.setState({loading: true});
@@ -164,9 +201,6 @@ class ContentTable extends React.Component {
 		}).then((response) => {
 			return response.json();
 		}).then((json) => {
-			console.log("Updated json", json);
-			document.getElementById('pre').innerText = json.contentList;
-
 			// Copy content
 			let content = this.state.content.slice();
 			// Find the row

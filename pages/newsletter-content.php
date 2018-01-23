@@ -2,17 +2,27 @@
 	#seed {
 		display: none;
 	}
+	.entry-action:hover {
+		cursor: pointer;
+	}
+
 	.expand-button {
 		display: inline-block;
-    	margin: .25em;
-		color: #fff;
-		background: #E82020;
-		border: 2px solid #C80000;
-		font-size: 1em;		
+    	vertical-align: middle;
+    	margin: .25em;		
 	}
-	.expand-button:hover,
-	.entry-action:hover {
-		cursor: pointer;	
+	.arrow {
+	  width: 0; 
+	  height: 0; 
+	  border-left: .5em solid transparent;
+	  border-right: .5em solid transparent;
+	}
+	.arrow-up {
+	  border-bottom: .5em solid #000;
+	}
+
+	.arrow-down {
+	  border-top: .5em solid #000;
 	}
 
 	/* Controls */
@@ -22,10 +32,6 @@
  	.control {
  		display: inline-block;
  		margin: 0 1em 0;
- 	}
- 	.issueLabel{
- 		display: inline-block;
- 		margin-right: .25em;
  	}
 
 	/* Table */
@@ -50,6 +56,10 @@
 	.used-row {
 		opacity: .4;
 	}
+	.discarded-row:hover,
+	.used-row:hover {
+		opacity: 1;
+	}
 	.row-status {
 		font-size: .75em	;
 	}
@@ -66,24 +76,49 @@
 	.category {
 		text-align: center;
 	}
-	.preview-content {
-		display: none;
-	}
-	.preview-content.expanded {
-		display: initial;
-	}
-	.preview h2 {
+	.preview-header {
 		display: inline-flex;
 		width: 100%;
-		margin: .25em 0;
-		align-items: center;
-		font-size: 1em;
 	}
-	.entry-title {
-		flex: 1 0;
+	.preview-header:hover {
+		cursor: pointer;	
+	}
+	.textarea-label {
+		display: block;
+	}
+	.preview-content {
+		display: none;
+		margin-top: 1em;
+	}
+	.preview-content.expanded {
+		display: flex;
 	}
 	@media (max-width: 640px) {
-		.entry-title {
+		.preview-content.expanded {
+			display: block;
+		}
+	}	
+	.image-container {
+		width: 240px;
+		margin: 0 .5em .5em 0;
+	}
+	.preview .image {
+		max-width: 100%;
+	}
+	.info-container {
+		flex: 1 0;
+	}
+	.info-container textarea {
+		width: 100%;
+		font-size: 1em;
+	}
+	.preview-title-text {
+		font-size: 1em;
+		flex: 1 0;
+		margin: 0;
+	}
+	@media (max-width: 640px) {
+		.preview-title-text {
 			word-break: break-all;
 		}
 	}
@@ -92,15 +127,13 @@
 		vertical-align: middle;
 		margin: .25em;
 	}
-	@media (max-width: 640px) {
-		.actions {
-			flex: initial;
-			width: 80px;
-		}
-	}
 	.entry-action {
 		display: inline-block;
-		width: 1.5em;
+    	margin: .25em;
+		color: #fff;
+		background: #E82020;
+		border: 2px solid #C80000;
+		font-size: 1em;		
 	}
 	@media (max-width: 640px) {
 		.entry-action {
@@ -108,20 +141,15 @@
 		}
 	}
 
-	.preview-content dt {
-		font-weight: bold;
-		margin-bottom: .25em
-	}
-	.preview-content dd {
-		margin: 0 2em .5em;
-	}
 	.preview .link {
 		word-break: break-all;
+		display: inline-block;
+		margin-left: .25em;	
 	}
-	.preview .image {
-		max-width: 100%;
+	.preview .footer-text {
+		opacity: .5;
+    	font-size: .875em;		
 	}
-
 </style>
 
 <h1 class="display-font">Newsletter content</h1>
@@ -130,6 +158,7 @@
 
 <p>TODO</p>
 <ul>
+	<li>Escaping</li>
 	<li>Add admin auth check</li>
 	<li>Productionize JS</li>
 	<li>Fix caching</li>
@@ -178,9 +207,6 @@ if ($errorMessage) {
 <div id="seed">
 <?php echo $contentList ?>
 </div>
-
-<pre id="pre">
-</pre>
 
 <div id="table-container">
 	<p>Loading</p>

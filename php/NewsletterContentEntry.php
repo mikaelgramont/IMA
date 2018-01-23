@@ -15,6 +15,8 @@ class NewsletterContentEntry
 	public static $lastColumn = "H";
 	public static $firstRow = "2";
 	
+	public static $descriptionColumn = "D";
+	public static $IMACommentColumn = "F";
 	public static $markAsUsedColumn = "G";
 	public static $discardedColumn = "H";
 

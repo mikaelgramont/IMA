@@ -18258,6 +18258,7 @@ module.exports = camelize;
 
 const React = __webpack_require__(1);
 
+const Debounce = __webpack_require__(30);
 const Preview = __webpack_require__(28);
 
 class ContentTable extends React.Component {
@@ -18282,6 +18283,8 @@ class ContentTable extends React.Component {
 		this.onCurrentIssueChange = this.onCurrentIssueChange.bind(this);
 		this.onEntryMarkAsUsed = this.onEntryMarkAsUsed.bind(this);
 		this.onEntryDiscard = this.onEntryDiscard.bind(this);
+		this.onEntryDescriptionChange = Debounce(this.onEntryDescriptionChange.bind(this), 1000);
+		this.onEntryCommentChange = Debounce(this.onEntryCommentChange.bind(this), 1000);
 	}
 
 	render() {
@@ -18342,7 +18345,7 @@ class ContentTable extends React.Component {
 						null,
 						React.createElement(
 							'th',
-							null,
+							{ align: 'right' },
 							'Id'
 						),
 						React.createElement(
@@ -18370,18 +18373,25 @@ class ContentTable extends React.Component {
 							{ key: row.metadata.id, className: rowClasses.join(" ") },
 							React.createElement(
 								'td',
-								{ className: 'id' },
+								{ className: 'id', width: '25' },
 								row.metadata.id
 							),
 							React.createElement(
 								'td',
-								{ className: 'category' },
+								{ className: 'category', width: '110' },
 								this.renderCategory(row)
 							),
 							React.createElement(
 								'td',
 								{ className: 'preview' },
-								React.createElement(Preview, { id: row.metadata.id, previewData: row.preview, actionData: row.actions, onMarkAsUsed: this.onEntryMarkAsUsed, onDiscard: this.onEntryDiscard })
+								React.createElement(Preview, {
+									id: row.metadata.id,
+									previewData: row.preview,
+									actionData: row.actions,
+									onMarkAsUsed: this.onEntryMarkAsUsed,
+									onDiscard: this.onEntryDiscard,
+									onDescriptionChange: this.onEntryDescriptionChange,
+									onCommentChange: this.onEntryCommentChange })
 							)
 						);
 					})
@@ -18430,7 +18440,6 @@ class ContentTable extends React.Component {
 
 	onCurrentIssueChange() {
 		this.setState({ currentIssueTime: this.issueEl.value }, this.updateContent.bind(this));
-		console.log("Selected issue time:", this.issueEl.value);
 	}
 
 	findRow(content, id) {
@@ -18441,6 +18450,32 @@ class ContentTable extends React.Component {
 			throw new Error("Could not find row " + id);
 		}
 		return content[rowId];
+	}
+
+	onEntryDescriptionChange(id, description) {
+		let content = this.state.content.slice();
+		let row = this.findRow(content, id);
+
+		row.preview.description = description;
+
+		// Optimistic update.
+		this.setState({ content });
+
+		// Call backend and maybe update state again (in case of error).
+		this.updateRow(row);
+	}
+
+	onEntryCommentChange(id, IMAComment) {
+		let content = this.state.content.slice();
+		let row = this.findRow(content, id);
+
+		row.preview.IMAComment = IMAComment;
+
+		// Optimistic update.
+		this.setState({ content });
+
+		// Call backend and maybe update state again (in case of error).
+		this.updateRow(row);
 	}
 
 	onEntryMarkAsUsed(id, currentMarkAsUsed) {
@@ -18474,6 +18509,8 @@ class ContentTable extends React.Component {
 		formData.append('id', newRow.metadata.id);
 		formData.append('markAsUsed', newRow.actions.markAsUsed);
 		formData.append('discarded', newRow.actions.discarded);
+		formData.append('description', newRow.preview.description);
+		formData.append('IMAComment', newRow.preview.IMAComment);
 		formData.append('currentTime', this.state.currentIssueTime);
 
 		this.setState({ loading: true });
@@ -18483,9 +18520,6 @@ class ContentTable extends React.Component {
 		}).then(response => {
 			return response.json();
 		}).then(json => {
-			console.log("Updated json", json);
-			document.getElementById('pre').innerText = json.contentList;
-
 			// Copy content
 			let content = this.state.content.slice();
 			// Find the row
@@ -18539,105 +18573,137 @@ class Preview extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			expanded: false
+			expanded: false,
+			description: props.previewData.description,
+			comment: props.previewData.IMAComment
 		};
 		this.onExpandClick = this.onExpandClick.bind(this);
 		this.onMarkAsUsedClick = this.onMarkAsUsedClick.bind(this);
 		this.onDiscardClick = this.onDiscardClick.bind(this);
+		this.onDescriptionChange = this.onDescriptionChange.bind(this);
+		this.onCommentChange = this.onCommentChange.bind(this);
+
+		this.descriptionEl = null;
+		this.commentEl = null;
 	}
 
 	onExpandClick() {
-		this.setState({
-			expanded: !this.state.expanded
-		});
+		this.setState({ expanded: !this.state.expanded });
+	}
+
+	expand() {
+		this.setState({ 'expanded': true });
+	}
+
+	collapse() {
+		this.setState({ 'expanded': false });
 	}
 
 	render() {
+		const mainClass = "preview-main preview-content " + (this.state.expanded ? "expanded" : "");
+
 		return React.createElement(
-			'div',
+			'section',
 			null,
 			React.createElement(
-				'h2',
-				null,
+				'header',
+				{ className: 'preview-header', onClick: this.onExpandClick },
 				React.createElement(
-					'span',
-					{ className: 'entry-title' },
+					'h2',
+					{ className: 'preview-title-text' },
 					this.props.previewData.title
 				),
-				React.createElement(
-					'div',
-					{ className: 'actions' },
-					React.createElement(ExpandButton, { onClick: this.onExpandClick, label: this.state.expanded ? "Collapse" : "Expand" }),
-					React.createElement('img', { className: 'entry-action', onClick: this.onMarkAsUsedClick, src: './images/check-mark.svg', title: this.props.actionData.markAsUsed ? "Mark this entry as new" : "Mark this entry as used" }),
-					React.createElement('img', { className: 'entry-action', onClick: this.onDiscardClick, src: './images/delete.svg', title: this.props.actionData.discarded ? "Take this entry back" : "Discard this entry" })
-				)
+				React.createElement(ExpandButton, { direction: this.state.expanded ? "up" : "down" })
 			),
 			React.createElement(
-				'dl',
-				{ className: this.state.expanded ? "preview-content expanded" : "preview-content" },
+				'div',
+				{ className: mainClass },
 				React.createElement(
-					'dt',
-					null,
-					'Submitted by'
-				),
-				React.createElement(
-					'dd',
-					null,
-					this.props.previewData.email
-				),
-				React.createElement(
-					'dt',
-					null,
-					'Date'
-				),
-				React.createElement(
-					'dd',
-					null,
-					this.props.previewData.timestamp
-				),
-				React.createElement(
-					'dt',
-					null,
-					'Link'
-				),
-				React.createElement(
-					'dd',
-					null,
-					React.createElement(
-						'a',
-						{ className: 'link', href: this.props.previewData.url, target: '_blank' },
-						this.props.previewData.url
-					)
-				),
-				React.createElement(
-					'dt',
-					null,
-					'Image'
-				),
-				React.createElement(
-					'dd',
-					null,
+					'div',
+					{ className: 'image-container' },
 					this.renderImage()
 				),
 				React.createElement(
-					'dt',
-					null,
-					'Description'
-				),
-				React.createElement(
-					'dd',
-					null,
-					this.props.previewData.description ? this.props.previewData.description : "N/A"
-				),
-				React.createElement(
-					'dt',
-					null,
-					'IMA comment'
-				),
-				React.createElement(
-					'dd',
-					null,
-					this.props.previewData.IMAComment ? this.props.previewData.IMAComment : "N/A"
+					'div',
+					{ className: 'info-container' },
+					React.createElement(
+						'p',
+						null,
+						React.createElement(
+							'label',
+							null,
+							'Link:',
+							React.createElement(
+								'a',
+								{ className: 'link', href: this.props.previewData.url, target: '_blank' },
+								this.props.previewData.url
+							)
+						)
+					),
+					React.createElement(
+						'p',
+						null,
+						React.createElement(
+							'label',
+							{ htmlFor: 'description', className: 'textarea-label' },
+							'Description'
+						),
+						React.createElement('textarea', {
+							onChange: this.onDescriptionChange,
+							name: 'description',
+							value: this.state.description,
+							ref: el => {
+								this.descriptionEl = el;
+							}
+						})
+					),
+					React.createElement(
+						'p',
+						null,
+						React.createElement(
+							'label',
+							{ htmlFor: 'comment', className: 'textarea-label' },
+							'IMA comment'
+						),
+						React.createElement('textarea', {
+							onChange: this.onCommentChange,
+							name: 'comment',
+							value: this.state.comment,
+							ref: el => {
+								this.commentEl = el;
+							} })
+					),
+					React.createElement(
+						'footer',
+						{ className: 'preview-footer' },
+						React.createElement(
+							'p',
+							{ className: 'footer-text' },
+							'Submitted by ',
+							React.createElement(
+								'a',
+								{ href: "mailto:" + this.props.previewData.email },
+								this.props.previewData.email
+							),
+							' on ',
+							this.props.previewData.timestamp,
+							'.'
+						),
+						React.createElement(
+							'div',
+							{ className: 'actions' },
+							React.createElement(
+								'button',
+								{ className: 'entry-action', onClick: this.onMarkAsUsedClick },
+								this.props.actionData.markAsUsed ? "Mark as new" : "Mark as used"
+							),
+							React.createElement(
+								'button',
+								{ className: 'entry-action', onClick: this.onDiscardClick },
+								this.props.actionData.discarded ? "Keep" : "Discard"
+							)
+						)
+					)
 				)
 			)
 		);
@@ -18662,6 +18728,18 @@ class Preview extends React.Component {
 	onDiscardClick() {
 		this.props.onDiscard(this.props.id, this.props.actionData.discarded);
 	}
+
+	onDescriptionChange(e) {
+		this.setState({ 'description': this.descriptionEl.value }, () => {
+			this.props.onDescriptionChange(this.props.id, this.state.description);
+		});
+	}
+
+	onCommentChange() {
+		this.setState({ 'comment': this.commentEl.value }, () => {
+			this.props.onCommentChange(this.props.id, this.state.comment);
+		});
+	}
 }
 
 module.exports = Preview;
@@ -18678,15 +18756,27 @@ class ExpandButton extends React.Component {
 	}
 
 	render() {
-		return React.createElement(
-			"button",
-			{ className: "expand-button", onClick: this.props.onClick, className: "expand-button" },
-			this.props.label
-		);
+		return React.createElement("span", { role: "button", className: "expand-button arrow arrow-" + this.props.direction, onClick: this.props.onClick });
 	}
 }
 
 module.exports = ExpandButton;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports) {
+
+const debounce = (func, delay) => {
+  let inDebounce;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(inDebounce);
+    inDebounce = setTimeout(() => func.apply(context, args), delay);
+  };
+};
+
+module.exports = debounce;
 
 /***/ })
 /******/ ]);

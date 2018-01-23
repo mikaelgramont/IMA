@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json');
+
 require_once 'NewsletterContentEntry.php';
 require_once 'NewsletterContentList.php';
 require_once 'NewsletterContentParser.php';
@@ -30,22 +32,28 @@ $logger = new Logger();
 $spreadsheetId = NEWSLETTER_CONTENT_SPREADSHEET_ID;
 
 // Validate input
-if (!isset($_POST['id']) || !isset($_POST['discarded']) || !isset($_POST['markAsUsed'])  || !isset($_POST['currentTime']) ) {
-	$obj = new stdClass();
-	$obj->error = "Inputs not set properly";
-	$json = json_encode($obj);
-	echo $json();
-	exit();	
+$args = array('id', 'discarded', 'markAsUsed', 'currentTime', 'description', 'IMAComment');
+foreach ($args as $key) {
+	if (!isset($_POST[$key])) {
+		$obj = new stdClass();
+		$obj->error = "$key not set";
+		$json = json_encode($obj);
+		echo $json();
+		exit();			
+	}
 }
 
 $id = (integer) $_POST['id'];
+$description = $_POST['description'];
+$IMAComment = $_POST['IMAComment'];
 $discarded = $_POST['discarded'] == "true" ? true : false;
 $markAsUsed = $_POST['markAsUsed'] == "true" ? true : false;
 $currentTime = $_POST['currentTime'];
 
+
 // Update the spreadsheet
 try {
-	NewsletterContentUpdater::updateEntry($sheetsService, $logger, $spreadsheetId, $id, $discarded, $markAsUsed);
+	NewsletterContentUpdater::updateEntry($sheetsService, $logger, $spreadsheetId, $id, $discarded, $markAsUsed, $description, $IMAComment);
 } catch (Google_Service_Exception $e) {
 	$obj = new stdClass();
 	$obj->errorMessage = $e->getMessage();
