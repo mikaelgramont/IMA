@@ -12,3 +12,4 @@ logs/*.*
 public/.DS_Store
 package-lock.json
 node_modules
+php/pw.json
