@@ -168,8 +168,6 @@
 <p>TODO</p>
 <ul>
 	<li>Add admin auth check</li>
-	<li>Productionize JS</li>
-	<li>Fix caching</li>
 </ul>
 
 <?php
