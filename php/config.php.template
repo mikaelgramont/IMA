@@ -5,6 +5,7 @@ set_include_path(
 	__DIR__.'/../php/vendor/tedivm/stash/src/'
 );
 require_once 'vendor/autoload.php';
+require_once 'Auth.php';
 require_once 'Cache.php';
 require_once 'EventEntry.php';
 require_once 'Footer.php';

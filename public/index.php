@@ -13,7 +13,7 @@ if (!$pageInfo) {
 
 $needAuth = property_exists($pageInfo, 'auth') && $pageInfo->auth;
 if ($needAuth && !Auth::hasAuth()) {
-	header('Location: '. BASE_URL . 'login?redirect-after-login=' . $_SERVER['PHP_SELF']);
+	header('Location: '. BASE_URL . 'login?redirect-after-login=' . $_SERVER['REQUEST_URI']);
 	exit();
 }
 
