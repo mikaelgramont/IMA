@@ -2,6 +2,7 @@ const React = require('react');
 
 const Debounce = require('./debounce.js');
 const Preview = require('./preview.jsx');
+const Spinner = require('./spinner.jsx');
 
 class ContentTable extends React.Component {
 	constructor(props) {
@@ -32,8 +33,8 @@ class ContentTable extends React.Component {
 	render() {
 		return (
 			<div>
-				<p>{this.state.loading ? "Loading..." : "Ready."}</p>
 				<div className="controls-wrapper">
+					<p className="control loading-spinner">{this.state.loading ? <Spinner /> : ""}</p>
 					<label className="control">
 						<span className="issueLabel">Show content for issue:</span>
 						<select ref={(el) => {this.issueEl = el}} onChange={this.onCurrentIssueChange}>

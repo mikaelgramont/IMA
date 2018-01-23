@@ -2,6 +2,11 @@
 	#seed {
 		display: none;
 	}
+	.loading-spinner {
+		width: 1em;
+		height: 1em;
+	}
+
 	.entry-action:hover {
 		cursor: pointer;
 	}
@@ -32,6 +37,10 @@
  	.control {
  		display: inline-block;
  		margin: 0 1em 0;
+ 	}
+ 	.issueLabel {
+ 		display: inline-block;
+ 		margin-right: .25em;
  	}
 
 	/* Table */
@@ -158,11 +167,9 @@
 
 <p>TODO</p>
 <ul>
-	<li>Escaping</li>
 	<li>Add admin auth check</li>
 	<li>Productionize JS</li>
 	<li>Fix caching</li>
-	<li>Add proper loading icon</li>
 </ul>
 
 <?php
