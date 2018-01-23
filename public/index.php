@@ -10,6 +10,13 @@ $pageContent = PageHelper::getPageContent($pageInfo);
 if (!$pageInfo) {
 	throw new Exception("No routing found");
 }
+
+$needAuth = property_exists($pageInfo, 'auth') && $pageInfo->auth;
+if ($needAuth && !Auth::hasAuth()) {
+	header('Location: '. BASE_URL . 'login?redirect-after-login=' . $_SERVER['PHP_SELF']);
+	exit();
+}
+
 if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
 ?>
 <html>

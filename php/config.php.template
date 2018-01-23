@@ -80,3 +80,8 @@ define('OG_IMAGE', 'https://www.mountainboardworld.org/images/logo.png');
 define('OGINFO_PATH', '');
 define('NEWSLETTER_CONTENT_CACHE_PATH', 'newsletter/');
 define('FIRST_NEWSLETTER_MONTH', '');
+
+/******************************************************************************
+ * AUTH
+ *****************************************************************************/
+define('PWFILE', './php/pw.json');

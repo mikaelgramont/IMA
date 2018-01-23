@@ -3,6 +3,8 @@ class Footer
 {
 	public static function renderFooter()
 	{
+		$logout = Auth::hasAuth() ? "<a href=\"". BASE_URL . "do-logout\">Logout</a>" : "";
+
 		$date = date('Y');
 		return <<<HTML
 		<footer class="footer">
@@ -20,6 +22,7 @@ class Footer
 				</li>
 			</ul>
 			<p class="small">IMA {$date}</p>
+			{$logout}
 		</footer>
 HTML;
 	}

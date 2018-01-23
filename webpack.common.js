@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   plugins: [
-    new CleanWebpackPlugin(['public/scripts']),
+    //new CleanWebpackPlugin(['public/scripts']),
   ],
   entry: './jsx/newsletter-content.jsx',
   output: {

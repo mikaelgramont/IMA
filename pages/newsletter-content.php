@@ -165,11 +165,6 @@
 
 <p>The table below lists all content submitted by the IMA team or by other people through the <a href="https://goo.gl/forms/SttmTw5GlazKxvgA3">external form</a>.</p>
 
-<p>TODO</p>
-<ul>
-	<li>Add admin auth check</li>
-</ul>
-
 <?php
 $errorMessage = "";
 if (!file_exists(CREDENTIALS_PATH)) {
