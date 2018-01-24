@@ -370,7 +370,10 @@ HTML;
         $obj->title = "";
         $obj->image = "";
 
+        // Set some user agent in order to guarantee scraping is not blocked.
+        ini_set('user_agent','Mozilla/4.0 (compatible; MSIE 6.0)'); 
         $page = file_get_contents($url);
+        error_log($page);
         $doc = new DOMDocument();
         @$doc->loadHTML($page);
         $title_div = $doc->getElementsByTagName('title')[0];
