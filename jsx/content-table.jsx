@@ -198,7 +198,8 @@ class ContentTable extends React.Component {
 		this.setState({loading: true});
 		fetch(url, {
 			method: 'POST',
-			body: formData
+			body: formData,
+			credentials: 'same-origin'
 		}).then((response) => {
 			return response.json();
 		}).then((json) => {
@@ -228,7 +229,8 @@ class ContentTable extends React.Component {
 
 		fetch(url, {
 			method: 'POST',
-			body: formData
+			body: formData,
+			credentials: 'same-origin'
 		}).then((response) => {
 			return response.json();
 		}).then((json) => {
