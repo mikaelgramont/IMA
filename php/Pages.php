@@ -114,6 +114,20 @@ class Pages
 				'noContent' => true,
 				'auth' => true,
 			],
+			(object) [
+				'title' => 'IMA test page',
+				'url' => 'test',
+				'file' => 'test.php',
+				'skipMenuEntry' => true,
+				'noContent' => true,
+			],
+			(object) [
+				'title' => '2018 Video Contest',
+				'url' => '2018-video-contest',
+				'file' => '2018-video-contest.php',
+				'skipMenuEntry' => true,
+				'noContent' => false,
+			]
 		);
 	}
 }
