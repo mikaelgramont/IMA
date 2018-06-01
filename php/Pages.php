@@ -64,12 +64,18 @@ class Pages
 				'skipMenuEntry' => true,
 			],
 			(object) [
-				'title' => 'Subscribe to the IMA newsletter.',
-				'url' => 'newsletter',
-				'file' => 'newsletter-subscription.php',
+				'title' => 'Interview',
+				'url' => 'interviews',
+				'file' => 'interviews.php',
 				'skipMenuEntry' => true,
 			],
 			(object) [
+                'title' => 'Subscribe to the IMA newsletter.',
+                'url' => 'newsletter',
+                'file' => 'newsletter-subscription.php',
+                'skipMenuEntry' => true,
+            ],
+            (object) [
 				'title' => 'IMA newsletter content backlog',
 				'url' => 'newsletter-content',
 				'file' => 'newsletter-content.php',
@@ -121,6 +127,12 @@ class Pages
 				'skipMenuEntry' => true,
 				'noContent' => true,
 			],
+            (object) [
+                'title' => 'Article',
+                'url' => 'articles',
+                'file' => 'articles.php',
+                'skipMenuEntry' => true,
+            ],
 			(object) [
 				'title' => '2018 Video Contest',
 				'url' => '2018-video-contest',
