@@ -400,3 +400,27 @@ body.modal-visible .overlay {
     background-size: cover;
     background-image: url('../images/link.svg');
 }
+
+/**
+ * Interviews
+ */
+.quote {
+	font-style: italic;
+}
+
+.more-about {
+	padding: 10px;
+	background: #404040;
+	color: #fff;
+}
+
+.more-about a,
+.more-about a:visited {
+	color: #00ADD8;
+}
+
+.interview-image img {
+	display: block;
+	max-width: 90vw;
+	margin: 0 auto;
+}

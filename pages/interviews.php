@@ -6,8 +6,12 @@
 	if (!file_exists($file)) {
 		$errorMsg = "No interview by that name found";
 	}
-	
-	$content = file_get_contents($file);
+
+    ob_start();
+    include $file;
+    $content = ob_get_contents();
+    ob_end_clean();
+
 	$parts = explode(INTERVIEWS_SEPARATOR, $content);
 
 	echo $parts[2];
