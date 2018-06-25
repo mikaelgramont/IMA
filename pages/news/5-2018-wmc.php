@@ -30,6 +30,9 @@ $blacklist = array(
 );
 
 function renderItem($data) {
+    if (!$data) {
+        return '<li class="stream-photo placeholder"></li>';
+    }
     $href = 'https://www.instagram.com/p/' . $data->shortcode;
     $noHashtagArray = explode('#', $data->title);
     $title = $noHashtagArray[0];
@@ -143,9 +146,9 @@ HTML;
 $photos = getPhotos($blacklist);
 $updates = getUpdates();
 ?>
-
 <style>
     .live-main {
+        margin-top: 0;
         padding: 0;
         list-style-type: none;
     }
@@ -208,6 +211,7 @@ $updates = getUpdates();
     }
 </style>
 
+
 <section>
     <h1 class="display-font">World Mountainboard Championship 2018 - live coverage</h1>
     <p>We'll be adding updates as the event takes place, so come back often!</p>
@@ -233,12 +237,10 @@ foreach($photos as $photo) {
     $i++;
 }
 while($i % PHOTO_COLUMN_COUNT > 0 ) {
-    echo "<li class=\"stream-photo\"></li>\n";
+    echo renderItem(null)."\n";
     $i++;
 }
-
 echo '</ul>';
-
 ?>
         </div>
     </div>
