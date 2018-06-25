@@ -2,6 +2,8 @@
 class InstagramTag {
 	private $_cacheKey = 'photos';
 
+    const CACHE_DURATION = 60 * 5;
+
 	public function __construct($tag, $pool, $blacklist, $useCache, $cacheId)
 	{
 		$this->_tag = $tag;
@@ -14,7 +16,7 @@ class InstagramTag {
 
 	private function _scrape()
 	{
-		$insta_source = file_get_contents('https://instagram.com/explore/tags/'.$this->_tag);
+		$insta_source = file_get_contents('https://www.instagram.com/explore/tags/'.$this->_tag);
 		$shards = explode('window._sharedData = ', $insta_source);
 		$insta_json = explode(';</script>', $shards[1]); 
 		$insta_array = json_decode($insta_json[0], TRUE);
@@ -51,7 +53,7 @@ class InstagramTag {
 				$photos = $this->_scrape();
 				$cacheItem->lock();
 				$cacheItem->set($photos);
-				$cacheItem->expiresAfter(24 * 3600 * 2);
+				$cacheItem->expiresAfter(self::CACHE_DURATION);
 				$this->_pool->save($cacheItem);
 			} else {
 				$photos = $cacheItem->get();

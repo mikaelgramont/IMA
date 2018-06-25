@@ -14,8 +14,8 @@ define('IG_TAG', 'wmc18');
 define('IG_TAG_CACHE_NAME', 'tag-mountainboard-photos');
 
 // https://www.unixtimestamp.com/index.php
-// 06/24/2018 @ 12:00am (UTC)
-define('START_DATE_TIMESTAMP', 1529798400);
+// One month before 06/24/2018 @ 12:00am (UTC)
+define('START_DATE_TIMESTAMP', 1529798400 - 24 * 3600 * 30 * 1);
 
 // 07/03/2018 @ 12:00am (UTC)
 define('END_DATE_TIMESTAMP', 1530576000);
@@ -112,7 +112,7 @@ $photos = array_slice($allPhotos, 0, PHOTO_COUNT + 1);
         padding: 0;
     }
     .stream-photo {
-        flex: 300px 1 0;
+        flex: 200px 1 0;
         margin-right: 10px;
         margin-bottom: 10px;
         position: relative;
@@ -141,6 +141,17 @@ $photos = array_slice($allPhotos, 0, PHOTO_COUNT + 1);
 
     @media screen and (min-width: 1000px) {
         .live-content {
+            display: flex;
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+        .live-main,
+        .ig-stream {
+            flex: 1 0;
+        }
+
+        .live-main {
+            margin-right: 20px;
         }
     }
 </style>
@@ -150,16 +161,27 @@ $photos = array_slice($allPhotos, 0, PHOTO_COUNT + 1);
     <p>We'll be adding updates as the event takes place, so come back often!</p>
 
     <div class="live-content">
-        <h2 class="display-font">Update - June 25th</h2>
-        <p>
-            The very first riders are starting to show up, and will soon start testing the track.</p>
-        <p>
-            The track is looking great! The Dirt Dessert team has put in a ton of work (and not just on the track, but also the surrounding areas), and we're looking forward to the event!.<br>
-            We'll be putting finishing touches over the next couple of days, and then it's on!
-        </p>
-        <p>If you're coming, bring bug spray (watch out for mosquitoes and ticks!) as well as sunscreen! See you soon!</p>
-
-        <div class="stream">
+        <div class="live-main">
+            <h2 class="display-font">Update - June 25th</h2>
+            <p>
+                The very first riders are starting to show up, and it will soon look like the annual WMC gathering we've all come to love.<br>
+                In the meantime, the rain this morning meant that the track was wet and athletes retreated to Kranj's pumptrack.
+            </p>
+            <p>
+                The track is looking great by the way! The Dirt Dessert team has put in a ton of work (and not just on the track, but also the surrounding areas), and we're looking forward to the event!<br>
+                We'll be putting finishing touches over the next couple of days, and then it's on!
+            </p>
+            <p>
+                The forecast does call for some rain showers until Thursday, but has us in the clear with nice weather and high temperatures for the actual competition!
+            </p>
+            <p>
+                If you're coming, bring bug spray (watch out for mosquitoes and ticks!) as well as sunscreen! See you soon!
+            </p>
+            <p class="author">
+                Mika
+            </p>
+        </div>
+        <div class="ig-stream">
             <h2 class="display-font">The WMC on Instagram</h2>
 <?php
 $i = 0;
