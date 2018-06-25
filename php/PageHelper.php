@@ -153,9 +153,9 @@ HTML;
         $news = array();
         $files = scandir(NEWS_HTML_PATH);
         foreach ($files as $file) {
-            $extension = substr($file, -4);
-            $name = substr($file, 0, -4);
-            if ($extension != ".php") {
+            $extension = substr($file, -5);
+            $name = substr($file, 0, -5);
+            if ($extension != ".html") {
                 continue;
             }
             $content = file_get_contents(NEWS_HTML_PATH . '/' . $file);
@@ -182,7 +182,7 @@ HTML;
     public static function getNewsArticleMeta($pageInfo) {
         $param = PAGE_PARAMS[0];
         // Format: baz-foo-bar;
-        $file = NEWS_HTML_PATH . $param . ".php";
+        $file = NEWS_HTML_PATH . $param . ".html";
         if (!file_exists($file)) {
             $errorMsg = "No news by that name found";
         }
