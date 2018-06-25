@@ -2,6 +2,8 @@
 define('PHOTO_COLUMN_COUNT', 2);
 define('PHOTO_COUNT', 5 * PHOTO_COLUMN_COUNT);
 
+define('USE_UPDATE_CACHE', true);
+define('UPDATE_CACHE_DURATION', 5 * 60);
 define('USE_IG_CACHE', true);
 
 define('IG_IMA_USERNAME', INSTAGRAM_USERNAME);
@@ -21,6 +23,7 @@ define('START_DATE_TIMESTAMP', 1529798400 - 24 * 3600 * 30 * 1);
 define('END_DATE_TIMESTAMP', 1530576000);
 
 define('LIVE_UPDATES_SPREADSHEET_ID', '1KYciw_bjHONsEdzFeKkwYJRkYfo4YeP6hamYH5poTT8');
+define('LIVE_UPDATES_CACHE_NAME', 'live-updates');
 
 $blacklist = array(
     '1809104206020640981',
@@ -107,25 +110,54 @@ function getPhotos($blacklist) {
 }
 
 function getUpdates() {
-    $update = new stdClass();
-    $update->date = 'June 25th';
-    $update->author = 'Mika';
-    $update->content = <<<TEXT
-The very first riders are starting to show up, and it will soon look like the annual WMC gathering we've all come to love.
-In the meantime, the rain this morning meant that the track was wet and athletes retreated to Kranj's pumptrack.
+    $pool = Cache::getPool();
+    $cacheItem = $pool->getItem(LIVE_UPDATES_CACHE_NAME);
+    if (USE_UPDATE_CACHE) {
+        if ($cacheItem->isMiss()) {
+            $updates = retrieveUpdateObjects();
+            $cacheItem->lock();
+            $cacheItem->set($updates);
+            $cacheItem->expiresAfter(UPDATE_CACHE_DURATION);
+            $pool->save($cacheItem);
+        } else {
+            $updates = $cacheItem->get();
+        }
+    } else {
+        $updates = retrieveUpdateObjects();
+    }
 
-The track is looking great by the way! The Dirt Dessert team has put in a ton of work (and not just on the track, but also the surrounding areas), and we're looking forward to the event!
-We'll be putting finishing touches over the next couple of days, and then it's on!
+    return $updates;
+}
 
-The forecast does call for some rain showers until Thursday, but has us in the clear with nice weather and high temperatures for the actual competition!
+function retrieveUpdateObjects() {
+    $updates = array();
+    try {
 
-If you're coming, bring bug spray (watch out for mosquitoes and ticks!) as well as sunscreen! See you soon!
+        if (!file_exists(CREDENTIALS_PATH)) {
+            $errorMessage = "No token file";
+        } else {
+            try {
+                $accessToken = json_decode(file_get_contents(CREDENTIALS_PATH), true);
+            } catch (Exception $e) {
+                $errorMessage = "Could not decode the token";
+            }
+        }
 
-TEXT;
-
-    $updates = array(
-        $update
-    );
+        $client = Helpers::getGoogleClientForWeb($accessToken);
+        $sheetsService = new Google_Service_Sheets($client);
+        $range = "A2:C";
+        $sheetContentResponse = $sheetsService->spreadsheets_values->get(LIVE_UPDATES_SPREADSHEET_ID, $range);
+        $values = $sheetContentResponse->getValues();
+        foreach ($values as $index => $value) {
+            $update = new stdClass();
+            $update->author = $value[0];
+            $update->date = $value[1];
+            $update->content = $value[2];
+            $updates[] = $update;
+        }
+    } catch (Exception $e) {
+        // Should log something somewhere -- ain't nobody got time for that.
+    }
     return $updates;
 }
 
