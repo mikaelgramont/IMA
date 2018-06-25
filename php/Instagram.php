@@ -19,10 +19,20 @@ class Instagram {
 		$photosRaw = $insta_array['entry_data']['ProfilePage'][0]['graphql']['user']['edge_owner_to_timeline_media']['edges'];
 		$photos = array();
 		foreach ($photosRaw as $photo) {
-			if (in_array($photo['node']['id'], $this->_blacklist)) {
+		    $output = new stdClass();
+		    $output->id = $photo['node']['id'];
+		    $output->title = $photo['node']['edge_media_to_caption']['edges'][0]['node']['text'];
+		    $output->src = $photo['node']['thumbnail_src'];
+		    $output->timestamp = $photo['node']['taken_at_timestamp'];
+		    $output->shortcode = $photo['node']['shortcode'];
+            $output->commentCount = $photo['node']['edge_media_to_comment']['count'];
+            $output->likeCount = $photo['node']['edge_liked_by']['count'];
+
+			if (in_array($output->id, $this->_blacklist)) {
 				continue;
 			}
-			$photos[] = $photo['node'];
+
+			$photos[] = $output;
 		}
 		return $photos;
 	}

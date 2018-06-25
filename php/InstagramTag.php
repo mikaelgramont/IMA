@@ -9,6 +9,7 @@ class InstagramTag {
 		$this->_blacklist = $blacklist;
 		$this->_useCache = $useCache;
 		$this->_cacheId = $cacheId;
+        $this->_additionalTag = '';
 	}
 
 	private function _scrape()
@@ -20,10 +21,23 @@ class InstagramTag {
 		$photosRaw = $insta_array['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['edges'];
 		$photos = array();
 		foreach ($photosRaw as $photo) {
-			if (in_array($photo['node']['id'], $this->_blacklist)) {
-				continue;
-			}
-			$photos[] = $photo['node'];
+		    if (!isset($photo['node']['edge_media_to_caption']['edges'][0])) {
+		        continue;
+            }
+            $output = new stdClass();
+            $output->id = $photo['node']['id'];
+            $output->title = $photo['node']['edge_media_to_caption']['edges'][0]['node']['text'];
+            $output->src = $photo['node']['thumbnail_src'];
+            $output->timestamp = $photo['node']['taken_at_timestamp'];
+            $output->shortcode = $photo['node']['shortcode'];
+            $output->commentCount = $photo['node']['edge_media_to_comment']['count'];
+            $output->likeCount = $photo['node']['edge_liked_by']['count'];
+
+            if (in_array($output->id, $this->_blacklist)) {
+                continue;
+            }
+
+            $photos[] = $output;
 		}
 		return $photos;
 	}
@@ -45,6 +59,16 @@ class InstagramTag {
 		} else {
 			$photos = $this->_scrape();
 		}
+
+		if ($this->_additionalTag) {
+		    $photos = array_filter($photos, function($photo) {
+		        return strpos($photo->title, '#'.$this->_additionalTag) !== false;
+            }, ARRAY_FILTER_USE_BOTH);
+        }
 		return $photos;
 	}
+
+	public function enforceTagPresence($additionalTag) {
+	    $this->_additionalTag = $additionalTag;
+    }
 }
