@@ -1,6 +1,6 @@
 <?php
-define('PHOTO_COLUMN_COUNT', 3);
-define('PHOTO_COUNT', 7 * PHOTO_COLUMN_COUNT);
+define('PHOTO_COLUMN_COUNT', 2);
+define('PHOTO_COUNT', 5 * PHOTO_COLUMN_COUNT);
 
 define('USE_IG_CACHE', true);
 
@@ -19,6 +19,8 @@ define('START_DATE_TIMESTAMP', 1529798400 - 24 * 3600 * 30 * 1);
 
 // 07/03/2018 @ 12:00am (UTC)
 define('END_DATE_TIMESTAMP', 1530576000);
+
+define('LIVE_UPDATES_SPREADSHEET_ID', '1KYciw_bjHONsEdzFeKkwYJRkYfo4YeP6hamYH5poTT8');
 
 $blacklist = array(
     '1809104206020640981',
@@ -80,29 +82,79 @@ function compareTimestamps($a, $b) {
     return $a->timestamp < $b->timestamp ? 1 : -1;
 }
 
-$pool = Cache::getPool();
-$allPhotos = array();
+function getPhotos($blacklist) {
+    $pool = Cache::getPool();
+    $allPhotos = array();
+    $IMAScraper = new Instagram(IG_IMA_USERNAME, $pool, $blacklist, USE_IG_CACHE, IG_IMA_CACHE_NAME);
+    $IMAPhotos = $IMAScraper->getPhotos();
 
-$IMAScraper = new Instagram(IG_IMA_USERNAME, $pool, $blacklist, USE_IG_CACHE, IG_IMA_CACHE_NAME);
-$IMAPhotos = $IMAScraper->getPhotos();
+    $DDScraper = new Instagram(IG_DD_USERNAME, $pool, $blacklist, USE_IG_CACHE, IG_DD_CACHE_NAME);
+    $DDPhotos = $DDScraper->getPhotos();
 
-$DDScraper = new Instagram(IG_DD_USERNAME, $pool, $blacklist, USE_IG_CACHE, IG_DD_CACHE_NAME);
-$DDPhotos = $DDScraper->getPhotos();
+    $tagScraper = new InstagramTag(IG_TAG, $pool, $blacklist, USE_IG_CACHE, IG_TAG_CACHE_NAME);
+    $tagScraper->enforceTagPresence('mountainboard');
+    $tagPhotos = $tagScraper->getPhotos();
+    $allPhotos = array_merge($IMAPhotos, $DDPhotos, $tagPhotos);
+    $allPhotos = array_filter($allPhotos, function($photo) {
+        return $photo->timestamp > START_DATE_TIMESTAMP && $photo->timestamp < END_DATE_TIMESTAMP;
+    });
+    uasort($allPhotos, 'compareTimestamps');
+    $photos = array_slice($allPhotos, 0, PHOTO_COUNT + 1);
+    return $photos;
+}
 
-$tagScraper = new InstagramTag(IG_TAG, $pool, $blacklist, USE_IG_CACHE, IG_TAG_CACHE_NAME);
-$tagScraper->enforceTagPresence('mountainboard');
-$tagPhotos = $tagScraper->getPhotos();
+function getUpdates() {
+    $update = new stdClass();
+    $update->date = 'June 25th';
+    $update->author = 'Mika';
+    $update->content = <<<TEXT
+The very first riders are starting to show up, and it will soon look like the annual WMC gathering we've all come to love.
+In the meantime, the rain this morning meant that the track was wet and athletes retreated to Kranj's pumptrack.
 
-$allPhotos = array_merge($IMAPhotos, $DDPhotos, $tagPhotos);
-$allPhotos = array_filter($allPhotos, function($photo) {
-    return $photo->timestamp > START_DATE_TIMESTAMP && $photo->timestamp < END_DATE_TIMESTAMP;
-});
-uasort($allPhotos, 'compareTimestamps');
-$photos = array_slice($allPhotos, 0, PHOTO_COUNT + 1);
+The track is looking great by the way! The Dirt Dessert team has put in a ton of work (and not just on the track, but also the surrounding areas), and we're looking forward to the event!
+We'll be putting finishing touches over the next couple of days, and then it's on!
 
+The forecast does call for some rain showers until Thursday, but has us in the clear with nice weather and high temperatures for the actual competition!
+
+If you're coming, bring bug spray (watch out for mosquitoes and ticks!) as well as sunscreen! See you soon!
+
+TEXT;
+
+    $updates = array(
+        $update
+    );
+    return $updates;
+}
+
+function renderUpdate($update) {
+    $html = <<<HTML
+    <li>
+        <h2 class="display-font update-title">Update - {$update->date}</h2>
+        <pre class="update-content">{$update->content}</pre>
+        <p class="update-author">
+            {$update->author}
+        </p>
+    </li>
+        
+HTML;
+    return $html;
+}
+
+$photos = getPhotos($blacklist);
+$updates = getUpdates();
 ?>
 
 <style>
+    .live-main {
+        padding: 0;
+        list-style-type: none;
+    }
+    .update-content {
+        font-family: 'Raleway';
+        white-space: pre-wrap;
+    }
+
+
     .stream {
         display: flex;
         width: 100%;
@@ -161,26 +213,13 @@ $photos = array_slice($allPhotos, 0, PHOTO_COUNT + 1);
     <p>We'll be adding updates as the event takes place, so come back often!</p>
 
     <div class="live-content">
-        <div class="live-main">
-            <h2 class="display-font">Update - June 25th</h2>
-            <p>
-                The very first riders are starting to show up, and it will soon look like the annual WMC gathering we've all come to love.<br>
-                In the meantime, the rain this morning meant that the track was wet and athletes retreated to Kranj's pumptrack.
-            </p>
-            <p>
-                The track is looking great by the way! The Dirt Dessert team has put in a ton of work (and not just on the track, but also the surrounding areas), and we're looking forward to the event!<br>
-                We'll be putting finishing touches over the next couple of days, and then it's on!
-            </p>
-            <p>
-                The forecast does call for some rain showers until Thursday, but has us in the clear with nice weather and high temperatures for the actual competition!
-            </p>
-            <p>
-                If you're coming, bring bug spray (watch out for mosquitoes and ticks!) as well as sunscreen! See you soon!
-            </p>
-            <p class="author">
-                Mika
-            </p>
-        </div>
+        <ul class="live-main">
+<?php
+            foreach($updates as $update) {
+                echo renderUpdate($update);
+            }
+?>
+        </ul>
         <div class="ig-stream">
             <h2 class="display-font">The WMC on Instagram</h2>
 <?php
