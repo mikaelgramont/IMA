@@ -102,13 +102,23 @@ function getPhotos($blacklist) {
     $tagScraper = new InstagramTag(IG_TAG, $pool, $blacklist, USE_IG_CACHE, IG_TAG_CACHE_NAME);
     $tagScraper->enforceTagPresence('mountainboard');
     $tagPhotos = $tagScraper->getPhotos();
+
     $allPhotos = array_merge($IMAPhotos, $DDPhotos, $tagPhotos);
     $allPhotos = array_filter($allPhotos, function($photo) {
         return $photo->timestamp > START_DATE_TIMESTAMP && $photo->timestamp < END_DATE_TIMESTAMP;
     });
     uasort($allPhotos, 'compareTimestamps');
-    $photos = array_slice($allPhotos, 0, PHOTO_COUNT + 1);
-    return $photos;
+    $allPhotos = array_slice($allPhotos, 0, PHOTO_COUNT + 1);
+
+    $dedupedPhotos = array();
+    $prevShortcode = null;
+    foreach($allPhotos as $photo) {
+        if ($photo->shortcode != $prevShortcode) {
+            $dedupedPhotos[] = $photo;
+        }
+        $prevShortcode = $photo->shortcode;
+    }
+    return $dedupedPhotos;
 }
 
 function getUpdates() {
@@ -160,13 +170,16 @@ function retrieveUpdateObjects() {
     } catch (Exception $e) {
         // Should log something somewhere -- ain't nobody got time for that.
     }
-    return $updates;
+    return array_reverse($updates);
 }
 
-function renderUpdate($update) {
+function renderUpdate($count, $update) {
+    $class = $count === 0 ? "first" : "";
+    $title = $count === 0 ? 'Latest update - '.$update->date : 'Update - '.$update->date;
+
     $html = <<<HTML
-    <li>
-        <h2 class="display-font update-title">Update - {$update->date}</h2>
+    <li class="${class}">
+        <h2 class="display-font update-title">{$title}</h2>
         <pre class="update-content">{$update->content}</pre>
         <p class="update-author">
             {$update->author}
@@ -186,6 +199,19 @@ $updates = getUpdates();
         padding: 0;
         list-style-type: none;
     }
+
+    .live-main h2 {
+        background: #1A1705;
+        color: #fff;
+        margin-left: -.5em;
+        padding: .25em .5em;
+    }
+
+    .live-main .first h2 {
+        background: #E82020;
+        color: #fff;
+    }
+
     .update-content {
         font-family: 'Raleway';
         white-space: pre-wrap;
@@ -272,8 +298,8 @@ $updates = getUpdates();
     <div class="live-content">
         <ul class="live-main">
 <?php
-            foreach($updates as $update) {
-                echo renderUpdate($update);
+            foreach($updates as $count => $update) {
+                echo renderUpdate($count, $update);
             }
 ?>
         </ul>
