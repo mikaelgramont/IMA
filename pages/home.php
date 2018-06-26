@@ -49,6 +49,9 @@
 	.carousel-item-3 {
 		background-image: url('./images/carousel/3-podium-640x342.jpg');
 	}
+	.carousel-item-4 {
+		background-image: url('./images/carousel/4-wmc-640x342.jpg');
+	}
 	@media screen and (min-width: 640px) {
 		.carousel {
 			height: 513px;
@@ -62,6 +65,9 @@
 		.carousel-item-3 {
 			background-image: url('./images/carousel/3-podium-960x513.jpg');
 		}
+        .carousel-item-4 {
+            background-image: url('./images/carousel/4-wmc-960x513.jpg');
+        }
 	}
 	.carousel-item-title {
 		display: block;
@@ -183,20 +189,20 @@
 
 <div id="home-carousel" class="carousel-container">
 	<div class="carousel">
-		<div class="carousel-item carousel-item-4">
-			<a href="<?php echo BASE_URL?>news/5-2018-wmc" class="carousel-item-title">World Mountainboard Championships 2018</a>
-		</div>
-		<div class="carousel-item carousel-item-1">
-			<a href="<?php echo BASE_URL?>events" class="carousel-item-title">Upcoming Events</a>
-		</div>
-		<div class="carousel-item carousel-item-3">
-			<a href="<?php echo BASE_URL?>results" class="carousel-item-title">Competition Results</a>
-		</div>
-		<div class="carousel-item carousel-item-2">
-			<a href="<?php echo BASE_URL?>organizers" class="carousel-item-title">Resources for Event Organizers</a>
-		</div>
-	</div>
-	<ul class="dots">
+        <div class="carousel-item carousel-item-4">
+            <a href="<?php echo BASE_URL?>news/5-2018-wmc" class="carousel-item-title">World Mountainboard Championships 2018</a>
+        </div>
+        <div class="carousel-item carousel-item-1">
+            <a href="<?php echo BASE_URL?>events" class="carousel-item-title">Upcoming Events</a>
+        </div>
+        <div class="carousel-item carousel-item-3">
+            <a href="<?php echo BASE_URL?>results" class="carousel-item-title">Competition Results</a>
+        </div>
+        <div class="carousel-item carousel-item-2">
+            <a href="<?php echo BASE_URL?>organizers" class="carousel-item-title">Resources for Event Organizers</a>
+        </div>
+    </div>
+    <ul class="dots">
 		<li class="dot current-dot" data-slide-id="0"></li>
 		<li class="dot" data-slide-id="1"></li>
 		<li class="dot" data-slide-id="2"></li>
