@@ -68,8 +68,10 @@ function renderItem($data) {
         $metadata = '<p class="metadata">' . implode(' - ', $parts) . '</p>';
     }
 
+    $videoClass = $data->isVideo ? " video" : "";
+
     $html = <<<HTML
-    <li class="stream-photo">
+    <li class="stream-photo{$videoClass}">
         <a target="_blank" href="{$href}">
             <img data-src="{$data->src}" data-id="{$data->id}">
             {$metadata}
@@ -134,12 +136,12 @@ function retrieveUpdateObjects() {
     try {
 
         if (!file_exists(CREDENTIALS_PATH)) {
-            $errorMessage = "No token file";
+            throw new Exception("No token file");
         } else {
             try {
                 $accessToken = json_decode(file_get_contents(CREDENTIALS_PATH), true);
             } catch (Exception $e) {
-                $errorMessage = "Could not decode the token";
+                throw new Exception("Could not decode the token");
             }
         }
 
@@ -189,7 +191,6 @@ $updates = getUpdates();
         white-space: pre-wrap;
     }
 
-
     .stream {
         display: flex;
         width: 100%;
@@ -203,6 +204,21 @@ $updates = getUpdates();
         margin-right: 10px;
         margin-bottom: 10px;
         position: relative;
+    }
+
+    .stream-photo.video::after {
+        content: " ";
+        display: block;
+        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNjAgNjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDYwIDYwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8cGF0aCBmaWxsPSIjZWVlIiBkPSJNNDUuNTYzLDI5LjE3NGwtMjItMTVjLTAuMzA3LTAuMjA4LTAuNzAzLTAuMjMxLTEuMDMxLTAuMDU4QzIyLjIwNSwxNC4yODksMjIsMTQuNjI5LDIyLDE1djMwDQoJCWMwLDAuMzcxLDAuMjA1LDAuNzExLDAuNTMzLDAuODg0QzIyLjY3OSw0NS45NjIsMjIuODQsNDYsMjMsNDZjMC4xOTcsMCwwLjM5NC0wLjA1OSwwLjU2My0wLjE3NGwyMi0xNQ0KCQlDNDUuODM2LDMwLjY0LDQ2LDMwLjMzMSw0NiwzMFM0NS44MzYsMjkuMzYsNDUuNTYzLDI5LjE3NHogTTI0LDQzLjEwN1YxNi44OTNMNDMuMjI1LDMwTDI0LDQzLjEwN3oiLz4NCgk8cGF0aCBmaWxsPSIjZWVlIiBkPSJNMzAsMEMxMy40NTgsMCwwLDEzLjQ1OCwwLDMwczEzLjQ1OCwzMCwzMCwzMHMzMC0xMy40NTgsMzAtMzBTNDYuNTQyLDAsMzAsMHogTTMwLDU4QzE0LjU2MSw1OCwyLDQ1LjQzOSwyLDMwDQoJCVMxNC41NjEsMiwzMCwyczI4LDEyLjU2MSwyOCwyOFM0NS40MzksNTgsMzAsNTh6Ii8+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg==');
+        background-size: 50%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
     }
 
     .stream-photo img {
@@ -245,8 +261,13 @@ $updates = getUpdates();
 
 
 <section>
-    <h1 class="display-font">World Mountainboard Championship 2018 - live coverage</h1>
+    <h1 class="display-font">World Mountainboard Championship 2018 (June 29th-30th) - live coverage</h1>
     <p>We'll be adding updates as the event takes place, so come back often!</p>
+
+    <p>
+        As a reminder, qualifiers are happening Friday 29th, and finals are on Saturday 30th.<br>
+        For more details, check out <a href="http://wmc2018.si/program/?lang=en" target="_blank">the timeline on the official event site</a>.
+    </p>
 
     <div class="live-content">
         <ul class="live-main">

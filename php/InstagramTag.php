@@ -34,6 +34,7 @@ class InstagramTag {
             $output->shortcode = $photo['node']['shortcode'];
             $output->commentCount = $photo['node']['edge_media_to_comment']['count'];
             $output->likeCount = $photo['node']['edge_liked_by']['count'];
+            $output->isVideo = $photo['node']['is_video'];
 
             if (in_array($output->id, $this->_blacklist)) {
                 continue;
