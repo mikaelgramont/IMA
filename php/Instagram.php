@@ -1,15 +1,14 @@
 <?php
 class Instagram {
-	private $_cacheKey = 'photos';
-
 	const CACHE_DURATION = 60 * 5;
 
-	public function __construct($name, $pool, $blacklist, $useCache)
+	public function __construct($name, $pool, $blacklist, $useCache, $cacheId)
 	{
 		$this->_name = $name;
 		$this->_pool = $pool;
 		$this->_blacklist = $blacklist;
 		$this->_useCache = $useCache;
+		$this->_cacheId = $cacheId;
 	}
 
 	private function _scrape()
@@ -23,7 +22,7 @@ class Instagram {
 		foreach ($photosRaw as $photo) {
 		    $output = new stdClass();
 		    $output->id = $photo['node']['id'];
-		    $output->title = $photo['node']['edge_media_to_caption']['edges'][0]['node']['text'];
+		    $output->title = isset($photo['node']['edge_media_to_caption']['edges'][0]) ? $photo['node']['edge_media_to_caption']['edges'][0]['node']['text'] : '';
 		    $output->src = $photo['node']['thumbnail_src'];
 		    $output->timestamp = $photo['node']['taken_at_timestamp'];
 		    $output->shortcode = $photo['node']['shortcode'];
@@ -42,7 +41,7 @@ class Instagram {
 
 	public function getPhotos()
 	{
-		$cacheItem = $this->_pool->getItem('instagram');
+		$cacheItem = $this->_pool->getItem($this->_cacheId);
 
 		if ($this->_useCache) {
 			if ($cacheItem->isMiss()) {
