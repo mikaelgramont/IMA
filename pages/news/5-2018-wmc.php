@@ -1,6 +1,6 @@
 <?php
 define('PHOTO_COLUMN_COUNT', 2);
-define('PHOTO_COUNT', 5 * PHOTO_COLUMN_COUNT);
+define('PHOTO_COUNT', 8 * PHOTO_COLUMN_COUNT);
 
 define('USE_UPDATE_CACHE', true);
 define('UPDATE_CACHE_DURATION', 5 * 60);
