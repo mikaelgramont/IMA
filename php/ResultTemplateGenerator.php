@@ -108,7 +108,7 @@ class ResultTemplateGenerator
 			$out .= $this->_renderRanking($ranking);
 		}
 		if ($ranking->getPosition() > self::LAST_INITIALLY_DISPLAYED_RANK) {
-			$out .= $this->_renderExpandButtonRow();
+			$out .= $this->_renderExpandButtonRow($ranking->getColumnCount());
 		}
 		$out .= "</table>\n</li>\n";
 
@@ -123,23 +123,34 @@ class ResultTemplateGenerator
 
 		$rowClass = $position > self::LAST_INITIALLY_DISPLAYED_RANK ? "hidden-result no-highlight" : "";
 		$out = "\t<tr class=\"$rowClass\">\n\t\t<td class=\"position\">{$position}</td>\n";
-		$out .= "\t\t<td class=\"fullname\">{$fullName}";
+		$out .= "\t\t<td class=\"fullname\">";
+        $out .= $fullName;
 
 		if ($country != null && $country != 'null') {
 			$src = Utils::getFlagFileForCountry($country);
 			if ($src) {
-				$out .= "<img src=\"$src\" class=\"country-flag\">\n";
+				$out .= " <img src=\"$src\" class=\"country-flag\">";
 			}
 		}
-		$out .= "</td>\n\t</tr>\n";
+        $out .= "</td>\n";
+
+        if ($ranking->hasPoints()) {
+            $out .= "<td class=\"points\">Points: ".$ranking->getPoints()."</td>\n";
+        }
+
+        if ($ranking->hasTime()) {
+            $out .= " <td class=\"time\">Time: ".$ranking->getTime()."</td>\n";
+        }
+
+        $out .= "\t\t</tr>\n";
 		return $out;		
 	}
 
-	private function _renderExpandButtonRow()
+	private function _renderExpandButtonRow($columnCount)
 	{
 		return <<<HTML
 		<tr>
-			<td class="expand-cell" colspan="2">
+			<td class="expand-cell" colspan="{$columnCount}">
 				<button class="expand-cell-button" data-collapsed-text="Show more" data-expanded-text="Hide">Show more</button>
 			</td>
 		</tr>

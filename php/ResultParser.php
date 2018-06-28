@@ -30,7 +30,7 @@ class ResultParser
 			    foreach ($spreadsheetResponse->sheets as $sheet) {
 			    	$sheetTitle = $sheet['properties']['title'];
 			      	$resultCategory = new ResultCategory($sheetTitle);
-			      	$range = sprintf("'%s'!A2:D", $sheetTitle);
+			      	$range = sprintf("'%s'!A2:F", $sheetTitle);
 			      
 			      	$sheetContentResponse = $sheetsService->spreadsheets_values->get($file['id'], $range);
 			      	$values = $sheetContentResponse->getValues();
@@ -41,7 +41,14 @@ class ResultParser
 			      	}
 		      		$logger->log(sprintf("   - Reading sheet '%s'", $sheetTitle));
 			      	foreach ($values as $index => $value) {
-			        	$ranking = new ResultRanking($value[0], $value[1], isset($value[2]) ? $value[2] : 'NULL', isset($value[3]) ? $value[3] : 'NULL');
+			        	$ranking = new ResultRanking(
+			        	    $value[0],
+                            $value[1],
+                            isset($value[2]) ? $value[2] : 'NULL',
+                            isset($value[3]) ? $value[3] : 'NULL',
+                            isset($value[4]) ? $value[4] : 'NULL',
+                            isset($value[5]) ? $value[5] : 'NULL'
+                        );
 			        	$resultCategory->addRanking($ranking);
 			      	}
 
