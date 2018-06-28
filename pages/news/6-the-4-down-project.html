@@ -30,9 +30,13 @@ SEPARATOR
 }
 
 @media screen and (min-width: 640px) {
-    .entries iframe {
-        width: 640px;
-        height: 360px;
+    .entries {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .entries li {
+        width: 50%;
     }
 }
 
@@ -86,7 +90,7 @@ SEPARATOR
 </p>
 
 <p>
-    They are now released fully and public voting will take place from July 2nd to the 8th! So watch the videos and head down to <a href="https://goo.gl/forms/PPxViugi1yExByzq1">the voting form</a> to tell us which video you liked best!
+    They are now released fully and public voting will take place from July 2nd to the 8th! So watch the videos and head down to <a href="https://goo.gl/forms/PPxViugi1yExByzq1" target="_blank">the voting form</a> to tell us which video you liked best!
 </p>
 
 <ul class="entries">
@@ -104,7 +108,7 @@ SEPARATOR
     </li>
     <li>
         <iframe id="ytplayer-3" type="text/html"
-                src="https://www.youtube.com/embed/"
+                src="https://www.youtube.com/embed/PKSj3GY3u0M"
                 frameborder="0"></iframe>
         <span class="entry-title">Amon Shaw's “The Dark Side of Riding with a Champion”</span>
     </li>
@@ -121,5 +125,5 @@ SEPARATOR
     Now that you've watched them all, head over to the voting form and pick your winner!
 </p>
 <p class="button-container">
-    <a class="link-as-button" href="https://goo.gl/forms/PPxViugi1yExByzq1">Vote for your favorite!</a>
+    <a class="link-as-button" target="_blank" href="https://goo.gl/forms/PPxViugi1yExByzq1">Vote for your favorite!</a>
 </p>
