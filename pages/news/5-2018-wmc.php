@@ -1,6 +1,6 @@
 <?php
 define('PHOTO_COLUMN_COUNT', 2);
-define('PHOTO_COUNT', 8 * PHOTO_COLUMN_COUNT);
+define('PHOTO_COUNT', 80 * PHOTO_COLUMN_COUNT);
 
 define('USE_UPDATE_CACHE', true);
 define('UPDATE_CACHE_DURATION', 5 * 60);
@@ -30,6 +30,7 @@ $blacklist = array(
     '1809100982766555938',
     '1809419175796377008',
     '1807190928029481297',
+    '1814855774431058945',
 );
 
 function renderItem($data) {
