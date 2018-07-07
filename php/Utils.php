@@ -414,4 +414,16 @@ HTML;
         $obj->image = "https://i.ytimg.com/vi/" . $res[1]. "/hqdefault.jpg";
         return $obj;
     }
+
+    public static function dateToTimestamp($date) {
+        $parts = date_parse_from_format("m/d/Y", $date);
+        $time = mktime(0, 0, 0, $parts['month'], $parts['day'], $parts['year']);
+        return $time;
+    }
+
+    public static function datetimeToTimestamp($date) {
+        $parts = date_parse_from_format("m/d/Y H:i:s", $date);
+        $time = mktime($parts['hour'], $parts['minute'], $parts['second'], $parts['month'], $parts['day'], $parts['year']);
+        return $time;
+    }
 }

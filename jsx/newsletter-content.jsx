@@ -4,5 +4,5 @@ const ReactDOM = require('react-dom');
 const ContentTable = require('./content-table.jsx');
 
 ReactDOM.render((
-	<ContentTable></ContentTable>
+    <ContentTable></ContentTable>
 ),document.getElementById('table-container'));
