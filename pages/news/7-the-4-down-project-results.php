@@ -252,6 +252,9 @@ $cachedVotes = null;
 </style>
 
 <h1 class="display-font">The results of the 4-down video contest are in!</h1>
+<p>If you've missed the whole thing, head over to <a href="<?php echo BASE_URL?>news/6-the-4-down-project">the news page about the 4 Down video project</a>.</p>
+
+
 <p>Before we reveal the name of winning video and team, let us tell you one thing: it was tight!</p>
 
 <p>Everyone's done a good job of engaging with the community and their circle of friends and followers, so no matter what happens, it means one thing: more visibility for mountainboarding, and that'a great thing!</p>
