@@ -19,8 +19,8 @@ define('IG_TAG_CACHE_NAME', 'tag-mountainboard-photos');
 // One month before 06/24/2018 @ 12:00am (UTC)
 define('START_DATE_TIMESTAMP', 1529798400 - 24 * 3600 * 30 * 1);
 
-// 07/03/2018 @ 12:00am (UTC)
-define('END_DATE_TIMESTAMP', 1530576000);
+// 07/08/2018 @ 12:00am (UTC)
+define('END_DATE_TIMESTAMP', 1531008000);
 
 define('LIVE_UPDATES_SPREADSHEET_ID', '1KYciw_bjHONsEdzFeKkwYJRkYfo4YeP6hamYH5poTT8');
 define('LIVE_UPDATES_CACHE_NAME', 'live-updates');
@@ -31,6 +31,8 @@ $blacklist = array(
     '1809419175796377008',
     '1807190928029481297',
     '1814855774431058945',
+    '1816891792906605585',
+    '1816161809015553228',
 );
 
 function renderItem($data) {
@@ -231,6 +233,7 @@ $updates = getUpdates();
         margin-right: 10px;
         margin-bottom: 10px;
         position: relative;
+        height: 225px;
     }
 
     .stream-photo.video::after {
