@@ -222,10 +222,13 @@ $cachedVotes = null;
         margin: 0 auto 10px;
         position: absolute;
         border-radius: 50%;
+        background-position: center;
+        background-size: cover;
         width: 64px;
         height: 64px;
         left: 0;
         right: 0;
+        border: 3px solid currentColor;
     }
 
     .date {

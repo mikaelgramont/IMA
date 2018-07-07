@@ -31,8 +31,9 @@ class GraphBar extends React.Component {
         }
 
         const thumbStyle = {
-            background: `url(${item.image})`,
-            bottom: percentage
+            backgroundImage: `url(${item.image})`,
+            bottom: percentage,
+            color: item.barColor
         }
 
         return (
