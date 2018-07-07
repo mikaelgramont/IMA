@@ -1,32 +1,31 @@
 const React = require('react');
+const ReactDOM = require('react-dom');
 
+const ItemGraph = require('./item-graph.jsx');
 const ItemTable = require('./item-table.jsx');
 
-// Duration of the whole animation in seconds
-const ANIMATION_DURATION = 20;
-
+let endClassName;
+let scrollToEl;
 
 class VoteAnimation extends React.Component {
     constructor(props) {
         super(props);
 
         // Real time duration of the animation, in seconds:
-        const timeStretch = props.endTime - props.startTime;
+        const timeRange = props.endTime - props.startTime;
         // The number of steps to perform the whole animation:
-        const numberOfSteps = ANIMATION_DURATION * 60;
+        const numberOfSteps = this.props.animationDuration * 60;
 
         // How long each animaton step represents in real time:
-        const stepDuration = timeStretch / numberOfSteps;
+        const stepDuration = timeRange / numberOfSteps;
 
-
-        const votesToProcess = this.props.votes.slice();
 
         this.state = {
             playing: false,
             stepDuration,
             time: props.startTime,
             tally: this.getStartTally(),
-            votesToProcess
+            votesToProcess: this.props.votes.slice()
         }
 
         this.toggleState = this.toggleState.bind(this);
@@ -37,6 +36,7 @@ class VoteAnimation extends React.Component {
         this.step = this.step.bind(this);
         this.performStep = this.performStep.bind(this);
         this.getStartTally = this.getStartTally.bind(this);
+        this.performReset = this.performReset.bind(this);
         this.rafId = null;
     }
 
@@ -57,12 +57,18 @@ class VoteAnimation extends React.Component {
     }
 
     play() {
+        const rootEl = ReactDOM.findDOMNode(this);
+        const startClassName = rootEl.parentElement.getAttribute('data-startClass');
+        endClassName = rootEl.parentElement.getAttribute('data-endClass');
+
+        const scrollToId = rootEl.parentElement.getAttribute('data-scrollTo');
+        scrollToEl = document.getElementById(scrollToId);
+        document.body.classList.add(startClassName);
+
+        document.getElementById('animation-focus').scrollIntoView();
+
         if (this.state.time >= this.props.endTime) {
-            this.setState({
-                time: this.props.startTime,
-                votesToProcess: this.props.votes,
-                playing: true
-            }, this.animate);
+            this.performReset(this.animate);
         } else {
             this.setState({
                 playing: true
@@ -76,15 +82,24 @@ class VoteAnimation extends React.Component {
     }
 
     reset() {
+        this.performReset(() => {});
+    }
+
+    performReset(andThen) {
         this.setState({
             time: this.props.startTime,
-            votesToProcess: this.props.votes,
-            playing: false
-        });
+            votesToProcess: this.props.votes.slice(),
+            playing: false,
+            tally: this.getStartTally()
+        }, andThen);
     }
 
     animate() {
-        this.performStep();
+        const shouldContinue = this.performStep();
+        if (!shouldContinue) {
+            return;
+        }
+
         this.rafId = requestAnimationFrame(this.animate);
     }
 
@@ -95,35 +110,33 @@ class VoteAnimation extends React.Component {
     performStep() {
         const newTime = this.state.time + this.state.stepDuration
 
-        //let tally = {0:0, 1:0, 2:0, 3: 0};
         let {tally, votesToProcess} = this.state;
 
+        // In order to process each vote only once, remove them from
+        // the beginning of the list once we've taken them into account.
         let toRemoveFromStartOfList = 0;
         votesToProcess.forEach(vote => {
             if (vote.timestamp > newTime) {
                 return;
             }
-
-            // const date = new Date(vote.timestamp * 1000);
-            // const day = date.toLocaleDateString({timeZone: 'UTC'});
-            // const time = date.toLocaleTimeString([], {timeZone: 'UTC', hour: '2-digit', minute:'2-digit'});
-            // const displayDate = `${day} ${time}`;
-
-            //console.log(`Vote for ${vote.choice} at ${vote.timestamp} aka ${displayDate}`);
             tally[vote.choice] += 1;
 
             toRemoveFromStartOfList++;
         });
-
         votesToProcess.splice(0, toRemoveFromStartOfList);
 
         this.setState({time: newTime, tally, votesToProcess});
-
-
         if (newTime > this.props.endTime) {
+            document.body.classList.add(endClassName);
+
+            setTimeout(() => {
+                scrollToEl.scrollIntoView();
+            }, 0)
+
             this.stop();
-            return;
+            return false;
         }
+        return true;
     }
 
     render() {
@@ -134,14 +147,26 @@ class VoteAnimation extends React.Component {
 
         return (
             <div>
-                <ItemTable items={this.props.items} tally={this.state.tally}/>
-                <div>Date: {displayDate}</div>
-                <button onClick={this.toggleState}>
-                    {this.state.playing ? 'Stop':'Play'}
-                </button>
-                <button onClick={this.step}>
-                    Step
-                </button>
+                <button className="primary hidden-after-animation-started" id="trigger" onClick={this.play}>See the results!</button>
+                <div id="animation-focus" className="animation-content">
+                    <ItemGraph stretch={this.props.stretch} items={this.props.items} tally={this.state.tally} />
+
+                    <div className="date">Date: {displayDate}</div>
+
+                    <ItemTable items={this.props.items} tally={this.state.tally} />
+
+                </div>
+                <div className="button-container">
+                    <button onClick={this.toggleState}>
+                        {this.state.playing ? 'Stop':'Play'}
+                    </button>
+                    <button onClick={this.step}>
+                        Step
+                    </button>
+                    <button onClick={this.reset}>
+                        Reset
+                    </button>
+                </div>
             </div>
         );
     }
