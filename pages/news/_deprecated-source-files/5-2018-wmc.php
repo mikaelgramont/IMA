@@ -233,7 +233,7 @@ $updates = getUpdates();
         margin-right: 10px;
         margin-bottom: 10px;
         position: relative;
-        height: 225px;
+        height: 390px;
     }
 
     .stream-photo.video::after {
@@ -285,6 +285,10 @@ $updates = getUpdates();
 
         .live-main {
             margin-right: 20px;
+        }
+
+        .stream-photo {
+            height: 225px;
         }
     }
 </style>
