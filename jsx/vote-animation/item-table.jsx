@@ -14,6 +14,12 @@ class ItemTable extends React.Component {
         });
         return (
             <table className="results-table">
+                <thead>
+                    <tr>
+                        <td className="nameCell">Video name</td>
+                        <td className="tallyCell">Score</td>
+                    </tr>
+                </thead>
                 <tbody>
                     {rows}
                 </tbody>
@@ -30,7 +36,8 @@ class ItemTableRow extends React.Component {
         return (
             <tr>
                 <td className="nameCell">
-                    <span className="coloredSquare" style={{backgroundColor: item.barColor}}></span> {item.displayName}
+                    <span className="coloredSquare" style={{backgroundColor: item.barColor}}></span>
+                    <a className="itemLink" href={item.videoUrl} target="_blank">{item.displayName}</a>
                 </td>
                 <td className="tallyCell">{`${percentage} (${tally})`}</td>
             </tr>

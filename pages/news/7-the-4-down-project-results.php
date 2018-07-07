@@ -17,7 +17,7 @@ $possibleChoicesJson = <<<JSON
     "image": "${baseUrl}images/news/8-video-thumb1.jpg",
     "authors": "",
     "teaserUrl": "",
-    "videoUrl": "",
+    "videoUrl": "https://www.youtube.com/watch?v=xlDiG45zcak",
     "barColor": "rgb(16, 150, 24)"
   },
   {
@@ -27,7 +27,7 @@ $possibleChoicesJson = <<<JSON
     "image": "${baseUrl}images/news/8-video-thumb2.jpg",
     "authors": "",
     "teaserUrl": "",
-    "videoUrl": "",
+    "videoUrl": "https://www.youtube.com/watch?v=PKSj3GY3u0M",
     "barColor": "rgb(220, 57, 18)"
   },
   {
@@ -37,7 +37,7 @@ $possibleChoicesJson = <<<JSON
     "image": "${baseUrl}images/news/8-video-thumb3.jpg",
     "authors": "",
     "teaserUrl": "",
-    "videoUrl": "",
+    "videoUrl": "https://www.youtube.com/watch?v=znUgVO6k6wg",
     "barColor": "rgb(51, 102, 204)"
   },
   {
@@ -47,7 +47,7 @@ $possibleChoicesJson = <<<JSON
     "image": "${baseUrl}images/news/8-video-thumb4.jpg",
     "authors": "",
     "teaserUrl": "",
-    "videoUrl": "",
+    "videoUrl": "https://www.youtube.com/watch?v=Dh0iQ8eKT8Q",
     "barColor": "rgb(255, 153, 0)"
   }
 ]
@@ -241,6 +241,10 @@ $cachedVotes = null;
         margin: 10px auto;
     }
 
+    .nameCell {
+        display: flex;
+    }
+
     .tallyCell {
         width: 90px;
         text-align: right;
@@ -250,6 +254,13 @@ $cachedVotes = null;
         display: inline-block;
         width: 1em;
         height: 1em;
+        position: relative;
+        top: 1px;
+    }
+
+    .itemLink {
+        display: inline-block;
+        margin-left: .25em;
     }
 
 </style>
@@ -270,7 +281,7 @@ $cachedVotes = null;
 </p>
 
 <h2 class="display-font visible-only-after-animation-started">
-    Let's see what the voting process looked like
+    This is what the voting process looked like
 </h2>
 
 <div id="vote-animation"
