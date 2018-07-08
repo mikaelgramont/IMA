@@ -239,6 +239,7 @@ $cachedVotes = null;
     .results-table {
         background: #ddd;
         margin: 10px auto;
+        padding: 10px;
     }
 
     .nameCell {
@@ -268,7 +269,6 @@ $cachedVotes = null;
 <h1 class="display-font">The results of the 4-down video contest are in!</h1>
 <p>If you've missed the whole thing, head over to <a href="<?php echo BASE_URL?>news/6-the-4-down-project">the news page about the 4 Down video project</a>.</p>
 
-
 <p>Before we reveal the name of winning video and team, let us tell you one thing: it was tight!</p>
 
 <p>Everyone's done a good job of engaging with the community and their circle of friends and followers, so no matter what happens, it means one thing: more visibility for mountainboarding, and that'a great thing!</p>
@@ -280,9 +280,9 @@ $cachedVotes = null;
     So without further ado, press the button below and see who won!
 </p>
 
-<h2 class="display-font visible-only-after-animation-started">
-    This is what the voting process looked like
-</h2>
+<h1 class="display-font visible-only-after-animation-started">
+    Detailed results
+</h1>
 
 <div id="vote-animation"
      data-startClass="animation-started"
@@ -292,20 +292,23 @@ $cachedVotes = null;
 </div>
 
 <div id="results-content" class="visible-after-animation">
-    <h1 class="display-font">And the winner is: XXX!</h1>
+    <h1 class="display-font">And the winner is: Phil Heinle with "Never Pro - Always Bro"!</h1>
     <p>
-        Congratulations to YYYY! We know they put a lot of work into their video edit and it showed!
+        Congratulations to Phil and his team mates! They put a lot of time into their project and it has paid off!
     </p>
     <p>
-        They've already committed to putting the prize money of $500 provided by <a href="https://www.colabtmtb.com>">Colab</a> to good use for mountainboarding!
+        Second place goes to Mason Moore with "Strapless", congratulations to him and his team as well!
     </p>
     <p>
-        Seeing how close this battle was, it's safe to say that all videos were great and everyone found their public! Thank you very much to all of you who worked on your video submission!
+        <a href="https://www.colabtmtb.com>">Colab</a> has sponsored the contest with 500€ for 1st and 200€ for 2nd place. We know these teams will put this money to good use and push mountainboarding!
+    </p>
+    <p>
+        With how close the voting was it's safe to say that all the videos were great and everyone found their public! Thank you very much to all of you who worked on your video submission!
     </p>
 
     <h1 class="display-font">From here on</h1>
     <p>
-        The IMA's already expressed our desire to run this contest again for 2019. The video premiere at the WFC was very well received and it made for a really nice start of for the event.
+        The IMA's already expressed our desire to run this contest again for 2019. The video premiere at the WMC was very well received and it made for a really nice start for the event.
     </p>
     <p>
         However, the big idea here was for this to be a way to kickstart more high-quality content creation for mountainboarding in general.<br>
