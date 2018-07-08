@@ -141,8 +141,8 @@ class VoteAnimation extends React.Component {
 
     render() {
         const date = new Date(this.state.time * 1000);
-        const day = date.toLocaleDateString({timeZone: 'UTC'});
-        const time = date.toLocaleTimeString([], {timeZone: 'UTC', hour: '2-digit', minute:'2-digit'});
+        const day = date.toLocaleDateString({timeZone: 'Europe/Paris'});
+        const time = date.toLocaleTimeString([], {timeZone: 'Europe/Paris', hour: '2-digit', minute:'2-digit'});
         const displayDate = `${day} ${time}`;
 
         return (
@@ -151,7 +151,10 @@ class VoteAnimation extends React.Component {
                 <div id="animation-focus" className="animation-content">
                     <ItemGraph stretch={this.props.stretch} items={this.props.items} tally={this.state.tally} />
 
-                    <div className="date">Date: {displayDate}</div>
+                    <div className="date">
+                        Date: {displayDate}<br/>
+                        (Europe Paris time)
+                    </div>
 
                     <ItemTable items={this.props.items} tally={this.state.tally} />
 
