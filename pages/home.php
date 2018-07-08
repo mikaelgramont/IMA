@@ -65,9 +65,6 @@
 		.carousel-item-3 {
 			background-image: url('./images/carousel/3-podium-960x513.jpg');
 		}
-        .carousel-item-4 {
-            background-image: url('./images/carousel/4-wmc-960x513.jpg');
-        }
 	}
 	.carousel-item-title {
 		display: block;
@@ -189,9 +186,6 @@
 
 <div id="home-carousel" class="carousel-container">
 	<div class="carousel">
-        <div class="carousel-item carousel-item-4">
-            <a href="<?php echo BASE_URL?>news/5-2018-wmc" class="carousel-item-title">World Mountainboard Championships 2018</a>
-        </div>
         <div class="carousel-item carousel-item-1">
             <a href="<?php echo BASE_URL?>events" class="carousel-item-title">Upcoming Events</a>
         </div>
@@ -206,7 +200,6 @@
 		<li class="dot current-dot" data-slide-id="0"></li>
 		<li class="dot" data-slide-id="1"></li>
 		<li class="dot" data-slide-id="2"></li>
-		<li class="dot" data-slide-id="3"></li>
 	</ul>
 	<button class="prev" aria-label="Previous"></button>
 	<button class="next" aria-label="Next"></button>
