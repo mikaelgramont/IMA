@@ -15,8 +15,8 @@
 	}
 
 	$photos = array();
-	// $scraper = new Instagram(INSTAGRAM_USERNAME, $pool, array(), true);
-	// $photos = $scraper->getPhotos();
+	$scraper = new Instagram(INSTAGRAM_USERNAME, $pool, array(), true, 'homepage_ig');
+	$photos = array_slice($scraper->getPhotos(), 0 , 3);
 
 	$news = PageHelper::getNewsArticlesHTML();
 ?>
@@ -148,6 +148,7 @@
 		}
 		.content-aside {
 			margin-left: 40px;
+            flex: 1 0;
 		}
 	}
 
@@ -162,17 +163,17 @@
 	}
 	.ig-image {
 		display: block;
-	}
+        width: 100%;
+    }
 	.ig-caption {
 		display: inline-block;
 		margin-top: 5px;
 	}
 	.newsletter-content-wrapper {
-		display: flex;
-		align-items: center;
+        padding-bottom: 10px;
 	}
 	.newsletter-link {
-		flex: 1 0 40%;
+        text-align: center;
 	}
 	.link-as-button {
 		background: #E82020;
@@ -207,14 +208,6 @@
 
 <div class="content-wrapper">
 	<div class="content-main">
-		<h1 class="display-font">Looking for mountainboarding info?</h1>
-		<p class="paragraph">
-			Hi there, welcome to the IMA's little corner of the internet.
-		</p>
-		<p class="paragraph">
-			Whether you're an event organizer looking for help, or a mountainboarder looking for official IMA-sanctioned competition results and event calendar, we hope to provide you with the most up-to-date information.
-		</p>
-
 		<?php
 			if ($news) {
 		?>
@@ -225,6 +218,13 @@
 				echo $news;
 			}
 		?>
+        <h1 class="display-font homepage-title-container">Looking for mountainboarding info?</h1>
+        <p class="paragraph">
+            Hi there, welcome to the IMA's little corner of the internet.
+        </p>
+        <p class="paragraph">
+            Whether you're an event organizer looking for help, or a mountainboarder looking for official IMA-sanctioned competition results and event calendar, we hope to provide you with the most up-to-date information.
+        </p>
 	</div>
 
 	<aside class="content-aside">
@@ -254,15 +254,13 @@
 			if ($photos) {
 				?>
 				<div class="ig">
-					<h2 class="display-font">The IMA on Instagram</h2>
+					<h2 class="display-font homepage-title-container">The IMA on Instagram</h2>
 					<ul class="ig-photos">
 						<?php foreach ($photos as $photo) {
-							$url = str_replace("s640x640", "s320x320", $photo["thumbnail_src"]);
-							$url = str_replace("s480x480", "s320x320", $url);
 							echo "<li class=\"ig-photo\">\n";
-							echo "<a href=\"https://www.instagram.con/p/".$photo["code"]."\">\n";
-							echo "<img class=\"ig-image\" src=\"".$url."\">\n";
-							echo "<span class=\"ig-caption\">".$photo["caption"]."</span>\n";
+							echo "<a href=\"https://www.instagram.com/p/".$photo->shortcode."\">\n";
+							echo "<img class=\"ig-image\" src=\"".$photo->src."\">\n";
+							echo "<span class=\"ig-caption\">".$photo->title."</span>\n";
 							echo "</a>\n";
 							echo "</li>\n";
 						}
