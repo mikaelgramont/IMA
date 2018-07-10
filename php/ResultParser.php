@@ -1,8 +1,9 @@
 <?php
 class ResultParser
 {
-	public static function buildResults(Google_Service_Drive $driveService, Google_Service_Sheets $sheetsService, Logger $logger, $folder)
+	public static function buildResults(Google_Service_Drive $driveService, Google_Service_Sheets $sheetsService, Logger $logger, $folder, $currentYearOnly = false)
 	{
+	    $thisYear = date('Y');
 		$results = array();
 		$logger->log("Scanning for result year folders...");
 
@@ -14,6 +15,11 @@ class ResultParser
 				$logger->log(sprintf("Skipping folder with non-numeric name '%s'", $year));
 				continue;
 			}
+			if ($currentYearOnly && $year != $thisYear) {
+                $logger->log(sprintf("Processing only year '%s' - skipping '%s'", $thisYear, $year));
+                continue;
+            }
+
 			$logger->log(sprintf("Scanning folder for year '%s'...", $year));
 		  	$resultYear = new ResultYear($year);
 		  	$locations = Helpers::getFileList($driveService, $folder["id"]);

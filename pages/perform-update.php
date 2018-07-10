@@ -59,7 +59,7 @@ if (!$errorMessage) {
 			require_once 'ResultTemplateGenerator.php';
 			require_once 'ResultYear.php';
 			try {
-				$results = ResultParser::buildResults($driveService, $sheetsService, $logger, RESULTS_FOLDER_ID);
+				$results = ResultParser::buildResults($driveService, $sheetsService, $logger, RESULTS_FOLDER_ID, true);
 				foreach ($results as $result) {
 					$generator = new ResultTemplateGenerator($result, RESULTS_HTML_PATH, $logger);
 					$generator->buildHTML();
