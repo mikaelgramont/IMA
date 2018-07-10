@@ -121,6 +121,15 @@ SEPARATOR
 	#mc_embed_signup .newsletter-button {
 		background: #E82020;
 	}
+
+    .archive {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .archive-title {
+        font-weight: bold;
+    }
 </style>
 <div class="newsletter-content">
 	<h1 class="display-font">Sign up for the IMA mountainboarding newsletter!</h1>
@@ -153,7 +162,12 @@ SEPARATOR
 		</form>
 	</div>
 
-	<h2 class="display-font">Our pledge</h2>
+    <section class="archive">
+        <p class="archive-title">Check out some of our past issues</p>
+        <script language="javascript" src="//mountainboardworld.us17.list-manage.com/generate-js/?u=0ab0e61406b85b50058113f6a&fid=7223&show=10"></script>
+    </section>
+
+    <h2 class="display-font">Our pledge</h2>
 	<p>We'll be sending these out no more than once a month (except for error corrections, we're not perfect!) and we will not share your contact information with anyone. If you wish to be removed from the list, you will get a chance to do so by following a link at the bottom of each email.</p>
 	<p>We want this to be a good thing for the community, so don't hesitate and sign up, you won't regret it!</p>
 
