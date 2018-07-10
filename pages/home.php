@@ -141,14 +141,13 @@
 
 	@media screen and (min-width: 640px) {
 		.content-main {
-			width: 600px;
 		}
 		.content-wrapper {
 			display: flex;
 		}
 		.content-aside {
 			margin-left: 40px;
-            flex: 1 0;
+            width: 250px;
 		}
 	}
 
