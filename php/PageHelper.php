@@ -159,11 +159,6 @@ HTML;
                 continue;
             }
 
-            // TEMPORARY
-            if ($file === '8-wmc18-summary.html') {
-                continue;
-            }
-
             $content = file_get_contents(NEWS_HTML_PATH . '/' . $file);
             $parts = explode(NEWS_SEPARATOR, $content);
 
