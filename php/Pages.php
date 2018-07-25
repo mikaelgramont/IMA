@@ -139,7 +139,15 @@ class Pages
 				'file' => '2018-video-contest.php',
 				'skipMenuEntry' => true,
 				'noContent' => false,
-			]
+			],
+            (object) [
+                'title' => 'IMA results',
+                'url' => 'results-embed',
+                'file' => 'results.php',
+                'skipMenuEntry' => true,
+                'noContent' => false,
+                'embed' => true,
+            ]
 		);
 	}
 }

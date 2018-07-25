@@ -49,6 +49,25 @@ HTML;
 	}
 ?>
 <style>
+<?php
+    if (isset($pageInfo->embed)) {
+?>
+
+    .navigation-menu,
+    .footer,
+    .page-title-container,
+    .page-title-container.with-cta {
+        display: none;
+    }
+    .banner {
+        width: 165px;
+        height: 43px;
+        margin: 15px 0 0;
+    }
+
+<?php
+    }
+?>
 	.year-form {
 		margin: 0;
 	} 
