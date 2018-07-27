@@ -20,6 +20,7 @@ HTML;
 
 	$errorMsg = "";
 	$years = PageHelper::getAvailableYears();
+	$showEmbedForm = false;
 	if (empty($years)) {
 		throw new Exception("No available results.");
 	}
@@ -46,6 +47,10 @@ HTML;
 		$resultsParam = PAGE_PARAMS[0];
 		// Format: 2017-foo-bar;
 		$resultsFile = RESULTS_HTML_PATH . $resultsParam . ".php";
+        if (!isset($pageInfo->embed)) {
+            $showEmbedForm = true;
+            $embedUrl = $resultsParam;
+        }
 	}
 ?>
 <style>
@@ -168,7 +173,17 @@ HTML;
 	<?php
 		}
 	?>
-
+    .embed-area {
+        margin: 0 auto 30px;
+        max-width: 400px;
+    }
+    .embed {
+        width: 100%;
+        height: 4em;
+    }
+    #copy-status {
+        color: #E82020;
+    }
 </style>
 
 
@@ -188,6 +203,16 @@ HTML;
 		require($resultsFile);
 		echo "</div>\n";
 	}
+
+	if ($showEmbedForm) {
+?>
+        <div class="embed-area">
+            <p>To share these results on your website, insert the following HTML code in your page:</p>
+            <textarea readonly class="embed" id="embed-textarea"><iframe src="<?php echo BASE_URL.'results-embed/'.$resultsParam ?>" border="0" style="max-width: 600px; height: 500px"></iframe>            </textarea>
+            <span id="copy-status" hidden>The embed was code copied in the clipboard!</span>
+        </div>
+<?php
+    }
 ?>
 <script>
 	(function() {
@@ -198,7 +223,19 @@ HTML;
 			document.getElementById("year-form").submit();
 		});
 		<?php
-			}
+			} else {
+		?>
+            var embed = document.getElementById("embed-textarea");
+            if (embed) {
+                embed.addEventListener("focus", function() {
+                    embed.select();
+                    document.execCommand('copy');
+                    document.getElementById('copy-status').hidden = false;
+                });
+            }
+        <?php
+            }
+
 		?>
 		// CLICK ON EXPAND BUTTONS
 	    on('.wrapper', 'click', '.expand-cell-button', function(e) {
