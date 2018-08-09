@@ -97,8 +97,12 @@
     <div class="about-contact">
         <h1 class="display-font title-container">Get in touch</h1>
         <p class="paragraph">
-            To get in touch with us, you can write to: <br>
-            <a href="mailto:mountainboardworld@gmail.com">mountainboardworld@gmail.com</a>
+            For events and coordination, please write to: <br>
+            <a href="mailto:<?php echo EMAIL_INTERNATIONAL_COORDINATION ?>"><?php echo EMAIL_INTERNATIONAL_COORDINATION ?></a>
+        </p>
+        <p class="paragraph">
+            For general inquiries, please write to: <br>
+            <a href="mailto:<?php echo EMAIL_IMA ?>"><?php echo EMAIL_IMA ?></a>
         </p>
     </div>
     <div class="about-content">
