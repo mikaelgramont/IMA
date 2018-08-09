@@ -41,14 +41,6 @@
         height: 240px;
     }
 
-    .board-member .board-member-metadata {
-        padding: 0 0 0 20px;
-        flex: 1 0;
-    }
-    .board-member:nth-child(even) .board-member-metadata {
-        padding: 0 20px 0 0;
-    }
-
     @media screen and (max-width: 600px) {
         .board-members,
         .board-member {
@@ -62,6 +54,12 @@
         }
         .board-member:nth-child(even) {
             background: #D8D8D8;
+            width: auto;
+            margin: 20px -9px;
+            padding: 9px;
+        }
+        .board-member-name {
+            text-align: center;
         }
     }
     @media screen and (min-width: 800px) {
@@ -73,6 +71,19 @@
         .about-contact {
             margin-left: 40px;
             width: 300px;
+        }
+
+        .board-member .board-member-metadata {
+            padding: 0 0 0 20px;
+            flex: 1 0;
+        }
+
+        .board-member:nth-child(even) .board-member-metadata {
+            padding: 0 20px 0 0;
+        }
+
+        .board-member-name {
+            margin-top: 0;
         }
     }
 </style>
@@ -133,22 +144,45 @@
             <li class="board-member">
                 <img class="board-member-image" src="<?php echo BASE_URL?>images/board-member-kody.jpg" alt="" aria-label="Photo of Kody" />
                 <div class="board-member-metadata">
-                    <h2 class="">Kody Stewart - President</h2>
-                    <p>BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA </p>
+                    <h2 class="board-member-name">Kody Stewart - President</h2>
+                    <p class="paragraph">
+                        Kody's worked on some of the largest and most prestigious sport events,
+                        with some of the biggest brands. He uses this experience to help the IMA grow mountainboarding.
+                    </p>
+                    <p class="paragraph">
+                        As an athlete, Kody's been a pro mountainboarder for over 15 years. He's worked with MBS, Ground Industries and
+                        recently started Colab. He rides it all, and he charges harder than most.
+                    </p>
                 </div>
             </li>
             <li class="board-member">
                 <img class="board-member-image" src="<?php echo BASE_URL?>images/board-member-matt.jpg" alt="" aria-label="Photo of Matt" />
                 <div class="board-member-metadata">
-                    <h2 class="">Matt Brind - Director of Operations</h2>
-                    <p>BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA </p>
+                    <h2 class="board-member-name">Matt Brind - Director of Operations</h2>
+                    <p class="paragraph">
+                        Matt's known as one of the best mountainboarding athletes of all time. He's won more World
+                        Championship titles than anyone else, and if you know him, you know he's also one of the nicest
+                        people you'll meet.
+                    </p>
+                    <p class="paragraph">
+                        If you're from the UK, you may also know Matt as the face of the ATBA UK, and as the person
+                        behind the rules and the racing organisation. We're lucky to have Matt as an expert on everything
+                        racing.
+                    </p>
                 </div>
             </li>
             <li class="board-member">
                 <img class="board-member-image" src="<?php echo BASE_URL?>images/board-member-mika.jpg" alt="" aria-label="Photo of Mikael" />
                 <div class="board-member-metadata">
-                    <h2 class="">Mikael Gramont - Treasurer</h2>
-                    <p>BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA </p>
+                    <h2 class="board-member-name">Mikael Gramont - Treasurer</h2>
+                    <p class="paragraph">
+                        Mika's been managing mountainboarding communities on the internet for over 15 years. As a web
+                        developer, he's helping the IMA by building tools such as the IMA newsletter and website.
+                    </p>
+                    <p class="paragraph">
+                        He's also been involved as a founding member of the French AMTB and the Toulouse local club
+                        TMC31, designing and building the local park.
+                    </p>
                 </div>
             </li>
         </ul>
