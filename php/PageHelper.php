@@ -151,19 +151,16 @@ HTML;
 
     public static function getNewsArticlesHTML() {
         $news = array();
-        $files = scandir(NEWS_HTML_PATH);
+        $files = array_filter(scandir(NEWS_HTML_PATH), function($item) {
+          return !is_dir(NEWS_HTML_PATH.'/' . $item);
+        });
         foreach ($files as $file) {
-            $extension = substr($file, -5);
-            $name = substr($file, 0, -5);
-            if ($extension != ".html") {
-                continue;
+            $newsPage = new NewsPage(BASE_URL, NEWS_SEPARATOR, NEWS_HTML_PATH, $file);
+            if (!$newsPage->isStatic()) {
+              continue;
             }
 
-            $content = file_get_contents(NEWS_HTML_PATH . '/' . $file);
-            $parts = explode(NEWS_SEPARATOR, $content);
-
-            $url = BASE_URL . 'news/'.$name;
-            $news[$name] = '<li><a class="news-link" href="'.$url.'">' . $parts[1] . '</a></li>';
+            $news[$newsPage->getName()] = $newsPage->getHomePageMarkup();
         }
         krsort($news);
 
