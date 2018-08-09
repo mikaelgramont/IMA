@@ -16,7 +16,11 @@
 
 	$photos = array();
 	$scraper = new Instagram(INSTAGRAM_USERNAME, $pool, array(), true, 'homepage_ig');
-	$photos = array_slice($scraper->getPhotos(), 0 , 3);
+	try {
+        $photos = array_slice($scraper->getPhotos(), 0, 3);
+    } catch (Exception $e) {
+	    $photos = [];
+    }
 
 	$news = PageHelper::getNewsArticlesHTML();
 ?>
