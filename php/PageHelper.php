@@ -159,21 +159,13 @@ HTML;
             if (!$newsPage->isStatic()) {
               continue;
             }
-
+            $newsPage->parse();
             $news[$newsPage->getName()] = $newsPage->getHomePageMarkup();
         }
-        krsort($news);
-
-        $ret = array();
-        $i = 0;
-        foreach($news as $key => $val) {
-            if ($i >= NEWS_COUNT) {
-                break;
-            }
-            $ret[] = $val;
-            $i++;
+        natsort($news);
+        for ($i = 0 ; $i < NEWS_COUNT; $i++) {
+          $ret[] = array_pop($news);
         }
-
         return '<ul class="news">' . implode("\n", $ret) . '</ul>';
     }
 
