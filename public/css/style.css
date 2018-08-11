@@ -424,3 +424,17 @@ body.modal-visible .overlay {
 	max-width: 90vw;
 	margin: 0 auto;
 }
+
+/**
+ * News
+ */
+.news-title {
+	display: inline;
+}
+
+.news-date {
+	font-style: italic;
+	opacity: 0.5;
+	display: block;
+}
+

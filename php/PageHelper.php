@@ -151,49 +151,30 @@ HTML;
 
     public static function getNewsArticlesHTML() {
         $news = array();
-        $files = scandir(NEWS_HTML_PATH);
+        $files = array_filter(scandir(NEWS_HTML_PATH), function($item) {
+          return !is_dir(NEWS_HTML_PATH.'/' . $item);
+        });
         foreach ($files as $file) {
-            $extension = substr($file, -5);
-            $name = substr($file, 0, -5);
-            if ($extension != ".html") {
-                continue;
+            $newsPage = new NewsPage(BASE_URL, NEWS_SEPARATOR, NEWS_HTML_PATH, $file);
+            if (!$newsPage->isStatic()) {
+              continue;
             }
-
-            $content = file_get_contents(NEWS_HTML_PATH . '/' . $file);
-            $parts = explode(NEWS_SEPARATOR, $content);
-
-            $url = BASE_URL . 'news/'.$name;
-            $news[$name] = '<li><a class="news-link" href="'.$url.'">' . $parts[1] . '</a></li>';
+            $newsPage->parse(OG_URL);
+            $news[$newsPage->getName()] = $newsPage->getHomePageMarkup();
         }
-        krsort($news);
-
-        $ret = array();
-        $i = 0;
-        foreach($news as $key => $val) {
-            if ($i >= NEWS_COUNT) {
-                break;
-            }
-            $ret[] = $val;
-            $i++;
+        natsort($news);
+        for ($i = 0 ; $i < NEWS_COUNT; $i++) {
+          $ret[] = array_pop($news);
         }
-
         return '<ul class="news">' . implode("\n", $ret) . '</ul>';
     }
 
-    public static function getNewsArticleMeta($pageInfo) {
-        $param = PAGE_PARAMS[0];
-        // Format: baz-foo-bar;
-        $file = NEWS_HTML_PATH . $param . ".html";
-        if (!file_exists($file)) {
-            $errorMsg = "No news by that name found";
-        }
-        
-        $content = file_get_contents($file);
-        $parts = explode(NEWS_SEPARATOR, $content);
-
-        $meta = $parts[0]; 
-        $meta = str_replace("\$OG_URL/", OG_URL, $meta);
-        return $meta;
+    public static function getNewsArticleMeta() {
+      $param = PAGE_PARAMS[0];
+      $newsPage = new NewsPage(BASE_URL, NEWS_SEPARATOR, NEWS_HTML_PATH,  $param . ".html");
+      $newsPage->parse(OG_URL);
+      $meta = $newsPage->getMeta();
+      return $meta;
     }
 
     public static function metaHasImage($meta) {

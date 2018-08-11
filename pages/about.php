@@ -180,8 +180,9 @@
                 <div class="board-member-metadata">
                     <h2 class="board-member-name">Mikael Gramont - Treasurer</h2>
                     <p class="paragraph">
-                        Mika's been managing mountainboarding communities on the internet for over 15 years. As a web
-                        developer, he's helping the IMA by building tools such as the IMA newsletter and website.
+                        Mika's been busy managing mountainboarding communities on the internet for over 15 years. As an
+                        experienced web developer, he's helping the IMA by building tools such as the IMA newsletter and
+                        website.
                     </p>
                     <p class="paragraph">
                         He's also been involved as a founding member of the French AMTB and the Toulouse local club
