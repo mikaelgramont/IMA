@@ -18,7 +18,7 @@ class Head
 
 		if (PageHelper::pageContentHasImageMeta($pageInfo)) {
 			if(PageHelper::isNewsPage($pageInfo)) {
-				$OGMeta = PageHelper::getNewsArticleMeta($pageInfo);			
+				$OGMeta = PageHelper::getNewsArticleMeta();
 			} else {
 				$OGMeta = PageHelper::getPageMeta($pageInfo);
 			}
@@ -32,29 +32,30 @@ class Head
 			$additionalOGImageMeta = "<meta property=\"og:image\" content=\"{$defaultImage}\"/>";
 
 			$OGMeta = <<<HTML
-			<meta property="og:title" content="{$title}"/>
-			<meta property="og:description" content="{$description}"/>
+            <meta property="og:title" content="{$title}"/>
+            <meta property="og:description" content="{$description}"/>
 
 HTML;
 		}
 		$content = <<<HTML
-			<meta name="Content-Type" content="text/html; charset=utf-8" >
-			<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width" >
-			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
-			<meta name="Content-Language" content="en" >
-			<meta name="keywords" content="{$keywords}">
+        <meta name="Content-Type" content="text/html; charset=utf-8" >
+        <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+        <meta name="Content-Language" content="en" >
+        <meta name="keywords" content="{$keywords}">
 {$OGMeta}{$additionalOGImageMeta}
-			<meta property="og:url" content="{$url}"/>
-			<meta property="og:type" content="website"/>
-			<meta property="og:site_name" content="{$siteName}"/>
-			
-            <link rel="apple-touch-icon" sizes="180x180" href="{$base}images/apple-touch-icon.png">
-            <link rel="icon" type="image/png" sizes="32x32" href="{$base}images/favicon-32x32.png">
-            <link rel="icon" type="image/png" sizes="16x16" href="{$base}images/favicon-16x16.png">
-            <link rel="manifest" href="{$base}images/site.webmanifest">
-            <link rel="mask-icon" href="{$base}images/safari-pinned-tab.svg" color="#5bbad5">
-            <meta name="msapplication-TileColor" content="#da532c">
-            <meta name="theme-color" content="#F7F7F7">			
+        <meta property="og:url" content="{$url}"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:site_name" content="{$siteName}"/>
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="{$base}images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="{$base}images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="{$base}images/favicon-16x16.png">
+        <link rel="manifest" href="{$base}images/site.webmanifest">
+        <link rel="mask-icon" href="{$base}images/safari-pinned-tab.svg" color="#5bbad5">
+        
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#F7F7F7">			
 
 HTML;
 		return $content;		
@@ -71,9 +72,9 @@ HTML;
 		}
 		
 		return <<<HTML
-		<title>
-			{$fullName}
-		</title>
+
+        <title>{$fullName}</title>
+
 
 HTML;
 

@@ -159,7 +159,7 @@ HTML;
             if (!$newsPage->isStatic()) {
               continue;
             }
-            $newsPage->parse();
+            $newsPage->parse(OG_URL);
             $news[$newsPage->getName()] = $newsPage->getHomePageMarkup();
         }
         natsort($news);
@@ -169,20 +169,12 @@ HTML;
         return '<ul class="news">' . implode("\n", $ret) . '</ul>';
     }
 
-    public static function getNewsArticleMeta($pageInfo) {
-        $param = PAGE_PARAMS[0];
-        // Format: baz-foo-bar;
-        $file = NEWS_HTML_PATH . $param . ".html";
-        if (!file_exists($file)) {
-            $errorMsg = "No news by that name found";
-        }
-        
-        $content = file_get_contents($file);
-        $parts = explode(NEWS_SEPARATOR, $content);
-
-        $meta = $parts[0]; 
-        $meta = str_replace("\$OG_URL/", OG_URL, $meta);
-        return $meta;
+    public static function getNewsArticleMeta() {
+      $param = PAGE_PARAMS[0];
+      $newsPage = new NewsPage(BASE_URL, NEWS_SEPARATOR, NEWS_HTML_PATH,  $param . ".html");
+      $newsPage->parse(OG_URL);
+      $meta = $newsPage->getMeta();
+      return $meta;
     }
 
     public static function metaHasImage($meta) {

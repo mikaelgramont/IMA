@@ -88,7 +88,7 @@ HTML;
 	}
 
 	.category-list {
-		margin: 0 0 0 10px;
+		margin: 0px;
 		padding: 0;
 		list-style: none;
 		display: flex;
@@ -96,10 +96,10 @@ HTML;
 	}
 
 	.category {
-	    margin: 0 auto 30px;
+	  margin: 0 auto 10px;
 		width: 300px;
-    	padding: 0 5px;
-    	box-sizing: border-box;
+    padding: 0 5px;
+    box-sizing: border-box;
 	}
 	.category-name {
 		color: #E82020;
