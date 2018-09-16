@@ -10,10 +10,22 @@ if (strpos($param, '..') !== false) {
   .news-article p {
     text-align: justify;
   }
+
   .news-title-wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
+    margin-bottom: 1em;
+  }
+
+  @media screen and (min-width: 640px) {
+    .news-title-wrapper {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      margin-bottom: 0;
+    }
+
+    .news-date::before {
+      content: " - ";
+    }
   }
 
   .news-date {

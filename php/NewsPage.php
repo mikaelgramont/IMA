@@ -103,7 +103,7 @@ HTML;
   <h1 class="display-font news-title">
     {$this->getTitle()}
   </h1>
-  <time datetime="{$this->getDate()}" class="news-date">- {$this->getFormattedDate()}</time>
+  <time datetime="{$this->getDate()}" class="news-date">{$this->getFormattedDate()}</time>
 </div>
 <p>{$this->getDescription()}</p>
   
