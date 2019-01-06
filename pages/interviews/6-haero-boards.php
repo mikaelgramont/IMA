@@ -1,6 +1,7 @@
 <!-- META -->
 <meta property="og:title" content="Getting to know... Haero Boards"/>
 <meta property="og:description" content="An IMA interview of Haero Boards' founder, Phil Heinle."/>
+<meta property="og:image" content="$OG_URL/images/interviews/6-haero/og.png"/>
 
 SEPARATOR
 
