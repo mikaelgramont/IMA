@@ -401,6 +401,10 @@ body.modal-visible .overlay {
     background-image: url('../images/link.svg');
 }
 
+.embed-wrapper {
+	text-align: center;
+}
+
 /**
  * Interviews
  */
@@ -421,9 +425,14 @@ body.modal-visible .overlay {
 
 .interview-image img {
 	display: block;
-	max-width: 90vw;
+	max-width: 100%;
 	margin: 0 auto;
 }
+
+.question {
+	font-weight: bold;
+}
+
 
 /**
  * News
