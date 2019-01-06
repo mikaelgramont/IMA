@@ -27,6 +27,9 @@ SEPARATOR
 <p class="question">
   Mr Phil Heinle please introduce yourself.
 </p>
+<p class="interview-image">
+  <img src="<?php echo BASE_URL ?>images/interviews/6-haero/phil.jpg" alt="Phil Heinle boardsliding">
+</p>
 <p>
   Hey guys, im Phil from Germany and I am a mountainboard addict since 2009.
   I was always into shaping my dreams and bring them to life. Starting with shaping my own dirts to building a World Championship track ending up with shaping the mountainboard deck we always dreamed of.
@@ -77,7 +80,7 @@ SEPARATOR
 </p>
 <p>
   Haha okay I knew you wanna know more details. The Rumors are true. Let's get into detail about the why first.<br>
-  As we built that first prototypes for us, it was never our intention to go public with them. But as <a href="https://www.instagram.com/p/BXvXvAEBPpO/?utm_source=ig_web_copy_link">we tested the first working prototypes with other riders</a>, we got really mind blowing feedback and many of them asking for the same deck.
+  As we built that first prototypes for us, it was never our intention to go public with them. But as <a target="_blank" href="https://www.instagram.com/p/BXvXvAEBPpO/?utm_source=ig_web_copy_link">we tested the first working prototypes with other riders</a>, we got really mind blowing feedback and many of them asking for the same deck.
 </p>
 <p>
   This was the time we decided to go one step further. We tried to convince our good old friend JoMo from Flame Mountainboards to build a new mould and build some Decks for us and friends. Unfortunately we found out a mould which could be strong enough to give birth to a small batch was too expensive for some decks for friends. The decks would´ve been more than 400€ in retail Price if you recalculate the set up costs for 10 Decks. So JoMo couldn’t help us without charging us a big amount of cash. We thought this project will never come alive beside our 2 running prototypes :D but people kept asking for when we want to build that decks for them haha so we put our minds back together and came up with the idea of making this a community project. We found another producer which had cheaper material prices and calculated, we could afford the set up costs if we could get 30 Decks sold to the public.
@@ -89,7 +92,11 @@ SEPARATOR
 
 <p>
   So yeah that’s what we want to do now! Asking 30 of our mountainboard friends to buy one of our shred tools, to make this innovation happen. With selling 30 Decks we can afford to produce a batch of 50 Decks. Enough to hook up our new team riders with Decks and to give away some of them at the upcoming competitions. We want to achieve this Goal via Fundraising. The Riders can decide if they want this change in the Industry or not.
-  Sounds like a plan? Go ahead and support our vision! Follow our Pages <a href="https://www.facebook.com/Haeroboards">on Facebook</a> and <a href="https://www.instagram.com/haeroboards">on Instagram</a> and stay up to date, when we publish our fundraising.
+  Sounds like a plan? Go ahead and support our vision! Follow our Pages <a target="_blank" href="https://www.facebook.com/Haeroboards">on Facebook</a> and <a target="_blank" href="https://www.instagram.com/haeroboards">on Instagram</a> and stay up to date, when we publish our fundraising.
+</p>
+
+<p>
+  So what separates our deck from the others? I tried to break down all features we engineered and changed compared to the common deck design on our Facebook and Instagram Page. Here you can see a small selection:
 </p>
 
 <div class="embed-wrapper">
@@ -101,7 +108,7 @@ SEPARATOR
 
   <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FHaeroboards%2Fposts%2F10155661578291402%3A0&width=500" width="500" height="595" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 
-  <p>A few of the many features detailed on <a href="https://www.facebook.com/Haeroboards/posts/">Haero Boards' Facebook page</a></p>
+  <p>A few of the many features detailed on <a target="_blank" href="https://www.facebook.com/Haeroboards/posts/">Haero Boards' Facebook page</a></p>
 </div>
 
 <p class="question">
@@ -124,6 +131,11 @@ SEPARATOR
 <p class="question">
   The decks we have seen is a 3 ply. What is your core material? And what is the reason behind 3 larger plys instead of say 6 smaller plys?
 </p>
+
+<p class="interview-image">
+  <img src="<?php echo BASE_URL ?>images/interviews/6-haero/deck3.jpg" alt="Haero's BroModel deck with 3 plys">
+</p>
+
 <p>
   I really don’t want to get too detailed about what material we are using, but it will be a 100% European Wood!<br>
   The reason is really easy to explain, Resin is the most heavy material in the plywood board construction. And to reduce weight it totally makes sense to reduce the glued surfaces. The best deck would be with only one Core, but that’s a real challenge, but we are on that!! Lets see how our first factory made boards will look like ;)<br>
@@ -133,6 +145,9 @@ SEPARATOR
 <p class="question">
   Joel has been riding this deck for a few years now. What are the main differences between what he has been riding compared to the one coming out?
 </p>
+<p class="interview-image">
+  <img src="<?php echo BASE_URL ?>images/interviews/6-haero/manufacturing.jpg" alt="Tobias hard at work">
+</p>
 <p>
   Not really much, we somehow got that first shot pretty good in our eyes. We got some feedback about the Deck length, the stance preferences and the truck angles. We tried to satisfy all those preferences with our Wheelbase and Stance Options and the Wedge System without worsen the other parameters. The new deck will have a slightly deeper camber. We tested those features already. We built 3 different camber depths to find out the optimum pop and rail lock but it had to be still mellow enough to not hang up on those quarter copings while performing your beloved rock to fakie or rock n rolls. The deck will also be a bit lighter as we try the one core system and surely you always have too much resin inside if you do it DIY Style.
 </p>
@@ -140,6 +155,11 @@ SEPARATOR
 <p class="question">
   Joel also rides a lot of street which can be hard on equipment that is as stiff as this deck. Did you guys run into any problems along the way and if so what have you changed to help fix that?
 </p>
+
+<p class="interview-image">
+  <img src="<?php echo BASE_URL ?>images/interviews/6-haero/joel-street.png" alt="Joel rides street">
+</p>
+
 <p>
   Surprisingly little. We´ve been really amazed, how good that deck still looks after 1 ½ years of almost daily riding in the park. We tried to build that deck as tough as possible and covered the bottom with the base and the top with the topsheet, so the fibres been protected, which seemed to pay out. The only thing happened was a scooter hitting the side of the deck so badly, that it caused the core to crack a bit. Nothing worrying, the deck is still tough, but we had to fix it with resin, to protect the core from water penetrating. After that we decided to hook up the new construction with ABS Sidewalls to make it tough enough to withstand all disasters.
 </p>
@@ -156,7 +176,8 @@ SEPARATOR
   Now the big question. How much?
 </p>
 <p>
-  Our intention was always to get the maximum out of this project. For the rider! Therefore we also tried to keep the price as “low” as the other top brands sell their decks. We are still in calculation mode, but we will be able to stay under 300€. The first 10 backers of our fundraising will get a 20% discount, the second 30 backers will get a 10% discount. So be fast and safe some coins!
+  Our intention was always to get the maximum out of this project. For the rider! Therefore we also tried to keep the price as “low” as the other top brands sell their decks. We are still in calculation mode, but we will be able to stay under 300€.<br>
+  The first 15 supporters of our fundraising will get a 20% discount, the next 10 supporters will get a 15% discount and the last 25 supporters will get a 10% discount. So be fast and save some coins!
 </p>
 
 <p class="question">
@@ -168,7 +189,7 @@ SEPARATOR
 <p>
   I think the new MBS Matrix II are a really good compromise if you are searching for a cheap and lightweight Truck. The only thing which was missing had been the hard shocks. After they came out, they are finally stiff enough to also charge BX Tracks from what I have seen. The only thing what's really annoying about them is, with the old matrix you could get cheap replacement top trucks. The new don’t? if you destroy your Top Trucks (which happens) you are forced to buy a new truck.. Why?
   The Trampa Vertigos are still good all rounders in my eyes, but they got quite expensive lately!
-  If you are looking for a truck which is really stable almost without speed wobbles and still lightweight, I would suggest to get one of the “Handmade in Germany” Flame Dirtpipes.
+  If you are looking for a truck which is really stable almost without speed wobbles and still lightweight, I would suggest to get one of the <a target="_blank" href="https://www.rideflame.de/shop/achsen/">“Handmade in Germany” Flame Dirtpipes or Reactors</a>.
 </p>
 <p class="interview-image">
   <img src="<?php echo BASE_URL ?>images/interviews/6-haero/flame-dirtpipes.jpg" alt="Flame mountainboard trucks">
@@ -177,7 +198,8 @@ SEPARATOR
   Maybe we can chat with JoMo about a freestyle oriented truck too. The thing is, bringing out something new is really expensive so people should buy it after. If not you're bankrupt really fast. That's why we [mountainboarding] lack innovation for sure.
 </p>
 <p>
-  I think the Binding World is really up to preference, i think. I dig the MBS F4 but some are badly screaming for a MBS F3 revival. What I really do love about the F5s is the style and adjustability, but what I really dislike are the Plastic L-Brackets, they destroy every direct power transmission to the deck. I may have some ideas for really good Freeride Bindings with fixed Heel Cups, but that’s just an idea floating my mind 😊 let's see what happens after I tested them.
+  I think the Binding World is really up to preference, i think. I dig the MBS F4 but some are badly screaming for a MBS F3 revival. What I really do love about the F5s is the style and adjustability, but what I really dislike are the Plastic L-Brackets, they destroy every direct power transmission to the deck. I have some ideas in mind to make better heel straps and bindings, but nothing ripe for decision. and in this sector you are only able to be successful with big batches so this is more up to the common brands. But like i said if someone is asking me for helping out with R&D i dont hear me say no.<br>
+  I also may have some ideas for really good Freeride Bindings with fixed Heel Cups, but that’s just an idea floating my mind 😊 let's see what happens after I tested them.
 </p>
 
 
