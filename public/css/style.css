@@ -56,6 +56,10 @@ p {
 	display: none;
 }
 
+em {
+  font-weight: 700;
+}
+
 /**
  * Text
  */
