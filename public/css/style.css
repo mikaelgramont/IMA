@@ -427,6 +427,9 @@ body.modal-visible .overlay {
 	color: #00ADD8;
 }
 
+.interview-image {
+	text-align: center;
+}
 .interview-image img {
 	display: block;
 	max-width: 100%;
