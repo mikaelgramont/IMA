@@ -99,7 +99,7 @@ HTML;
       return '';
     }
     ob_start();
-    include '../../pages/' . SUBDOMAIN_KEY . '/' . $pageInfo->file;
+    include '../pages/' . SUBDOMAIN_KEY . '/' . $pageInfo->file;
     $fileContent = ob_get_contents();
     $parts = explode(NEWS_SEPARATOR, $fileContent);
     // Only keep the last part, in case the file contains metas at the top.
@@ -115,7 +115,7 @@ HTML;
       return '';
     }
     ob_start();
-    include '../../pages/' . SUBDOMAIN_KEY . '/' . $pageInfo->file;
+    include '../pages/' . SUBDOMAIN_KEY . '/' . $pageInfo->file;
     $fileContent = ob_get_contents();
     $parts = explode(NEWS_SEPARATOR, $fileContent);
     // Only keep the last part, in case the file contains metas at the top.
