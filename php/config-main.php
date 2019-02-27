@@ -33,21 +33,21 @@ define('CREDENTIALS_PATH', __DIR__ . '/.credentials/credentials.json');
 define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
 define('CACHE_PATH', realpath(__DIR__ . '/../php/cache'));
 
-define('ARTICLES_HTML_PATH', './../pages/articles/');
+define('ARTICLES_HTML_PATH', './../pages/main/articles/');
 define('ARTICLES_SEPARATOR', 'SEPARATOR');
 
 define('EVENTS_CACHE_PATH', 'events/');
-define('EVENTS_HTML_PATH', './../pages/generated/events/');
+define('EVENTS_HTML_PATH', './../pages/main/generated/events/');
 
-define('INTERVIEWS_HTML_PATH', './../pages/interviews/');
+define('INTERVIEWS_HTML_PATH', './../pages/main/interviews/');
 define('INTERVIEWS_SEPARATOR', 'SEPARATOR');
 
-define('NEWS_HTML_PATH', './../pages/news/');
+define('NEWS_HTML_PATH', './../pages/main/news/');
 define('NEWS_SEPARATOR', 'SEPARATOR');
 define('NEWS_COUNT', 4);
 
 define('RESULTS_CACHE_PATH', 'results/');
-define('RESULTS_HTML_PATH', './../pages/generated/results/');
+define('RESULTS_HTML_PATH', './../pages/main/generated/results/');
 
 // If modifying these scopes, delete your previously saved credentials
 // at CREDENTIALS_PATH
