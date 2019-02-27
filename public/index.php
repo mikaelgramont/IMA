@@ -1,4 +1,7 @@
 <?php
+ini_set('xdebug.default_enable', false);
+ini_set('xdebug.html_errors', false);
+
 require_once __DIR__ . '/../php/config-main.php';
 session_start();
 $pages = Pages::getList();

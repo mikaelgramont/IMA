@@ -19,6 +19,7 @@ require_once 'Pages.php';
 require_once 'Utils.php';
 
 define('DEBUG', true);
+define('SUBDOMAIN_KEY', 'main');
 
 /******************************************************************************
  * GOOGLE DOCS PROCESSING CONSTANTS
