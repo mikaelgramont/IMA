@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/../php/config.php';
+require_once __DIR__ . '/../php/config-main.php';
 session_start();
 $pages = Pages::getList();
 

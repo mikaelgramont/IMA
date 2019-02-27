@@ -3,7 +3,7 @@
 if (php_sapi_name() != 'cli') {
   throw new Exception('This application must be run on the command line.');
 }
-require_once __DIR__.'/../php/config.php';
+require_once __DIR__ . '/../php/config-main.php';
 require_once 'Cache.php';
 require_once 'Helpers.php';
 require_once 'Logger.php';

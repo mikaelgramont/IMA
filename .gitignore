@@ -1,5 +1,5 @@
 php/.credentials/*.json
-php/config.php
+php/config-main.php
 php/client_secret*
 php/vendor
 php/composer.lock
