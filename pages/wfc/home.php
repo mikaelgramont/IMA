@@ -1,11 +1,4 @@
 <style>
-	.homepage-title-container {
-		background: #D8D8D8;
-	    padding: 9px 9px;
-	    margin: 0 -9px 5px -9px;
-	}
-
-	/* Rest of the page */
 	.content-wrapper {
 		flex-wrap: nowrap;
 	}
@@ -17,6 +10,14 @@
 		}
 	}
 
+  .sanctioned {
+    text-align: center;
+    margin: 10px 60px;
+    font-size: 0.8em;
+  }
+  .sanctioned a {
+    text-decoration: none;
+  }
 	.link-as-button {
 		background: #E82020;
 		display: inline-block;
@@ -24,28 +25,38 @@
 		padding: .5em;
 		color: #fff;
 		text-decoration: none;
-	}	
+	}
+  .registration-button-container {
+    text-align: center;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+  }
+  .more {
+    text-align: center;
+    font-size: .8em;
+  }
+  .down {
+    display: block;
+    margin: 0 auto;
+    width: 15px;
+    height: 15px;
+  }
 </style>
 
 <div class="content-wrapper">
 	<div class="content-main">
-		<?php
-			if ($news) {
-		?>
-			<div class="homepage-title-container">
-				<h1 class="display-font">Latest news</h1>
-			</div>
-		<?php
-				echo $news;
-			}
-		?>
-        <h1 class="display-font homepage-title-container">Looking for mountainboarding info?</h1>
-        <p class="paragraph">
-            Hi there, welcome to the IMA's little corner of the internet.
-        </p>
-        <p class="paragraph">
-            Whether you're an event organizer looking for help, or a mountainboarder looking for official IMA-sanctioned competition results and event calendar, we hope to provide you with the most up-to-date information.
-        </p>
+    <p class="sanctioned">
+      A mountainboard competition sanctioned by the <a href="<?php echo IMA_URL ?>">IMA</a>
+    </p>
+    <p class="full">
+      <img src="<?php echo BASE_URL ?>images/poster.jpg" alt="The official event poster">
+    </p>
+    <p class="registration-button-container">
+      <a href="<?php echo BASE_URL ?>registration" class="link-as-button">Register</a>
+    </p>
+    <p class="more">
+      More details<br>
+      <img src="<?php echo BASE_URL ?>images/down-arrow.svg" alt="" class="down">
+    </p>
 	</div>
-
 </div>

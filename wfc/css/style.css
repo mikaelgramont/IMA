@@ -17,15 +17,15 @@
  */
 body {
 	margin: 0;
-	background-color: #F7F7F7;	
-	color: #1A1705;
+	background-color: #1A1705;
+	color: #F7F7F7;
 	font-family: Raleway, Arial;
 	font-size: 16px;
 	font-display: swap;
 }
 
 a {
-	color: #1A1705;
+	color: #E82020;
 }
 
 h1 {
@@ -90,14 +90,14 @@ body {
 }
 
 .page-header {
-	margin-bottom: 30px;
+	margin-bottom: 10px;
 }
 
 .banner {
 	display: block;
 	margin: 15px auto 0;
 	width: 330px;
-	height: 87px;
+	height: 83px;
 	background: url('../images/logo.png');
 	background-size: cover;
 }
@@ -203,7 +203,7 @@ body.modal-visible .overlay {
 }
 
 .navigation-menu {
-	display: flex;
+	display: table;
 	position: fixed;
 	z-index: 1;
 	bottom: 0;
@@ -218,7 +218,7 @@ body.modal-visible .overlay {
 }
 
 .navigation-menu__entry {
-	flex: 1 0;
+	display: table-cell;
 	list-style: none;
 	text-align: center;	
 }
@@ -280,20 +280,20 @@ body.modal-visible .overlay {
 	background-image: url('../images/home-selected.svg');
 }
 
-.navigation-menu__entry.calendar .navigation-menu__entry-image {
-	background-image: url('../images/calendar.svg');
+.navigation-menu__entry.location .navigation-menu__entry-image {
+	background-image: url('../images/location.svg');
 }
 
-.navigation-menu__entry.calendar.selected .navigation-menu__entry-image {
-	background-image: url('../images/calendar-selected.svg');
+.navigation-menu__entry.location.selected .navigation-menu__entry-image {
+	background-image: url('../images/location-selected.svg');
 }
 
-.navigation-menu__entry.results .navigation-menu__entry-image {
-	background-image: url('../images/results.svg');
+.navigation-menu__entry.competition .navigation-menu__entry-image {
+	background-image: url('../images/competition.svg');
 }
 
-.navigation-menu__entry.results.selected .navigation-menu__entry-image {
-	background-image: url('../images/results-selected.svg');
+.navigation-menu__entry.competition.selected .navigation-menu__entry-image {
+	background-image: url('../images/competition-selected.svg');
 }
 
 .navigation-menu__entry.organizers .navigation-menu__entry-image {
@@ -304,16 +304,15 @@ body.modal-visible .overlay {
 	background-image: url('../images/organizers-selected.svg');
 }
 
-.navigation-menu__entry.about .navigation-menu__entry-image {
-	background-image: url('../images/about.svg');
+.navigation-menu__entry.registration .navigation-menu__entry-image {
+	background-image: url('../images/registration.svg');
 }
 
-.navigation-menu__entry.about.selected .navigation-menu__entry-image {
-	background-image: url('../images/about-selected.svg');
+.navigation-menu__entry.registration.selected .navigation-menu__entry-image {
+	background-image: url('../images/registration-selected.svg');
 }
 
-.page-title-container,
-.footer {
+.page-title-container {
 	background: #D8D8D8;
 	padding: 9px 9px;
 }
@@ -321,7 +320,7 @@ body.modal-visible .overlay {
 .footer {
 	line-height: 37px;
     text-align: center;
-    border-bottom: 15px solid #f7f7f7;
+    border-bottom: 15px solid #1A1705;
     margin-bottom: 50px; /* Height of the bottom bar. */
 }
 
@@ -427,10 +426,10 @@ body.modal-visible .overlay {
 	color: #00ADD8;
 }
 
-.interview-image {
+.full {
 	text-align: center;
 }
-.interview-image img {
+.full img {
 	display: block;
 	max-width: 100%;
 	margin: 0 auto;
