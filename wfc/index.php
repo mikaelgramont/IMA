@@ -67,7 +67,7 @@ if (!property_exists($pageInfo, 'noContent') || !$pageInfo->noContent) {
 ?>
 				</section>
 			</main>
-<?php echo Footer::renderFooter() ?>			
+<?php echo Footer::renderWfcFooter('#f7f7f7') ?>
 		</div>
 <?php echo Utils::analytics(ANALYTICS_ID); ?>
 	<div class="modal">

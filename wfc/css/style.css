@@ -8,11 +8,6 @@
 
 
 /**
- * Fonts
- */
-
-
-/**
  * Resets and overall styles
  */
 body {
@@ -220,7 +215,8 @@ body.modal-visible .overlay {
 .navigation-menu__entry {
 	display: table-cell;
 	list-style: none;
-	text-align: center;	
+	text-align: center;
+	vertical-align: middle;
 }
 
 .navigation-menu__entry-link {
@@ -228,6 +224,7 @@ body.modal-visible .overlay {
 	font-family: Helvetica, Arial;
 	font-size: .75em;
 	font-weight: 400;
+	color: #1A1705;
 }
 
 .navigation-menu__entry.selected .navigation-menu__entry-link {
@@ -317,6 +314,12 @@ body.modal-visible .overlay {
 	padding: 9px 9px;
 }
 
+.footer-separator {
+	width: 80%;
+	color: #f7f7f7;
+	margin: 30px auto;
+}
+
 .footer {
 	line-height: 37px;
     text-align: center;
@@ -379,6 +382,9 @@ body.modal-visible .overlay {
 	width: 32px;
 	height: 32px;
 	margin: 0 5px;
+}
+.footer-social-media-link svg {
+	fill: #F7F7F7;
 }
 
 /**

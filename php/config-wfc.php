@@ -37,15 +37,17 @@ define('ANALYTICS_ID', 'UA-110037113-1');
 
 
 /******************************************************************************
- * FACEBOOK CONSTANTS
+ * SOCIAL MEDIA CONSTANTS
  *****************************************************************************/
 define('FB_EVENT_URL', 'https://www.facebook.com/events/988415618023625/');
+define('YOUTUBE_URL', 'https://www.youtube.com/channel/UCXKsMfk4_H3CrDbJcpTbdgQ');
+define('INSTAGRAM_URL', 'https://www.instagram.com/mountainboardinfopl');
 
 
 /******************************************************************************
  * INSTAGRAM CONSTANTS
  *****************************************************************************/
-define('INSTAGRAM_USERNAME', 'mountainboardinfopl');
+
 
 
 /******************************************************************************
