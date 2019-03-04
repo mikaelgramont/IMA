@@ -7,14 +7,14 @@ class Pages
 			(object) [
 				'title' => 'Home',
 				'url' => '',
-				'file' => 'home.php',
+				'file' => 'registration.php',
 				'headerClass' => 'home',
 				'skipTitleInHead' => true,
 			],
 			(object) [
-				'title' => 'Location',
-				'url' => 'location',
-				'file' => 'location.php',
+				'title' => 'Venue',
+				'url' => 'venue',
+				'file' => 'venue.php',
 				'headerClass' => 'location',
 			],
 			(object) [

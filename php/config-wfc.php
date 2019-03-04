@@ -45,9 +45,10 @@ define('INSTAGRAM_URL', 'https://www.instagram.com/mountainboardinfopl');
 
 
 /******************************************************************************
- * INSTAGRAM CONSTANTS
+ * REGISTRATION CONSTANTS
  *****************************************************************************/
-
+define('REGISTRATION_COST', 35);
+define('REGISTRATION_DEADLINE', 'July 19th 2019');
 
 
 /******************************************************************************
