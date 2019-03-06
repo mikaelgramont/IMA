@@ -220,6 +220,7 @@ body.modal-visible .overlay {
 }
 
 .navigation-menu__entry-link {
+	margin: 0 10px;
 	text-decoration: none;
 	font-family: Helvetica, Arial;
 	font-size: .75em;
