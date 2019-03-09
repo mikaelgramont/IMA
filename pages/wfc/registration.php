@@ -34,7 +34,11 @@
   .add,
   .remove {
     background: #f7f7f7;
-    color: #1A1705;
+    color: #13120D;
+  }
+
+  .error {
+    color: #e00;
   }
 
   .start.hidden {
@@ -58,7 +62,7 @@
   }
   .step-title.current {
     background: #f7f7f7;
-    color: #1A1705;
+    color: #13120D;
   }
   .step-content {
     display: none;
@@ -177,7 +181,8 @@
         </dd>
         <dt class="step step-title step3">3 - Payment</dt>
         <dd class="step3 step-content">
-
+          <div id="paypal-button-container"></div>
+          <div id="paypal-generic-error" class="hidden error">Payment through Paypal failed, sorry! Please get in touch with us.</div>
         </dd>
       </dl>
     </form>
@@ -189,11 +194,14 @@
   (function() {
     var state;
     var stepEls;
-    let riderCount = 1;
+    var riderCount = 1;
     const MAX_RIDERS = 5;
     const costPerRider = parseFloat(<?php echo REGISTRATION_COST ?>, 10);
+    var totalCost = riderCount * costPerRider;
+    var hasRenderedPaypal = false;
 
     const formEl = document.getElementById('registration');
+    const errorEl = document.getElementById('paypal-generic-error');
 
     function getInputForRiderId(id) {
       const output = `
@@ -249,7 +257,6 @@
 
     const STATES = { STEP1: 'step1', STEP2: 'step2', STEP3: 'step3'};
 
-
     function goToStep1() {
       state = STATES.STEP1;
       stepEls = formEl.getElementsByTagName('dl')[0].children;
@@ -268,10 +275,10 @@
       updateSteps();
 
       continueEl.classList.add('hidden');
-      const firstNameEl = document.getElementById("rider_first_name0");
+      const firstNameEl = document.getElementById("rider_first_name1");
       firstNameEl.value = document.getElementById("registrator_first_name").value;
 
-      const lastNameEl = document.getElementById("rider_last_name0");
+      const lastNameEl = document.getElementById("rider_last_name1");
       lastNameEl.value = document.getElementById("registrator_last_name").value;
 
       firstNameEl.focus();
@@ -283,6 +290,40 @@
       updateSteps();
 
       continue2El.classList.add('hidden');
+
+      if (!hasRenderedPaypal) {
+        hasRenderedPaypal = true;
+        paypal.Buttons({
+          createOrder: function(data, actions) {
+            // Set up the transaction
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: totalCost
+                }
+              }]
+            });
+          },
+          onError: function(err) {
+            console.log('Error', err);
+            errorEl.classList.remove('hidden');
+
+          },
+          onApprove: function(data, actions) {
+            // Capture the funds from the transaction
+            return actions.order.capture().then(function(details) {
+              // Show a success message to your buyer
+              console.log('Transaction details', details);
+              console.log('Rider info', getRiderDetails());
+            });
+          }
+        }).render('#paypal-button-container');
+      }
+    }
+
+    function getRiderDetails() {
+      const inputs = formEl.querySelectorAll('.step2.step-content input');
+      return Array.from(inputs);
     }
 
     function addRider() {
@@ -308,7 +349,7 @@
     }
 
     function updateCountAndCost() {
-      const totalCost = costPerRider * riderCount;
+      totalCost = costPerRider * riderCount;
       totalCostEl.innerText = `${totalCost}`;
 
       riderCountEl.innerText = riderCount > 1 ? `${riderCount} riders` : '1 rider';
@@ -322,3 +363,5 @@
 
   })();
 </script>
+
+<script src="<?PHP echo PAYPAL_SCRIPT_SANDBOX ?>"></script>

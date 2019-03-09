@@ -52,6 +52,19 @@ define('REGISTRATION_DEADLINE', 'July 19th 2019');
 
 
 /******************************************************************************
+ * PAYPAL
+ *****************************************************************************/
+define('PAYPAL_ACCOUNT_SANDBOX', 'mgramont-seller-ima@gmail.com');
+define('PAYPAL_CLIENT_ID_SANDBOX', 'AbFntL971D7Go7yCJl9hSdp1rzCZ3PYwYLhUv6hXbmcVneQw7vfu8aPS0ZA0bvarN0F21AD75St_lEJn');
+define('PAYPAL_SECRET_SANDBOX', 'EOCMtIeYcbaHgkk1XRNIL6qXM8JWAN5xVRKVhORP0N4k9xGokBIHX9mI4dWSpmUlS7ZfB52FfAn9YRFK');
+define('PAYPAL_SCRIPT_SANDBOX', 'https://www.paypal.com/sdk/js?currency=EUR&client-id=' . PAYPAL_CLIENT_ID_SANDBOX);
+
+
+define('PAYPAL_ACCOUNT_PROD', '');
+define('PAYPAL_CLIENT_ID_PROD', '');
+define('PAYPAL_SECRET_PROD', '');
+
+/******************************************************************************
  * OPEN GRAPH
  *****************************************************************************/
 define('OG_TITLE', 'World Freestyle Championship - International Mountainboard Association');

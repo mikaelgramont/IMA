@@ -3,7 +3,7 @@
  * white #F7F7F7
  * gray #D8D8D8
  * red #E82020
- * black #1A1705
+ * black #13120D
  */
 
 
@@ -12,7 +12,7 @@
  */
 body {
 	margin: 0;
-	background-color: #1A1705;
+	background-color: #13120D;
 	color: #F7F7F7;
 	font-family: Raleway, Arial;
 	font-size: 16px;
@@ -225,7 +225,7 @@ body.modal-visible .overlay {
 	font-family: Helvetica, Arial;
 	font-size: .75em;
 	font-weight: 400;
-	color: #1A1705;
+	color: #F7F7F7;
 }
 
 .navigation-menu__entry.selected .navigation-menu__entry-link {
@@ -324,7 +324,7 @@ body.modal-visible .overlay {
 .footer {
 	line-height: 37px;
     text-align: center;
-    border-bottom: 15px solid #1A1705;
+    border-bottom: 15px solid #13120D;
     margin-bottom: 50px; /* Height of the bottom bar. */
 }
 
