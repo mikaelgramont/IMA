@@ -34,7 +34,14 @@ class Pages
 				'url' => 'registration',
 				'file' => 'registration.php',
 				'headerClass' => 'registration',
-			]
+			],
+			(object) [
+        'title' => 'Home',
+        'url' => 'paypal-transaction-complete',
+        'file' => 'paypal-transaction-complete.php',
+        'skipMenuEntry' => true,
+        'noContent' => true,
+      ],
     );
 	}
 }
