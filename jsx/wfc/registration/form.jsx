@@ -15,7 +15,7 @@ export default class RegistrationForm extends React.Component {
     super(props);
 
     this.state = {
-      registrar: null,
+      registrar: {firstName: null, lastName: null},
       riders: [],
       totalCost: 0,
       currentStep: INITIAL,

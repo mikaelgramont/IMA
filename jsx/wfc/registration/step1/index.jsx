@@ -32,9 +32,12 @@ export default ({isCurrent, onNext}) => (
                 name="firstName"
                 render={({ input, meta }) => (
                   <div>
-                    <label htmlFor="firstName">First name</label>
+                    <label htmlFor="firstName">
+                      First name
+                      {meta.touched && meta.error && <span className="error">{meta.error}</span>}
+                    </label>
                     <input type="text" id="firstName" name="firstName" placeholder="Your first name" {...input}/>
-                    {meta.touched && meta.error && <span className="error">{meta.error}</span>}
+
                   </div>
                 )}
               />
@@ -45,9 +48,11 @@ export default ({isCurrent, onNext}) => (
                 name="lastName"
                 render={({ input, meta }) => (
                   <div>
-                    <label htmlFor="lastName">Last name</label>
+                    <label htmlFor="lastName">
+                      Last name
+                      {meta.touched && meta.error && <span className="error">{meta.error}</span>}
+                    </label>
                     <input type="text" id="lastName" name="lastName" placeholder="Your last name" {...input}/>
-                    {meta.touched && meta.error && <span className="error">{meta.error}</span>}
                   </div>
                 )}
               />

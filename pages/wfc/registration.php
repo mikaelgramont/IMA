@@ -44,6 +44,8 @@
 
   .error {
     color: #e00;
+    display: inline-block;
+    margin-left: 3px;
   }
 
   .start.hidden {
