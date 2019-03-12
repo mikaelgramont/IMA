@@ -42,6 +42,20 @@
     margin-left: 10px;
   }
 
+  .remove-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0 1em;
+    cursor: pointer;
+  }
+  .remove-icon {
+    width: 1em;
+    fill: #f7f7f7;
+  }
+  .remove-button[disabled] .remove-icon {
+    fill: #888;
+  }
   .error {
     color: #e00;
     display: inline-block;
@@ -95,17 +109,19 @@
   }
   .form-item label {
     display: inline-block;
-    width: calc(30% - 15px);
+    width: calc(35% - 15px);
     margin-right: 10px;
     text-align: right;
     box-sizing: border-box;
+    vertical-align: middle;
   }
   .form-item input[type=email],
   .form-item input[type=text] {
     display: inline-block;
-    width: 70%;
+    width: 65%;
     padding: 5px;
     box-sizing: border-box;
+    vertical-align: middle;
   }
   .continue-wrapper {
     text-align: right;
@@ -118,7 +134,19 @@
   .summary p {
     margin: 0 1em;
   }
+  .rider-name {
+    margin: 0 0 5px;
+  }
 </style>
+
+<svg>
+  <defs>
+    <g id="remove-icon">
+      <path d="M255,0C114.75,0,0,114.75,0,255s114.75,255,255,255s255-114.75,255-255S395.25,0,255,0z M382.5,346.8l-35.7,35.7
+			L255,290.7l-91.8,91.8l-35.7-35.7l91.8-91.8l-91.8-91.8l35.7-35.7l91.8,91.8l91.8-91.8l35.7,35.7L290.7,255L382.5,346.8z"/>
+    </g>
+  </defs>
+</svg>
 
 <div class="content-wrapper">
 	<div class="content-main">
