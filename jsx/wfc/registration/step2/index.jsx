@@ -9,7 +9,7 @@ const MAX_RIDERS = 5;
 
 export default class Step2 extends Component {
   render() {
-    const { isCurrent, registrar, onNext } = this.props;
+    const { isCurrent, registrar, onNext, costPerRider } = this.props;
     const { firstName, lastName } = registrar;
 
     return (
@@ -51,22 +51,25 @@ export default class Step2 extends Component {
           const canRemove = values.riders.length > 1;
           const canAdd = values.riders.length < MAX_RIDERS;
 
-          return (
-            <Fragment>
+          const riderCount = values.riders.length;
+          const totalCost = costPerRider * riderCount;
+
+          return <Fragment>
               <dt
-                className={classnames("step-title", { current: isCurrent })}
+                className={classnames("step-title", {
+                  current: isCurrent
+                })}
               >
                 2 - Registered rider(s) and price
               </dt>
-              <dd
-                className={classnames("step-content", { current: isCurrent })}
-              >
+              <dd className={classnames("step-content", {
+                  current: isCurrent
+                })}>
                 <form onSubmit={handleSubmit}>
                   <p>You can register yourself or several riders.</p>
 
                   <FieldArray name="riders">
-                    {({ fields }) =>
-                      fields.map((name, index) => (
+                    {({ fields }) => fields.map((name, index) => (
                         <div key={name}>
                           <div className="form-item">
                             <div className="rider-name">
@@ -90,7 +93,9 @@ export default class Step2 extends Component {
                               name={`${name}.firstName`}
                               render={({ input, meta }) => (
                                 <div>
-                                  <label htmlFor={`${name}.firstName`}>
+                                  <label
+                                    htmlFor={`${name}.firstName`}
+                                  >
                                     First name
                                     {meta.touched &&
                                       meta.error && (
@@ -137,49 +142,36 @@ export default class Step2 extends Component {
                           </div>
                           <hr className="rider-separator" />
                         </div>
-                      ))
-                    }
+                      ))}
                   </FieldArray>
 
                   <div className="summary1">
                     <div className="buttons">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          push("riders", { firstName: "", lastName: "" })
-                        }
-                        className="action-button add"
-                        disabled={!canAdd}
-                      >
+                      <button type="button" onClick={() => push(
+                            "riders",
+                            { firstName: "", lastName: "" }
+                          )} className="action-button add" disabled={!canAdd}>
                         Add Rider
                       </button>
-                      <button
-                        type="button"
-                        onClick={() => pop("riders")}
-                        className="action-button remove"
-                        disabled={!canRemove}
-                      >
+                      <button type="button" onClick={() => pop("riders")} className="action-button remove" disabled={!canRemove}>
                         Remove Rider
                       </button>
                     </div>
                   </div>
-                  {/*<div className="summary2">*/}
-                  {/*<span id="rider-count">1 rider</span> - <span id="total">Total: <span id="total-cost">35</span> &euro;</span>*/}
-                  {/*</div>*/}
+                  <div className="summary2">
+                    <span id="rider-count">{riderCount > 1 ? `${riderCount} riders` : `1 rider`}</span> - <span id="total">
+                      Total: <span id="total-cost">{`${totalCost}\u20AC`}</span>
+                    </span>
+                  </div>
 
                   <div className="form-item continue-wrapper">
-                    <button
-                      type="submit"
-                      disabled={invalid}
-                      className="action-button"
-                    >
+                    <button type="submit" disabled={invalid} className="action-button">
                       Continue
                     </button>
                   </div>
                 </form>
               </dd>
-            </Fragment>
-          );
+            </Fragment>;
         }}
       />
     );

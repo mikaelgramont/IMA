@@ -62,7 +62,7 @@ export default class Step3Content extends React.Component {
       <Fragment>
         <p>
           {
-            riderCount > 1 ? `The total for ${riderCount} is ${totalCost}\u20AC;.` : `The cost for 1 rider is ${totalCost}\u20AC.`
+            riderCount > 1 ? `The total for ${riderCount} is ${totalCost}\u20AC.` : `The cost for 1 rider is ${totalCost}\u20AC.`
           }
         </p>
         <div id="paypal-button-container" />

@@ -72,7 +72,7 @@ export default class RegistrationForm extends React.Component {
     }
 
     const { riders, registrar, totalCost } = this.state;
-    const { serverProcessingUrl } = this.props;
+    const { serverProcessingUrl, costPerRider } = this.props;
     return (
       <div className="formWrapper">
         <h2 className="display-font form-title">Registration form</h2>
@@ -85,6 +85,7 @@ export default class RegistrationForm extends React.Component {
             isCurrent={currentStep === STEP2}
             registrar={this.state.registrar}
             onNext={this.step2Finish}
+            costPerRider={costPerRider}
           />
           <Step3
             isCurrent={currentStep === STEP3}
