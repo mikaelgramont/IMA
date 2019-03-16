@@ -176,7 +176,7 @@ body.modal-visible .overlay {
 		width: 100%;
 		margin: 15px 0;
 		height: 0;
-		padding-top: 26.37%;
+		padding-top: 25.37%;
 	}
 }
 
@@ -214,18 +214,18 @@ body.modal-visible .overlay {
 
 .navigation-menu__entry {
 	display: table-cell;
+	width: 20%;
 	list-style: none;
 	text-align: center;
 	vertical-align: middle;
 }
 
 .navigation-menu__entry-link {
-	margin: 0 10px;
 	text-decoration: none;
 	font-family: Helvetica, Arial;
 	font-size: .75em;
 	font-weight: 400;
-	color: #F7F7F7;
+	color: #13120D;
 }
 
 .navigation-menu__entry.selected .navigation-menu__entry-link {
@@ -262,11 +262,15 @@ body.modal-visible .overlay {
 	fill: #E82020;
 }
 
-.navigation-menu__entry-image {
+.navigation-menu__entry-image,
+.navigation-menu__entry-label {
 	display: block;
+	margin: 0 auto;
+}
+
+.navigation-menu__entry-image {
 	width: 24px;
 	height: 24px;
-	margin: 0 auto;
 	background-size: cover;
 }
 
@@ -294,12 +298,12 @@ body.modal-visible .overlay {
 	background-image: url('../images/competition-selected.svg');
 }
 
-.navigation-menu__entry.organizers .navigation-menu__entry-image {
-	background-image: url('../images/organizers.svg');
+.navigation-menu__entry.contact .navigation-menu__entry-image {
+	background-image: url('../images/contact.svg');
 }
 
 .navigation-menu__entry.organizers.selected .navigation-menu__entry-image {
-	background-image: url('../images/organizers-selected.svg');
+	background-image: url('../images/contact-selected.svg');
 }
 
 .navigation-menu__entry.registration .navigation-menu__entry-image {

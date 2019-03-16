@@ -1,20 +1,35 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import classnames from "classnames";
 
-export default ({ isCurrent, onFinish, onError }) => (
-  <Fragment>
-    <dt
-      className={classnames("step3 step-title clickable", {
-        current: isCurrent
-      })}
-    >
-      3 - Payment
-    </dt>
-    <dd className="step3 step-content">
-      <div id="paypal-button-container" />
-      <div id="paypal-generic-error" className="hidden error">
-        Payment through Paypal failed, sorry! Please get in touch with us.
-      </div>
-    </dd>
-  </Fragment>
-);
+import Step3Content from "./Content.jsx";
+
+export default class Step3 extends Component {
+  render() {
+    const {
+      isCurrent,
+      onFinish,
+      onError,
+      totalCost,
+      riders,
+      registrar,
+      serverProcessingUrl
+    } = this.props;
+    const contentProps = { onError, onFinish, totalCost, riders, registrar, serverProcessingUrl };
+    return (
+      <Fragment>
+        <dt
+          className={classnames("step3 step-title", {
+            current: isCurrent
+          })}
+        >
+          3 - Payment
+        </dt>
+        <dd className={classnames("step-content", { current: isCurrent })}>
+          {isCurrent ? (<Step3Content {...contentProps} />) : null}
+        </dd>
+      </Fragment>
+    );
+  }
+
+  componentDidMount() {}
+}

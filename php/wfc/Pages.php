@@ -24,10 +24,10 @@ class Pages
 				'headerClass' => 'competition',
 			],
 			(object) [
-				'title' => 'Organizers',
-				'url' => 'organizers',
-				'file' => 'organizers.php',
-				'headerClass' => 'organizers',
+				'title' => 'Contact',
+				'url' => 'contact',
+				'file' => 'contact.php',
+				'headerClass' => 'contact',
 			],
 			(object) [
 				'title' => 'Registration',

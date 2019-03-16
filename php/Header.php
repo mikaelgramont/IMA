@@ -25,7 +25,7 @@ class Header
 				<li class="{$class}">
 					<a href="{$url}" class="navigation-menu__entry-link">
 						<span class="navigation-menu__entry-image"></span>
-						{$label}
+						<span class="navigation-menu__entry-label">{$label}</span>
 					</a>
 				</li>
 
