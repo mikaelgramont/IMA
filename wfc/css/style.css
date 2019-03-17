@@ -251,6 +251,7 @@ body.modal-visible .overlay {
 	}
 
 	.navigation-menu__entry-link {
+		color: #F7F7F7;
 		font-family: Pathway Gothic One, Arial;
 		text-transform: uppercase;
 		font-weight: 100;

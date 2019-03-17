@@ -14,6 +14,7 @@ export default class Step3Content extends React.Component {
 
   componentDidMount() {
     const { onError, onFinish, totalCost, riders, registrar, serverProcessingUrl } = this.props;
+
     paypal
       .Buttons({
         createOrder: (data, actions) => {
@@ -39,16 +40,26 @@ export default class Step3Content extends React.Component {
             // Show a success message to your buyer
             return fetch(serverProcessingUrl, {
               method: "post",
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
               body: JSON.stringify({
                 orderID: data.orderID,
                 orderDetails: details,
                 riderDetails: riders,
                 registrarDetails: registrar,
               })
+            }).then(response => {
+              return response.json();
             }).then((data) => {
-              console.log('Backend responded with:', data);
               onFinish(data);
             });
+          }).catch((err) => {
+            // TODO: deal with client-side error
+            console.log("Unexpected error", err);
+            this.renderError();
+            onError();
           });
         }
       })

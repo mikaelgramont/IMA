@@ -7,7 +7,7 @@ class Pages
 			(object) [
 				'title' => 'Home',
 				'url' => '',
-				'file' => 'registration.php',
+				'file' => 'home.php',
 				'headerClass' => 'home',
 				'skipTitleInHead' => true,
 			],

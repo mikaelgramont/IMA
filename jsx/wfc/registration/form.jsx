@@ -58,7 +58,14 @@ export default class RegistrationForm extends React.Component {
     this.setState({ error });
   }
 
-  finish() {}
+  finish(data) {
+    console.log('form.finish', data);
+    if (data.status === 'OK') {
+      console.log('TODO: show success message');
+    } else {
+      console.log('TODO: show error message');
+    }
+  }
 
   render() {
     const { currentStep } = this.state;
