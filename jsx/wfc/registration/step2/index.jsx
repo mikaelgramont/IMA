@@ -32,6 +32,12 @@ export default class Step2 extends Component {
             if (!rider.lastName) {
               localErrors.lastName = "Required";
             }
+            if (!rider.category) {
+              localErrors.category = "Required";
+            }
+            if (!rider.slalom && !rider.freestyle) {
+              localErrors.competition = "Must choose one";
+            }
             riderErrors[index] = localErrors;
           });
           errors.riders = riderErrors;
@@ -44,6 +50,7 @@ export default class Step2 extends Component {
           handleSubmit,
           pristine,
           invalid,
+          errors: allErrors,
           form: {
             mutators: { push, pop }
           }
@@ -54,7 +61,8 @@ export default class Step2 extends Component {
           const riderCount = values.riders.length;
           const totalCost = costPerRider * riderCount;
 
-          return <Fragment>
+          return (
+            <Fragment>
               <dt
                 className={classnames("step-title", {
                   current: isCurrent
@@ -62,14 +70,17 @@ export default class Step2 extends Component {
               >
                 2 - Registered rider(s) and price
               </dt>
-              <dd className={classnames("step-content", {
+              <dd
+                className={classnames("step-content", {
                   current: isCurrent
-                })}>
+                })}
+              >
                 <form onSubmit={handleSubmit}>
                   <p>You can register yourself or several riders.</p>
 
                   <FieldArray name="riders">
-                    {({ fields }) => fields.map((name, index) => (
+                    {({ fields }) =>
+                      fields.map((name, index) => (
                         <div key={name}>
                           <div className="form-item">
                             <div className="rider-name">
@@ -92,10 +103,8 @@ export default class Step2 extends Component {
                             <Field
                               name={`${name}.firstName`}
                               render={({ input, meta }) => (
-                                <div>
-                                  <label
-                                    htmlFor={`${name}.firstName`}
-                                  >
+                                <Fragment>
+                                  <label htmlFor={`${name}.firstName`}>
                                     First name
                                     {meta.touched &&
                                       meta.error && (
@@ -111,15 +120,15 @@ export default class Step2 extends Component {
                                     placeholder="Enter the rider's first name"
                                     {...input}
                                   />
-                                </div>
+                                </Fragment>
                               )}
                             />
                           </div>
-                          <div key={name} className="form-item">
+                          <div className="form-item">
                             <Field
                               name={`${name}.lastName`}
                               render={({ input, meta }) => (
-                                <div>
+                                <Fragment>
                                   <label htmlFor={`${name}.lastName`}>
                                     Last name
                                     {meta.touched &&
@@ -136,42 +145,147 @@ export default class Step2 extends Component {
                                     placeholder="Enter the rider's last name"
                                     {...input}
                                   />
-                                </div>
+                                </Fragment>
+                              )}
+                            />
+                          </div>
+                          <div className="form-item">
+                            <div className="rider-competitions">
+                              <span className="label">
+                                Competing in
+                                {!pristine &&
+                                fields.error[index] &&
+                                fields.error[index].competition && (
+                                  <span className="error">
+                                      {fields.error[index].competition}
+                                    </span>
+                                )}
+                              </span>
+                              <div className="checkbox-wrapper">
+                                <Field
+                                  type="checkbox"
+                                  name={`${name}.slalom`}
+                                  render={({ input, meta }) => (
+                                    <div className="competition-item">
+                                      <input
+                                        type="checkbox"
+                                        id={`${name}.slalom`}
+                                        name={`${name}.slalom`}
+                                        {...input}
+                                      />
+                                      <label
+                                        className="radio-label"
+                                        htmlFor={`${name}.slalom`}
+                                      >
+                                        Slalom
+                                      </label>
+                                    </div>
+                                  )}
+                                />
+
+                                <Field
+                                  type="checkbox"
+                                  name={`${name}.freestyle`}
+                                  render={({ input, meta }) => (
+                                    <div className="competition-item">
+                                      <input
+                                        type="checkbox"
+                                        id={`${name}.freestyle`}
+                                        name={`${name}.freestyle`}
+                                        {...input}
+                                      />
+                                      <label
+                                        className="radio-label"
+                                        htmlFor={`${name}.freestyle`}
+                                      >
+                                        Freestyle
+                                      </label>
+                                    </div>
+                                  )}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="form-item">
+                            <Field
+                              name={`${name}.category`}
+                              render={({ input, meta }) => (
+                                <Fragment>
+                                  <label htmlFor={`${name}.category`}>
+                                    Category
+                                    {meta.touched &&
+                                      meta.error && (
+                                        <span className="error">
+                                          {meta.error}
+                                        </span>
+                                      )}
+                                  </label>
+                                  <select
+                                    id={`${name}.category`}
+                                    name={`${name}.category`}
+                                    {...input}
+                                  >
+                                    <option value="">Pick a category</option>
+                                    <option value="junior">Junior</option>
+                                    <option value="ladies">Ladies</option>
+                                    <option value="masters">Masters</option>
+                                    <option value="pro">Pro</option>
+                                  </select>
+                                </Fragment>
                               )}
                             />
                           </div>
                           <hr className="rider-separator" />
                         </div>
-                      ))}
+                      ))
+                    }
                   </FieldArray>
 
                   <div className="summary1">
                     <div className="buttons">
-                      <button type="button" onClick={() => push(
-                            "riders",
-                            { firstName: "", lastName: "" }
-                          )} className="action-button add" disabled={!canAdd}>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          push("riders", { firstName: "", lastName: "" })
+                        }
+                        className="action-button add"
+                        disabled={!canAdd}
+                      >
                         Add Rider
                       </button>
-                      <button type="button" onClick={() => pop("riders")} className="action-button remove" disabled={!canRemove}>
+                      <button
+                        type="button"
+                        onClick={() => pop("riders")}
+                        className="action-button remove"
+                        disabled={!canRemove}
+                      >
                         Remove Rider
                       </button>
                     </div>
                   </div>
                   <div className="summary2">
-                    <span id="rider-count">{riderCount > 1 ? `${riderCount} riders` : `1 rider`}</span> - <span id="total">
+                    <span id="rider-count">
+                      {riderCount > 1 ? `${riderCount} riders` : `1 rider`}
+                    </span>{" "}
+                    -{" "}
+                    <span id="total">
                       Total: <span id="total-cost">{`${totalCost}\u20AC`}</span>
                     </span>
                   </div>
 
                   <div className="form-item continue-wrapper">
-                    <button type="submit" disabled={invalid} className="action-button">
+                    <button
+                      type="submit"
+                      disabled={invalid}
+                      className="action-button"
+                    >
                       Continue
                     </button>
                   </div>
                 </form>
               </dd>
-            </Fragment>;
+            </Fragment>
+          );
         }}
       />
     );

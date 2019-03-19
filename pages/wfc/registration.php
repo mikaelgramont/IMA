@@ -107,7 +107,8 @@
   .form-item {
     margin: 10px 0;
   }
-  .form-item label {
+  .form-item label,
+  .form-item .label {
     display: inline-block;
     width: calc(35% - 15px);
     margin-right: 10px;
@@ -115,13 +116,23 @@
     box-sizing: border-box;
     vertical-align: middle;
   }
+  .form-item .radio-label {
+    text-align: initial;
+    width: auto;
+  }
+
   .form-item input[type=email],
-  .form-item input[type=text] {
+  .form-item input[type=text],
+  .form-item select,
+  .checkbox-wrapper {
     display: inline-block;
     width: 65%;
     padding: 5px;
     box-sizing: border-box;
     vertical-align: middle;
+  }
+  .checkbox-wrapper {
+   padding: 0;
   }
   .continue-wrapper {
     text-align: right;
@@ -134,8 +145,15 @@
   .summary p {
     margin: 0 1em;
   }
-  .rider-name {
+  .rider-name,
+  .rider-competitions {
     margin: 0 0 5px;
+  }
+  .rider-competitions .label {
+    vertical-align: top;
+  }
+  .competition-item {
+    display: inline-block;
   }
 </style>
 

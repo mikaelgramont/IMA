@@ -1,11 +1,7 @@
 <?php
 use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 
-header('Content-Type: application/json');
-
 $_POST = json_decode(file_get_contents('php://input'), true);
-
-//error_log(var_export($_POST, true));
 
 $orderId = isset($_POST['orderID']) ? $_POST['orderID'] : null;
 $client = PayPalClient::client();
@@ -18,6 +14,13 @@ if ($response->result->status === 'COMPLETED') {
   $output->status = 'NOK';
 }
 
+// TODO: append raw data to a json file
+
+// TODO: store filtered data to a spreadsheet
+
+// TODO: send an email?
+
+header('Content-Type: application/json');
 echo json_encode($output);
 
 
