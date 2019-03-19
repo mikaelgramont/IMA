@@ -48,8 +48,8 @@ class RegistrationSaver
         $rider['firstName'],
         $rider['lastName'],
         $rider['category'],
-        isset($rider['slalom']) ? self::YES : self::NO,
-        isset($rider['freestyle']) ? self::YES : self::NO
+        $rider['slalom'] ? self::YES : self::NO,
+        $rider['freestyle'] ? self::YES : self::NO
       );
     }
     $paymentValues = array(
