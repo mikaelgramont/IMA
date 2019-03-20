@@ -45,6 +45,26 @@ if (!$riderDetails) {
 $orderDetails = isset($_POST['orderDetails']) ? $_POST['orderDetails'] : null;
 
 /***********************************************************************************
+ * Log all request data before processing
+ **********************************************************************************/
+$rawLog = file_get_contents(REGISTRATIONS_LOG_FILE);
+if (!$rawLog) {
+  $log = [];
+} else {
+  $log = json_decode($rawLog);
+}
+
+$entry = new stdClass();
+$entry->date = date('Y-m-d H:i:s');;
+$entry->orderId = $orderId;
+$entry->registrarDetails = $registrarDetails;
+$entry->riderDetails = $riderDetails;
+$entry->orderDetails = $orderDetails;
+$log[] = $entry;
+
+file_put_contents(REGISTRATIONS_LOG_FILE, json_encode($log, JSON_PRETTY_PRINT));
+
+/***********************************************************************************
  * Paypal stuff
  **********************************************************************************/
 $client = PayPalClient::client();
@@ -76,8 +96,6 @@ $sheetsService = new Google_Service_Sheets($client);
 $logger = new Logger();
 $spreadsheetId = REGISTRATIONS_SPREADSHEET_ID;
 
-// TODO: append raw data to a json file
-
 try {
   RegistrationSaver::save(
     $sheetsService,
@@ -90,9 +108,6 @@ try {
 } catch (Google_Service_Exception $e) {
   failWithMsg($e->getMessage());
 }
-
-// TODO: send an email?
-
 // All good!
 success();
 

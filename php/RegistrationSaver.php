@@ -8,7 +8,7 @@ class RegistrationSaver
   public static function save(
     $sheetsService, $logger, $spreadsheetId, $paypalValidationResponse, $registrarDetails, $riderDetails)
   {
-    $logger->log("Updating row in Google Sheets.\n");
+    $logger->log("Adding payment to Google Sheet.\n");
 
     list($riderValues, $paymentValues) = self::_getSpreadSheetValues($paypalValidationResponse, $registrarDetails, $riderDetails);
 
@@ -48,8 +48,8 @@ class RegistrationSaver
         $rider['firstName'],
         $rider['lastName'],
         $rider['category'],
-        $rider['slalom'] ? self::YES : self::NO,
-        $rider['freestyle'] ? self::YES : self::NO
+        isset($rider['slalom']) ? self::YES : self::NO,
+        isset($rider['freestyle']) ? self::YES : self::NO
       );
     }
     $paymentValues = array(
