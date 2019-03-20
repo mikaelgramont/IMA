@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
 import classnames from "classnames";
 import { Form, Field } from "react-final-form";
-
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
+
+import Country from './Country.jsx';
 
 const MAX_RIDERS = 5;
 
@@ -35,8 +36,14 @@ export default class Step2 extends Component {
             if (!rider.category) {
               localErrors.category = "Required";
             }
+            if (!rider.country) {
+              localErrors.country = "Required";
+            }
+            if (rider.number && !rider.number.match(/\d{1,3}/)) {
+              localErrors.number = "Less than 1000";
+            }
             if (!rider.slalom && !rider.freestyle) {
-              localErrors.competition = "Must choose one";
+              localErrors.competition = "Pick one or more";
             }
             riderErrors[index] = localErrors;
           });
@@ -143,6 +150,34 @@ export default class Step2 extends Component {
                                     id={`${name}.lastName`}
                                     name="lastName"
                                     placeholder="Enter the rider's last name"
+                                    {...input}
+                                  />
+                                </Fragment>
+                              )}
+                            />
+                          </div>
+                          <div className="form-item">
+                            <Country name={name}/>
+                          </div>
+                          <div className="form-item">
+                            <Field
+                              name={`${name}.number`}
+                              render={({ input, meta }) => (
+                                <Fragment>
+                                  <label htmlFor={`${name}.number`}>
+                                    Rider number
+                                    {meta.touched &&
+                                      meta.error && (
+                                        <span className="error">
+                                          {meta.error}
+                                        </span>
+                                      )}
+                                  </label>
+                                  <input
+                                    type="text"
+                                    id={`${name}.number`}
+                                    name="number"
+                                    placeholder="Optional number"
                                     {...input}
                                   />
                                 </Fragment>

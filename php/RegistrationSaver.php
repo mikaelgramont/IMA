@@ -45,8 +45,10 @@ class RegistrationSaver
       $riderValues[] = array(
         $date,
         $orderId,
+        isset($rider['number']) ? $rider['number'] : '',
         $rider['firstName'],
         $rider['lastName'],
+        $rider['country'],
         $rider['category'],
         isset($rider['slalom']) ? self::YES : self::NO,
         isset($rider['freestyle']) ? self::YES : self::NO

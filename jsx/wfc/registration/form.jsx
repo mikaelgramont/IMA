@@ -4,11 +4,13 @@ import Initial from "./initial/index.jsx";
 import Step1 from "./step1/index.jsx";
 import Step2 from "./step2/index.jsx";
 import Step3 from "./step3/index.jsx";
+import Step4 from "./step4/index.jsx";
 
 const INITIAL = 0;
 const STEP1 = 1;
 const STEP2 = 2;
 const STEP3 = 3;
+const STEP4 = 4;
 
 export default class RegistrationForm extends React.Component {
   constructor(props) {
@@ -102,6 +104,11 @@ export default class RegistrationForm extends React.Component {
             riders={riders}
             registrar={registrar}
             totalCost={totalCost}
+          />
+          <Step4
+            isCurrent={currentStep === STEP4}
+            status="OK"
+            error={null}
           />
         </dl>
       </div>

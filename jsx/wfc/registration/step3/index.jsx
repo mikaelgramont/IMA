@@ -30,6 +30,4 @@ export default class Step3 extends Component {
       </Fragment>
     );
   }
-
-  componentDidMount() {}
 }
