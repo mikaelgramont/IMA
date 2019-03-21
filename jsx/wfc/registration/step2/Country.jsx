@@ -248,29 +248,35 @@ const countries = [
 
 export default class Country extends Component {
   render() {
-    const {name} = this.props;
+    const { name } = this.props;
     return (
       <Field
         name={`${name}.country`}
-        render={({ input, meta }) => (
-          <Fragment>
-            <label htmlFor={`${name}.country`}>
-              Country
-              {meta.touched &&
-                meta.error && <span className="error">{meta.error}</span>}
-            </label>
-            <select
-              id={`${name}.country`}
-              name={`${name}.country`}
-              {...input}
-            >
-              <option value="">The country they're riding for</option>
-              {countries.map((country) => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
-          </Fragment>
-        )}
+        render={({ input, meta }) => {
+          const emptyClass = input.value === "" ? "emptySelect" : "";
+          return (
+            <Fragment>
+              <label htmlFor={`${name}.country`}>
+                Country
+                {meta.touched &&
+                  meta.error && <span className="error">{meta.error}</span>}
+              </label>
+              <select
+                id={`${name}.country`}
+                name={`${name}.country`}
+                {...input}
+                className={emptyClass}
+              >
+                <option value="">Choose the country they're riding for</option>
+                {countries.map(country => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
+                ))}
+              </select>
+            </Fragment>
+          );
+        }}
       />
     );
   }

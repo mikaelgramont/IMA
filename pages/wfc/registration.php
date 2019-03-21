@@ -121,6 +121,14 @@
     width: auto;
   }
 
+  input::placeholder,
+  .emptySelect {
+    color: #888;
+    opacity: 1.0;
+  }
+  .emptySelect:focus {
+    color: initial;
+  }
   .form-item input[type=email],
   .form-item input[type=text],
   .form-item select,
@@ -133,6 +141,9 @@
   }
   .checkbox-wrapper {
    padding: 0;
+  }
+  .form-item input[type=checkbox] {
+    margin-left: 0;
   }
   .continue-wrapper {
     text-align: right;

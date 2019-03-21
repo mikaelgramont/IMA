@@ -5,6 +5,7 @@ import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 
 import Country from './Country.jsx';
+import Category from "./Category.jsx";
 
 const MAX_RIDERS = 5;
 
@@ -157,32 +158,10 @@ export default class Step2 extends Component {
                             />
                           </div>
                           <div className="form-item">
-                            <Country name={name}/>
+                            <Category name={name}/>
                           </div>
                           <div className="form-item">
-                            <Field
-                              name={`${name}.number`}
-                              render={({ input, meta }) => (
-                                <Fragment>
-                                  <label htmlFor={`${name}.number`}>
-                                    Rider number
-                                    {meta.touched &&
-                                      meta.error && (
-                                        <span className="error">
-                                          {meta.error}
-                                        </span>
-                                      )}
-                                  </label>
-                                  <input
-                                    type="text"
-                                    id={`${name}.number`}
-                                    name="number"
-                                    placeholder="Optional number"
-                                    {...input}
-                                  />
-                                </Fragment>
-                              )}
-                            />
+                            <Country name={name}/>
                           </div>
                           <div className="form-item">
                             <div className="rider-competitions">
@@ -243,29 +222,25 @@ export default class Step2 extends Component {
                           </div>
                           <div className="form-item">
                             <Field
-                              name={`${name}.category`}
+                              name={`${name}.number`}
                               render={({ input, meta }) => (
                                 <Fragment>
-                                  <label htmlFor={`${name}.category`}>
-                                    Category
+                                  <label htmlFor={`${name}.number`}>
+                                    Rider number
                                     {meta.touched &&
-                                      meta.error && (
-                                        <span className="error">
+                                    meta.error && (
+                                      <span className="error">
                                           {meta.error}
                                         </span>
-                                      )}
+                                    )}
                                   </label>
-                                  <select
-                                    id={`${name}.category`}
-                                    name={`${name}.category`}
+                                  <input
+                                    type="text"
+                                    id={`${name}.number`}
+                                    name="number"
+                                    placeholder="Optional number"
                                     {...input}
-                                  >
-                                    <option value="">Pick a category</option>
-                                    <option value="junior">Junior</option>
-                                    <option value="ladies">Ladies</option>
-                                    <option value="masters">Masters</option>
-                                    <option value="pro">Pro</option>
-                                  </select>
+                                  />
                                 </Fragment>
                               )}
                             />
