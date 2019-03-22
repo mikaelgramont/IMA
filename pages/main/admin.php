@@ -15,4 +15,7 @@
 </form>
 
 <h2 class="display-font">Newsletter content</h2>
-List of all the <a href="<?php echo BASE_URL ?>newsletter-content">potential content for IMA newsletters </a>
+<p>List of all the <a href="<?php echo BASE_URL ?>newsletter-content">potential content for IMA newsletters </a>.</p>
+
+<h2 class="display-font">WFC 2019 registration list</h2>
+<p>The <a href="<?php echo REGISTRATIONS_SPREADSHEET_URL ?>" target="_blank">list of registered riders</a>, with payment info.</p>
