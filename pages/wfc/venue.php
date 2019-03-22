@@ -59,6 +59,15 @@
         For 2019, there will be extensive work on the park prior to the event, including: all jumps made bigger,
         brand new kickers and rails. We don't want to spoil the surprise, but you will like it!
       </p>
+      <p>Did we mention work has started already?</p>
+      <p class="full">
+        <img src="<?php echo BASE_URL ?>images/works1.jpg" alt="A digger working on the course">
+      </p>
+      <p class="full">
+        <img src="<?php echo BASE_URL ?>images/works2.jpg" alt="A digger working on the course">
+      </p>
+
+
     </section>
 
     <section>

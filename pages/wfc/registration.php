@@ -61,7 +61,11 @@
     display: inline-block;
     margin-left: 3px;
   }
-
+  .tip {
+    font-size: .85em;
+    text-align: center;
+    margin-top: 10px;
+  }
   .start.hidden {
     display: none;
   }
@@ -207,10 +211,18 @@
 <div class="content-wrapper">
 	<div class="content-main">
     <h1 class="display-font">Registration</h1>
-    <p>This is the official online registration form page.</p>
+    <p>This is the official registration form.</p>
     <p>
-      Registration fees are <b><?php echo REGISTRATION_COST ?>&euro;</b> per rider.<br>
-      The deadline for online registration is <?php echo REGISTRATION_DEADLINE ?>.
+      Registration fees are <b><?php echo REGISTRATION_COST ?>&euro;</b> per rider and include:
+    </p>
+    <ul>
+      <li>entry to the competition</li>
+      <li>rider dinner on friday and saturday evenings</li>
+      <li>drinks during the competition (water and sport drinks)</li>
+      <li>swag!</li>
+    </ul>
+    <p>
+      The deadline for online registration is <b><?php echo REGISTRATION_DEADLINE ?></b>.
     </p>
 
     <div id="form-container"></div>

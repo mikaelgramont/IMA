@@ -2,9 +2,6 @@ import React, { Fragment } from "react";
 
 export default props => (
   <Fragment>
-    <p>
-      Press the button below to start registering yourself and/or other riders.
-    </p>
     <div className="start-wrapper">
       <button
         type="button"
@@ -14,5 +11,8 @@ export default props => (
         Start registering
       </button>
     </div>
+    <p className="tip">
+      You can register yourself and/or other riders.
+    </p>
   </Fragment>
 );
