@@ -188,6 +188,7 @@ body.modal-visible .overlay {
 	.page-header {
 		position: relative;
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
 	}
 
@@ -214,7 +215,7 @@ body.modal-visible .overlay {
 
 .navigation-menu__entry {
 	display: table-cell;
-	width: 20%;
+	padding-left: 10px;
 	list-style: none;
 	text-align: center;
 	vertical-align: middle;

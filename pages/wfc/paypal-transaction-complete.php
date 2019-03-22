@@ -11,10 +11,16 @@ function failWithMsg($msg)
   exit();
 }
 
-function success()
+function success($paypal, $riders)
 {
   $output = new stdClass();
   $output->status = 'OK';
+
+  $paymentData = new stdClass();
+  $paymentData->id = $paypal->id;
+  $paymentData->amount = $paypal->purchase_units[0]->amount;
+  $output->paymentData = $paymentData;
+  $output->riders = $riders;
   echo json_encode($output);
   exit();
 }
@@ -109,7 +115,7 @@ try {
   failWithMsg($e->getMessage());
 }
 // All good!
-success();
+success($paypalValidationResponse->result, $riderDetails);
 
 
 

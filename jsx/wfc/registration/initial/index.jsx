@@ -4,7 +4,6 @@ export default props => (
   <Fragment>
     <p>
       Press the button below to start registering yourself and/or other riders.
-      You will need a Paypal account to proceed.
     </p>
     <div className="start-wrapper">
       <button

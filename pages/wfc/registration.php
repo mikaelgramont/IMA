@@ -166,6 +166,33 @@
   .competition-item {
     display: inline-block;
   }
+  .error-display {
+    margin: 0 auto;
+    max-width: 30em;
+    display: block;
+  }
+  .error-code {
+    padding: 2em;
+    background: #ddd;
+    color: #222;
+  }
+  .transaction {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .registered-riders {
+    list-style-type: none;
+  }
+  .registered-riders li {
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+  .rider-detail {
+    padding-right: 10px;
+    font-weight: bold;
+  }
 </style>
 
 <svg class="hidden">

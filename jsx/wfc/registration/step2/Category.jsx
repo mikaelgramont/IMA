@@ -2,10 +2,10 @@ import React, { Component, Fragment } from "react";
 import { Field } from "react-final-form";
 
 const categories = [
-  "junior",
-  "ladies",
-  "masters",
-  "pro",
+  "Junior",
+  "Ladies",
+  "Masters",
+  "Pro",
 ];
 
 export default class Category extends Component {

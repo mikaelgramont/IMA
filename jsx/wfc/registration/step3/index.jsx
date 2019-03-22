@@ -14,7 +14,14 @@ export default class Step3 extends Component {
       registrar,
       serverProcessingUrl
     } = this.props;
-    const contentProps = { onError, onFinish, totalCost, riders, registrar, serverProcessingUrl };
+    const contentProps = {
+      onError,
+      onFinish,
+      totalCost,
+      riders,
+      registrar,
+      serverProcessingUrl
+    };
     return (
       <Fragment>
         <dt
@@ -25,7 +32,7 @@ export default class Step3 extends Component {
           3 - Payment
         </dt>
         <dd className={classnames("step-content", { current: isCurrent })}>
-          {isCurrent ? (<Step3Content {...contentProps} />) : null}
+          {isCurrent ? <Step3Content {...contentProps} /> : null}
         </dd>
       </Fragment>
     );
