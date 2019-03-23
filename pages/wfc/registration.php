@@ -235,5 +235,5 @@
     serverProcessingUrl: '<?php echo BASE_URL ?>paypal-transaction-complete?XDEBUG_SESSION_START=PHP_STORM'
   }
 </script>
-<script src="<?PHP echo PAYPAL_SCRIPT_SANDBOX ?>"></script>
+<script src="<?PHP echo PAYPAL_SCRIPT ?>"></script>
 <script src="<?PHP echo BASE_URL ?>scripts/registration-bundle.js"></script>
