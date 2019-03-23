@@ -1,4 +1,7 @@
 <?php
+ini_set('error_reporting', E_ALL); // or error_reporting(E_ALL);
+ini_set('display_errors', '0');
+ini_set('display_startup_errors', '0');
 ini_set('xdebug.default_enable', false);
 ini_set('xdebug.html_errors', false);
 
