@@ -12,11 +12,6 @@ export default class Step1 extends Component {
         onSubmit={values => {
           onNext(values);
         }}
-        initialValues={{
-          firstName: "Mika",
-          lastName: "Gramont",
-          email: "mgramont@gmail.com"
-        }}
         validate={values => {
           const errors = {};
           if (!values.firstName) {
