@@ -74,12 +74,10 @@
 
     <section>
       <a id="details"></a>
-      <p>The World Freestyle Championships is back in 2019, and it will take place July 26-27th in Moszczenica, Poland!</p>
-      <p>The IMA is excited to see the WFC go to Poland this year, as the mountainboard scene there has been buzzing for many years now.</p>
+      <p>The World Boardercross Championships is back in 2019, and it will take place September 6th-7th in Novi Sad, Serbia!</p>
 
-      <iframe class="embed" src="https://www.youtube.com/embed/D_2xNcpw7co" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p>INSERT VIDEO</p>
 
-      <p>Dawid Rząca's home spot of Mosquito Park is the chosen venue for this year's competition, and it will have features for all levels of riding, so come join us in Poland!</p>
     </section>
 	</div>
 </div>

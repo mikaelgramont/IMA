@@ -232,7 +232,7 @@
 <script>
   window.__registrationConstants__ = {
     costPerRider: parseFloat(<?php echo REGISTRATION_COST ?>, 10),
-    serverProcessingUrl: '<?php echo BASE_URL ?>paypal-transaction-complete?XDEBUG_SESSION_START=PHP_STORM'
+    serverProcessingUrl: '<?php echo BASE_URL ?>paypal-transaction-complete'
   }
 </script>
 <script src="<?PHP echo PAYPAL_SCRIPT ?>"></script>
