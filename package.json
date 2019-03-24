@@ -6,9 +6,14 @@
     "main-prod": "webpack --config webpack-main.config.js",
     "main-watch": "webpack -w --config webpack-main.config.dev.js",
     "main-start": "webpack --config webpack-main.config.dev.js",
+
     "wfc-prod": "webpack --config webpack-wfc.config.js",
     "wfc-watch": "webpack -w --config webpack-wfc.config.dev.js",
-    "wfc-start": "webpack --config webpack-wfc.config.dev.js"
+    "wfc-start": "webpack --config webpack-wfc.config.dev.js",
+
+    "wbc-prod": "webpack --config webpack-wbc.config.js",
+    "wbc-watch": "webpack -w --config webpack-wbc.config.dev.js",
+    "wbc-start": "webpack --config webpack-wbc.config.dev.js"
   },
   "author": "",
   "dependencies": {
