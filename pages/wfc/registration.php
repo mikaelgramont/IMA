@@ -1,3 +1,10 @@
+<?php
+define('NOT_OPEN_YET', 'not_open_yet');
+define('OPEN', 'open');
+define('CLOSED', 'closed');
+
+define('REGISTRATION_OPEN', NOT_OPEN_YET);
+?>
 <style>
 	/* Rest of the page */
 	.content-wrapper {
@@ -197,6 +204,10 @@
     padding-right: 10px;
     font-weight: bold;
   }
+
+  .registration-status {
+    font-weight: bold;
+  }
 </style>
 
 <svg class="hidden">
@@ -211,7 +222,7 @@
 <div class="content-wrapper">
 	<div class="content-main">
     <h1 class="display-font">Registration</h1>
-    <p>This is the official registration form.</p>
+    <p>This is the official registration page.</p>
     <p>
       Registration fees are <b><?php echo REGISTRATION_COST ?>&euro;</b> per rider and include:
     </p>
@@ -225,15 +236,33 @@
       The deadline for online registration is <b><?php echo REGISTRATION_DEADLINE ?></b>.
     </p>
 
+    <?php
+      switch (REGISTRATION_OPEN) {
+        case NOT_OPEN_YET:
+          echo "<p class='registration-status'>Online registration is not open yet.</p>\n";
+          break;
+        case CLOSED:
+          echo "<p class='registration-status'>Online registration is closed.</p>\n";
+          break;
+      }
+    ?>
+
     <div id="form-container"></div>
 	</div>
 </div>
 
-<script>
-  window.__registrationConstants__ = {
-    costPerRider: parseFloat(<?php echo REGISTRATION_COST ?>, 10),
-    serverProcessingUrl: '<?php echo BASE_URL ?>paypal-transaction-complete'
-  }
-</script>
-<script src="<?PHP echo PAYPAL_SCRIPT ?>"></script>
-<script src="<?PHP echo BASE_URL ?>scripts/registration-bundle.js"></script>
+
+<?php
+if (REGISTRATION_OPEN == OPEN) {
+  ?>
+  <script>
+    window.__registrationConstants__ = {
+      costPerRider: parseFloat(<?php echo REGISTRATION_COST ?>, 10),
+      serverProcessingUrl: '<?php echo BASE_URL ?>paypal-transaction-complete'
+    }
+  </script>
+  <script src="<?PHP echo PAYPAL_SCRIPT ?>"></script>
+  <script src="<?PHP echo BASE_URL ?>scripts/registration-bundle.js"></script>
+  <?php
+}
+?>
