@@ -89,7 +89,7 @@
     </section>
 
     <section>
-      <h2 class="display-font">How to get there</h2>
+      <h2 class="display-font">Flying in</h2>
       <p>
         The closest Airport is Kraków Airport (KRK), which is a 45-minute drive to the track.
         <img class="photo" src="<?php echo BASE_URL ?>images/map1.png" alt="Map from Kraków">
@@ -97,6 +97,37 @@
       <p>
         The cheapest flights are into Katowice (KTW), which is a 1.5-hour drive to the track
         <img class="photo" src="<?php echo BASE_URL ?>/images/map2.png" alt="Map from Katowice">
+      </p>
+    </section>
+
+    <section>
+      <h2 class="display-font">Hotels and camping</h2>
+      <dl>
+        <dt>
+          Camping
+        </dt>
+        <dd>
+          We have a large space, but without water connection on the spot there will be only 2 toilets (without a shower)
+        </dd>
+        <dt>
+          Hotels
+        </dt>
+        <dd>
+          <ul>
+            <li>
+              Hotel Lech (3 minutes from the park)<br>
+              Parking and breakfast included<br>
+              Single room - 90PLN (about 20&euro;)<br>
+              Triple room - 160PLN (+ -38&euro;)<br>
+            </li>
+            <li>
+              Hotel Centrum-Konferencyjne Nowa Bochnia (10 minutes from the park)<br>
+              1-4 person rooms. Price: 70-120 PLN (18-30&euro;) per night/person.
+            </li>
+          </ul>
+        </dd>
+      </dl>
+      <p>
       </p>
     </section>
 	</div>
