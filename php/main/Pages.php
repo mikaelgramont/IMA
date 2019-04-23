@@ -70,6 +70,12 @@ class Pages
 				'skipMenuEntry' => true,
 			],
 			(object) [
+				'title' => 'Event Registration',
+				'url' => 'event-registrations',
+				'file' => 'event-registrations.php',
+				'skipMenuEntry' => true,
+			],
+			(object) [
                 'title' => 'Subscribe to the IMA newsletter.',
                 'url' => 'newsletter',
                 'file' => 'newsletter-subscription.php',

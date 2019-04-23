@@ -6,11 +6,9 @@
     "main-prod": "webpack --config webpack-main.config.js",
     "main-watch": "webpack -w --config webpack-main.config.dev.js",
     "main-start": "webpack --config webpack-main.config.dev.js",
-
     "wfc-prod": "webpack --config webpack-wfc.config.js",
     "wfc-watch": "webpack -w --config webpack-wfc.config.dev.js",
     "wfc-start": "webpack --config webpack-wfc.config.dev.js",
-
     "wbc-prod": "webpack --config webpack-wbc.config.js",
     "wbc-watch": "webpack -w --config webpack-wbc.config.dev.js",
     "wbc-start": "webpack --config webpack-wbc.config.dev.js"
@@ -22,10 +20,12 @@
     "fetch-ie8": "^1.5.0",
     "final-form": "^4.12.0",
     "final-form-arrays": "^1.1.2",
+    "node-gettext": "^2.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.3.1",
     "react-final-form": "^4.1.0",
-    "react-final-form-arrays": "2.0.1"
+    "react-final-form-arrays": "2.0.1",
+    "recompose": "^0.30.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

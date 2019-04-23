@@ -22,8 +22,7 @@ export default class Step1 extends Component {
           }
           if (!values.email) {
             errors.email = "Required";
-          }
-          if (!values.email.match(EMAIL_REGEX)) {
+          } else if (!values.email.match(EMAIL_REGEX)) {
             errors.email = "Invalid";
           }
           return errors;

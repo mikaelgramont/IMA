@@ -2,11 +2,14 @@ import React, { Component, Fragment } from "react";
 import classnames from "classnames";
 import { Form, Field } from "react-final-form";
 
+import messages from './messages';
+import TranslateHOC from '../Translate.jsx';
+
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-export default class Step1 extends Component {
+class Step1 extends Component {
   render() {
-    const { isCurrent, onNext } = this.props;
+    const { isCurrent, onNext, t} = this.props;
     return (
       <Form
         onSubmit={values => {
@@ -15,22 +18,22 @@ export default class Step1 extends Component {
         validate={values => {
           const errors = {};
           if (!values.firstName) {
-            errors.firstName = "Required";
+            errors.firstName = t('required');
           }
           if (!values.lastName) {
-            errors.lastName = "Required";
+            errors.lastName = t('required');
           }
           if (!values.email) {
-            errors.email = "Required";
+            errors.email = t('required');
           } else if (!values.email.match(EMAIL_REGEX)) {
-            errors.email = "Invalid";
+            errors.email = t('invalid');
           }
           return errors;
         }}
         render={({ handleSubmit, pristine, invalid }) => (
           <Fragment>
             <dt className={classnames("step-title", { current: isCurrent })}>
-              1 - Your information
+              {`1 - ${t('yourInformation')}`}
             </dt>
             <dd className={classnames("step-content", { current: isCurrent })}>
               <form onSubmit={handleSubmit}>
@@ -40,7 +43,7 @@ export default class Step1 extends Component {
                     render={({ input, meta }) => (
                       <div>
                         <label htmlFor="firstName">
-                          First name
+                          {t('firstName')}
                           {meta.touched &&
                             meta.error && (
                               <span className="error">{meta.error}</span>
@@ -50,7 +53,7 @@ export default class Step1 extends Component {
                           type="text"
                           id="firstName"
                           name="firstName"
-                          placeholder="Your first name"
+                          placeholder={t('yourFirstName')}
                           {...input}
                         />
                       </div>
@@ -64,7 +67,7 @@ export default class Step1 extends Component {
                     render={({ input, meta }) => (
                       <div>
                         <label htmlFor="lastName">
-                          Last name
+                          {t('lastName')}
                           {meta.touched &&
                             meta.error && (
                               <span className="error">{meta.error}</span>
@@ -74,7 +77,7 @@ export default class Step1 extends Component {
                           type="text"
                           id="lastName"
                           name="lastName"
-                          placeholder="Your last name"
+                          placeholder={t('yourLastName')}
                           {...input}
                         />
                       </div>
@@ -88,7 +91,7 @@ export default class Step1 extends Component {
                     render={({ input, meta }) => (
                       <div>
                         <label htmlFor="email">
-                          Email
+                          {t('email')}
                           {meta.touched &&
                             meta.error && (
                               <span className="error">{meta.error}</span>
@@ -98,7 +101,7 @@ export default class Step1 extends Component {
                           type="email"
                           id="email"
                           name="email"
-                          placeholder="Your email"
+                          placeholder={t('yourEmail')}
                           {...input}
                         />
                       </div>
@@ -113,7 +116,7 @@ export default class Step1 extends Component {
                     onClick={onNext}
                     className="action-button"
                   >
-                    Continue
+                    {t('continue')}
                   </button>
                 </div>
               </form>
@@ -124,3 +127,5 @@ export default class Step1 extends Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(Step1);
