@@ -1,16 +1,19 @@
 import React, { Component, Fragment } from "react";
 import { Field } from "react-final-form";
 
-export default class Number extends Component {
+import messages from "./messages";
+import TranslateHOC from "../Translate.jsx";
+
+class Number extends Component {
   render() {
-    const { name } = this.props;
+    const { name, t } = this.props;
     return (
       <Field
         name={`${name}.number`}
         render={({ input, meta }) => (
           <Fragment>
             <label htmlFor={`${name}.number`}>
-              Rider number
+              {t('riderNumber')}
               {meta.touched &&
                 meta.error && <span className="error">{meta.error}</span>}
             </label>
@@ -18,7 +21,7 @@ export default class Number extends Component {
               type="text"
               id={`${name}.number`}
               name="number"
-              placeholder="Optional number"
+              placeholder={t('optionalNumber')}
               {...input}
             />
           </Fragment>
@@ -27,3 +30,5 @@ export default class Number extends Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(Number);

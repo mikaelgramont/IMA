@@ -1,9 +1,12 @@
 import React, { Component, Fragment } from "react";
 import { Field } from "react-final-form";
 
-export default class LastName extends Component {
+import messages from "./messages";
+import TranslateHOC from "../Translate.jsx";
+
+class LastName extends Component {
   render() {
-    const { name } = this.props;
+    const { name, t } = this.props;
     return (
       <Field
         name={`${name}.lastName`}
@@ -18,7 +21,7 @@ export default class LastName extends Component {
               type="text"
               id={`${name}.lastName`}
               name="lastName"
-              placeholder="Enter the rider's last name"
+              placeholder={t("ridersLastName")}
               {...input}
             />
           </Fragment>
@@ -27,3 +30,5 @@ export default class LastName extends Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(LastName);

@@ -9,11 +9,10 @@ class Category extends Component {
     const { name, t } = this.props;
 
     const categories = [
-      t("categoryJunior"),
-      t("categoryLadies"),
-      t("categoryMasters"),
-      t("categoryPro"),
-      t("categoryNotRiding")
+      t("junior"),
+      t("ladies"),
+      t("masters"),
+      t("pro"),
     ];
 
     return (

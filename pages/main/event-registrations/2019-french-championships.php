@@ -145,7 +145,7 @@ function _($key) {
   }
   .remove-icon {
     width: 1em;
-    fill: #f7f7f7;
+    fill: #13120D;
   }
   .remove-button[disabled] .remove-icon {
     fill: #888;
@@ -180,8 +180,8 @@ function _($key) {
     cursor: pointer;
   }
   .step-title.current {
-    background: #f7f7f7;
-    color: #13120D;
+    background: #13120D;
+    color: #f7f7f7;
   }
   .step-content {
     display: none;
@@ -196,7 +196,7 @@ function _($key) {
   }
   .formWrapper,
   .step-title {
-    outline: 1px solid #f7f7f7;
+    outline: 1px solid #13120D;
   }
   .form-title {
     padding: 8px;

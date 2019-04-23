@@ -1,17 +1,19 @@
-import React, { Component, Fragment } from "react";
-import { Field } from "react-final-form";
+import React, { Component } from "react";
 
-export default class RemoveRider extends Component {
+import messages from "./messages";
+import TranslateHOC from "../Translate.jsx";
+
+class RemoveRider extends Component {
   render() {
-    const { index, onClick, canRemove } = this.props;
+    const { index, onClick, canRemove, t } = this.props;
     return (
       <div className="rider-name">
-        <span>Rider {index + 1}</span>
+        <span>{t('rider')} {index + 1}</span>
         <button
           type="button"
           onClick={onClick}
           className="remove-button"
-          aria-label="Remove"
+          aria-label={t('removeRider')}
           disabled={!canRemove}
         >
           <svg
@@ -26,3 +28,5 @@ export default class RemoveRider extends Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(RemoveRider);

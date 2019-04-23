@@ -6,6 +6,7 @@ import Step1 from "./step1/index.jsx";
 import Step2 from "./step2/index.jsx";
 import Step3 from "./step3/index.jsx";
 import Step4 from "./step4/index.jsx";
+import calculate from "./CostCalculator";
 
 const ERROR = -1;
 const INITIAL = 0;
@@ -24,7 +25,7 @@ export default class RegistrationForm extends React.Component {
       totalCost: 0,
       currentStep: INITIAL,
       error: null,
-      summaryData: null,
+      summaryData: null
     };
     this.goToStep = this.goToStep.bind(this);
     this.start = this.start.bind(this);
@@ -32,6 +33,7 @@ export default class RegistrationForm extends React.Component {
     this.step2Finish = this.step2Finish.bind(this);
     this.finish = this.finish.bind(this);
     this.onError = this.onError.bind(this);
+    this.getCostPreview = this.getCostPreview.bind(this);
   }
 
   start() {
@@ -52,11 +54,16 @@ export default class RegistrationForm extends React.Component {
   }
 
   step2Finish({ riders }) {
+    const totalCost = calculate(riders, this.props.costs);
     this.setState({
       riders,
-      totalCost: riders.length * this.props.costPerRider,
+      totalCost,
       currentStep: STEP3
     });
+  }
+
+  getCostPreview({ riders }) {
+    return calculate(riders, this.props.costs);
   }
 
   onError(error) {
@@ -85,7 +92,7 @@ export default class RegistrationForm extends React.Component {
     }
 
     const { riders, registrar, totalCost } = this.state;
-    const { serverProcessingUrl, costPerRider } = this.props;
+    const { serverProcessingUrl } = this.props;
     return (
       <div className="formWrapper">
         <h2 className="display-font form-title">Registration form</h2>
@@ -95,7 +102,7 @@ export default class RegistrationForm extends React.Component {
             isCurrent={currentStep === STEP2}
             registrar={this.state.registrar}
             onNext={this.step2Finish}
-            costPerRider={costPerRider}
+            getCostPreview={this.getCostPreview}
           />
           <Step3
             isCurrent={currentStep === STEP3}

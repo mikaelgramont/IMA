@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 import { Field } from "react-final-form";
 
-import messages from "../messages";
-import TranslateHOC from "../../Translate.jsx";
+import messages from "./messages";
+import TranslateHOC from "../Translate.jsx";
 
-class Slalom extends Component {
+class NotRiding extends Component {
   render() {
     const { name, t } = this.props;
     return (
       <Field
         type="checkbox"
-        name={`${name}.slalom`}
+        name={`${name}.notRiding`}
         render={({ input }) => (
           <div className="competition-item">
             <input
               type="checkbox"
-              id={`${name}.slalom`}
-              name={`${name}.slalom`}
+              id={`${name}.notRiding`}
+              name={`${name}.notRiding`}
               {...input}
             />
-            <label className="radio-label" htmlFor={`${name}.slalom`}>
-              {t("slalom")}
+            <label className="radio-label" htmlFor={`${name}.notRiding`}>
+              {t("notRiding")}
             </label>
           </div>
         )}
@@ -29,4 +29,4 @@ class Slalom extends Component {
   }
 }
 
-export default TranslateHOC(messages)(Slalom);
+export default TranslateHOC(messages)(NotRiding);

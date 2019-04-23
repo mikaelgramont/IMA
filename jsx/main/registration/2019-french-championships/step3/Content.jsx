@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
 
-export default class Step3Content extends React.Component {
+import TranslateHOC from "../Translate.jsx";
+
+import messages from "./messages";
+
+class Step3Content extends React.Component {
   componentDidMount() {
     const {
       onError,
@@ -64,17 +68,19 @@ export default class Step3Content extends React.Component {
   }
 
   render() {
-    const { totalCost, riders } = this.props;
-    const riderCount = riders.length;
+    const { riders, t, totalCost } = this.props;
+      const riderCount = riders.length;
+    const totalCostMsg = t('totalCost')(riderCount);
+
     return (
       <Fragment>
         <p>
-          {riderCount > 1
-            ? `The total cost for ${riderCount} is ${totalCost}\u20AC.`
-            : `The cost for 1 rider is ${totalCost}\u20AC.`}
+          {`${totalCostMsg}: ${totalCost}\u20AC.`}
         </p>
         <div id="paypal-button-container" />
       </Fragment>
     );
   }
 }
+
+export default TranslateHOC(messages)(Step3Content);

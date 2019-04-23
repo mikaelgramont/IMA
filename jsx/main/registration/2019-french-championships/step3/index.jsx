@@ -1,9 +1,12 @@
 import React, { Component, Fragment } from "react";
 import classnames from "classnames";
 
-import Step3Content from "./Content.jsx";
+import TranslateHOC from "../Translate.jsx";
 
-export default class Step3 extends Component {
+import Step3Content from "./Content.jsx";
+import messages from "./messages";
+
+class Step3 extends Component {
   render() {
     const {
       isCurrent,
@@ -12,7 +15,8 @@ export default class Step3 extends Component {
       totalCost,
       riders,
       registrar,
-      serverProcessingUrl
+      serverProcessingUrl,
+      t
     } = this.props;
     const contentProps = {
       onError,
@@ -29,7 +33,7 @@ export default class Step3 extends Component {
             current: isCurrent
           })}
         >
-          3 - Payment
+          {`2 - ${t('payment')}`}
         </dt>
         <dd className={classnames("step-content", { current: isCurrent })}>
           {isCurrent ? <Step3Content {...contentProps} /> : null}
@@ -38,3 +42,5 @@ export default class Step3 extends Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(Step3);

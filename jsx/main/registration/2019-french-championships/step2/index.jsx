@@ -4,14 +4,15 @@ import { Form } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 
+import Boardercross from "./Competitions/Boardercross.jsx";
+import Freestyle from "./Competitions/Freestyle.jsx";
 import Category from "./Category.jsx";
 import Country from './Country.jsx';
 import FirstName from './FirstName.jsx';
 import LastName from './LastName.jsx';
 import Number from "./Number.jsx";
 import RemoveRider from "./RemoveRider.jsx";
-import Freestyle from "./Competitions/Freestyle.jsx";
-import Slalom from "./Competitions/Slalom.jsx";
+import NotRiding from "./NotRiding.jsx";
 
 import messages from './messages';
 import TranslateHOC from '../Translate.jsx';
@@ -20,7 +21,7 @@ const MAX_RIDERS = 5;
 
 class Step2 extends Component {
   render() {
-    const { isCurrent, registrar, onNext, costPerRider, t } = this.props;
+    const { isCurrent, registrar, onNext, getCostPreview, t } = this.props;
     const { firstName, lastName } = registrar;
 
     return (
@@ -43,16 +44,16 @@ class Step2 extends Component {
             if (!rider.lastName) {
               localErrors.lastName = t('required')
             }
-            if (!rider.category) {
-              localErrors.category = t('required')
+            if (rider.number && !rider.number.match(/\d{1,3}/)) {
+              localErrors.number = t('lessThan1000');
             }
             if (!rider.country) {
               localErrors.country = t('required')
             }
-            if (rider.number && !rider.number.match(/\d{1,3}/)) {
-              localErrors.number = t('lessThan1000');
+            if (!rider.category) {
+              localErrors.category = t('required')
             }
-            if (!rider.slalom && !rider.freestyle) {
+            if (!rider.boardercross && !rider.freestyle) {
               localErrors.competition = t('pickOneOrMore');
             }
             riderErrors[index] = localErrors;
@@ -76,7 +77,7 @@ class Step2 extends Component {
           const canAdd = values.riders.length < MAX_RIDERS;
 
           const riderCount = values.riders.length;
-          const totalCost = costPerRider * riderCount;
+          const totalCost = getCostPreview(values);
 
           return (
             <Fragment>
@@ -107,6 +108,16 @@ class Step2 extends Component {
                             <LastName name={name}/>
                           </div>
                           <div className="form-item">
+                            <div className="rider-competitions">
+                              <span className="label">
+                                {t('special')}
+                              </span>
+                              <div className="checkbox-wrapper">
+                                <NotRiding name={name}/>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="form-item">
                             <Category name={name}/>
                           </div>
                           <div className="form-item">
@@ -126,7 +137,7 @@ class Step2 extends Component {
                               </span>
                               <div className="checkbox-wrapper">
                                 {/* TODO: inject these from the root of the app in an array that we run through .map() */}
-                                <Slalom name={name}/>
+                                <Boardercross name={name}/>
                                 <Freestyle name={name}/>
                               </div>
                             </div>
@@ -178,7 +189,7 @@ class Step2 extends Component {
                       disabled={invalid}
                       className="action-button"
                     >
-                      {t('Continue')}
+                      {t('continue')}
                     </button>
                   </div>
                 </form>

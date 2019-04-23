@@ -1,14 +1,17 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Field } from "react-final-form";
 
-export default class Freestyle extends Component {
+import messages from "../messages";
+import TranslateHOC from "../../Translate.jsx";
+
+class Freestyle extends Component {
   render() {
-    const { name } = this.props;
+    const { name, t } = this.props;
     return (
       <Field
         type="checkbox"
         name={`${name}.freestyle`}
-        render={({ input, meta }) => (
+        render={({ input }) => (
           <div className="competition-item">
             <input
               type="checkbox"
@@ -17,7 +20,7 @@ export default class Freestyle extends Component {
               {...input}
             />
             <label className="radio-label" htmlFor={`${name}.freestyle`}>
-              Freestyle
+              {t("freestyle")}
             </label>
           </div>
         )}
@@ -25,3 +28,5 @@ export default class Freestyle extends Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(Freestyle);
