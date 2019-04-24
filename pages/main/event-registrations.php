@@ -7,9 +7,4 @@ if (!file_exists($file)) {
   $errorMsg = "No interview by that name found";
 }
 
-//ob_start();
 include $file;
-//$content = ob_get_contents();
-//ob_end_clean();
-//
-//echo $content;

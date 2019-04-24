@@ -5,7 +5,7 @@ const Summary = ({ data }) => {
   const { paymentData, riders } = data;
   const total = `${paymentData.amount.value}${
     paymentData.amount.currency_code
-    }`;
+  }`;
   const transaction = paymentData.id;
   return (
     <Fragment>
@@ -29,28 +29,30 @@ const Summary = ({ data }) => {
           return (
             <li key={`${firstName}${lastName}`}>
               <table>
-                <tr>
-                  <td className="rider-detail">Name:</td>
-                  <td>{`${firstName} ${lastName}`}</td>
-                </tr>
-                <tr>
-                  <td className="rider-detail">Country:</td>
-                  <td>{country}</td>
-                </tr>
-                {number && (
+                <tbody>
                   <tr>
-                    <td className="rider-detail">Rider Number:</td>
-                    <td>{number}</td>
+                    <td className="rider-detail">Name:</td>
+                    <td>{`${firstName} ${lastName}`}</td>
                   </tr>
-                )}
-                <tr>
-                  <td className="rider-detail">Riding in category:</td>
-                  <td>{category}</td>
-                </tr>
-                <tr>
-                  <td className="rider-detail">Competing in:</td>
-                  <td>{competingIn.join(", ")}</td>
-                </tr>
+                  <tr>
+                    <td className="rider-detail">Country:</td>
+                    <td>{country}</td>
+                  </tr>
+                  {number && (
+                    <tr>
+                      <td className="rider-detail">Rider Number:</td>
+                      <td>{number}</td>
+                    </tr>
+                  )}
+                  <tr>
+                    <td className="rider-detail">Riding in category:</td>
+                    <td>{category}</td>
+                  </tr>
+                  <tr>
+                    <td className="rider-detail">Competing in:</td>
+                    <td>{competingIn.join(", ")}</td>
+                  </tr>
+                </tbody>
               </table>
             </li>
           );

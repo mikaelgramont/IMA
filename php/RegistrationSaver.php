@@ -6,11 +6,11 @@ class RegistrationSaver
   const NO = 'No';
 
   public static function save(
-    $sheetsService, $logger, $spreadsheetId, $paypalValidationResponse, $registrarDetails, $riderDetails)
+    $sheetsService, $logger, $spreadsheetId, $paypalValidationResponse, $registrarDetails, $riderDetails, $competitions)
   {
     $logger->log("Adding payment to Google Sheet.\n");
 
-    list($riderValues, $paymentValues) = self::_getSpreadSheetValues($paypalValidationResponse, $registrarDetails, $riderDetails);
+    list($riderValues, $paymentValues) = self::_getSpreadSheetValues($paypalValidationResponse, $registrarDetails, $riderDetails, $competitions);
 
     $params = array("valueInputOption" => "RAW");
     $riderRequestBody = new Google_Service_Sheets_ValueRange([
@@ -29,7 +29,7 @@ class RegistrationSaver
     error_log($logger->dumpText());
   }
 
-  private static function _getSpreadSheetValues($paypal, $registrar, $riders)
+  private static function _getSpreadSheetValues($paypal, $registrar, $riders, $competitions)
   {
     $date = date('Y-m-d H:i:s');
 
@@ -42,7 +42,7 @@ class RegistrationSaver
 
     $riderValues = array();
     foreach ($riders as $rider) {
-      $riderValues[] = array(
+      $thisRiderValues = array(
         $date,
         $orderId,
         isset($rider['number']) ? $rider['number'] : '',
@@ -50,9 +50,16 @@ class RegistrationSaver
         $rider['lastName'],
         $rider['country'],
         $rider['category'],
-        isset($rider['slalom']) ? self::YES : self::NO,
-        isset($rider['freestyle']) ? self::YES : self::NO
       );
+      foreach ($competitions as $competitionName) {
+        if (isset($rider[$competitionName])) {
+          $thisRiderValues[] = self::YES;
+        } else {
+          $thisRiderValues[] = self::NO;
+        }
+      }
+
+      $riderValues[] = $thisRiderValues;
     }
     $paymentValues = array(
       array(

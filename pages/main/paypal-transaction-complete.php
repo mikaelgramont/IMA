@@ -1,6 +1,10 @@
 <?php
 
 use PayPalCheckoutSdk\Orders\OrdersGetRequest;
+use PayPalCheckoutSdk\Core\ProductionEnvironment;
+use PayPalCheckoutSdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+
 
 function failWithMsg($msg)
 {
@@ -32,6 +36,15 @@ header('Content-Type: application/json');
 /***********************************************************************************
  * Request stuff
  **********************************************************************************/
+if (!isset($_GET['key'])) {
+  failWithMsg('No event key given');
+}
+try {
+  $config = PaymentConfigList::getConfig($_GET['key']);
+} catch (Exception $e) {
+  failWithMsg("Bad key: '$key'");
+}
+
 $_POST = json_decode(file_get_contents('php://input'), true);
 $orderId = isset($_POST['orderID']) ? $_POST['orderID'] : null;
 if (!$orderId) {
@@ -53,7 +66,11 @@ $orderDetails = isset($_POST['orderDetails']) ? $_POST['orderDetails'] : null;
 /***********************************************************************************
  * Log all request data before processing
  **********************************************************************************/
-$rawLog = file_get_contents(__DIR__. '/'. REGISTRATIONS_LOG_FILE);
+$logPath = realpath(__DIR__. '/'. $config->logFile);
+$fh = fopen($logPath, 'a');
+fclose($fh);
+
+$rawLog = file_get_contents($logPath);
 if (!$rawLog) {
   $log = [];
 } else {
@@ -68,12 +85,17 @@ $entry->riderDetails = $riderDetails;
 $entry->orderDetails = $orderDetails;
 $log[] = $entry;
 
-file_put_contents(REGISTRATIONS_LOG_FILE, json_encode($log, JSON_PRETTY_PRINT));
+file_put_contents($config->logFile, json_encode($log, JSON_PRETTY_PRINT));
 
 /***********************************************************************************
  * Paypal stuff
  **********************************************************************************/
-$client = PayPalClient::client();
+$client = new PayPalHttpClient(
+//  new ProductionEnvironment(
+  new SandboxEnvironment(
+    $config->paypalClientId,
+    $config->paypalSecret
+  ));
 $paypalValidationResponse = $client->execute(new OrdersGetRequest($orderId));
 if ($paypalValidationResponse->result->status !== 'COMPLETED') {
   // Payment doesn't seem to have worked
@@ -100,7 +122,7 @@ if ($errorMessage) {
 $client = Helpers::getGoogleClientForWeb($accessToken);
 $sheetsService = new Google_Service_Sheets($client);
 $logger = new Logger();
-$spreadsheetId = REGISTRATIONS_SPREADSHEET_ID;
+$spreadsheetId = $config->spreadSheetId;
 
 try {
   RegistrationSaver::save(
@@ -109,7 +131,8 @@ try {
     $spreadsheetId,
     $paypalValidationResponse->result,
     $registrarDetails,
-    $riderDetails
+    $riderDetails,
+    $config->competitions
   );
 } catch (Google_Service_Exception $e) {
   failWithMsg($e->getMessage());

@@ -109,7 +109,8 @@ try {
     $spreadsheetId,
     $paypalValidationResponse->result,
     $registrarDetails,
-    $riderDetails
+    $riderDetails,
+    array(PaymentConfigList::SLALOM, PaymentConfigList::FREESTYLE)
   );
 } catch (Google_Service_Exception $e) {
   failWithMsg($e->getMessage());
