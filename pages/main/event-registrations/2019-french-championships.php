@@ -1,29 +1,5 @@
 <?php
-define('NOT_OPEN_YET', 'not_open_yet');
-define('OPEN', 'open');
-define('CLOSED', 'closed');
-
-/******************************************************************************
- * EVENT CONFIG
- *****************************************************************************/
-define('PAYPAL_ACCOUNT', PAYPAL_ACCOUNT_SANDBOX);
-define('PAYPAL_CLIENT_ID', PAYPAL_CLIENT_ID_SANDBOX);
-define('PAYPAL_SECRET', PAYPAL_SECRET_SANDBOX);
-define('PAYPAL_SCRIPT', PAYPAL_SCRIPT_URL . PAYPAL_CLIENT_ID);
-
-define('REGISTRATION_COST_ADULT_TOTAL', 50);
-$REGISTRATION_COST_ADULT_TOTAL = REGISTRATION_COST_ADULT_TOTAL;
-define('REGISTRATION_COST_ADULT_EACH', 25);
-$REGISTRATION_COST_ADULT_EACH = REGISTRATION_COST_ADULT_EACH;
-
-define('REGISTRATION_COST_KID_TOTAL', 40);
-$REGISTRATION_COST_KID_TOTAL = REGISTRATION_COST_KID_TOTAL;
-define('REGISTRATION_COST_KID_EACH', 20);
-$REGISTRATION_COST_KID_EACH = REGISTRATION_COST_KID_EACH;
-
-define('REGISTRATION_DEADLINE', '2019-05-25');
-
-define('REGISTRATION_OPEN', OPEN);
+$config = PaymentConfigList::getConfig(PaymentConfigList::CDF_2019);
 
 class Translate
 {
@@ -38,8 +14,8 @@ Translate::$translations = array(
     'subtitle' => 'This is the official registration page.',
     'fees' => 'Registration fees',
     'feesParagraph' => <<<FEES
-    <li>Registration costs are {$REGISTRATION_COST_ADULT_EACH}&euro; per event (Boardercross or Freestyle) or {$REGISTRATION_COST_ADULT_TOTAL}&euro; for both (with a bonus free T-shirt!).</li>
-    <li>Reduced fees for children under the age of 14: {$REGISTRATION_COST_KID_EACH}&euro; per event or {$REGISTRATION_COST_KID_TOTAL}&euro; for both (with a bonus free T-shirt!).</li>
+    <li>Registration costs are {$config->costs->adultEach}&euro; per event (Boardercross or Freestyle) or {$config->costs->adultTotal}&euro; for both (with a bonus free T-shirt!).</li>
+    <li>Reduced fees for children under the age of 14: {$config->costs->kidTotal}&euro; per event or {$config->costs->kidEach}&euro; for both (with a bonus free T-shirt!).</li>
 FEES
     ,
     'included' => 'Included',
@@ -49,7 +25,7 @@ FEES
     <li>On-site camping</li>
 INCLUDED
     ,
-    'deadline' => 'The deadline for online registration is May 25th 2019.',
+    'deadline' => 'The deadline for online registration is '.$config->deadline.'.',
     'notOpenYet' => 'Online registration is not open yet.',
     'closed' => 'Online registration is closed.',
   ),
@@ -58,8 +34,8 @@ INCLUDED
     'subtitle' => 'La page officielle d\'inscription en ligne.',
     'fees' => 'Coûts d\'inscription',
     'feesParagraph' => <<<FEES
-    <li>Le prix de l'inscription est de {$REGISTRATION_COST_ADULT_EACH}&euro; par discipline (Boardercross ou Freestyle) ou {$REGISTRATION_COST_ADULT_TOTAL}&euro; les deux (avec un T-shirt gratuit!).</li>
-    <li>Prix réduit pour les moins de 14 ans: {$REGISTRATION_COST_KID_EACH}&euro; par discipline ou {$REGISTRATION_COST_KID_TOTAL}&euro; les deux (avec un T-shirt gratuit!).</li>
+    <li>Le prix de l'inscription est de {$config->costs->adultEach}&euro; par discipline (Boardercross ou Freestyle) ou {$config->costs->adultTotal}&euro; les deux (avec un T-shirt gratuit!).</li>
+    <li>Prix réduit pour les moins de 14 ans: {$config->costs->kidTotal}&euro; par discipline ou {$config->costs->kidEach}&euro; les deux (avec un T-shirt gratuit!).</li>
 FEES
   ,
     'included' => 'Inclus',
@@ -69,7 +45,7 @@ FEES
     <li>Camping sur place</li>
 INCLUDED
   ,
-    'deadline' => 'La date limite d\'enregistrement en ligne est le 25 Mai 2019.',
+    'deadline' => 'La date limite d\'enregistrement en ligne est le '.$config->deadline.'.',
     'notOpenYet' => 'L\'enregistrement en ligne n\'est pas encore ouvert.',
     'closed' => 'L\'enregistrement en ligne n\'est terminé.',
   ),
@@ -131,8 +107,8 @@ function _($key) {
 
   .add,
   .remove {
-    background: #f7f7f7;
-    color: #13120D;
+    background: #13120D;
+    color: #f7f7f7;
     margin-left: 10px;
   }
 
@@ -319,11 +295,11 @@ function _($key) {
     </p>
 
     <?php
-    switch (REGISTRATION_OPEN) {
-      case NOT_OPEN_YET:
+    switch ($config->status) {
+      case PaymentConfigList::NOT_OPEN_YET:
         echo "<p class='registration-status'>". _('notOpenYet') ."</p>\n";
         break;
-      case CLOSED:
+      case PaymentConfigList::CLOSED:
         echo "<p class='registration-status'>". _('closed') ."</p>\n";
         break;
     }
@@ -335,21 +311,16 @@ function _($key) {
 
 
 <?php
-if (REGISTRATION_OPEN == OPEN) {
+if ($config->status == PaymentConfigList::OPEN) {
   ?>
   <script>
-    window.__registrationConstants__ = {
-      costs: {
-        adultTotal: parseFloat(<?php echo REGISTRATION_COST_ADULT_TOTAL ?>, 10),
-        adultEach: parseFloat(<?php echo REGISTRATION_COST_ADULT_EACH ?>, 10),
-        kidTotal: parseFloat(<?php echo REGISTRATION_COST_KID_TOTAL ?>, 10),
-        kidEach: parseFloat(<?php echo REGISTRATION_COST_KID_EACH ?>, 10),
-      },
-      serverProcessingUrl: '<?php echo BASE_URL ?>paypal-transaction-complete'
-    }
+  window.__registrationConstants__ = {
+      costs: <?php echo json_encode($config->costs) ?>,
+      serverProcessingUrl: '<?php echo $config->serverProcessingUrl ?>'
+  };
   </script>
-  <script src="<?PHP echo PAYPAL_SCRIPT ?>"></script>
-  <script src="<?PHP echo BASE_URL ?>scripts/2019-french-championships-bundle.js"></script>
+  <script src="<?PHP echo $config->paypalScript ?>"></script>
+  <script src="<?php echo $config->jsBundle ?>"></script>
   <?php
 }
 ?>

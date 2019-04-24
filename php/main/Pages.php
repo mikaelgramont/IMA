@@ -133,12 +133,12 @@ class Pages
 				'skipMenuEntry' => true,
 				'noContent' => true,
 			],
-            (object) [
-                'title' => 'Article',
-                'url' => 'articles',
-                'file' => 'articles.php',
-                'skipMenuEntry' => true,
-            ],
+      (object) [
+          'title' => 'Article',
+          'url' => 'articles',
+          'file' => 'articles.php',
+          'skipMenuEntry' => true,
+      ],
 			(object) [
 				'title' => '2018 Video Contest',
 				'url' => '2018-video-contest',
@@ -146,14 +146,21 @@ class Pages
 				'skipMenuEntry' => true,
 				'noContent' => false,
 			],
-            (object) [
-                'title' => 'IMA results',
-                'url' => 'results-embed',
-                'file' => 'results.php',
-                'skipMenuEntry' => true,
-                'noContent' => false,
-                'embed' => true,
-            ]
+      (object) [
+          'title' => 'IMA results',
+          'url' => 'results-embed',
+          'file' => 'results.php',
+          'skipMenuEntry' => true,
+          'noContent' => false,
+          'embed' => true,
+      ],
+      (object) [
+        'title' => 'Home',
+        'url' => 'paypal-transaction-complete',
+        'file' => 'paypal-transaction-complete.php',
+        'skipMenuEntry' => true,
+        'noContent' => true,
+      ],
 		);
 	}
 }

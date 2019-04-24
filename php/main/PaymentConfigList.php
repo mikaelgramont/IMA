@@ -1,0 +1,42 @@
+<?php
+class PaymentConfigList
+{
+  const OPEN = 'open';
+  const NOT_OPEN_YET = 'not_open_yet';
+  const CLOSED = 'closed';
+
+  const PAYPAL_SCRIPT_URL = 'https://www.paypal.com/sdk/js?currency=EUR&client-id=';
+
+  const CDF_2019 = '1_cdf_2019';
+
+  static function getConfig($key) {
+    $config = new stdClass();
+    $config->serverProcessingUrl = BASE_URL.'paypal-transaction-complete?key='.$key;
+    $config->key = $key;
+
+    switch($key) {
+      case self::CDF_2019:
+        $config->status = self::OPEN;
+        $config->jsBundle = BASE_URL.'scripts/2019-french-championships-bundle.js';
+
+        $config->paypalAccount = PAYPAL_ACCOUNT_CDF_2019;
+        $config->paypalClientId = PAYPAL_CLIENT_ID_CDF_2019;
+        $config->paypalSecret = PAYPAL_SECRET_CDF_2019;
+
+        $config->costs = new stdClass();
+        $config->costs->adultTotal = 50;
+        $config->costs->adultEach = 25;
+        $config->costs->kidTotal = 40;
+        $config->costs->kidEach = 20;
+
+        $config->deadline = '2019-05-25';
+        break;
+      default:
+        throw new Exception("No payment config found for key '$key'");
+    }
+
+    $config->paypalScript = self::PAYPAL_SCRIPT_URL . $config->paypalClientId;
+
+    return $config;
+  }
+}

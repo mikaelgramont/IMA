@@ -1,4 +1,7 @@
 <?php
+if (function_exists('xdebug_disable')) {
+  xdebug_disable();
+}
 ini_set('xdebug.default_enable', false);
 ini_set('xdebug.html_errors', false);
 
