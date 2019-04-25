@@ -1,71 +1,76 @@
 import React, { Component, Fragment } from "react";
 import classnames from "classnames";
 
-const Summary = ({ data }) => {
-  const { paymentData, riders } = data;
-  const total = `${paymentData.amount.value}${
-    paymentData.amount.currency_code
-  }`;
-  const transaction = paymentData.id;
-  return (
-    <Fragment>
-      <p>Congratulations! Registration was successful!</p>
-      <p>
-        You were charged {total} in transaction{" "}
-        <span className="transaction">{transaction}</span>.
-      </p>
-      <p>The following riders are now registered:</p>
-      <ul className="registered-riders">
-        {riders.map(rider => {
-          const { firstName, lastName, category, country, number } = rider;
-          const competingIn = [];
-          if (rider.slalom) {
-            competingIn.push("Slalom");
-          }
-          if (rider.freestyle) {
-            competingIn.push("Freestyle");
-          }
+import TranslateHOC from "../Translate.jsx";
+import messages from "./messages";
 
-          return (
-            <li key={`${firstName}${lastName}`}>
-              <table>
-                <tbody>
-                  <tr>
-                    <td className="rider-detail">Name:</td>
-                    <td>{`${firstName} ${lastName}`}</td>
-                  </tr>
-                  <tr>
-                    <td className="rider-detail">Country:</td>
-                    <td>{country}</td>
-                  </tr>
-                  {number && (
-                    <tr>
-                      <td className="rider-detail">Rider Number:</td>
-                      <td>{number}</td>
-                    </tr>
-                  )}
-                  <tr>
-                    <td className="rider-detail">Riding in category:</td>
-                    <td>{category}</td>
-                  </tr>
-                  <tr>
-                    <td className="rider-detail">Competing in:</td>
-                    <td>{competingIn.join(", ")}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </li>
-          );
-        })}
-      </ul>
-      <p>See you there!</p>
-    </Fragment>
-  );
-};
-
-export default class Step4 extends Component {
+class Step4 extends Component {
   render() {
-    const { summaryData, isCurrent } = this.props;
+    const { summaryData, isCurrent, t } = this.props;
+
+    const Summary = ({ data }) => {
+      const { paymentData, riders } = data;
+      const total = `${paymentData.amount.value}${
+        paymentData.amount.currency_code
+      }`;
+      const transaction = paymentData.id;
+      return (
+        <Fragment>
+          <p>{t('success')}</p>
+          <p>
+            <span>{t('youWereCharged').replace('{total}', total)}:</span>
+            &nbsp;
+            <span className="transaction">{transaction}</span>.
+          </p>
+          <p>{t('registeredList')}</p>
+          <ul className="registered-riders">
+            {riders.map(rider => {
+              const { firstName, lastName, category, country, number } = rider;
+              const competingIn = [];
+              if (rider.slalom) {
+                competingIn.push(t('slalom'));
+              }
+              if (rider.freestyle) {
+                competingIn.push(t('freestyle'));
+              }
+
+              return (
+                <li key={`${firstName}${lastName}`}>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td className="rider-detail">{t('name')}:</td>
+                        <td>{`${firstName} ${lastName}`}</td>
+                      </tr>
+                      <tr>
+                        <td className="rider-detail">{t('country')}:</td>
+                        <td>{country}</td>
+                      </tr>
+                      {number && (
+                        <tr>
+                          <td className="rider-detail">{t('riderNumber')}:</td>
+                          <td>{number}</td>
+                        </tr>
+                      )}
+                      <tr>
+                        <td className="rider-detail">{t('ridingInCategory')}:</td>
+                        <td>{category}</td>
+                      </tr>
+                      <tr>
+                        <td className="rider-detail">{t('competingIn')}:</td>
+                        <td>{competingIn.join(", ")}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </li>
+              );
+            })}
+          </ul>
+          <p>{t('seeYouThere')}</p>
+        </Fragment>
+      );
+    };
+
     return (
       <Fragment>
         <dt
@@ -73,7 +78,7 @@ export default class Step4 extends Component {
             current: isCurrent
           })}
         >
-          4 - Finish
+          {`4 - ${t("finish")}`}
         </dt>
         <dd className={classnames("step-content", { current: isCurrent })}>
           {summaryData ? <Summary data={summaryData} /> : null}
@@ -81,6 +86,6 @@ export default class Step4 extends Component {
       </Fragment>
     );
   }
-
-  componentDidMount() {}
 }
+
+export default TranslateHOC(messages)(Step4);

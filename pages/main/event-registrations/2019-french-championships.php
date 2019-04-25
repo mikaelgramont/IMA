@@ -7,7 +7,7 @@ class Translate
   public static $lang;
 }
 
-Translate::$lang = 'fr';
+Translate::$lang = 'en';
 Translate::$translations = array(
   'en' => array (
     'title' => '2019 French Championships - Registration',
@@ -72,6 +72,9 @@ function _($key) {
   /* Rest of the page */
   .content-wrapper {
     flex-wrap: nowrap;
+  }
+  .content-main {
+    margin-bottom: 20px;
   }
   @media screen and (min-width: 640px) {
     .content-main {

@@ -6,7 +6,9 @@ import Step1 from "./step1/index.jsx";
 import Step2 from "./step2/index.jsx";
 import Step3 from "./step3/index.jsx";
 import Step4 from "./step4/index.jsx";
+import TranslateHOC from "./Translate.jsx";
 import calculate from "./CostCalculator";
+import messages from "./messages";
 
 const ERROR = -1;
 const INITIAL = 0;
@@ -15,7 +17,7 @@ const STEP2 = 2;
 const STEP3 = 3;
 const STEP4 = 4;
 
-export default class RegistrationForm extends React.Component {
+class RegistrationForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -83,6 +85,7 @@ export default class RegistrationForm extends React.Component {
 
   render() {
     const { currentStep } = this.state;
+    const { t } = this.props;
 
     if (currentStep === INITIAL) {
       return <Initial onClick={this.start} />;
@@ -95,7 +98,7 @@ export default class RegistrationForm extends React.Component {
     const { serverProcessingUrl } = this.props;
     return (
       <div className="formWrapper">
-        <h2 className="display-font form-title">Registration form</h2>
+        <h2 className="display-font form-title">{t('title')}</h2>
         <dl className="steps">
           <Step1 isCurrent={currentStep === STEP1} onNext={this.step1Finish} />
           <Step2
@@ -122,3 +125,5 @@ export default class RegistrationForm extends React.Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(RegistrationForm);

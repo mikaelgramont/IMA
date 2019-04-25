@@ -33,7 +33,7 @@ class Step3 extends Component {
             current: isCurrent
           })}
         >
-          {`2 - ${t('payment')}`}
+          {`3 - ${t('payment')}`}
         </dt>
         <dd className={classnames("step-content", { current: isCurrent })}>
           {isCurrent ? <Step3Content {...contentProps} /> : null}
