@@ -15,7 +15,7 @@ class PaymentConfigList
 
   static function getConfig($key) {
     $config = new stdClass();
-    $config->serverProcessingUrl = BASE_URL.'paypal-transaction-complete?XDEBUG_SESSION_START=PHP_STORM&key='.$key;
+    $config->serverProcessingUrl = BASE_URL.'paypal-transaction-complete?key='.$key;
     $config->key = $key;
     $config->logFile = '../../logs/registrations-'. $key  .'.json';
 
@@ -23,6 +23,7 @@ class PaymentConfigList
       case self::CDF_2019:
         $config->status = self::OPEN;
         $config->jsBundle = BASE_URL.'scripts/2019-french-championships-bundle.js';
+        $config->languages = array('fr', 'en');
 
         $config->paypalAccount = PAYPAL_ACCOUNT_CDF_2019;
         $config->paypalClientId = PAYPAL_CLIENT_ID_CDF_2019;

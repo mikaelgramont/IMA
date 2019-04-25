@@ -1,13 +1,15 @@
 <?php
-$config = PaymentConfigList::getConfig(PaymentConfigList::CDF_2019);
-
 class Translate
 {
   public static $translations;
   public static $lang;
 }
 
-Translate::$lang = 'en';
+$config = PaymentConfigList::getConfig(PaymentConfigList::CDF_2019);
+$langQueryArg = isset($_GET['lang']) ? $_GET['lang'] : null;
+$lang = Utils::pickUserLanguageInList($config->languages, "en", $langQueryArg);
+
+Translate::$lang = $lang;
 Translate::$translations = array(
   'en' => array (
     'title' => '2019 French Championships - Registration',
