@@ -2,7 +2,7 @@ import Gettext from 'node-gettext';
 import React from 'react';
 import setDisplayName from 'recompose/setDisplayName';
 import wrapDisplayName from 'recompose/wrapDisplayName';
-import AppContext from './AppContext';
+import LocaleContext from './LocaleContext';
 
 const LC_MESSAGE = 'messages';
 const NUMBER_REGEX = /{{n}}|%d/;
@@ -10,7 +10,7 @@ const NUMBER_REGEX = /{{n}}|%d/;
 const TranslateHOC = (messages) => (BaseComponent) => {
   class Translate extends React.PureComponent {
     // noinspection JSUnusedGlobalSymbols
-    static contextType = AppContext;
+    static contextType = LocaleContext;
 
     constructor(props) {
       super(props);

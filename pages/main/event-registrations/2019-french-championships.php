@@ -5,9 +5,28 @@ class Translate
   public static $lang;
 }
 
+$defaultLanguage = 'en';
+$languageFilePath = realpath(__DIR__. '/../../../translations');
+$translationFilePaths = Utils::getFilesInFolder($languageFilePath, "*.json");
+$regex = "/.*([a-z]{2})\.json/";
+$availableLanguages = array('en');
+foreach ($translationFilePaths as $translationFilePath) {
+  preg_match($regex, $translationFilePath,$matches);
+  if ($matches && sizeof($matches) == 2) {
+    $availableLanguages[] = $matches[1];
+  }
+}
+
 $config = PaymentConfigList::getConfig(PaymentConfigList::CDF_2019);
 $langQueryArg = isset($_GET['lang']) ? $_GET['lang'] : null;
-$lang = Utils::pickUserLanguageInList($config->languages, "en", $langQueryArg);
+$lang = Utils::pickUserLanguageInList($availableLanguages, $defaultLanguage, $langQueryArg);
+if ($lang === $defaultLanguage) {
+  $jsTranslations = json_encode(new stdClass());
+} else {
+  $jsTranslations = file_get_contents($languageFilePath . "/" . $lang . ".json");
+}
+
+
 
 Translate::$lang = $lang;
 Translate::$translations = array(
@@ -321,7 +340,9 @@ if ($config->status == PaymentConfigList::OPEN) {
   <script>
   window.__registrationConstants__ = {
       costs: <?php echo json_encode($config->costs) ?>,
-      serverProcessingUrl: '<?php echo $config->serverProcessingUrl ?>'
+      serverProcessingUrl: '<?php echo $config->serverProcessingUrl ?>',
+      translations: <?php echo $jsTranslations ?>,
+      language: '<?php echo $lang ?>',
   };
   </script>
   <script src="<?PHP echo $config->paypalScript ?>"></script>

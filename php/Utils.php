@@ -476,13 +476,19 @@ HTML;
       $userLanguages = self::getUserLanguages();
     }
 
-    foreach ($availableLanguages as $availableLanguage) {
-      foreach ($userLanguages as $userLanguage => $prefRatio) {
-        if (strpos($userLanguage, $availableLanguage) === 0) {
-          return $availableLanguage;
+    foreach ($userLanguages as $userLanguage => $prefRatio) {
+      foreach ($availableLanguages as $availableLanguage) {
+        $languageParts = explode('-', $userLanguage);
+        $currentUserLanguage = $languageParts[0];
+        if (strpos($currentUserLanguage, $availableLanguage) === 0) {
+          return $currentUserLanguage;
         }
       }
     }
     return $defaultLanguage;
+  }
+
+  public static function getFilesInFolder($folder, $glob) {
+    return glob($folder."/".$glob);
   }
 }

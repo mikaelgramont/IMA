@@ -24,6 +24,5 @@ export default (riders, costs) => {
     }
   }, 0);
 
-  console.log({riders, costs, total});
   return total;
 }

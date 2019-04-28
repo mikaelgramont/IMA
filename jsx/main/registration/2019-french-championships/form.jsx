@@ -6,6 +6,8 @@ import Step1 from "./step1/index.jsx";
 import Step2 from "./step2/index.jsx";
 import Step3 from "./step3/index.jsx";
 import Step4 from "./step4/index.jsx";
+
+import LocaleContext from "./LocaleContext";
 import TranslateHOC from "./Translate.jsx";
 import calculate from "./CostCalculator";
 import messages from "./messages";
@@ -18,6 +20,8 @@ const STEP3 = 3;
 const STEP4 = 4;
 
 class RegistrationForm extends React.Component {
+  static contextType = LocaleContext;
+
   constructor(props) {
     super(props);
 
@@ -84,8 +88,8 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    const { currentStep } = this.state;
-    const { t } = this.props;
+    const { currentStep, riders, registrar, totalCost } = this.state;
+    const { t, serverProcessingUrl } = this.props;
 
     if (currentStep === INITIAL) {
       return <Initial onClick={this.start} />;
@@ -94,34 +98,35 @@ class RegistrationForm extends React.Component {
       return <Error error={this.state.error.message} />;
     }
 
-    const { riders, registrar, totalCost } = this.state;
-    const { serverProcessingUrl } = this.props;
     return (
-      <div className="formWrapper">
-        <h2 className="display-font form-title">{t('title')}</h2>
-        <dl className="steps">
-          <Step1 isCurrent={currentStep === STEP1} onNext={this.step1Finish} />
-          <Step2
-            isCurrent={currentStep === STEP2}
-            registrar={this.state.registrar}
-            onNext={this.step2Finish}
-            getCostPreview={this.getCostPreview}
-          />
-          <Step3
-            isCurrent={currentStep === STEP3}
-            onFinish={this.finish}
-            onError={this.onError}
-            serverProcessingUrl={serverProcessingUrl}
-            riders={riders}
-            registrar={registrar}
-            totalCost={totalCost}
-          />
-          <Step4
-            isCurrent={currentStep === STEP4}
-            summaryData={this.state.summaryData}
-          />
-        </dl>
-      </div>
+        <div className="formWrapper">
+          <h2 className="display-font form-title">{t("title")}</h2>
+          <dl className="steps">
+            <Step1
+              isCurrent={currentStep === STEP1}
+              onNext={this.step1Finish}
+            />
+            <Step2
+              isCurrent={currentStep === STEP2}
+              registrar={this.state.registrar}
+              onNext={this.step2Finish}
+              getCostPreview={this.getCostPreview}
+            />
+            <Step3
+              isCurrent={currentStep === STEP3}
+              onFinish={this.finish}
+              onError={this.onError}
+              serverProcessingUrl={serverProcessingUrl}
+              riders={riders}
+              registrar={registrar}
+              totalCost={totalCost}
+            />
+            <Step4
+              isCurrent={currentStep === STEP4}
+              summaryData={this.state.summaryData}
+            />
+          </dl>
+        </div>
     );
   }
 }
