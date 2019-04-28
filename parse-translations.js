@@ -10,7 +10,7 @@ try {
   poFilePaths.forEach((poFilePath) => {
     const matches = poFilePath.match(langRegex);
     if (!matches || matches.length != 2) {
-      console.log(`Skippng file ${poFilePath}`);
+      console.log(`Skipping file ${poFilePath}`);
       return;
     }
     const languageName = matches[1];

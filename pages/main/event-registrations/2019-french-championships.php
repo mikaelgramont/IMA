@@ -1,9 +1,29 @@
 <?php
+/******************************************************************************
+ * TODO 1: move all this stuff into external classes
+ *****************************************************************************/
+
 class Translate
 {
   public static $translations;
   public static $lang;
 }
+
+function _($key) {
+  $translations = Translate::$translations;
+  $lang = Translate::$lang;
+
+  if (!isset($translations[$lang])) {
+    throw new Exception("Language '$lang' not supported");
+  }
+
+  if (!isset($translations[$lang][$key])) {
+    throw new Exception("Key '$key' not present in language '$lang'");
+  }
+
+  return $translations[$lang][$key];
+}
+
 
 $defaultLanguage = 'en';
 $languageFilePath = realpath(__DIR__. '/../../../translations');
@@ -26,9 +46,19 @@ if ($lang === $defaultLanguage) {
   $jsTranslations = file_get_contents($languageFilePath . "/" . $lang . ".json");
 }
 
-
-
 Translate::$lang = $lang;
+
+/******************************************************************************
+ * End of TODO 1
+ *****************************************************************************/
+
+
+/******************************************************************************
+ * TODO 2: create translation entries, then create a PHP script to parse them
+ * and save them to a JS file (from scratch everytime) so that it gets picked
+ * up by the JS translation extraction process.
+ *****************************************************************************/
+
 Translate::$translations = array(
   'en' => array (
     'title' => '2019 French Championships - Registration',
@@ -71,23 +101,15 @@ INCLUDED
     'closed' => 'L\'enregistrement en ligne n\'est terminé.',
   ),
 );
+/******************************************************************************
+ * End of TODO 2
+ *****************************************************************************/
 
 
-function _($key) {
-  $translations = Translate::$translations;
-  $lang = Translate::$lang;
 
-  if (!isset($translations[$lang])) {
-    throw new Exception("Language '$lang' not supported");
-  }
-
-  if (!isset($translations[$lang][$key])) {
-    throw new Exception("Key '$key' not present in language '$lang'");
-  }
-
-  return $translations[$lang][$key];
-}
-
+/******************************************************************************
+ * TODO 3: move CSS and SVG to a file and inline it with PHP.
+ *****************************************************************************/
 ?>
 <style>
   /* Rest of the page */

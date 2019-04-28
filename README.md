@@ -22,3 +22,12 @@ Further token updates will be managed directly by the Google client code.
 
 ## Generating the data
 Until there is a web-based interface for generating results and events HTML, from the `binz directory, you can run `./parse-results.php` and `./parse-events.php`
+
+
+## Registration form Translations
+Run `npm run extract-translations` to extract calls to translation functions from js and jsx files.
+Those calls get compiled into `./translations/template.pot`
+
+Perform translations through POEdit or some other means, so that finished translation files are in the same folder (`./translations/[lang].po)
+
+Run `npm run parse-translations` to generate JSON files which can then be loaded into the app during server-side rendering.

@@ -1,0 +1,275 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: jsx/main/registration/2019-french-championships/step2/messages.js:18
+msgid "%d rider"
+msgid_plural "%d riders"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Label for a button to add a registered rider
+#: jsx/main/registration/2019-french-championships/step2/messages.js:15
+msgid "Add Rider"
+msgstr ""
+
+#. A competition type
+#. A type of competition
+#: jsx/main/registration/2019-french-championships/step2/messages.js:47
+#: jsx/main/registration/2019-french-championships/step4/messages.js:8
+msgid "Boardercross"
+msgstr ""
+
+#. Label for a field to choose a category
+#: jsx/main/registration/2019-french-championships/step2/messages.js:26
+msgid "Category"
+msgstr ""
+
+#. Label for a field to choose a country the rider is competing for
+#: jsx/main/registration/2019-french-championships/step2/messages.js:34
+msgid "Choose the country they're riding for"
+msgstr ""
+
+#. Label for a field listing categories
+#: jsx/main/registration/2019-french-championships/step2/messages.js:27
+msgid "Choose the rider's category"
+msgstr ""
+
+#. Indicates the competitions a registered rider is running in
+#: jsx/main/registration/2019-french-championships/step4/messages.js:15
+msgid "Competing in"
+msgstr ""
+
+#. Message displayed when registration was successful
+#: jsx/main/registration/2019-french-championships/step4/messages.js:4
+msgid "Congratulations! Registration was successful!"
+msgstr ""
+
+#. Label for a button to go to the next step
+#: jsx/main/registration/2019-french-championships/step1/messages.js:17
+#: jsx/main/registration/2019-french-championships/step2/messages.js:22
+msgid "Continue"
+msgstr ""
+
+#. Label for a field to choose a country the rider is competing for
+#. Indicates a registered rider's country
+#: jsx/main/registration/2019-french-championships/step2/messages.js:33
+#: jsx/main/registration/2019-french-championships/step4/messages.js:12
+msgid "Country"
+msgstr ""
+
+#. Label of a form field containing a person's email
+#: jsx/main/registration/2019-french-championships/step1/messages.js:14
+msgid "Email"
+msgstr ""
+
+#. Help text to tell the user whose first name should be entered
+#: jsx/main/registration/2019-french-championships/step2/messages.js:37
+msgid "Enter the rider's first name"
+msgstr ""
+
+#. Help text to tell the user whose last name should be entered
+#: jsx/main/registration/2019-french-championships/step2/messages.js:38
+msgid "Enter the rider's last name"
+msgstr ""
+
+#. Name of the last registration form section
+#: jsx/main/registration/2019-french-championships/step4/messages.js:3
+msgid "Finish"
+msgstr ""
+
+#. Label of a form field containing a person's first name
+#: jsx/main/registration/2019-french-championships/step1/messages.js:7
+#: jsx/main/registration/2019-french-championships/step2/messages.js:36
+msgid "First name"
+msgstr ""
+
+#. A competition type
+#. A type of competition
+#: jsx/main/registration/2019-french-championships/step2/messages.js:45
+#: jsx/main/registration/2019-french-championships/step4/messages.js:9
+msgid "Freestyle"
+msgstr ""
+
+#. Label next to a form field indicating the provided information is not valid
+#: jsx/main/registration/2019-french-championships/step1/messages.js:4
+#: jsx/main/registration/2019-french-championships/step2/messages.js:4
+msgid "Invalid"
+msgstr ""
+
+#. Name of the Junior category
+#: jsx/main/registration/2019-french-championships/step2/messages.js:28
+msgid "Junior"
+msgstr ""
+
+#. Name of the Ladies category
+#: jsx/main/registration/2019-french-championships/step2/messages.js:29
+msgid "Ladies"
+msgstr ""
+
+#. Label of a form field containing a person's last name
+#: jsx/main/registration/2019-french-championships/step1/messages.js:11
+msgid "Last name"
+msgstr ""
+
+#. Error message indicating a rider's number must be less than 1000
+#: jsx/main/registration/2019-french-championships/step2/messages.js:6
+msgid "Less than 1000"
+msgstr ""
+
+#. Name of the Masters category
+#: jsx/main/registration/2019-french-championships/step2/messages.js:30
+msgid "Masters"
+msgstr ""
+
+#. Indicates the name of a registered rider
+#: jsx/main/registration/2019-french-championships/step4/messages.js:11
+msgid "Name"
+msgstr ""
+
+#. Indicates a person does not intend to ride, but is registering anyway
+#: jsx/main/registration/2019-french-championships/step2/messages.js:48
+msgid "Not riding"
+msgstr ""
+
+#. Indicates choosing a rider's number is not mandatory
+#: jsx/main/registration/2019-french-championships/step2/messages.js:41
+msgid "Optional number"
+msgstr ""
+
+#. Name of a section where the user can start paying
+#: jsx/main/registration/2019-french-championships/step3/messages.js:3
+msgid "Payment"
+msgstr ""
+
+#. Message indicating registration payment did not work.
+#: jsx/main/registration/2019-french-championships/error/messages.js:3
+msgid "Payment with Paypal failed, sorry!!"
+msgstr ""
+
+#. Indicates the user must choose at least one option
+#: jsx/main/registration/2019-french-championships/step2/messages.js:7
+msgid "Pick one or more"
+msgstr ""
+
+#. Introduces an error message to the user.
+#: jsx/main/registration/2019-french-championships/error/messages.js:4
+msgid "Please try again, or get in touch and mention the following message:"
+msgstr ""
+
+#. Name of the Pro category
+#: jsx/main/registration/2019-french-championships/step2/messages.js:31
+msgid "Pro"
+msgstr ""
+
+#. Name of a section to enter the information for registered riders
+#: jsx/main/registration/2019-french-championships/step2/messages.js:9
+msgid "Registered rider(s) and price"
+msgstr ""
+
+#. Label for a section containing a list of competitions a rider can take part in
+#: jsx/main/registration/2019-french-championships/step2/messages.js:13
+msgid "Registering in"
+msgstr ""
+
+#. Title of the registration form page
+#: jsx/main/registration/2019-french-championships/messages.js:3
+msgid "Registration form"
+msgstr ""
+
+#. Label for a button to remove a registered rider
+#: jsx/main/registration/2019-french-championships/step2/messages.js:16
+msgid "Remove Rider"
+msgstr ""
+
+#. Label next to a form field indicating the user must provide that information
+#: jsx/main/registration/2019-french-championships/step1/messages.js:3
+#: jsx/main/registration/2019-french-championships/step2/messages.js:3
+msgid "Required"
+msgstr ""
+
+#. Indicates the rider's number in the list
+#: jsx/main/registration/2019-french-championships/step2/messages.js:43
+msgid "Rider"
+msgstr ""
+
+#. Label for a field to choose a rider's flag number
+#: jsx/main/registration/2019-french-championships/step2/messages.js:40
+msgid "Rider number"
+msgstr ""
+
+#. Indicates a registered rider's number
+#: jsx/main/registration/2019-french-championships/step4/messages.js:13
+msgid "Rider Number"
+msgstr ""
+
+#. Indicates a registered rider's category
+#: jsx/main/registration/2019-french-championships/step4/messages.js:14
+msgid "Riding in category"
+msgstr ""
+
+#. A friendly message
+#: jsx/main/registration/2019-french-championships/step4/messages.js:10
+msgid "See you there!"
+msgstr ""
+
+#. A competition type
+#. A type of competition
+#: jsx/main/registration/2019-french-championships/step2/messages.js:46
+#: jsx/main/registration/2019-french-championships/step4/messages.js:7
+msgid "Slalom"
+msgstr ""
+
+#. Name of a section for special information
+#: jsx/main/registration/2019-french-championships/step2/messages.js:24
+msgid "Special"
+msgstr ""
+
+#. Label for the button to start registration for an event
+#: jsx/main/registration/2019-french-championships/initial/messages.js:3
+msgid "Start Registering!"
+msgstr ""
+
+#. Label for a list of registered riders
+#: jsx/main/registration/2019-french-championships/step4/messages.js:6
+msgid "The following riders are now registered:"
+msgstr ""
+
+#: jsx/main/registration/2019-french-championships/step3/messages.js:4
+msgid "The total cost for 1 rider is"
+msgid_plural "The total cost for %d riders is"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Total cost for all registered riders
+#: jsx/main/registration/2019-french-championships/step2/messages.js:20
+msgid "Total"
+msgstr ""
+
+#. Paragraph indicating that it's possible to register more than one rider at a time.
+#: jsx/main/registration/2019-french-championships/initial/messages.js:4
+#: jsx/main/registration/2019-french-championships/step2/messages.js:11
+msgid "You can register yourself and/or other riders."
+msgstr ""
+
+#. Payment summary message
+#: jsx/main/registration/2019-french-championships/step4/messages.js:5
+msgid "You were charged {total} in transaction number"
+msgstr ""
+
+#. Help text to tell the user to enter their email
+#: jsx/main/registration/2019-french-championships/step1/messages.js:15
+msgid "Your email"
+msgstr ""
+
+#. Help text to tell the user to enter their first name
+#. Help text to tell the user to enter their last name
+#: jsx/main/registration/2019-french-championships/step1/messages.js:12
+#: jsx/main/registration/2019-french-championships/step1/messages.js:9
+msgid "Your first name"
+msgstr ""
+
+#. Title of a form section containing information about who is doing the registration
+#: jsx/main/registration/2019-french-championships/step1/messages.js:6
+msgid "Your information"
+msgstr ""
