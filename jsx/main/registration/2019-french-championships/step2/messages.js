@@ -25,6 +25,8 @@ const messages = (getText, getPlural) => (key) =>
 
     category: getText('Category') /* Label for a field to choose a category */,
     chooseCategory: getText('Choose the rider\'s category') /* Label for a field listing categories */,
+    under14: getText('Under 14') /* Name of the category for riders younger than 14*/,
+    under18: getText('Under 18') /* Name of the category for riders younger than 18 */,
     junior: getText('Junior') /* Name of the Junior category */,
     ladies: getText('Ladies') /* Name of the Ladies category */,
     masters: getText('Masters') /* Name of the Masters category */,

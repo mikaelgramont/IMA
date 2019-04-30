@@ -1,7 +1,4 @@
-const JUNIOR = 'Junior';
-const LADIES = 'Ladies';
-const MASTERS = 'Masters';
-const PRO = 'Pro';
+import { UNDER14 } from './Categories';
 
 export default (riders, costs) => {
   const total = riders.reduce((acc, rider) => {
@@ -9,7 +6,7 @@ export default (riders, costs) => {
       return acc;
     }
 
-    if (rider.category === JUNIOR) {
+    if (rider.category === UNDER14) {
       if (rider.boardercross && rider.freestyle) {
         return acc + costs.kidTotal;
       } else {
