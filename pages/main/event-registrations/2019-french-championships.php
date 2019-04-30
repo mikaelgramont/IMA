@@ -9,7 +9,7 @@ class Translate
   public static $lang;
 }
 
-function _($key) {
+function t($key) {
   $translations = Translate::$translations;
   $lang = Translate::$lang;
 
@@ -335,23 +335,23 @@ INCLUDED
 
 <div class="content-wrapper">
   <div class="content-main">
-    <h1 class="display-font"><?php echo _('title') ?></h1>
-    <p><?php echo _('subtitle') ?></p>
-    <h2 class="display-font"><?php echo _('fees') ?></h2>
-    <ul><?php echo _('feesParagraph') ?></ul>
-    <h2 class="display-font"><?php echo _('included') ?></h2>
-    <ul><?php echo _('includedInFees') ?></ul>
+    <h1 class="display-font"><?php echo t('title') ?></h1>
+    <p><?php echo t('subtitle') ?></p>
+    <h2 class="display-font"><?php echo t('fees') ?></h2>
+    <ul><?php echo t('feesParagraph') ?></ul>
+    <h2 class="display-font"><?php echo t('included') ?></h2>
+    <ul><?php echo t('includedInFees') ?></ul>
     <p>
-      <?php echo _('deadline') ?>
+      <?php echo t('deadline') ?>
     </p>
 
     <?php
     switch ($config->status) {
       case PaymentConfigList::NOT_OPEN_YET:
-        echo "<p class='registration-status'>". _('notOpenYet') ."</p>\n";
+        echo "<p class='registration-status'>". t('notOpenYet') ."</p>\n";
         break;
       case PaymentConfigList::CLOSED:
-        echo "<p class='registration-status'>". _('closed') ."</p>\n";
+        echo "<p class='registration-status'>". t('closed') ."</p>\n";
         break;
     }
     ?>
