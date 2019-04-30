@@ -1,24 +1,24 @@
 {
   "charset": "utf-8",
   "headers": {
-    "Content-Type": "text/plain; charset=UTF-8",
     "Project-Id-Version": "",
     "POT-Creation-Date": "",
     "PO-Revision-Date": "",
+    "Last-Translator": "",
     "Language-Team": "",
+    "Language": "fr",
     "MIME-Version": "1.0",
+    "Content-Type": "text/plain; charset=UTF-8",
     "Content-Transfer-Encoding": "8bit",
     "X-Generator": "Poedit 2.2.1",
-    "Last-Translator": "",
-    "Plural-Forms": "nplurals=2; plural=(n > 1);",
-    "Language": "fr"
+    "Plural-Forms": "nplurals=2; plural=(n > 1);"
   },
   "translations": {
     "": {
       "": {
         "msgid": "",
         "msgstr": [
-          "Content-Type: text/plain; charset=UTF-8\nProject-Id-Version: \nPOT-Creation-Date: \nPO-Revision-Date: \nLanguage-Team: \nMIME-Version: 1.0\nContent-Transfer-Encoding: 8bit\nX-Generator: Poedit 2.2.1\nLast-Translator: \nPlural-Forms: nplurals=2; plural=(n > 1);\nLanguage: fr\n"
+          "Project-Id-Version: \nPOT-Creation-Date: \nPO-Revision-Date: \nLast-Translator: \nLanguage-Team: \nLanguage: fr\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nX-Generator: Poedit 2.2.1\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
         ]
       },
       "%d rider": {
@@ -106,7 +106,7 @@
         "msgid": "Continue",
         "comments": {
           "extracted": "Label for a button to go to the next step",
-          "reference": "jsx/main/registration/2019-french-championships/step1/messages.js:17\njsx/main/registration/2019-french-championships/step2/messages.js:22"
+          "reference": "jsx/main/registration/2019-french-championships/step1/messages.js:17\njsx/main/registration/2019-french-championships/step2/messages.js:22\njsx/main/registration/2019-french-championships/step3/messages.js:9"
         },
         "msgstr": [
           "Continuer"
@@ -262,6 +262,16 @@
           "Ne ridera pas"
         ]
       },
+      "Online payment is optional, you can register now and pay on-site at the event.": {
+        "msgid": "Online payment is optional, you can register now and pay on-site at the event.",
+        "comments": {
+          "extracted": "Message indicating the user may skip online payment",
+          "reference": "jsx/main/registration/2019-french-championships/step3/messages.js:5"
+        },
+        "msgstr": [
+          "Le paiement en ligne est optionnel, vous pouvez vous inscrire maintenant et payer sur place."
+        ]
+      },
       "Optional number": {
         "msgid": "Optional number",
         "comments": {
@@ -320,6 +330,16 @@
         },
         "msgstr": [
           "Pro"
+        ]
+      },
+      "Proceed with payment": {
+        "msgid": "Proceed with payment",
+        "comments": {
+          "extracted": "One of several payment options",
+          "reference": "jsx/main/registration/2019-french-championships/step3/messages.js:7"
+        },
+        "msgstr": [
+          "Effectuer le paiement"
         ]
       },
       "Registered rider(s) and price": {
@@ -422,6 +442,16 @@
           "On se voit là bas!"
         ]
       },
+      "Skip payment": {
+        "msgid": "Skip payment",
+        "comments": {
+          "extracted": "One of several payment options",
+          "reference": "jsx/main/registration/2019-french-championships/step3/messages.js:8"
+        },
+        "msgstr": [
+          "Sauter le paiement"
+        ]
+      },
       "Slalom": {
         "msgid": "Slalom",
         "comments": {
@@ -470,7 +500,7 @@
         "msgid_plural": "The total cost for %d riders is",
         "msgstr": [
           "Le coût total pour 1 rider est",
-          ""
+          "Le coût total pour %d riders est"
         ]
       },
       "Total": {
@@ -481,6 +511,16 @@
         },
         "msgstr": [
           "Total"
+        ]
+      },
+      "Would you like to proceed with payment now?": {
+        "msgid": "Would you like to proceed with payment now?",
+        "comments": {
+          "extracted": "Presents the user with the choice to pay or skip payment",
+          "reference": "jsx/main/registration/2019-french-championships/step3/messages.js:6"
+        },
+        "msgstr": [
+          "Souhaitez-vous effectuer le paiement en ligne maintenant?"
         ]
       },
       "You can register yourself and/or other riders.": {
