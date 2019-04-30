@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
-"Last-Translator: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"Language: fr\n"
 
 #: jsx/main/registration/2019-french-championships/step2/messages.js:18
 msgid "%d rider"
@@ -58,6 +58,7 @@ msgstr "Félicitations! L’inscription a bien été enregistrée!"
 #. Label for a button to go to the next step
 #: jsx/main/registration/2019-french-championships/step1/messages.js:17
 #: jsx/main/registration/2019-french-championships/step2/messages.js:22
+#: jsx/main/registration/2019-french-championships/step3/messages.js:9
 msgid "Continue"
 msgstr "Continuer"
 
@@ -142,6 +143,15 @@ msgstr "Nom"
 msgid "Not riding"
 msgstr "Ne ridera pas"
 
+#. Message indicating the user may skip online payment
+#: jsx/main/registration/2019-french-championships/step3/messages.js:5
+msgid ""
+"Online payment is optional, you can register now and pay on-site at the "
+"event."
+msgstr ""
+"Le paiement en ligne est optionnel, vous pouvez vous inscrire maintenant "
+"et payer sur place."
+
 #. Indicates choosing a rider's number is not mandatory
 #: jsx/main/registration/2019-french-championships/step2/messages.js:41
 msgid "Optional number"
@@ -165,12 +175,18 @@ msgstr "Un ou plusieurs"
 #. Introduces an error message to the user.
 #: jsx/main/registration/2019-french-championships/error/messages.js:4
 msgid "Please try again, or get in touch and mention the following message:"
-msgstr "Merci de réessayer, ou nous contacter en mentionnant le message suivant:"
+msgstr ""
+"Merci de réessayer, ou nous contacter en mentionnant le message suivant:"
 
 #. Name of the Pro category
 #: jsx/main/registration/2019-french-championships/step2/messages.js:31
 msgid "Pro"
 msgstr "Pro"
+
+#. One of several payment options
+#: jsx/main/registration/2019-french-championships/step3/messages.js:7
+msgid "Proceed with payment"
+msgstr "Effectuer le paiement"
 
 #. Name of a section to enter the information for registered riders
 #: jsx/main/registration/2019-french-championships/step2/messages.js:9
@@ -223,6 +239,11 @@ msgstr "Dans la catégorie"
 msgid "See you there!"
 msgstr "On se voit là bas!"
 
+#. One of several payment options
+#: jsx/main/registration/2019-french-championships/step3/messages.js:8
+msgid "Skip payment"
+msgstr "Sauter le paiement"
+
 #. A competition type
 #. A type of competition
 #: jsx/main/registration/2019-french-championships/step2/messages.js:46
@@ -249,12 +270,17 @@ msgstr "Les riders suivants sont maintenant inscrits:"
 msgid "The total cost for 1 rider is"
 msgid_plural "The total cost for %d riders is"
 msgstr[0] "Le coût total pour 1 rider est"
-msgstr[1] ""
+msgstr[1] "Le coût total pour %d riders est"
 
 #. Total cost for all registered riders
 #: jsx/main/registration/2019-french-championships/step2/messages.js:20
 msgid "Total"
 msgstr "Total"
+
+#. Presents the user with the choice to pay or skip payment
+#: jsx/main/registration/2019-french-championships/step3/messages.js:6
+msgid "Would you like to proceed with payment now?"
+msgstr "Souhaitez-vous effectuer le paiement en ligne maintenant?"
 
 #. Paragraph indicating that it's possible to register more than one rider at a time.
 #: jsx/main/registration/2019-french-championships/initial/messages.js:4

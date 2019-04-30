@@ -48,6 +48,7 @@ msgstr ""
 #. Label for a button to go to the next step
 #: jsx/main/registration/2019-french-championships/step1/messages.js:17
 #: jsx/main/registration/2019-french-championships/step2/messages.js:22
+#: jsx/main/registration/2019-french-championships/step3/messages.js:9
 msgid "Continue"
 msgstr ""
 
@@ -132,6 +133,11 @@ msgstr ""
 msgid "Not riding"
 msgstr ""
 
+#. Message indicating the user may skip online payment
+#: jsx/main/registration/2019-french-championships/step3/messages.js:5
+msgid "Online payment is optional, you can register now and pay on-site at the event."
+msgstr ""
+
 #. Indicates choosing a rider's number is not mandatory
 #: jsx/main/registration/2019-french-championships/step2/messages.js:41
 msgid "Optional number"
@@ -160,6 +166,11 @@ msgstr ""
 #. Name of the Pro category
 #: jsx/main/registration/2019-french-championships/step2/messages.js:31
 msgid "Pro"
+msgstr ""
+
+#. One of several payment options
+#: jsx/main/registration/2019-french-championships/step3/messages.js:7
+msgid "Proceed with payment"
 msgstr ""
 
 #. Name of a section to enter the information for registered riders
@@ -213,6 +224,11 @@ msgstr ""
 msgid "See you there!"
 msgstr ""
 
+#. One of several payment options
+#: jsx/main/registration/2019-french-championships/step3/messages.js:8
+msgid "Skip payment"
+msgstr ""
+
 #. A competition type
 #. A type of competition
 #: jsx/main/registration/2019-french-championships/step2/messages.js:46
@@ -244,6 +260,11 @@ msgstr[1] ""
 #. Total cost for all registered riders
 #: jsx/main/registration/2019-french-championships/step2/messages.js:20
 msgid "Total"
+msgstr ""
+
+#. Presents the user with the choice to pay or skip payment
+#: jsx/main/registration/2019-french-championships/step3/messages.js:6
+msgid "Would you like to proceed with payment now?"
 msgstr ""
 
 #. Paragraph indicating that it's possible to register more than one rider at a time.
