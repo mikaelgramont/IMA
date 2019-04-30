@@ -54,11 +54,11 @@ class RegistrationSaver
       $thisRiderValues = array(
         $date,
         $orderId,
-        isset($rider['number']) ? $rider['number'] : '',
+        isset($rider['number']) && $rider['number'] ? $rider['number'] : Google_Model::NULL_VALUE,
         $rider['firstName'],
         $rider['lastName'],
-        $rider['country'],
-        $rider['category'],
+        $rider['country'] ? $rider['country'] :  Google_Model::NULL_VALUE,
+        $rider['category'] ? $rider['category'] :  Google_Model::NULL_VALUE,
       );
       foreach ($competitions as $competitionName) {
         if (isset($rider[$competitionName])) {

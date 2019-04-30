@@ -47,14 +47,11 @@ class Step2 extends Component {
             if (rider.number && !rider.number.match(/\d{1,3}/)) {
               localErrors.number = t('lessThan1000');
             }
-            if (!rider.country) {
+            if (!rider.notRiding && !rider.country) {
               localErrors.country = t('required')
             }
-            if (!rider.category) {
+            if (!rider.notRiding && !rider.category) {
               localErrors.category = t('required')
-            }
-            if (!rider.boardercross && !rider.freestyle) {
-              localErrors.competition = t('pickOneOrMore');
             }
             riderErrors[index] = localErrors;
           });

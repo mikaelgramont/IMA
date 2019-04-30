@@ -16,7 +16,8 @@ class Step3 extends Component {
     super(props);
 
     this.state = {
-      hasElectedToPay: null
+      hasElectedToPay: null,
+      submitting: false,
     };
   }
 
@@ -43,7 +44,7 @@ class Step3 extends Component {
   }
 
   renderContent() {
-    const {hasElectedToPay} = this.state;
+    const {hasElectedToPay, submitting} = this.state;
     const {
       onFinish,
       onError,
@@ -72,8 +73,9 @@ class Step3 extends Component {
       return <Form
         onSubmit={(value) => {
           if (value.proceedWithPayment === YES) {
-            this.setState({hasElectedToPay: true})
+            this.setState({hasElectedToPay: true, submitting: true})
           } else {
+            this.setState({submitting: true})
             return fetch(serverProcessingUrl, {
               method: "post",
               headers: {
@@ -95,7 +97,7 @@ class Step3 extends Component {
           }
         }}
         render={({values, handleSubmit}) => {
-          const disabled = !values.proceedWithPayment;
+          const disabled = !values.proceedWithPayment || submitting;
           return (
             <form onSubmit={handleSubmit}>
               <p>{t('onlinePaymentIsOptional')}</p>
