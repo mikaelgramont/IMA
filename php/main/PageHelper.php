@@ -22,6 +22,9 @@ HTML;
   public static function getPageIdAndParams($baseUrl, $fullUrl)
   {
     $queryUrl = $fullUrl;
+    if (USE_HTTPS) {
+      $queryUrl = str_replace('http://', 'https://', $queryUrl);
+    }
     if (substr($queryUrl, 0, strlen($baseUrl)) == $baseUrl) {
       $queryUrl = substr($queryUrl, strlen($baseUrl));
     }
