@@ -19,7 +19,7 @@ class NotRiding extends Component {
               name={`${name}.notRiding`}
               {...input}
             />
-            <label className="radio-label" htmlFor={`${name}.notRiding`}>
+            <label className="checkbox-label" htmlFor={`${name}.notRiding`}>
               {t("notRiding")}
             </label>
           </div>

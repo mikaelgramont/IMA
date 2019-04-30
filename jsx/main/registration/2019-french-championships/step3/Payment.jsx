@@ -4,7 +4,7 @@ import TranslateHOC from "../Translate.jsx";
 
 import messages from "./messages";
 
-class Step3Content extends React.Component {
+class Payment extends React.Component {
   componentDidMount() {
     const {
       onError,
@@ -83,4 +83,4 @@ class Step3Content extends React.Component {
   }
 }
 
-export default TranslateHOC(messages)(Step3Content);
+export default TranslateHOC(messages)(Payment);

@@ -9,7 +9,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 
 class Step1 extends Component {
   render() {
-    const { isCurrent, onNext, t} = this.props;
+    const { stepId, isCurrent, onNext, t} = this.props;
     return (
       <Form
         onSubmit={values => {
@@ -33,7 +33,7 @@ class Step1 extends Component {
         render={({ handleSubmit, pristine, invalid }) => (
           <Fragment>
             <dt className={classnames("step-title", { current: isCurrent })}>
-              {`1 - ${t('yourInformation')}`}
+              {`${stepId} - ${t('yourInformation')}`}
             </dt>
             <dd className={classnames("step-content", { current: isCurrent })}>
               <form onSubmit={handleSubmit}>

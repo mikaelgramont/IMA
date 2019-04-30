@@ -21,7 +21,7 @@ const MAX_RIDERS = 5;
 
 class Step2 extends Component {
   render() {
-    const { isCurrent, registrar, onNext, getCostPreview, t } = this.props;
+    const { isCurrent, registrar, onNext, getCostPreview, t, stepId } = this.props;
     const { firstName, lastName } = registrar;
 
     return (
@@ -86,7 +86,7 @@ class Step2 extends Component {
                   current: isCurrent
                 })}
               >
-                {`2 - ${t('registeredRidersAndPrice')}`}
+                {`${stepId} - ${t('registeredRidersAndPrice')}`}
               </dt>
               <dd
                 className={classnames("step-content", {

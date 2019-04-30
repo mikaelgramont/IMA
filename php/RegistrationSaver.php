@@ -6,11 +6,11 @@ class RegistrationSaver
   const NO = 'No';
 
   public static function save(
-    $sheetsService, $logger, $spreadsheetId, $paypalValidationResponse, $registrarDetails, $riderDetails, $competitions)
+    $sheetsService, $logger, $spreadsheetId, $paymentDetails, $registrarDetails, $riderDetails, $competitions)
   {
     $logger->log("Adding payment to Google Sheet.\n");
 
-    list($riderValues, $paymentValues) = self::_getSpreadSheetValues($paypalValidationResponse, $registrarDetails, $riderDetails, $competitions);
+    list($riderValues, $paymentValues) = self::_getSpreadSheetValues($paymentDetails, $registrarDetails, $riderDetails, $competitions);
 
     $params = array("valueInputOption" => "RAW");
     $riderRequestBody = new Google_Service_Sheets_ValueRange([
@@ -33,12 +33,21 @@ class RegistrationSaver
   {
     $date = date('Y-m-d H:i:s');
 
-    $orderId = $paypal->id;
-    $paymentDate = $paypal->create_time;
-    $paymentAmount = $paypal->purchase_units[0]->amount->value;
-    $paymentCurrency = $paypal->purchase_units[0]->amount->currency_code;
-    $paymentName = $paypal->payer->name->given_name . ' ' . $paypal->payer->name->surname;
-    $paymentEmail = $paypal->payer->email_address;
+    if ($paypal) {
+      $orderId = $paypal->id;
+      $paymentDate = $paypal->create_time;
+      $paymentAmount = $paypal->purchase_units[0]->amount->value;
+      $paymentCurrency = $paypal->purchase_units[0]->amount->currency_code;
+      $paymentName = $paypal->payer->name->given_name . ' ' . $paypal->payer->name->surname;
+      $paymentEmail = $paypal->payer->email_address;
+    } else {
+      $orderId = Google_Model::NULL_VALUE;
+      $paymentDate = Google_Model::NULL_VALUE;
+      $paymentAmount = Google_Model::NULL_VALUE;
+      $paymentCurrency = Google_Model::NULL_VALUE;
+      $paymentName = Google_Model::NULL_VALUE;
+      $paymentEmail = Google_Model::NULL_VALUE;
+    }
 
     $riderValues = array();
     foreach ($riders as $rider) {

@@ -19,7 +19,7 @@ class Slalom extends Component {
               name={`${name}.slalom`}
               {...input}
             />
-            <label className="radio-label" htmlFor={`${name}.slalom`}>
+            <label className="checkbox-label" htmlFor={`${name}.slalom`}>
               {t("slalom")}
             </label>
           </div>

@@ -19,7 +19,7 @@ class Freestyle extends Component {
               name={`${name}.freestyle`}
               {...input}
             />
-            <label className="radio-label" htmlFor={`${name}.freestyle`}>
+            <label className="checkbox-label" htmlFor={`${name}.freestyle`}>
               {t("freestyle")}
             </label>
           </div>

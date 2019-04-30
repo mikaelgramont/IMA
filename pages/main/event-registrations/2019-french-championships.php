@@ -236,9 +236,14 @@ INCLUDED
     box-sizing: border-box;
     vertical-align: middle;
   }
+  .form-item .checkbox-label,
   .form-item .radio-label {
     text-align: initial;
     width: auto;
+  }
+
+  .form-item .radio-label {
+    margin-left: 5px;
   }
 
   input::placeholder,
@@ -361,6 +366,7 @@ if ($config->status == PaymentConfigList::OPEN) {
   ?>
   <script>
   window.__registrationConstants__ = {
+      paymentType: <?php echo json_encode($config->paymentType) ?>,
       costs: <?php echo json_encode($config->costs) ?>,
       serverProcessingUrl: '<?php echo $config->serverProcessingUrl ?>',
       translations: <?php echo $jsTranslations ?>,

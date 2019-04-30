@@ -47,9 +47,13 @@ try {
 
 $_POST = json_decode(file_get_contents('php://input'), true);
 $orderId = isset($_POST['orderID']) ? $_POST['orderID'] : null;
-if (!$orderId) {
+if (!$orderId && $config->paymentType == PaymentConfigList::PAYMENT_MANDATORY) {
   // Payment doesn't seem to have worked
   failWithMsg('No order id given');
+}
+if ($orderId && $config->paymentType == PaymentConfigList::PAYMENT_NONE) {
+  // Payment info given when none is requested
+  failWithMsg("Got payment info when none was requested. Order id: '$orderId'");
 }
 $registrarDetails = isset($_POST['registrarDetails']) ? $_POST['registrarDetails'] : null;
 if (!$registrarDetails) {
@@ -90,18 +94,23 @@ file_put_contents($config->logFile, json_encode($log, JSON_PRETTY_PRINT));
 /***********************************************************************************
  * Paypal stuff
  **********************************************************************************/
-$client = new PayPalHttpClient(
-//  new ProductionEnvironment(
-  new SandboxEnvironment(
-    $config->paypalClientId,
-    $config->paypalSecret
-  ));
-$paypalValidationResponse = $client->execute(new OrdersGetRequest($orderId));
-if ($paypalValidationResponse->result->status !== 'COMPLETED') {
-  // Payment doesn't seem to have worked
-  failWithMsg('Payment not found');
-}
+if ($orderId) {
+  $client = new PayPalHttpClient(
+    //  new ProductionEnvironment(
+    new SandboxEnvironment(
+      $config->paypalClientId,
+      $config->paypalSecret
+    ));
+  $paypalValidationResponse = $client->execute(new OrdersGetRequest($orderId));
+  if ($paypalValidationResponse->result->status !== 'COMPLETED') {
+    // Payment doesn't seem to have worked
+    failWithMsg('Payment not found');
+  }
 
+  $paymentDetails = $paypalValidationResponse->result;
+} else {
+  $paymentDetails = null;
+}
 /***********************************************************************************
  * Spreadsheet stuff
  **********************************************************************************/
@@ -112,7 +121,7 @@ if (!file_exists(CREDENTIALS_PATH)) {
   try {
     $accessToken = json_decode(file_get_contents(CREDENTIALS_PATH), true);
   } catch (Exception $e) {
-    $errorMessage = "Could not decode the token";
+    $errorMessage = "Could not decode the Google API token";
   }
 }
 if ($errorMessage) {
@@ -129,7 +138,7 @@ try {
     $sheetsService,
     $logger,
     $spreadsheetId,
-    $paypalValidationResponse->result,
+    $paymentDetails,
     $registrarDetails,
     $riderDetails,
     $config->competitions
@@ -138,7 +147,7 @@ try {
   failWithMsg($e->getMessage());
 }
 // All good!
-success($paypalValidationResponse->result, $riderDetails);
+success($paymentDetails, $riderDetails);
 
 
 

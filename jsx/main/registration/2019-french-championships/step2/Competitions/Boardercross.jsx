@@ -19,7 +19,7 @@ class Boardercross extends Component {
               name={`${name}.boardercross`}
               {...input}
             />
-            <label className="radio-label" htmlFor={`${name}.boardercross`}>
+            <label className="checkbox-label" htmlFor={`${name}.boardercross`}>
               {t("boardercross")}
             </label>
           </div>

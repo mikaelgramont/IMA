@@ -9,13 +9,17 @@ class PaymentConfigList
   const SLALOM = 'slalom';
   const FREESTYLE = 'freestyle';
 
+  const PAYMENT_MANDATORY = 'paymentMandatory';
+  const PAYMENT_OPTIONAL = 'paymentOptional';
+  const PAYMENT_NONE = 'paymentNone';
+
   const PAYPAL_SCRIPT_URL = 'https://www.paypal.com/sdk/js?currency=EUR&client-id=';
 
   const CDF_2019 = '1_cdf_2019';
 
   static function getConfig($key) {
     $config = new stdClass();
-    $config->serverProcessingUrl = BASE_URL.'paypal-transaction-complete?key='.$key;
+    $config->serverProcessingUrl = BASE_URL.'paypal-transaction-complete?XDEBUG_SESSION_START=PHPSTORM&key='.$key;
     $config->key = $key;
     $config->logFile = '../../logs/registrations-'. $key  .'.json';
 
@@ -24,6 +28,8 @@ class PaymentConfigList
         $config->status = self::OPEN;
         $config->jsBundle = BASE_URL.'scripts/2019-french-championships-bundle.js';
         $config->languages = array('fr', 'en');
+
+        $config->paymentType = self::PAYMENT_OPTIONAL;
 
         $config->paypalAccount = PAYPAL_ACCOUNT_CDF_2019;
         $config->paypalClientId = PAYPAL_CLIENT_ID_CDF_2019;
@@ -39,6 +45,7 @@ class PaymentConfigList
         $config->spreadSheetId = '1mWCEXVU7P2trUOC9PbP8SeQg23XPF2M8U5g6m89czNE';
         // Order must match columns in the spreadsheet
         $config->competitions = array(self::BOARDERCROSS, self::FREESTYLE);
+
 
         break;
       default:

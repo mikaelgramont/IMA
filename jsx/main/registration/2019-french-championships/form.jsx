@@ -11,6 +11,7 @@ import LocaleContext from "./LocaleContext";
 import TranslateHOC from "./Translate.jsx";
 import calculate from "./CostCalculator";
 import messages from "./messages";
+import {PAYMENT_NONE} from "./Constants";
 
 const ERROR = -1;
 const INITIAL = 0;
@@ -89,7 +90,9 @@ class RegistrationForm extends React.Component {
 
   render() {
     const { currentStep, riders, registrar, totalCost } = this.state;
-    const { t, serverProcessingUrl } = this.props;
+    const { t, serverProcessingUrl, paymentType } = this.props;
+
+    const stepIds = paymentType === PAYMENT_NONE ? {1: 1, 2: 2, 3: null, 4: 3} : {1: 1, 2: 2, 3: 3, 4: 4};
 
     if (currentStep === INITIAL) {
       return <Initial onClick={this.start} />;
@@ -103,25 +106,32 @@ class RegistrationForm extends React.Component {
           <h2 className="display-font form-title">{t("title")}</h2>
           <dl className="steps">
             <Step1
+              stepId={stepIds[1]}
               isCurrent={currentStep === STEP1}
               onNext={this.step1Finish}
             />
             <Step2
+              stepId={stepIds[2]}
               isCurrent={currentStep === STEP2}
               registrar={this.state.registrar}
               onNext={this.step2Finish}
               getCostPreview={this.getCostPreview}
             />
-            <Step3
-              isCurrent={currentStep === STEP3}
-              onFinish={this.finish}
-              onError={this.onError}
-              serverProcessingUrl={serverProcessingUrl}
-              riders={riders}
-              registrar={registrar}
-              totalCost={totalCost}
-            />
+            {paymentType !== PAYMENT_NONE && (
+              <Step3
+                stepId={stepIds[3]}
+                paymentType={paymentType}
+                isCurrent={currentStep === STEP3}
+                onFinish={this.finish}
+                onError={this.onError}
+                serverProcessingUrl={serverProcessingUrl}
+                riders={riders}
+                registrar={registrar}
+                totalCost={totalCost}
+              />
+            )}
             <Step4
+              stepId={stepIds[4]}
               isCurrent={currentStep === STEP4}
               summaryData={this.state.summaryData}
             />
