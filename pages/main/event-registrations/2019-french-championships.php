@@ -67,12 +67,13 @@ Translate::$translations = array(
     'feesParagraph' => <<<FEES
     <li>Registration costs are {$config->costs->adultEach}&euro; per event (Boardercross or Freestyle) or {$config->costs->adultTotal}&euro; for both (with a bonus free T-shirt!).</li>
     <li>Reduced fees for children under the age of 14: {$config->costs->kidTotal}&euro; per event or {$config->costs->kidEach}&euro; for both (with a bonus free T-shirt!).</li>
+    <li>Non-riders can register in order get the same meals as riders (same price).</li>
 FEES
     ,
     'included' => 'Included',
     'includedInFees' => <<<INCLUDED
     <li>Competition registration</li>
-    <li>3 meals</li>
+    <li>3 meals with each event: lunch and dinner on day 1, lunch on day 2</li>
     <li>On-site camping</li>
 INCLUDED
     ,
@@ -85,15 +86,17 @@ INCLUDED
     'subtitle' => 'La page officielle d\'inscription en ligne.',
     'fees' => 'Coûts d\'inscription',
     'feesParagraph' => <<<FEES
-    <li>Le prix de l'inscription est de {$config->costs->adultEach}&euro; par discipline (Boardercross ou Freestyle) ou {$config->costs->adultTotal}&euro; les deux (avec un T-shirt gratuit!).</li>
-    <li>Prix réduit pour les moins de 14 ans: {$config->costs->kidTotal}&euro; par discipline ou {$config->costs->kidEach}&euro; les deux (avec un T-shirt gratuit!).</li>
+    <li>Le prix de l'inscription est de {$config->costs->adultEach}&euro; par discipline (Boardercross ou Freestyle) ou {$config->costs->adultTotal}&euro; les deux (avec un T-shirt offert!).</li>
+    <li>Prix réduit pour les moins de 14 ans: {$config->costs->kidEach}&euro; par discipline ou {$config->costs->kidTotal}&euro; les deux (avec un T-shirt offert!).</li>
+    <li>Les accompagnants peuvent s'inscrire pour avoir accès aux mêmes repas que les riders (prix identique).</li>
 FEES
   ,
     'included' => 'Inclus',
     'includedInFees' => <<<INCLUDED
     <li>Inscription à la compétition</li>
-    <li>3 repas</li>
+    <li>3 repas pour chaque évènement: midi et soir pour le premier jour, midi le second jour</li>
     <li>Camping sur place</li>
+
 INCLUDED
   ,
     'deadline' => 'La date limite d\'enregistrement en ligne est le '.$config->deadline.'.',

@@ -45,8 +45,10 @@ const messages = (getText, getPlural) => (key) =>
     rider: getText('Rider') /* Indicates the rider's number in the list */,
 
     freestyle: getText('Freestyle') /* A competition type */,
+    freestyleRouans: getText('Freestyle (Rouans)') /* A competition type */,
     slalom: getText('Slalom') /* A competition type */,
     boardercross: getText('Boardercross') /* A competition type */,
+    boardercrossArzano: getText('Boardercross (Arzano)') /* A competition type */,
     notRiding: getText('Not riding') /* Indicates a person does not intend to ride, but is registering anyway */,
   }[key]);
 

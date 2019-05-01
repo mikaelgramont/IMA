@@ -26,13 +26,16 @@ class Step3 extends Component {
       isCurrent,
       t,
       stepId,
+      titleClick,
     } = this.props;
     return (
       <Fragment>
         <dt
           className={classnames("step3 step-title", {
-            current: isCurrent
+            current: isCurrent,
+            clickable: !!titleClick
           })}
+          onClick={() => {if (titleClick) {titleClick()} }}
         >
           {`${stepId} - ${t('payment')}`}
         </dt>

@@ -20,7 +20,7 @@ class Freestyle extends Component {
               {...input}
             />
             <label className="checkbox-label" htmlFor={`${name}.freestyle`}>
-              {t("freestyle")}
+              {t("freestyleRouans")}
             </label>
           </div>
         )}

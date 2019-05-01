@@ -12,7 +12,7 @@ const messages = (getText, getPlural) => (key) =>
     country: getText('Country') /* Indicates a registered rider's country */,
     riderNumber: getText('Rider Number') /* Indicates a registered rider's number */,
     ridingInCategory: getText('Riding in category') /* Indicates a registered rider's category */,
-    competingIn: getText('Competing in') /* Indicates the competitions a registered rider is running in */,
+    registeredIn: getText('Registered in') /* Indicates the competitions a rider is registered in */,
   }[key]);
 
 export default messages;

@@ -20,7 +20,7 @@ class Boardercross extends Component {
               {...input}
             />
             <label className="checkbox-label" htmlFor={`${name}.boardercross`}>
-              {t("boardercross")}
+              {t("boardercrossArzano")}
             </label>
           </div>
         )}

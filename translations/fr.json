@@ -46,10 +46,20 @@
         "msgid": "Boardercross",
         "comments": {
           "extracted": "A competition type\nA type of competition",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:47\njsx/main/registration/2019-french-championships/step4/messages.js:8"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:50\njsx/main/registration/2019-french-championships/step4/messages.js:8"
         },
         "msgstr": [
           "Boardercross"
+        ]
+      },
+      "Boardercross (Arzano)": {
+        "msgid": "Boardercross (Arzano)",
+        "comments": {
+          "extracted": "A competition type",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:51"
+        },
+        "msgstr": [
+          "Boardercross (Arzano)"
         ]
       },
       "Category": {
@@ -66,7 +76,7 @@
         "msgid": "Choose the country they're riding for",
         "comments": {
           "extracted": "Label for a field to choose a country the rider is competing for",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:34"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:36"
         },
         "msgstr": [
           "Choisissez le pays du rider"
@@ -80,16 +90,6 @@
         },
         "msgstr": [
           "Choisissez la catégorie du rider"
-        ]
-      },
-      "Competing in": {
-        "msgid": "Competing in",
-        "comments": {
-          "extracted": "Indicates the competitions a registered rider is running in",
-          "reference": "jsx/main/registration/2019-french-championships/step4/messages.js:15"
-        },
-        "msgstr": [
-          "Court en"
         ]
       },
       "Congratulations! Registration was successful!": {
@@ -116,7 +116,7 @@
         "msgid": "Country",
         "comments": {
           "extracted": "Label for a field to choose a country the rider is competing for\nIndicates a registered rider's country",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:33\njsx/main/registration/2019-french-championships/step4/messages.js:12"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:35\njsx/main/registration/2019-french-championships/step4/messages.js:12"
         },
         "msgstr": [
           "Pays"
@@ -136,7 +136,7 @@
         "msgid": "Enter the rider's first name",
         "comments": {
           "extracted": "Help text to tell the user whose first name should be entered",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:37"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:39"
         },
         "msgstr": [
           "Entrez le prénom du rider"
@@ -146,7 +146,7 @@
         "msgid": "Enter the rider's last name",
         "comments": {
           "extracted": "Help text to tell the user whose last name should be entered",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:38"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:40"
         },
         "msgstr": [
           "Entrez le nom de famille du rider"
@@ -166,7 +166,7 @@
         "msgid": "First name",
         "comments": {
           "extracted": "Label of a form field containing a person's first name",
-          "reference": "jsx/main/registration/2019-french-championships/step1/messages.js:7\njsx/main/registration/2019-french-championships/step2/messages.js:36"
+          "reference": "jsx/main/registration/2019-french-championships/step1/messages.js:7\njsx/main/registration/2019-french-championships/step2/messages.js:38"
         },
         "msgstr": [
           "Prénom"
@@ -176,10 +176,20 @@
         "msgid": "Freestyle",
         "comments": {
           "extracted": "A competition type\nA type of competition",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:45\njsx/main/registration/2019-french-championships/step4/messages.js:9"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:47\njsx/main/registration/2019-french-championships/step4/messages.js:9"
         },
         "msgstr": [
           "Freestyle"
+        ]
+      },
+      "Freestyle (Rouans)": {
+        "msgid": "Freestyle (Rouans)",
+        "comments": {
+          "extracted": "A competition type",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:48"
+        },
+        "msgstr": [
+          "Freestyle (Rouans)"
         ]
       },
       "Invalid": {
@@ -196,7 +206,7 @@
         "msgid": "Junior",
         "comments": {
           "extracted": "Name of the Junior category",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:28"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:30"
         },
         "msgstr": [
           "Junior"
@@ -206,7 +216,7 @@
         "msgid": "Ladies",
         "comments": {
           "extracted": "Name of the Ladies category",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:29"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:31"
         },
         "msgstr": [
           "Ladies"
@@ -236,7 +246,7 @@
         "msgid": "Masters",
         "comments": {
           "extracted": "Name of the Masters category",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:30"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:32"
         },
         "msgstr": [
           "Masters"
@@ -256,7 +266,7 @@
         "msgid": "Not riding",
         "comments": {
           "extracted": "Indicates a person does not intend to ride, but is registering anyway",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:48"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:52"
         },
         "msgstr": [
           "Ne ridera pas"
@@ -276,7 +286,7 @@
         "msgid": "Optional number",
         "comments": {
           "extracted": "Indicates choosing a rider's number is not mandatory",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:41"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:43"
         },
         "msgstr": [
           "Numéro optionnel"
@@ -326,7 +336,7 @@
         "msgid": "Pro",
         "comments": {
           "extracted": "Name of the Pro category",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:31"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:33"
         },
         "msgstr": [
           "Pro"
@@ -340,6 +350,16 @@
         },
         "msgstr": [
           "Effectuer le paiement"
+        ]
+      },
+      "Registered in": {
+        "msgid": "Registered in",
+        "comments": {
+          "extracted": "Indicates the competitions a rider is registered in",
+          "reference": "jsx/main/registration/2019-french-championships/step4/messages.js:15"
+        },
+        "msgstr": [
+          "Inscrit pour"
         ]
       },
       "Registered rider(s) and price": {
@@ -359,7 +379,7 @@
           "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:13"
         },
         "msgstr": [
-          "Court en"
+          "Participe à"
         ]
       },
       "Registration form": {
@@ -396,7 +416,7 @@
         "msgid": "Rider",
         "comments": {
           "extracted": "Indicates the rider's number in the list",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:43"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:45"
         },
         "msgstr": [
           "Rider"
@@ -406,7 +426,7 @@
         "msgid": "Rider number",
         "comments": {
           "extracted": "Label for a field to choose a rider's flag number",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:40"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:42"
         },
         "msgstr": [
           "Numéro de dossard"
@@ -456,7 +476,7 @@
         "msgid": "Slalom",
         "comments": {
           "extracted": "A competition type\nA type of competition",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:46\njsx/main/registration/2019-french-championships/step4/messages.js:7"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:49\njsx/main/registration/2019-french-championships/step4/messages.js:7"
         },
         "msgstr": [
           "Slalom"
@@ -511,6 +531,26 @@
         },
         "msgstr": [
           "Total"
+        ]
+      },
+      "Under 14": {
+        "msgid": "Under 14",
+        "comments": {
+          "extracted": "Name of the category for riders younger than 14",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:28"
+        },
+        "msgstr": [
+          "Moins de 14 ans"
+        ]
+      },
+      "Under 18": {
+        "msgid": "Under 18",
+        "comments": {
+          "extracted": "Name of the category for riders younger than 18",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:29"
+        },
+        "msgstr": [
+          "Moins de 18 ans"
         ]
       },
       "Would you like to proceed with payment now?": {

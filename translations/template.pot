@@ -15,9 +15,14 @@ msgstr ""
 
 #. A competition type
 #. A type of competition
-#: jsx/main/registration/2019-french-championships/step2/messages.js:49
+#: jsx/main/registration/2019-french-championships/step2/messages.js:50
 #: jsx/main/registration/2019-french-championships/step4/messages.js:8
 msgid "Boardercross"
+msgstr ""
+
+#. A competition type
+#: jsx/main/registration/2019-french-championships/step2/messages.js:51
+msgid "Boardercross (Arzano)"
 msgstr ""
 
 #. Label for a field to choose a category
@@ -33,11 +38,6 @@ msgstr ""
 #. Label for a field listing categories
 #: jsx/main/registration/2019-french-championships/step2/messages.js:27
 msgid "Choose the rider's category"
-msgstr ""
-
-#. Indicates the competitions a registered rider is running in
-#: jsx/main/registration/2019-french-championships/step4/messages.js:15
-msgid "Competing in"
 msgstr ""
 
 #. Message displayed when registration was successful
@@ -92,6 +92,11 @@ msgstr ""
 msgid "Freestyle"
 msgstr ""
 
+#. A competition type
+#: jsx/main/registration/2019-french-championships/step2/messages.js:48
+msgid "Freestyle (Rouans)"
+msgstr ""
+
 #. Label next to a form field indicating the provided information is not valid
 #: jsx/main/registration/2019-french-championships/step1/messages.js:4
 #: jsx/main/registration/2019-french-championships/step2/messages.js:4
@@ -129,7 +134,7 @@ msgid "Name"
 msgstr ""
 
 #. Indicates a person does not intend to ride, but is registering anyway
-#: jsx/main/registration/2019-french-championships/step2/messages.js:50
+#: jsx/main/registration/2019-french-championships/step2/messages.js:52
 msgid "Not riding"
 msgstr ""
 
@@ -171,6 +176,11 @@ msgstr ""
 #. One of several payment options
 #: jsx/main/registration/2019-french-championships/step3/messages.js:7
 msgid "Proceed with payment"
+msgstr ""
+
+#. Indicates the competitions a rider is registered in
+#: jsx/main/registration/2019-french-championships/step4/messages.js:15
+msgid "Registered in"
 msgstr ""
 
 #. Name of a section to enter the information for registered riders
@@ -231,7 +241,7 @@ msgstr ""
 
 #. A competition type
 #. A type of competition
-#: jsx/main/registration/2019-french-championships/step2/messages.js:48
+#: jsx/main/registration/2019-french-championships/step2/messages.js:49
 #: jsx/main/registration/2019-french-championships/step4/messages.js:7
 msgid "Slalom"
 msgstr ""

@@ -21,7 +21,7 @@ const MAX_RIDERS = 5;
 
 class Step2 extends Component {
   render() {
-    const { isCurrent, registrar, onNext, getCostPreview, t, stepId } = this.props;
+    const { isCurrent, registrar, onNext, getCostPreview, t, stepId, titleClick } = this.props;
     const { firstName, lastName } = registrar;
 
     return (
@@ -80,8 +80,10 @@ class Step2 extends Component {
             <Fragment>
               <dt
                 className={classnames("step-title", {
-                  current: isCurrent
+                  current: isCurrent,
+                  clickable: !!titleClick
                 })}
+                onClick={() => {if (titleClick) {titleClick()} }}
               >
                 {`${stepId} - ${t('registeredRidersAndPrice')}`}
               </dt>

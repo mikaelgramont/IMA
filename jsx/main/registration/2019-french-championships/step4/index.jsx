@@ -33,15 +33,15 @@ class Step4 extends Component {
           <ul className="registered-riders">
             {riders.map(rider => {
               const {firstName, lastName, category, country, number} = rider;
-              const competingIn = [];
+              const registeredIn = [];
               if (rider.boardercross) {
-                competingIn.push(t('boardercross'));
+                registeredIn.push(t('boardercross'));
               }
               if (rider.slalom) {
-                competingIn.push(t('slalom'));
+                registeredIn.push(t('slalom'));
               }
               if (rider.freestyle) {
-                competingIn.push(t('freestyle'));
+                registeredIn.push(t('freestyle'));
               }
 
               return (
@@ -67,8 +67,8 @@ class Step4 extends Component {
                       <td>{category}</td>
                     </tr>
                     <tr>
-                      <td className="rider-detail">{t('competingIn')}:</td>
-                      <td>{competingIn.join(", ")}</td>
+                      <td className="rider-detail">{t('registeredIn')}:</td>
+                      <td>{registeredIn.join(", ")}</td>
                     </tr>
                     </tbody>
                   </table>

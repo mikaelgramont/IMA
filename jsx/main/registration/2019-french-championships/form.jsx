@@ -101,6 +101,9 @@ class RegistrationForm extends React.Component {
       return <Error error={this.state.error.message} />;
     }
 
+    // WIP
+    const canGoBack = currentStep < STEP4 && false;
+
     return (
         <div className="formWrapper">
           <h2 className="display-font form-title">{t("title")}</h2>
@@ -109,6 +112,7 @@ class RegistrationForm extends React.Component {
               stepId={stepIds[1]}
               isCurrent={currentStep === STEP1}
               onNext={this.step1Finish}
+              titleClick={canGoBack && currentStep > STEP1 ? () => {this.goToStep(STEP1)} : null}
             />
             <Step2
               stepId={stepIds[2]}
@@ -116,6 +120,7 @@ class RegistrationForm extends React.Component {
               registrar={this.state.registrar}
               onNext={this.step2Finish}
               getCostPreview={this.getCostPreview}
+              titleClick={canGoBack && currentStep > STEP2 ? () => {this.goToStep(STEP2)} : null}
             />
             {paymentType !== PAYMENT_NONE && (
               <Step3
@@ -128,6 +133,7 @@ class RegistrationForm extends React.Component {
                 riders={riders}
                 registrar={registrar}
                 totalCost={totalCost}
+                titleClick={canGoBack && currentStep > STEP3 ? () => {this.goToStep(STEP3)} : null}
               />
             )}
             <Step4

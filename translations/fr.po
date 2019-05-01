@@ -25,10 +25,15 @@ msgstr "Ajouter Rider"
 
 #. A competition type
 #. A type of competition
-#: jsx/main/registration/2019-french-championships/step2/messages.js:49
+#: jsx/main/registration/2019-french-championships/step2/messages.js:50
 #: jsx/main/registration/2019-french-championships/step4/messages.js:8
 msgid "Boardercross"
 msgstr "Boardercross"
+
+#. A competition type
+#: jsx/main/registration/2019-french-championships/step2/messages.js:51
+msgid "Boardercross (Arzano)"
+msgstr "Boardercross (Arzano)"
 
 #. Label for a field to choose a category
 #: jsx/main/registration/2019-french-championships/step2/messages.js:26
@@ -44,11 +49,6 @@ msgstr "Choisissez le pays du rider"
 #: jsx/main/registration/2019-french-championships/step2/messages.js:27
 msgid "Choose the rider's category"
 msgstr "Choisissez la catégorie du rider"
-
-#. Indicates the competitions a registered rider is running in
-#: jsx/main/registration/2019-french-championships/step4/messages.js:15
-msgid "Competing in"
-msgstr "Court en"
 
 #. Message displayed when registration was successful
 #: jsx/main/registration/2019-french-championships/step4/messages.js:4
@@ -102,6 +102,11 @@ msgstr "Prénom"
 msgid "Freestyle"
 msgstr "Freestyle"
 
+#. A competition type
+#: jsx/main/registration/2019-french-championships/step2/messages.js:48
+msgid "Freestyle (Rouans)"
+msgstr "Freestyle (Rouans)"
+
 #. Label next to a form field indicating the provided information is not valid
 #: jsx/main/registration/2019-french-championships/step1/messages.js:4
 #: jsx/main/registration/2019-french-championships/step2/messages.js:4
@@ -139,7 +144,7 @@ msgid "Name"
 msgstr "Nom"
 
 #. Indicates a person does not intend to ride, but is registering anyway
-#: jsx/main/registration/2019-french-championships/step2/messages.js:50
+#: jsx/main/registration/2019-french-championships/step2/messages.js:52
 msgid "Not riding"
 msgstr "Ne ridera pas"
 
@@ -188,6 +193,11 @@ msgstr "Pro"
 msgid "Proceed with payment"
 msgstr "Effectuer le paiement"
 
+#. Indicates the competitions a rider is registered in
+#: jsx/main/registration/2019-french-championships/step4/messages.js:15
+msgid "Registered in"
+msgstr "Inscrit pour"
+
 #. Name of a section to enter the information for registered riders
 #: jsx/main/registration/2019-french-championships/step2/messages.js:9
 msgid "Registered rider(s) and price"
@@ -196,7 +206,7 @@ msgstr "Riders enregistré(s) et prix"
 #. Label for a section containing a list of competitions a rider can take part in
 #: jsx/main/registration/2019-french-championships/step2/messages.js:13
 msgid "Registering in"
-msgstr "Court en"
+msgstr "Participe à"
 
 #. Title of the registration form page
 #: jsx/main/registration/2019-french-championships/messages.js:3
@@ -246,7 +256,7 @@ msgstr "Sauter le paiement"
 
 #. A competition type
 #. A type of competition
-#: jsx/main/registration/2019-french-championships/step2/messages.js:48
+#: jsx/main/registration/2019-french-championships/step2/messages.js:49
 #: jsx/main/registration/2019-french-championships/step4/messages.js:7
 msgid "Slalom"
 msgstr "Slalom"
@@ -319,3 +329,6 @@ msgstr "Votre prénom"
 #: jsx/main/registration/2019-french-championships/step1/messages.js:6
 msgid "Your information"
 msgstr "Vos infos"
+
+#~ msgid "Competing in"
+#~ msgstr "Court en"
