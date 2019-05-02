@@ -19,7 +19,7 @@ class PaymentConfigList
 
   static function getConfig($key) {
     $config = new stdClass();
-    $config->serverProcessingUrl = BASE_URL.'paypal-transaction-complete?XDEBUG_SESSION_START=PHPSTORM&key='.$key;
+    $config->serverProcessingUrl = BASE_URL.'paypal-transaction-complete?key='.$key;
     $config->key = $key;
     $config->logFile = '../../logs/registrations-'. $key  .'.json';
 

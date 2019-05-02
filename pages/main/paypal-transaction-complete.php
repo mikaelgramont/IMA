@@ -95,12 +95,19 @@ file_put_contents($config->logFile, json_encode($log, JSON_PRETTY_PRINT));
  * Paypal stuff
  **********************************************************************************/
 if ($orderId) {
-  $client = new PayPalHttpClient(
-    //  new ProductionEnvironment(
-    new SandboxEnvironment(
-      $config->paypalClientId,
-      $config->paypalSecret
-    ));
+  if (REGISTRATION_USE_PRODUCTION) {
+    $client = new PayPalHttpClient(
+      new ProductionEnvironment(
+        $config->paypalClientId,
+        $config->paypalSecret
+      ));
+  } else {
+    $client = new PayPalHttpClient(
+      new SandboxEnvironment(
+        $config->paypalClientId,
+        $config->paypalSecret
+      ));
+  }
   $paypalValidationResponse = $client->execute(new OrdersGetRequest($orderId));
   if ($paypalValidationResponse->result->status !== 'COMPLETED') {
     // Payment doesn't seem to have worked
