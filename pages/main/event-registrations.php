@@ -1,5 +1,5 @@
 <?php
-// Displaying a news article.
+// Displaying a registration page.
 $param = PAGE_PARAMS[0];
 // Format: baz-foo-bar;
 $file = EVENT_REGISTRATION_HTML_PATH . $param . ".php";

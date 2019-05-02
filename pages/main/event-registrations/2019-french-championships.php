@@ -325,7 +325,18 @@ INCLUDED
   .registration-status {
     font-weight: bold;
   }
+
+  .poster-wrapper {
+    margin: 0 auto 20px;
+    padding: 0 10px;
+  }
+  .poster-wrapper img {
+    display: block;
+    max-width: 100%;
+  }
 </style>
+
+<meta property="og:image" content="<?php echo $config->poster ?>" />
 
 <svg class="hidden">
   <defs>
@@ -340,6 +351,11 @@ INCLUDED
   <div class="content-main">
     <h1 class="display-font"><?php echo t('title') ?></h1>
     <p><?php echo t('subtitle') ?></p>
+
+    <div class="poster-wrapper">
+      <img src="<?php echo $config->posterSmall ?>" alt="" />
+    </div>
+
     <h2 class="display-font"><?php echo t('fees') ?></h2>
     <ul><?php echo t('feesParagraph') ?></ul>
     <h2 class="display-font"><?php echo t('included') ?></h2>
