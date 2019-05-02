@@ -115,7 +115,7 @@ class Step3 extends Component {
                     id="proceed-yes"
                   />
                   <label className="radio-label" htmlFor="proceed-yes">
-                    {t('proceedWithPayment')}
+                    {t('payNow')}
                   </label>
                 </div>
                 <div className="checkbox-wrapper">
@@ -127,7 +127,7 @@ class Step3 extends Component {
                     id="proceed-no"
                   />
                   <label className="radio-label" htmlFor="proceed-no">
-                    {t('skipPayment')}
+                    {t('payAtTheEvent')}
                   </label>
                 </div>
               </div>

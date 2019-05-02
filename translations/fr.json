@@ -292,6 +292,26 @@
           "Numéro optionnel"
         ]
       },
+      "Pay at the event": {
+        "msgid": "Pay at the event",
+        "comments": {
+          "extracted": "One of several payment options",
+          "reference": "jsx/main/registration/2019-french-championships/step3/messages.js:8"
+        },
+        "msgstr": [
+          "Régler sur place"
+        ]
+      },
+      "Pay now (online)": {
+        "msgid": "Pay now (online)",
+        "comments": {
+          "extracted": "One of several payment options",
+          "reference": "jsx/main/registration/2019-french-championships/step3/messages.js:7"
+        },
+        "msgstr": [
+          "Payer maintenant (en ligne)"
+        ]
+      },
       "Payment": {
         "msgid": "Payment",
         "comments": {
@@ -340,16 +360,6 @@
         },
         "msgstr": [
           "Pro"
-        ]
-      },
-      "Proceed with payment": {
-        "msgid": "Proceed with payment",
-        "comments": {
-          "extracted": "One of several payment options",
-          "reference": "jsx/main/registration/2019-french-championships/step3/messages.js:7"
-        },
-        "msgstr": [
-          "Effectuer le paiement"
         ]
       },
       "Registered in": {
@@ -460,16 +470,6 @@
         },
         "msgstr": [
           "On se voit là bas!"
-        ]
-      },
-      "Skip payment": {
-        "msgid": "Skip payment",
-        "comments": {
-          "extracted": "One of several payment options",
-          "reference": "jsx/main/registration/2019-french-championships/step3/messages.js:8"
-        },
-        "msgstr": [
-          "Sauter le paiement"
         ]
       },
       "Slalom": {

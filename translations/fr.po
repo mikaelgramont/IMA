@@ -162,6 +162,16 @@ msgstr ""
 msgid "Optional number"
 msgstr "Numéro optionnel"
 
+#. One of several payment options
+#: jsx/main/registration/2019-french-championships/step3/messages.js:8
+msgid "Pay at the event"
+msgstr "Régler sur place"
+
+#. One of several payment options
+#: jsx/main/registration/2019-french-championships/step3/messages.js:7
+msgid "Pay now (online)"
+msgstr "Payer maintenant (en ligne)"
+
 #. Name of a section where the user can start paying
 #: jsx/main/registration/2019-french-championships/step3/messages.js:3
 msgid "Payment"
@@ -187,11 +197,6 @@ msgstr ""
 #: jsx/main/registration/2019-french-championships/step2/messages.js:33
 msgid "Pro"
 msgstr "Pro"
-
-#. One of several payment options
-#: jsx/main/registration/2019-french-championships/step3/messages.js:7
-msgid "Proceed with payment"
-msgstr "Effectuer le paiement"
 
 #. Indicates the competitions a rider is registered in
 #: jsx/main/registration/2019-french-championships/step4/messages.js:15
@@ -248,11 +253,6 @@ msgstr "Dans la catégorie"
 #: jsx/main/registration/2019-french-championships/step4/messages.js:10
 msgid "See you there!"
 msgstr "On se voit là bas!"
-
-#. One of several payment options
-#: jsx/main/registration/2019-french-championships/step3/messages.js:8
-msgid "Skip payment"
-msgstr "Sauter le paiement"
 
 #. A competition type
 #. A type of competition
@@ -329,6 +329,12 @@ msgstr "Votre prénom"
 #: jsx/main/registration/2019-french-championships/step1/messages.js:6
 msgid "Your information"
 msgstr "Vos infos"
+
+#~ msgid "Proceed with payment"
+#~ msgstr "Effectuer le paiement"
+
+#~ msgid "Skip payment"
+#~ msgstr "Sauter le paiement"
 
 #~ msgid "Competing in"
 #~ msgstr "Court en"

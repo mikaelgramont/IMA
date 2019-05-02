@@ -41,7 +41,7 @@ class PaymentConfigList
         $config->costs->kidTotal = 40;
         $config->costs->kidEach = 20;
 
-        $config->deadline = '2019-05-25';
+        $config->deadline = '2019-05-20';
         $config->spreadSheetId = '1mWCEXVU7P2trUOC9PbP8SeQg23XPF2M8U5g6m89czNE';
         // Order must match columns in the spreadsheet
         $config->competitions = array(self::BOARDERCROSS, self::FREESTYLE);

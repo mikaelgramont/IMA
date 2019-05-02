@@ -4,8 +4,8 @@ const messages = (getText, getPlural) => (key) =>
     totalCost: (riderCount) => getPlural('The total cost for 1 rider is', 'The total cost for %d riders is', riderCount),
     onlinePaymentIsOptional: getText('Online payment is optional, you can register now and pay on-site at the event.') /* Message indicating the user may skip online payment */,
     wouldYouLikeToProceed: getText('Would you like to proceed with payment now?') /* Presents the user with the choice to pay or skip payment */,
-    proceedWithPayment: getText('Proceed with payment') /* One of several payment options */,
-    skipPayment: getText('Skip payment') /* One of several payment options */,
+    payNow: getText('Pay now (online)') /* One of several payment options */,
+    payAtTheEvent: getText('Pay at the event') /* One of several payment options */,
     continue: getText('Continue') /* Label for a button to go to the next step */,
   }[key]);
 
