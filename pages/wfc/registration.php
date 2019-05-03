@@ -3,7 +3,7 @@ define('NOT_OPEN_YET', 'not_open_yet');
 define('OPEN', 'open');
 define('CLOSED', 'closed');
 
-define('REGISTRATION_OPEN', OPEN);
+define('REGISTRATION_OPEN', NOT_OPEN_YET);
 ?>
 <style>
 	/* Rest of the page */
@@ -258,7 +258,7 @@ if (REGISTRATION_OPEN == OPEN) {
   <script>
     window.__registrationConstants__ = {
       costPerRider: parseFloat(<?php echo REGISTRATION_COST ?>, 10),
-      serverProcessingUrl: '<?php echo BASE_URL ?>paypal-transaction-complete'
+      serverProcessingUrl: '<?php echo BASE_URL ?>paypal-transaction-complete?XDEBUG_SESSION_START=PHPSTORM'
     }
   </script>
   <script src="<?PHP echo PAYPAL_SCRIPT ?>"></script>
