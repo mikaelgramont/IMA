@@ -1,7 +1,8 @@
 php/.credentials/*.json
-php/config-*.php
+php/config-secrets.php
 php/client_secret*
 php/vendor
+php/env.php
 php/composer.lock
 php/cache/
 pages/generated/events/*.php

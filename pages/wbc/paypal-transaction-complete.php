@@ -100,7 +100,7 @@ if ($errorMessage) {
 $client = Helpers::getGoogleClientForWeb($accessToken);
 $sheetsService = new Google_Service_Sheets($client);
 $logger = new Logger();
-$spreadsheetId = REGISTRATIONS_SPREADSHEET_ID;
+$spreadsheetId = WBC_REGISTRATIONS_SPREADSHEET_ID;
 
 try {
   RegistrationSaver::save(
