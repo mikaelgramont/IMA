@@ -46,7 +46,7 @@
         "msgid": "Boardercross",
         "comments": {
           "extracted": "A competition type\nA type of competition",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:50\njsx/main/registration/2019-french-championships/step4/messages.js:8"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:54\njsx/main/registration/2019-french-championships/step4/messages.js:8"
         },
         "msgstr": [
           "Boardercross"
@@ -56,7 +56,7 @@
         "msgid": "Boardercross (Arzano)",
         "comments": {
           "extracted": "A competition type",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:51"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:55"
         },
         "msgstr": [
           "Boardercross (Arzano)"
@@ -90,6 +90,26 @@
         },
         "msgstr": [
           "Choisissez la catégorie du rider"
+        ]
+      },
+      "Choose their shirt size": {
+        "msgid": "Choose their shirt size",
+        "comments": {
+          "extracted": "Label for a field to choose a T-shirt size for the rider",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:59"
+        },
+        "msgstr": [
+          "Choisissez sa taille de T-shirt"
+        ]
+      },
+      "Comment": {
+        "msgid": "Comment",
+        "comments": {
+          "extracted": "Label for a field to leave an optional comment",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:61"
+        },
+        "msgstr": [
+          "Commentaire"
         ]
       },
       "Congratulations! Registration was successful!": {
@@ -136,7 +156,7 @@
         "msgid": "Enter the rider's first name",
         "comments": {
           "extracted": "Help text to tell the user whose first name should be entered",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:39"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:40"
         },
         "msgstr": [
           "Entrez le prénom du rider"
@@ -146,7 +166,7 @@
         "msgid": "Enter the rider's last name",
         "comments": {
           "extracted": "Help text to tell the user whose last name should be entered",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:40"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:41"
         },
         "msgstr": [
           "Entrez le nom de famille du rider"
@@ -176,7 +196,7 @@
         "msgid": "Freestyle",
         "comments": {
           "extracted": "A competition type\nA type of competition",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:47\njsx/main/registration/2019-french-championships/step4/messages.js:9"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:51\njsx/main/registration/2019-french-championships/step4/messages.js:9"
         },
         "msgstr": [
           "Freestyle"
@@ -186,7 +206,7 @@
         "msgid": "Freestyle (Rouans)",
         "comments": {
           "extracted": "A competition type",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:48"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:52"
         },
         "msgstr": [
           "Freestyle (Rouans)"
@@ -226,7 +246,7 @@
         "msgid": "Last name",
         "comments": {
           "extracted": "Label of a form field containing a person's last name",
-          "reference": "jsx/main/registration/2019-french-championships/step1/messages.js:11"
+          "reference": "jsx/main/registration/2019-french-championships/step1/messages.js:11\njsx/main/registration/2019-french-championships/step2/messages.js:39"
         },
         "msgstr": [
           "Nom de famille"
@@ -240,6 +260,16 @@
         },
         "msgstr": [
           "Moins de 1000"
+        ]
+      },
+      "Licence number": {
+        "msgid": "Licence number",
+        "comments": {
+          "extracted": "Label for a field to enter a rider's licence number",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:46"
+        },
+        "msgstr": [
+          "Numéro de licence"
         ]
       },
       "Masters": {
@@ -266,7 +296,7 @@
         "msgid": "Not riding",
         "comments": {
           "extracted": "Indicates a person does not intend to ride, but is registering anyway",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:52"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:56"
         },
         "msgstr": [
           "Ne ridera pas"
@@ -282,11 +312,21 @@
           "Le paiement en ligne est optionnel, vous pouvez vous inscrire maintenant et payer sur place."
         ]
       },
+      "Optional FFRS licence number": {
+        "msgid": "Optional FFRS licence number",
+        "comments": {
+          "extracted": "Indicates choosing a rider's licence is not mandatory",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:47"
+        },
+        "msgstr": [
+          "Numéro de licence FFRS (optionnel)"
+        ]
+      },
       "Optional number": {
         "msgid": "Optional number",
         "comments": {
           "extracted": "Indicates choosing a rider's number is not mandatory",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:43"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:44"
         },
         "msgstr": [
           "Numéro optionnel"
@@ -382,8 +422,8 @@
           "Riders enregistré(s) et prix"
         ]
       },
-      "Registering in": {
-        "msgid": "Registering in",
+      "Registering for": {
+        "msgid": "Registering for",
         "comments": {
           "extracted": "Label for a section containing a list of competitions a rider can take part in",
           "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:13"
@@ -426,7 +466,7 @@
         "msgid": "Rider",
         "comments": {
           "extracted": "Indicates the rider's number in the list",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:45"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:49"
         },
         "msgstr": [
           "Rider"
@@ -436,7 +476,7 @@
         "msgid": "Rider number",
         "comments": {
           "extracted": "Label for a field to choose a rider's flag number",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:42"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:43"
         },
         "msgstr": [
           "Numéro de dossard"
@@ -472,11 +512,21 @@
           "On se voit là bas!"
         ]
       },
+      "Shirt size": {
+        "msgid": "Shirt size",
+        "comments": {
+          "extracted": "Label for a field to choose a T-shirt size for the rider",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:58"
+        },
+        "msgstr": [
+          "Taille de T-shirt"
+        ]
+      },
       "Slalom": {
         "msgid": "Slalom",
         "comments": {
           "extracted": "A competition type\nA type of competition",
-          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:49\njsx/main/registration/2019-french-championships/step4/messages.js:7"
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:53\njsx/main/registration/2019-french-championships/step4/messages.js:7"
         },
         "msgstr": [
           "Slalom"
@@ -571,6 +621,16 @@
         },
         "msgstr": [
           "Vous pouvez vous enregistrer ainsi que d’autres riders."
+        ]
+      },
+      "You may leave a note to tell us something important": {
+        "msgid": "You may leave a note to tell us something important",
+        "comments": {
+          "extracted": "Label for a field to leave an optional comment",
+          "reference": "jsx/main/registration/2019-french-championships/step2/messages.js:62"
+        },
+        "msgstr": [
+          "Vous pouvez nous laisser un message en cas de besoin"
         ]
       },
       "You were charged {total} in transaction number": {

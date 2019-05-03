@@ -4,24 +4,24 @@ import { Field } from "react-final-form";
 import messages from "./messages";
 import TranslateHOC from "../Translate.jsx";
 
-class LastName extends Component {
+class Comment extends Component {
   render() {
     const { name, t } = this.props;
     return (
       <Field
-        name={`${name}.lastName`}
+        name={`${name}.comment`}
         render={({ input, meta }) => (
           <Fragment>
-            <label htmlFor={`${name}.lastName`}>
-              {t('lastName')}
+            <label htmlFor={`${name}.comment`}>
+              {t('comment')}
               {meta.touched &&
                 meta.error && <span className="error">{meta.error}</span>}
             </label>
-            <input
+            <textarea
               type="text"
-              id={`${name}.lastName`}
-              name="lastName"
-              placeholder={t("ridersLastName")}
+              id={`${name}.comment`}
+              name="comment"
+              placeholder={t('optionalComment')}
               {...input}
             />
           </Fragment>
@@ -31,4 +31,4 @@ class LastName extends Component {
   }
 }
 
-export default TranslateHOC(messages)(LastName);
+export default TranslateHOC(messages)(Comment);

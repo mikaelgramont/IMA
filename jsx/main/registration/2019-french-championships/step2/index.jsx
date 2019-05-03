@@ -7,12 +7,15 @@ import { FieldArray } from "react-final-form-arrays";
 import Boardercross from "./Competitions/Boardercross.jsx";
 import Freestyle from "./Competitions/Freestyle.jsx";
 import Category from "./Category.jsx";
+import Comment from "./Comment.jsx";
 import Country from './Country.jsx';
 import FirstName from './FirstName.jsx';
 import LastName from './LastName.jsx';
+import Licence from './Licence.jsx';
+import NotRiding from "./NotRiding.jsx";
 import Number from "./Number.jsx";
 import RemoveRider from "./RemoveRider.jsx";
-import NotRiding from "./NotRiding.jsx";
+import ShirtSize from './ShirtSize.jsx';
 
 import messages from './messages';
 import TranslateHOC from '../Translate.jsx';
@@ -107,16 +110,6 @@ class Step2 extends Component {
                             <LastName name={name}/>
                           </div>
                           <div className="form-item">
-                            <div className="rider-competitions">
-                              <span className="label">
-                                {t('special')}
-                              </span>
-                              <div className="checkbox-wrapper">
-                                <NotRiding name={name}/>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="form-item">
                             <Category name={name}/>
                           </div>
                           <div className="form-item">
@@ -125,7 +118,7 @@ class Step2 extends Component {
                           <div className="form-item">
                             <div className="rider-competitions">
                               <span className="label">
-                                {t('registeringIn')}
+                                {t('registeringFor')}
                                 {!pristine &&
                                 fields.error[index] &&
                                 fields.error[index].competition && (
@@ -142,7 +135,26 @@ class Step2 extends Component {
                             </div>
                           </div>
                           <div className="form-item">
+                            <div className="rider-competitions">
+                              <span className="label">
+                                {t('special')}
+                              </span>
+                              <div className="checkbox-wrapper">
+                                <NotRiding name={name}/>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="form-item">
                             <Number name={name} />
+                          </div>
+                          <div className="form-item">
+                            <ShirtSize name={name}/>
+                          </div>
+                          <div className="form-item">
+                            <Licence name={name}/>
+                          </div>
+                          <div className="form-item">
+                            <Comment name={name}/>
                           </div>
                           <hr className="rider-separator" />
                         </div>

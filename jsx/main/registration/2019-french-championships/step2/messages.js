@@ -10,7 +10,7 @@ const messages = (getText, getPlural) => (key) =>
 
     youCanRegisterOthers: getText('You can register yourself and/or other riders.') /* Paragraph indicating that it's possible to register more than one rider at a time. */,
 
-    registeringIn: getText('Registering in') /* Label for a section containing a list of competitions a rider can take part in */,
+    registeringFor: getText('Registering for') /* Label for a section containing a list of competitions a rider can take part in */,
 
     addRider: getText('Add Rider') /* Label for a button to add a registered rider */,
     removeRider: getText('Remove Rider') /* Label for a button to remove a registered rider */,
@@ -36,11 +36,15 @@ const messages = (getText, getPlural) => (key) =>
     chooseCountry: getText('Choose the country they\'re riding for') /* Label for a field to choose a country the rider is competing for */,
 
     firstName: getText('First name') /* Label of a form field containing a person's first name */,
+    lastName: getText('Last name') /* Label of a form field containing a person's last name */,
     ridersFirstName: getText('Enter the rider\'s first name') /* Help text to tell the user whose first name should be entered */,
     ridersLastName: getText('Enter the rider\'s last name') /* Help text to tell the user whose last name should be entered */,
 
     riderNumber: getText('Rider number') /* Label for a field to choose a rider's flag number */,
     optionalNumber: getText('Optional number') /* Indicates choosing a rider's number is not mandatory */,
+
+    licenceNumber: getText('Licence number') /* Label for a field to enter a rider's licence number */,
+    optionalLicence: getText('Optional FFRS licence number') /* Indicates choosing a rider's licence is not mandatory */,
 
     rider: getText('Rider') /* Indicates the rider's number in the list */,
 
@@ -50,6 +54,12 @@ const messages = (getText, getPlural) => (key) =>
     boardercross: getText('Boardercross') /* A competition type */,
     boardercrossArzano: getText('Boardercross (Arzano)') /* A competition type */,
     notRiding: getText('Not riding') /* Indicates a person does not intend to ride, but is registering anyway */,
+
+    shirtSize: getText('Shirt size') /* Label for a field to choose a T-shirt size for the rider */,
+    chooseTheirShirtSize: getText('Choose their shirt size') /* Label for a field to choose a T-shirt size for the rider */,
+
+    comment: getText('Comment') /* Label for a field to leave an optional comment */,
+    optionalComment: getText('You may leave a note to tell us something important') /* Label for a field to leave an optional comment */,
   }[key]);
 
 export default messages;

@@ -270,7 +270,7 @@ class Country extends Component {
                 {...input}
                 className={emptyClass}
               >
-                <option value="">Choose the country they're riding for</option>
+                <option value="">{t('chooseCountry')}</option>
                 {countries.map(country => (
                   <option key={country} value={country}>
                     {country}

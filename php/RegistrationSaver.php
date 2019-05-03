@@ -6,11 +6,11 @@ class RegistrationSaver
   const NO = 'No';
 
   public static function save(
-    $sheetsService, $logger, $spreadsheetId, $paymentDetails, $registrarDetails, $riderDetails, $competitions)
+    $sheetsService, $logger, $spreadsheetId, $paymentDetails, $registrarDetails, $riderDetails, $competitions, $additionalTextFields)
   {
     $logger->log("Adding payment to Google Sheet.\n");
 
-    list($riderValues, $paymentValues) = self::_getSpreadSheetValues($paymentDetails, $registrarDetails, $riderDetails, $competitions);
+    list($riderValues, $paymentValues) = self::_getSpreadSheetValues($paymentDetails, $registrarDetails, $riderDetails, $competitions, $additionalTextFields);
 
     $params = array("valueInputOption" => "RAW");
     $riderRequestBody = new Google_Service_Sheets_ValueRange([
@@ -29,7 +29,7 @@ class RegistrationSaver
     error_log($logger->dumpText());
   }
 
-  private static function _getSpreadSheetValues($paypal, $registrar, $riders, $competitions)
+  private static function _getSpreadSheetValues($paypal, $registrar, $riders, $competitions, $additionalTextFields)
   {
     $date = date('Y-m-d H:i:s');
 
@@ -66,6 +66,9 @@ class RegistrationSaver
         } else {
           $thisRiderValues[] = self::NO;
         }
+      }
+      foreach ($additionalTextFields as $additionalTextField) {
+        $thisRiderValues[] = isset($rider[$additionalTextField]) ? $rider[$additionalTextField] : Google_Model::NULL_VALUE;
       }
 
       $riderValues[] = $thisRiderValues;

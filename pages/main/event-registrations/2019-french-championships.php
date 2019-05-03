@@ -259,6 +259,7 @@ INCLUDED
   }
   .form-item input[type=email],
   .form-item input[type=text],
+  .form-item textarea,
   .form-item select,
   .checkbox-wrapper {
     display: inline-block;
@@ -390,6 +391,7 @@ if ($config->status == PaymentConfigList::OPEN) {
       serverProcessingUrl: '<?php echo $config->serverProcessingUrl ?>',
       translations: <?php echo $jsTranslations ?>,
       language: '<?php echo $lang ?>',
+      additionalTextFields: <?php echo json_encode($config->additionalTextFields) ?>
   };
   </script>
   <script src="<?PHP echo $config->paypalScript ?>"></script>

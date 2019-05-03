@@ -148,7 +148,8 @@ try {
     $paymentDetails,
     $registrarDetails,
     $riderDetails,
-    $config->competitions
+    $config->competitions,
+    $config->additionalTextFields
   );
 } catch (Google_Service_Exception $e) {
   failWithMsg($e->getMessage());
