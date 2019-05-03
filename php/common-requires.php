@@ -15,6 +15,5 @@ require_once 'Logger.php';
 require_once 'NewsPage.php';
 require_once 'PageHelper.php';
 require_once 'Pages.php';
-require_once 'PaypalClient.php';
 require_once 'PaymentConfigList.php';
 require_once 'Utils.php';

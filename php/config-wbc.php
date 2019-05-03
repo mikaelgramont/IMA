@@ -61,9 +61,18 @@ define('SCOPES', implode(' ', array(
 /******************************************************************************
  * REGISTRATION
  *****************************************************************************/
-define('PAYPAL_ACCOUNT', PAYPAL_ACCOUNT_SANDBOX);
-define('PAYPAL_CLIENT_ID', PAYPAL_CLIENT_ID_SANDBOX);
-define('PAYPAL_SECRET', PAYPAL_SECRET_SANDBOX);
+define('REGISTRATION_USE_PRODUCTION', false);
+
+if (REGISTRATION_USE_PRODUCTION) {
+  define('PAYPAL_ACCOUNT', PAYPAL_ACCOUNT_IMA);
+  define('PAYPAL_CLIENT_ID', PAYPAL_CLIENT_ID_IMA);
+  define('PAYPAL_SECRET', PAYPAL_SECRET_IMA);
+} else {
+  define('PAYPAL_ACCOUNT', PAYPAL_ACCOUNT_SANDBOX);
+  define('PAYPAL_CLIENT_ID', PAYPAL_CLIENT_ID_SANDBOX);
+  define('PAYPAL_SECRET', PAYPAL_SECRET_SANDBOX);
+}
+
 define('PAYPAL_SCRIPT', 'https://www.paypal.com/sdk/js?currency=EUR&client-id=' . PAYPAL_CLIENT_ID);
 
 /******************************************************************************

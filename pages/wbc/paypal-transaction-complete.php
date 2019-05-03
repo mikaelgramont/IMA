@@ -73,7 +73,11 @@ file_put_contents(REGISTRATIONS_LOG_FILE, json_encode($log, JSON_PRETTY_PRINT));
 /***********************************************************************************
  * Paypal stuff
  **********************************************************************************/
-$client = PayPalClient::client();
+if (REGISTRATION_USE_PRODUCTION) {
+  $client = new PayPalHttpClient(new ProductionEnvironment(PAYPAL_CLIENT_ID, PAYPAL_SECRET));
+} else {
+  $client = new PayPalHttpClient(new SandboxEnvironment(PAYPAL_CLIENT_ID, PAYPAL_SECRET));
+}
 $paypalValidationResponse = $client->execute(new OrdersGetRequest($orderId));
 if ($paypalValidationResponse->result->status !== 'COMPLETED') {
   // Payment doesn't seem to have worked
