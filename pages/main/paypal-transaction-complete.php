@@ -71,7 +71,6 @@ $orderDetails = isset($_POST['orderDetails']) ? $_POST['orderDetails'] : null;
  * Log all request data before processing
  **********************************************************************************/
 $logPath = realpath(getcwd(). '/'. $config->logFile);
-failWithMsg($logPath);
 $fh = fopen($logPath, 'a');
 fclose($fh);
 
