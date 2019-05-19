@@ -77,7 +77,7 @@ define('PAYPAL_SCRIPT', 'https://www.paypal.com/sdk/js?currency=EUR&client-id=' 
 /******************************************************************************
  * WFC REGISTRATION CONSTANTS
  *****************************************************************************/
-define('REGISTRATION_COST', 0.09);
+define('REGISTRATION_COST', 35.00);
 define('REGISTRATION_DEADLINE', 'July 19th 2019');
 define('REGISTRATIONS_LOG_FILE', '../logs/wfc-registrations.json');
 
