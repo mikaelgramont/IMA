@@ -6,7 +6,7 @@ class RegistrationSaver
   const NO = 'No';
 
   public static function save(
-    $sheetsService, $logger, $spreadsheetId, $paymentDetails, $registrarDetails, $riderDetails, $competitions, $additionalTextFields)
+    $sheetsService, $logger, $spreadsheetId, $paymentDetails, $registrarDetails, $riderDetails, $competitions, $additionalTextFields = array())
   {
     $logger->log("Adding payment to Google Sheet.\n");
 

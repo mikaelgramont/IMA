@@ -60,12 +60,12 @@ define('SCOPES', implode(' ', array(
 /******************************************************************************
  * REGISTRATION
  *****************************************************************************/
-define('REGISTRATION_USE_PRODUCTION', false);
+define('REGISTRATION_USE_PRODUCTION', true);
 
 if (REGISTRATION_USE_PRODUCTION) {
-  define('PAYPAL_ACCOUNT', PAYPAL_ACCOUNT_IMA);
-  define('PAYPAL_CLIENT_ID', PAYPAL_CLIENT_ID_IMA);
-  define('PAYPAL_SECRET', PAYPAL_SECRET_IMA);
+  define('PAYPAL_ACCOUNT', PAYPAL_ACCOUNT_WFC);
+  define('PAYPAL_CLIENT_ID', PAYPAL_CLIENT_ID_WFC);
+  define('PAYPAL_SECRET', PAYPAL_SECRET_WFC);
 } else {
   define('PAYPAL_ACCOUNT', PAYPAL_ACCOUNT_SANDBOX);
   define('PAYPAL_CLIENT_ID', PAYPAL_CLIENT_ID_SANDBOX);
@@ -77,7 +77,7 @@ define('PAYPAL_SCRIPT', 'https://www.paypal.com/sdk/js?currency=EUR&client-id=' 
 /******************************************************************************
  * WFC REGISTRATION CONSTANTS
  *****************************************************************************/
-define('REGISTRATION_COST', 35);
+define('REGISTRATION_COST', 0.09);
 define('REGISTRATION_DEADLINE', 'July 19th 2019');
 define('REGISTRATIONS_LOG_FILE', '../logs/wfc-registrations.json');
 

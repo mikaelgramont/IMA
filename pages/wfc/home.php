@@ -46,14 +46,18 @@
     height: 15px;
   }
 
-  .embed {
+  .video-embed-wrapper {
+    position: relative;
+    height: 0;
     width: 100%;
-    height: 240px;
+    padding-top: 56.25%;
   }
-  @media screen and (min-width: 640px) {
-    height: 480px;
+  .embed {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
   }
-
 </style>
 
 <div class="content-wrapper">
@@ -77,7 +81,9 @@
       <p>The World Freestyle Championships is back in 2019, and it will take place July 26-27th in Moszczenica, Poland!</p>
       <p>The IMA is excited to see the WFC go to Poland this year, as the mountainboard scene there has been buzzing for many years now.</p>
 
-      <iframe class="embed" src="https://www.youtube.com/embed/D_2xNcpw7co" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div class="video-embed-wrapper">
+        <iframe class="embed" src="https://www.youtube.com/embed/D_2xNcpw7co" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
 
       <p>Dawid Rząca's home spot of Mosquito Park is the chosen venue for this year's competition, and it will have features for all levels of riding, so come join us in Poland!</p>
     </section>

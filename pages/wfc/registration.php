@@ -3,7 +3,7 @@ define('NOT_OPEN_YET', 'not_open_yet');
 define('OPEN', 'open');
 define('CLOSED', 'closed');
 
-define('REGISTRATION_OPEN', NOT_OPEN_YET);
+define('REGISTRATION_OPEN', OPEN);
 ?>
 <style>
 	/* Rest of the page */
