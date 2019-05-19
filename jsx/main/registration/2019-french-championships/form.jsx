@@ -32,7 +32,7 @@ class RegistrationForm extends React.Component {
       totalCost: 0,
       currentStep: INITIAL,
       error: null,
-      summaryData: null
+      summaryData: null,
     };
     this.goToStep = this.goToStep.bind(this);
     this.start = this.start.bind(this);

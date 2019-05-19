@@ -1,16 +1,19 @@
 import React, { Component, Fragment } from "react";
 import { Field } from "react-final-form";
 
-export default class FirstName extends Component {
+import messages from "./messages";
+import TranslateHOC from "../Translate.jsx";
+
+class FirstName extends Component {
   render() {
-    const { name } = this.props;
+    const { name, t } = this.props;
     return (
       <Field
         name={`${name}.firstName`}
         render={({ input, meta }) => (
           <Fragment>
             <label htmlFor={`${name}.firstName`}>
-              First name
+              {t("firstName")}
               {meta.touched &&
                 meta.error && <span className="error">{meta.error}</span>}
             </label>
@@ -18,7 +21,7 @@ export default class FirstName extends Component {
               type="text"
               id={`${name}.firstName`}
               name="firstName"
-              placeholder="Enter the rider's first name"
+              placeholder={t("ridersFirstName")}
               {...input}
             />
           </Fragment>
@@ -27,3 +30,5 @@ export default class FirstName extends Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(FirstName);

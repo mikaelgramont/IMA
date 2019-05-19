@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 import { Field } from "react-final-form";
 
-import messages from "../messages";
-import TranslateHOC from "../../Translate.jsx";
+import messages from "./messages";
+import TranslateHOC from "../Translate.jsx";
 
-class Freestyle extends Component {
+class NotRiding extends Component {
   render() {
     const { name, t } = this.props;
     return (
       <Field
         type="checkbox"
-        name={`${name}.freestyle`}
+        name={`${name}.notRiding`}
         render={({ input }) => (
           <div className="competition-item">
             <input
               type="checkbox"
-              id={`${name}.freestyle`}
-              name={`${name}.freestyle`}
+              id={`${name}.notRiding`}
+              name={`${name}.notRiding`}
               {...input}
             />
-            <label className="checkbox-label" htmlFor={`${name}.freestyle`}>
-              {t("freestyle")}
+            <label className="checkbox-label" htmlFor={`${name}.notRiding`}>
+              {t("notRiding")}
             </label>
           </div>
         )}
@@ -29,4 +29,4 @@ class Freestyle extends Component {
   }
 }
 
-export default TranslateHOC(messages)(Freestyle);
+export default TranslateHOC(messages)(NotRiding);

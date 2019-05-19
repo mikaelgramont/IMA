@@ -1,14 +1,17 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Field } from "react-final-form";
 
-export default class Slalom extends Component {
+import messages from "../messages";
+import TranslateHOC from "../../Translate.jsx";
+
+class Slalom extends Component {
   render() {
-    const { name } = this.props;
+    const { name, t } = this.props;
     return (
       <Field
         type="checkbox"
         name={`${name}.slalom`}
-        render={({ input, meta }) => (
+        render={({ input }) => (
           <div className="competition-item">
             <input
               type="checkbox"
@@ -16,8 +19,8 @@ export default class Slalom extends Component {
               name={`${name}.slalom`}
               {...input}
             />
-            <label className="radio-label" htmlFor={`${name}.slalom`}>
-              Slalom
+            <label className="checkbox-label" htmlFor={`${name}.slalom`}>
+              {t("slalom")}
             </label>
           </div>
         )}
@@ -25,3 +28,5 @@ export default class Slalom extends Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(Slalom);

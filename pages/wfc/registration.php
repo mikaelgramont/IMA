@@ -1,9 +1,7 @@
 <?php
-define('NOT_OPEN_YET', 'not_open_yet');
-define('OPEN', 'open');
-define('CLOSED', 'closed');
+$config = PaymentConfigList::getConfig(PaymentConfigList::WFC_2019);
 
-define('REGISTRATION_OPEN', OPEN);
+
 ?>
 <style>
 	/* Rest of the page */
@@ -127,9 +125,14 @@ define('REGISTRATION_OPEN', OPEN);
     box-sizing: border-box;
     vertical-align: middle;
   }
+  .form-item .checkbox-label,
   .form-item .radio-label {
     text-align: initial;
     width: auto;
+  }
+
+  .form-item .radio-label {
+    margin-left: 5px;
   }
 
   input::placeholder,
@@ -142,6 +145,7 @@ define('REGISTRATION_OPEN', OPEN);
   }
   .form-item input[type=email],
   .form-item input[type=text],
+  .form-item textarea,
   .form-item select,
   .checkbox-wrapper {
     display: inline-block;
@@ -151,7 +155,7 @@ define('REGISTRATION_OPEN', OPEN);
     vertical-align: middle;
   }
   .checkbox-wrapper {
-   padding: 0;
+    padding: 0;
   }
   .form-item input[type=checkbox] {
     margin-left: 0;
@@ -208,7 +212,18 @@ define('REGISTRATION_OPEN', OPEN);
   .registration-status {
     font-weight: bold;
   }
+
+  .poster-wrapper {
+    margin: 0 auto 20px;
+    padding: 0 10px;
+  }
+  .poster-wrapper img {
+    display: block;
+    max-width: 100%;
+  }
 </style>
+
+<meta property="og:image" content="<?php echo $config->poster ?>" />
 
 <svg class="hidden">
   <defs>
@@ -223,8 +238,9 @@ define('REGISTRATION_OPEN', OPEN);
 	<div class="content-main">
     <h1 class="display-font">Registration</h1>
     <p>This is the official registration page.</p>
+    <p>Registration at the event will be <b><?php echo $config->costs->onsite ?>&euro;</b> per rider.</p>
     <p>
-      Registration fees are <b><?php echo REGISTRATION_COST ?>&euro;</b> per rider and include:
+      Save money by registering online! Online registration fees are <b><?php echo $config->costs->online ?>&euro;</b> per rider and include:
     </p>
     <ul>
       <li>entry to the competition</li>
@@ -233,18 +249,18 @@ define('REGISTRATION_OPEN', OPEN);
       <li>swag!</li>
     </ul>
     <p>
-      The deadline for online registration is <b><?php echo REGISTRATION_DEADLINE ?></b>.
+      The deadline for online registration is <b><?php echo $config->deadline ?></b>.
     </p>
 
     <?php
-      switch (REGISTRATION_OPEN) {
-        case NOT_OPEN_YET:
-          echo "<p class='registration-status'>Online registration is not open yet.</p>\n";
-          break;
-        case CLOSED:
-          echo "<p class='registration-status'>Online registration is closed.</p>\n";
-          break;
-      }
+    switch ($config->status) {
+      case PaymentConfigList::NOT_OPEN_YET:
+        echo "<p class='registration-status'>Online registration is not open yet.</p>\n";
+        break;
+      case PaymentConfigList::CLOSED:
+        echo "<p class='registration-status'>Online registration is closed.</p>\n";
+        break;
+    }
     ?>
 
     <div id="form-container"></div>
@@ -253,16 +269,20 @@ define('REGISTRATION_OPEN', OPEN);
 
 
 <?php
-if (REGISTRATION_OPEN == OPEN) {
+if ($config->status == PaymentConfigList::OPEN) {
   ?>
   <script>
     window.__registrationConstants__ = {
-      costPerRider: parseFloat(<?php echo REGISTRATION_COST ?>, 10),
-      serverProcessingUrl: '<?php echo BASE_URL ?>paypal-transaction-complete?XDEBUG_SESSION_START=PHPSTORM'
-    }
+      paymentType: <?php echo json_encode($config->paymentType) ?>,
+      costs: <?php echo json_encode($config->costs) ?>,
+      serverProcessingUrl: '<?php echo $config->serverProcessingUrl ?>',
+      translations: <?php echo array() ?>,
+      language: 'en',
+      additionalTextFields: <?php echo json_encode($config->additionalTextFields) ?>
+    };
   </script>
-  <script src="<?PHP echo PAYPAL_SCRIPT ?>"></script>
-  <script src="<?PHP echo BASE_URL ?>scripts/registration-bundle.js"></script>
+  <script src="<?PHP echo $config->paypalScript ?>"></script>
+  <script src="<?php echo $config->jsBundle ?>"></script>
   <?php
 }
 ?>

@@ -4,24 +4,24 @@ import { Field } from "react-final-form";
 import messages from "./messages";
 import TranslateHOC from "../Translate.jsx";
 
-class Number extends Component {
+class Licence extends Component {
   render() {
     const { name, t } = this.props;
     return (
       <Field
-        name={`${name}.number`}
+        name={`${name}.licence`}
         render={({ input, meta }) => (
           <Fragment>
-            <label htmlFor={`${name}.number`}>
-              {t('riderNumber')}
+            <label htmlFor={`${name}.licence`}>
+              {t('licenceNumber')}
               {meta.touched &&
                 meta.error && <span className="error">{meta.error}</span>}
             </label>
             <input
               type="text"
-              id={`${name}.number`}
-              name="number"
-              placeholder={t('optionalNumber')}
+              id={`${name}.licence`}
+              name="licence"
+              placeholder={t('optionalLicence')}
               {...input}
             />
           </Fragment>
@@ -31,4 +31,4 @@ class Number extends Component {
   }
 }
 
-export default TranslateHOC(messages)(Number);
+export default TranslateHOC(messages)(Licence);
