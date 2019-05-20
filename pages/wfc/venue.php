@@ -67,6 +67,17 @@
         <img src="<?php echo BASE_URL ?>images/works2.jpg" alt="A digger working on the course">
       </p>
 
+      <p>May 20th update - more pictures</p>
+      <p class="full">
+        <img src="<?php echo BASE_URL ?>images/may19-1.jpg" alt="The small jump line">
+      </p>
+      <p class="full">
+        <img src="<?php echo BASE_URL ?>images/may19-2.jpg" alt="Large jump landing">
+      </p>
+      <p class="full">
+        <img src="<?php echo BASE_URL ?>images/may19-3.jpg" alt="Quality dirt">
+      </p>
+
 
     </section>
 

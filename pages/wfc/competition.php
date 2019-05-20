@@ -38,11 +38,12 @@
         </dd>
         <dt>Friday July 26th</dt>
         <dd>
+          <p>The day starts at 12:00. We'll update the schedule closer to the competition, but you should expect:</p>
           <ul>
-            <li>10:00 to 14:00 - Practice and registration</li>
-            <li>14:00 to 15:00 - Riders meeting</li>
-            <li>15:00 to 18:00 - Freestyle qualifications</li>
-            <li>20:00 - Riders dinner</li>
+            <li>Registration</li>
+            <li>Riders meeting</li>
+            <li>Slalom and Freestyle qualifications for Pros</li>
+            <li>Evening jam/jib session and small party on the park</li>
           </ul>
         </dd>
         <dt>Saturday July 27th</dt>
