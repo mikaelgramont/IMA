@@ -28,7 +28,10 @@
 
     <section>
       <h2 class="display-font">Schedule</h2>
-      <p>Here is the tentative schedule for the competition:</p>
+      <p>
+        Here is the tentative schedule for the competition. We released this early so you get an idea of what will
+        happen when, but we will update it when we get close to the competition.
+      </p>
       <dl>
         <dt>Thursday July 25th</dt>
         <dd>
@@ -38,7 +41,7 @@
         </dd>
         <dt>Friday July 26th</dt>
         <dd>
-          <p>The day starts at 12:00. We'll update the schedule closer to the competition, but you should expect:</p>
+          <p>The day starts at 12:00, and on that day you should expect:</p>
           <ul>
             <li>Registration</li>
             <li>Riders meeting</li>
@@ -49,13 +52,14 @@
         <dt>Saturday July 27th</dt>
         <dd>
           <ul>
-            <li>9:00 to 11:00 - Practice</li>
-            <li>11:00 to 11:30 - Riders meeting</li>
-            <li>11:30 to 14:00 - Slalom</li>
-            <li>15:30 to 16:30 - Freestyle practice</li>
-            <li>17:00 to 18:00 - Freestyle Junior/Ladies/Masters</li>
-            <li>18:30 - Freestyle Pro</li>
-            <li>20:00 - Ceremony</li>
+            <li>Registration & Practice</li>
+            <li>Riders meeting</li>
+            <li>Slalom time trial (Ladies & Junior)</li>
+            <li>Slalom finals PRO (16 best from friday)</li>
+            <li>Freestyle pro jib finals</li>
+            <li>Freestyle Jam: Juniors, Ladies, Masters</li>
+            <li>Freestyle pro finals</li>
+            <li>Ceremony</li>
           </ul>
         </dd>
         <dt>Sunday July 28th</dt>
