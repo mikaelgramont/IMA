@@ -28,7 +28,7 @@ class PaymentConfigList
 
     switch($key) {
       case self::CDF_2019:
-        $config->status = self::OPEN;
+        $config->status = self::CLOSED;
         $config->jsBundle = BASE_URL.'scripts/2019-french-championships-bundle.js';
         $config->poster = BASE_URL.'images/registrations/CdF-2019.jpg';
         $config->posterSmall = BASE_URL.'images/registrations/CdF-2019-m.jpg';
