@@ -83,7 +83,7 @@ define('EMAIL_INTERNATIONAL_COORDINATION', 'flavio.nottalgiovanni@gmail.com');
 /******************************************************************************
  * REGISTRATION
  *****************************************************************************/
-define('REGISTRATION_USE_PRODUCTION', false);
+define('REGISTRATION_USE_PRODUCTION', true);
 
 if (REGISTRATION_USE_PRODUCTION) {
   define('PAYPAL_ACCOUNT_CDF_2019', PAYPAL_ACCOUNT_IMA);

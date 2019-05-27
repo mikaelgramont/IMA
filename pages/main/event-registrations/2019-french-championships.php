@@ -101,7 +101,7 @@ INCLUDED
   ,
     'deadline' => 'La date limite d\'enregistrement en ligne est le '.$config->deadline.'.',
     'notOpenYet' => 'L\'enregistrement en ligne n\'est pas encore ouvert.',
-    'closed' => 'L\'enregistrement en ligne n\'est terminé.',
+    'closed' => 'L\'enregistrement en ligne est terminé.',
   ),
 );
 /******************************************************************************
