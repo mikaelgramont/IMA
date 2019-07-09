@@ -174,10 +174,7 @@ HTML;
       $news[$newsPage->getName()] = $newsPage->getHomePageMarkup();
     }
     natsort($news);
-    for ($i = 0; $i < NEWS_COUNT; $i++) {
-      $ret[] = array_pop($news);
-    }
-    return '<ul class="news">' . implode("\n", $ret) . '</ul>';
+    return $news;
   }
 
   public static function getNewsArticleMeta()
