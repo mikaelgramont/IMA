@@ -16,8 +16,11 @@ class InstagramTag {
 
 	private function _scrape()
 	{
-		$insta_source = file_get_contents('https://www.instagram.com/explore/tags/'.$this->_tag);
-		$shards = explode('window._sharedData = ', $insta_source);
+		$insta_source = @file_get_contents('https://www.instagram.com/explore/tags/'.$this->_tag);
+    if (!$insta_source) {
+      return array();
+    }
+    $shards = explode('window._sharedData = ', $insta_source);
 		$insta_json = explode(';</script>', $shards[1]); 
 		$insta_array = json_decode($insta_json[0], TRUE);
 		$photosRaw = $insta_array['entry_data']['TagPage'][0]['graphql']['hashtag']['edge_hashtag_to_media']['edges'];

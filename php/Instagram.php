@@ -13,7 +13,10 @@ class Instagram {
 
 	private function _scrape()
 	{
-		$insta_source = file_get_contents('https://www.instagram.com/'.$this->_name);
+		$insta_source = @file_get_contents('https://www.instagram.com/'.$this->_name);
+		if (!$insta_source) {
+		  return array();
+    }
 		$shards = explode('window._sharedData = ', $insta_source);
 		$insta_json = explode(';</script>', $shards[1]); 
 		$insta_array = json_decode($insta_json[0], TRUE);
