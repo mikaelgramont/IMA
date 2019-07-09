@@ -40,7 +40,7 @@ if ($cacheItem->isMiss()) {
 	try {
 		$events = EventParser::buildEvents($driveService, $sheetsService, $logger, EVENTS_RESPONSE_SHEET_ID);
 		$cacheItem->set($events);
-		$cacheItem->expiresAfter(24 * 3600 * 2);
+		$cacheItem->expiresAfter(24 * 3600 * 2 * 30);
 		$pool->save($cacheItem);
 	} catch (Exception $e) {
 		echo $logger->dumpText()."\n";
