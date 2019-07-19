@@ -2,8 +2,6 @@
 define('DESTINATION_FOLDER', './images/uploads/');
 define('PUBLIC_UPLOAD_PATH', OG_URL.'images/uploads/');
 
-require('EventUpdates.php');
-
 function failWithMsg($errors)
 {
   $output = new stdClass();
@@ -25,6 +23,7 @@ function success()
  * Process input data, return error if necessary
  **********************************************************************************/
 $event = isset($_POST['event']) ? $_POST['event'] : null;
+$author = isset($_POST['author']) ? $_POST['author'] : null;
 $date = isset($_POST['date']) ? $_POST['date'] : null;
 $title = isset($_POST['title']) ? $_POST['title'] : null;
 $message = isset($_POST['message']) ? $_POST['message'] : null;
@@ -36,6 +35,9 @@ if (!$config) {
   $errors['Configuration'] = 'bad event';
 }
 
+if (!$author) {
+  $errors['Author'] = 'missing';
+}
 if (!$date) {
   $errors['Date'] = 'missing';
 }
@@ -88,6 +90,7 @@ $spreadsheetId = $config->spreadsheetId;
  * Update
  **********************************************************************************/
 $update = [
+  $author,
   $date,
   $title,
   $message,

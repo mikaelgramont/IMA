@@ -1,5 +1,4 @@
 <?php
-  require('EventUpdates.php');
   define('CURRENT_EVENT', 'WFC2019');
 
   $config = EventUpdates::getConfig(CURRENT_EVENT);
@@ -52,7 +51,10 @@
 
 <p>For the event: '<?php echo $config->name ?>'</p>
 
-<form action="<?php echo BASE_URL?>event-update-post?XDEBUG_SESSION_START=PHPSTORM" method="POST" enctype="multipart/form-data" id="form">
+<form action="<?php echo BASE_URL?>event-update-post" method="POST" enctype="multipart/form-data" id="form">
+  <div class="row">
+    <label>Author <input type="text" name="author" /></label>
+  </div>
   <div class="row">
     <label>Date <input type="text" name="date" value="<?php echo $date ?>" /></label>
   </div>
