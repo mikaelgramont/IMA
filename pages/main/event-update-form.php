@@ -1,9 +1,11 @@
 <?php
-  define('CURRENT-EVENT', 'WFC2019');
-  // The number of hours ahead of GMT.
-  define('OFFSET', 3);
+  require('EventUpdates.php');
+  define('CURRENT_EVENT', 'WFC2019');
 
-  $timestamp = time() + 60 * 60 * OFFSET;
+  $config = EventUpdates::getConfig(CURRENT_EVENT);
+
+  // $config->offset is the number of hours ahead of GMT.
+  $timestamp = time() + 60 * 60 * $config->offset;
   $date = date("F jS - H:i", $timestamp);
 ?>
 
@@ -11,7 +13,6 @@
   form {
     max-width: 600px;
     margin: 0 auto;
-    padding: 10px;
   }
 
   .row {
@@ -40,9 +41,16 @@
     border: 0;
     font-size: 1rem;
   }
+
+  .lowlight {
+    font-size: .8rem;
+    opacity: .8;
+  }
 </style>
 
 <h1 class="display-font">Event update form</h1>
+
+<p>For the event: '<?php echo $config->name ?>'</p>
 
 <form action="<?php echo BASE_URL?>event-update-post?XDEBUG_SESSION_START=PHPSTORM" method="POST" enctype="multipart/form-data" id="form">
   <div class="row">
@@ -52,7 +60,7 @@
     <label>Title <input type="text" name="title" /></label>
   </div>
   <div class="row">
-    <label>Photo <input type="file" name="photo" /></label>
+    <label>Photo <span class="lowlight">(optional)</span><input type="file" name="photo" /></label>
   </div>
   <div class="row">
     <label>Message <textarea name="message"></textarea></label>
@@ -61,7 +69,7 @@
     <input type="submit" value="Submit">
   </div>
 
-  <input type="hidden" name="event" value="<?php echo CURRENT-EVENT?>" />
+  <input type="hidden" name="event" value="<?php echo CURRENT_EVENT?>" />
 </form>
 
 
