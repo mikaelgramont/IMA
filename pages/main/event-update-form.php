@@ -140,6 +140,7 @@
             img.src = e.target.result
 
             img.addEventListener('load', () => {
+
               const canvas = document.createElement("canvas");
               const ctx = canvas.getContext("2d");
               ctx.drawImage(img, 0, 0);
@@ -158,8 +159,27 @@
                   height = MAX_HEIGHT;
                 }
               }
-              canvas.width = width;
-              canvas.height = height;
+
+              if (4 < orientation && orientation < 9) {
+                canvas.width = height;
+                canvas.height = width;
+              } else {
+                canvas.width = width;
+                canvas.height = height;
+              }
+
+              // transform context before drawing image
+              switch (orientation) {
+                case 2: ctx.transform(-1, 0, 0, 1, width, 0); break;
+                case 3: ctx.transform(-1, 0, 0, -1, width, height ); break;
+                case 4: ctx.transform(1, 0, 0, -1, 0, height ); break;
+                case 5: ctx.transform(0, 1, 1, 0, 0, 0); break;
+                case 6: ctx.transform(0, 1, -1, 0, height , 0); break;
+                case 7: ctx.transform(0, -1, -1, 0, height , width); break;
+                case 8: ctx.transform(0, -1, 1, 0, 0, width); break;
+                default: break;
+              }
+
               ctx.drawImage(img, 0, 0, width, height);
 
               const dataurl = canvas.toDataURL("image/jpeg");
@@ -191,6 +211,7 @@
     }).then((response) => {
       return response.json();
     }).then((data) => {
+      // TODO: checker le status, et afficher des erreurs. Sinon rediriger vers la bonne page (voir config event).
       console.log(data);
     }).catch((e) => {
       console.error(e);
