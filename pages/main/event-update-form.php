@@ -79,7 +79,7 @@
   const MAX_WIDTH = 1280;
   const MAX_HEIGHT = 1280;
 
-  function handleSubmit(e)
+  document.getElementById('form').addEventListener('submit', (e) =>
   {
     e.preventDefault();
 
@@ -88,68 +88,112 @@
     const fileElement = elements.find(e => e.type === 'file');
     const file = fileElement.files[0];
 
-    let dataurl = null;
+    Promise.resolve().then(() => {
+      return new Promise(resolve => {
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+          const view = new DataView(event.target.result);
 
-    // Create an image
-    const img = document.createElement("img");
-    // Create a file reader
-    const reader = new FileReader();
-    // Set the image once loaded into file reader
-    reader.onload = function(e)
-    {
-      img.src = e.target.result;
-
-      img.onload = function () {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-
-        let width = img.width;
-        let height = img.height;
-
-        if (width > height) {
-          if (width > MAX_WIDTH) {
-            height *= MAX_WIDTH / width;
-            width = MAX_WIDTH;
+          if (view.getUint16(0, false) !== 0xFFD8) {
+            resolve(-2);
+            return;
           }
-        } else {
-          if (height > MAX_HEIGHT) {
-            width *= MAX_HEIGHT / height;
-            height = MAX_HEIGHT;
-          }
-        }
-        canvas.width = width;
-        canvas.height = height;
-        ctx.drawImage(img, 0, 0, width, height);
 
-        dataurl = canvas.toDataURL("image/jpeg");
+          const length = view.byteLength;
+          let offset = 2;
 
-        // Post the data
-        const fd = new FormData();
-        elements.forEach((e) => {
-          if (e === fileElement) {
-            const blobBin = atob(dataurl.split(',')[1]);
-            const array = [];
-            for(let i = 0; i < blobBin.length; i++) {
-              array.push(blobBin.charCodeAt(i));
+          while (offset < length) {
+            const marker = view.getUint16(offset, false);
+            offset += 2;
+
+            if (marker === 0xFFE1) {
+              if (view.getUint32(offset += 2, false) !== 0x45786966) {
+                resolve(-1);
+                return;
+              }
+              const little = view.getUint16(offset += 6, false) === 0x4949;
+              offset += view.getUint32(offset + 4, little);
+              const tags = view.getUint16(offset, little);
+              offset += 2;
+
+              for (let i = 0; i < tags; i++)
+                if (view.getUint16(offset + (i * 12), little) === 0x0112)
+                  resolve(view.getUint16(offset + (i * 12) + 8, little));
+              return;
             }
-            fd.append(e.name, new Blob([new Uint8Array(array)], {type: 'image/jpeg', name: "photo.jpg"}));
-          } else {
-            fd.append(e.name, e.value);
+            else if ((marker & 0xFF00) !== 0xFF00) break;
+            else offset += view.getUint16(offset, false);
           }
+          resolve(-1);
         });
-        fetch(formEl.action, {
-          method: 'POST',
-          body: fd
-        }).then(function(response) {
-            return response.text();
-        }).then(function(data) {
-          console.log(data);
-        });
-      } // img.onload
-    }
-    // Load files into file reader
-    reader.readAsDataURL(file);
-  }
-  document.getElementById('form').addEventListener('submit', handleSubmit);
+        reader.readAsArrayBuffer(file.slice(0, 64 * 1024));
+      });
+    }).then((orientation) => {
+      console.log({orientation});
+
+      return new Promise((resolve) => {
+          // Create an image
+          const img = document.createElement("img");
+          // Create a file reader
+          const reader = new FileReader();
+          reader.addEventListener('load', (e) => {
+            img.src = e.target.result
+
+            img.addEventListener('load', () => {
+              const canvas = document.createElement("canvas");
+              const ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0);
+
+              let width = img.width;
+              let height = img.height;
+
+              if (width > height) {
+                if (width > MAX_WIDTH) {
+                  height *= MAX_WIDTH / width;
+                  width = MAX_WIDTH;
+                }
+              } else {
+                if (height > MAX_HEIGHT) {
+                  width *= MAX_HEIGHT / height;
+                  height = MAX_HEIGHT;
+                }
+              }
+              canvas.width = width;
+              canvas.height = height;
+              ctx.drawImage(img, 0, 0, width, height);
+
+              const dataurl = canvas.toDataURL("image/jpeg");
+              const blobBin = atob(dataurl.split(',')[1]);
+              const array = [];
+              for (let i = 0; i < blobBin.length; i++) {
+                array.push(blobBin.charCodeAt(i));
+              }
+              resolve(new Blob([new Uint8Array(array)], { type: 'image/jpeg', name: "photo.jpg" }));
+            });
+          });
+          reader.readAsDataURL(file);
+      });
+    }).then((fileBlob) => {
+      console.log({fileBlob});
+
+      const fd = new FormData();
+      elements.forEach((e) => {
+        if (e === fileElement) {
+          fd.append(e.name, fileBlob);
+        } else {
+          fd.append(e.name, e.value);
+        }
+      });
+      return fetch(formEl.action, {
+        method: 'POST',
+        body: fd
+      });
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      console.log(data);
+    }).catch((e) => {
+      console.error(e);
+    });
+  });
 </script>
