@@ -168,6 +168,12 @@ class Pages
         'file' => 'news-archive.php',
         'skipMenuEntry' => true,
       ],
+      (object)[
+        'title' => 'Privacy policy',
+        'url' => 'privacy-policy',
+        'file' => 'privacy-policy.php',
+        'skipMenuEntry' => true,
+      ],
     );
   }
 }

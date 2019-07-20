@@ -5,6 +5,8 @@ class Footer
 	{
 		$logout = Auth::hasAuth() ? "<a href=\"". BASE_URL . "do-logout\">Logout</a>" : "";
 
+    $privacyPolicyUrl = BASE_URL.'privacy-policy';
+
 		$date = date('Y');
 		return <<<HTML
 		<footer class="footer">
@@ -33,6 +35,7 @@ class Footer
 				</li>
 			</ul>
 			<p class="small">IMA {$date}</p>
+			<p><a href="$privacyPolicyUrl">Privacy policy</a></p>
 			{$logout}
 		</footer>
 HTML;
