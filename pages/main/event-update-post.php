@@ -113,23 +113,6 @@ try {
   failWithMsg(['Cache' => $errorMessage]);
 }
 
-/***********************************************************************************
- * FB post
- **********************************************************************************/
-//$content = <<<CONTENT
-//${title}
-//
-//${content}
-//
-//${author}
-//CONTENT;
-//
-//try {
-//  FacebookPagePost::postMessage(FB_APP_ID, FB_APP_SECRET, $content, $pageUrl, $photoPublicUrl);
-//} catch (Exception $e) {
-//  failWithMsg($e->getMessage());
-//}
-
 success($pageUrl);
 
 
