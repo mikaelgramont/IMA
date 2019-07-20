@@ -174,6 +174,21 @@ class Pages
         'file' => 'privacy-policy.php',
         'skipMenuEntry' => true,
       ],
+      (object)[
+        'title' => 'Event update',
+        'url' => 'event-update-form',
+        'file' => 'event-update-form.php',
+        'skipMenuEntry' => true,
+        'auth' => true,
+      ],
+      (object)[
+        'title' => 'Event update post',
+        'url' => 'event-update-post',
+        'file' => 'event-update-post.php',
+        'noContent' => true,
+        'skipMenuEntry' => true,
+        'auth' => true,
+      ],
     );
   }
 }

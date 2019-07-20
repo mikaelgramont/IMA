@@ -23,6 +23,8 @@ try {
 }
 
 $allNews = PageHelper::getNewsArticlesHTML();
+// TODO: remove this in order to render the latest news
+array_pop($allNews);
 $newsItems = array();
 for ($i = 0; $i < NEWS_COUNT; $i++) {
   $newsItems[] = array_pop($allNews);

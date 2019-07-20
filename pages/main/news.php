@@ -8,7 +8,6 @@ if (strpos($param, '..') !== false) {
 ?>
 <style>
   .news-article p {
-    text-align: justify;
   }
 
   .news-title-wrapper {
