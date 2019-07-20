@@ -40,7 +40,9 @@
     border: 0;
     font-size: 1rem;
   }
-
+  input[type=submit][disabled] {
+    background: #888;
+  }
   .lowlight {
     font-size: .8rem;
     opacity: .8;
@@ -58,7 +60,7 @@
 
 <p>For the event: '<?php echo $config->name ?>'</p>
 
-<form action="<?php echo BASE_URL?>event-update-post?XDEBUG_SESSION_START=PHPSTORM" method="POST" enctype="multipart/form-data" id="form">
+<form action="<?php echo BASE_URL?>event-update-post" method="POST" enctype="multipart/form-data" id="form">
   <pre class="errors hidden" id="errors"></pre>
 
   <div class="row">
@@ -77,7 +79,8 @@
     <label>Message <textarea name="message"></textarea></label>
   </div>
   <div class="row">
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" id="submit">
+    <span class="hidden" id="loading">Uploading...</span>
   </div>
 
   <input type="hidden" name="event" value="<?php echo CURRENT_EVENT?>" />
@@ -117,12 +120,17 @@
             offset += 2;
 
             for (let i = 0; i < tags; i++)
-              if (view.getUint16(offset + (i * 12), little) === 0x0112)
+              if (view.getUint16(offset + (i * 12), little) === 0x0112) {
                 resolve(view.getUint16(offset + (i * 12) + 8, little));
-            return;
+                return;
+              }
           }
-          else if ((marker & 0xFF00) !== 0xFF00) break;
-          else offset += view.getUint16(offset, false);
+          else if ((marker & 0xFF00) !== 0xFF00) {
+            break;
+          }
+          else {
+            offset += view.getUint16(offset, false);
+          }
         }
         resolve(-1);
       });
@@ -196,9 +204,13 @@
     });
   };
 
+  const submitEl = document.getElementById('submit');
+  const loadingEl = document.getElementById('loading');
   document.getElementById('form').addEventListener('submit', (e) =>
   {
     e.preventDefault();
+    submitEl.disabled = true;
+    loadingEl.classList.remove('hidden');
 
     const formEl = e.target;
     const elements = Array.from(formEl.elements);
@@ -214,7 +226,6 @@
     }
 
     p.then((fileBlob) => {
-      console.log({fileBlob});
       const fd = new FormData();
       elements.forEach((e) => {
         if (e === fileElement) {
@@ -230,6 +241,8 @@
         body: fd
       });
     }).then((response) => {
+      submitEl.disabled = false;
+      loadingEl.classList.add('hidden');
       return response.json();
     }).then((data) => {
       const hasErrors = data.errors && Object.entries(data.errors).length > 0;
