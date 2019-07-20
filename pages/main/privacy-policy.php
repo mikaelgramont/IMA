@@ -19,4 +19,5 @@
     personal information.<br>
     Hence we do not store or share any data with any provider.
   </p>
+  <p>Please get in touch with us at <a href="mailto:<?php echo EMAIL_IMA ?>"><?php echo EMAIL_IMA ?></a> should you have any questions or concerns.</p>
 </div>
