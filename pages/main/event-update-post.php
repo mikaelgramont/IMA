@@ -1,6 +1,8 @@
 <?php
+//require_once('FacebookPagePost.php');
+
 define('DESTINATION_FOLDER', './images/uploads/');
-define('PUBLIC_UPLOAD_PATH', OG_URL.'images/uploads/');
+define('PUBLIC_UPLOAD_PATH', '/images/uploads/');
 
 function failWithMsg($errors)
 {
@@ -11,10 +13,11 @@ function failWithMsg($errors)
   exit();
 }
 
-function success()
+function success($destination)
 {
   $output = new stdClass();
   $output->status = 'OK';
+  $output->redirect = $destination;
   echo json_encode($output);
   exit();
 }
@@ -31,6 +34,7 @@ $file = isset($_FILES['photo']) ? $_FILES['photo'] : null;
 
 $errors = [];
 $config = EventUpdates::getConfig($event);
+$pageUrl = BASE_URL . $config->pagePath;
 if (!$config) {
   $errors['Configuration'] = 'bad event';
 }
@@ -51,18 +55,20 @@ if ($errors) {
 /***********************************************************************************
  * File upload management
  **********************************************************************************/
-$filename = Utils::uuidV4().'.jpg';
-$filePath = DESTINATION_FOLDER . $filename;
-$photoPublicUrl = PUBLIC_UPLOAD_PATH . $filename;
+$photoPublicUrl = null;
+if ($file) {
+  $filename = Utils::uuidV4() . '.jpg';
+  $filePath = DESTINATION_FOLDER . $filename;
+  $photoPublicUrl = PUBLIC_UPLOAD_PATH . $filename;
 
-if (!move_uploaded_file($_FILES['photo']['tmp_name'], $filePath)) {
-  $errors['Photo'] = 'a problem occurred during upload';
+  if (!move_uploaded_file($_FILES['photo']['tmp_name'], $filePath)) {
+    $errors['Photo'] = 'a problem occurred during upload';
+  }
+
+  if ($errors) {
+    failWithMsg($errors);
+  }
 }
-
-if ($errors) {
-  failWithMsg($errors);
-}
-
 /***********************************************************************************
  * Spreadsheet management
  **********************************************************************************/
@@ -77,14 +83,12 @@ if (!file_exists(CREDENTIALS_PATH)) {
   }
 }
 if ($errorMessage) {
-  failWithMsg([$errorMessage]);
+  failWithMsg(['Google Api' => $errorMessage]);
 }
 
 $client = Helpers::getGoogleClientForWeb($accessToken);
 $sheetsService = new Google_Service_Sheets($client);
-$logger = new Logger();
 $spreadsheetId = $config->spreadsheetId;
-
 
 /***********************************************************************************
  * Update
@@ -98,14 +102,35 @@ $update = [
 ];
 
 try {
-  EventUpdates::save($sheetsService, $spreadsheetId, $update);
+  EventUpdates::saveToGoogleSheets($sheetsService, $spreadsheetId, $update);
 } catch (Google_Exception $e) {
-  failWithMsg($e->getMessage());
+  failWithMsg(['Google Sheets' => $errorMessage]);
 }
 
-//TODO: Bust cache
+try {
+  EventUpdates::bustCache($config->cacheId);
+} catch (Google_Exception $e) {
+  failWithMsg(['Cache' => $errorMessage]);
+}
 
-success();
+/***********************************************************************************
+ * FB post
+ **********************************************************************************/
+//$content = <<<CONTENT
+//${title}
+//
+//${content}
+//
+//${author}
+//CONTENT;
+//
+//try {
+//  FacebookPagePost::postMessage(FB_APP_ID, FB_APP_SECRET, $content, $pageUrl, $photoPublicUrl);
+//} catch (Exception $e) {
+//  failWithMsg($e->getMessage());
+//}
+
+success($pageUrl);
 
 
 

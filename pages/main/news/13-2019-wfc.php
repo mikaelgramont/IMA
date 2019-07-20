@@ -18,7 +18,7 @@ define('IG_ORGANISER_CACHE_NAME', 'username-mountainboardinfo-photos');
 define('IG_TAG', 'wfc19');
 define('IG_TAG_CACHE_NAME', 'tag-mountainboard-photos');
 
-// https://www.unixtimestamp.com/index.php
+// https://www.epochconverter.com/
 // Wednesday, 1 July 2019 09:00:00
 define('START_DATE_TIMESTAMP', 1561971600);
 
@@ -179,8 +179,9 @@ function renderUpdate($count, $update) {
     $banner = $count === 0 ? 'Latest update - '.$update->date : 'Update - '.$update->date;
     $img = "";
     if ($update->photo) {
+      $src = BASE_URL . $update->photo;
       $img = <<<IMG
-      <img class="update-photo" src={$update->photo} alt="" />
+      <img class="update-photo" src={$src} alt="" />
 IMG;
 
     }

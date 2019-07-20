@@ -11,6 +11,7 @@ class EventUpdates {
         'spreadsheetId' => '15ImD2LEHH9C6Is2taoL7ZnDa6ZHnJAT2zZhqWxZsw6U',
         'cacheId' => 'live-updates-2019',
         'range' => 'A2:E',
+        'pagePath' => 'news/13-2019-wfc',
       ],
     ];
 
@@ -21,11 +22,17 @@ class EventUpdates {
     return $allEvents[$eventKey];
   }
 
-  public static function save($sheetsService, $spreadsheetId, $update) {
+  public static function saveToGoogleSheets($sheetsService, $spreadsheetId, $update) {
     $params = array("valueInputOption" => "RAW");
     $updateBody = new Google_Service_Sheets_ValueRange([
       'values' => [$update]
     ]);
     $sheetsService->spreadsheets_values->append($spreadsheetId, self::$eventUpdateSheet, $updateBody, $params);
+  }
+
+  public static function bustCache($cacheId) {
+    $pool = Cache::getPool();
+    $cacheItem = $pool->getItem($cacheId);
+    $cacheItem->clear();
   }
 }
