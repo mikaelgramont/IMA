@@ -159,7 +159,8 @@ function retrieveUpdateObjects() {
         $sheetsService = new Google_Service_Sheets($client);
         $sheetContentResponse = $sheetsService->spreadsheets_values->get(LIVE_UPDATES_SPREADSHEET_ID, LIVE_UPDATES_RANGE);
         $values = $sheetContentResponse->getValues();
-        foreach ($values as $index => $value) {
+        if ($values) {
+          foreach ($values as $index => $value) {
             $update = new stdClass();
             $update->author = $value[0];
             $update->date = $value[1];
@@ -167,6 +168,7 @@ function retrieveUpdateObjects() {
             $update->message = $value[3];
             $update->photo = $value[4];
             $updates[] = $update;
+          }
         }
     } catch (Exception $e) {
         // Should log something somewhere -- ain't nobody got time for that.
