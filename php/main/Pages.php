@@ -179,7 +179,7 @@ class Pages
         'url' => 'event-update-form',
         'file' => 'event-update-form.php',
         'skipMenuEntry' => true,
-        'auth' => true,
+//        'auth' => true,
       ],
       (object)[
         'title' => 'Event update post',
