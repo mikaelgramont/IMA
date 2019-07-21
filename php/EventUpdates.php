@@ -7,7 +7,7 @@ class EventUpdates {
     $allEvents = [
       'WFC2019' => (object)[
         'name' => 'WFC 2019 - Poland',
-        'offset' => 3,
+        'offset' => 1,
         'spreadsheetId' => '15ImD2LEHH9C6Is2taoL7ZnDa6ZHnJAT2zZhqWxZsw6U',
         'cacheId' => 'live-updates-2019',
         'range' => 'A2:E',
