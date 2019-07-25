@@ -1,6 +1,4 @@
 <?php
-//require_once('FacebookPagePost.php');
-
 define('DESTINATION_FOLDER', './images/uploads/');
 define('PUBLIC_UPLOAD_PATH', '/images/uploads/');
 
