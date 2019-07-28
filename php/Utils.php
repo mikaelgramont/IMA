@@ -90,7 +90,7 @@ HTML;
     if (!$countryCode) {
       return "";
     }
-    return "./images/flags/" . $countryCode . ".svg";
+    return BASE_URL . "images/flags/" . $countryCode . ".svg";
   }
 
   public static function getCountryCode($country = '')
