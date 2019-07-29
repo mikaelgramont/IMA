@@ -2,14 +2,6 @@
 	.content-wrapper {
 		flex-wrap: nowrap;
 	}
-	@media screen and (min-width: 640px) {
-		.content-main {
-		}
-		.content-wrapper {
-			display: flex;
-		}
-	}
-
   .sanctioned {
     text-align: center;
     margin: 10px 60px;
@@ -18,45 +10,9 @@
   .sanctioned a {
     text-decoration: none;
   }
-	.link-as-button {
-		background: #E82020;
-		display: inline-block;
-		border-radius: .5em;
-		padding: .5em;
-		color: #fff;
-		text-decoration: none;
-	}
-  .registration-button-container {
-    text-align: center;
-    font-size: 1.3em;
-    margin-bottom: 10px;
-  }
-  .more {
-    text-align: center;
-    font-size: .8em;
-  }
-  .more a {
-    color: #F7F7F7;
-    text-decoration: none;
-  }
-  .down {
-    display: block;
+  section {
+    max-width: 400px;
     margin: 0 auto;
-    width: 15px;
-    height: 15px;
-  }
-
-  .video-embed-wrapper {
-    position: relative;
-    height: 0;
-    width: 100%;
-    padding-top: 56.25%;
-  }
-  .embed {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
   }
 </style>
 
@@ -68,24 +24,14 @@
     <p class="full">
       <img src="<?php echo BASE_URL ?>images/poster.jpg" alt="The official event poster">
     </p>
-    <p class="registration-button-container">
-      <a href="<?php echo BASE_URL ?>registration" class="link-as-button">Register</a>
-    </p>
-    <p class="more">
-      <a href="#details">More details</a><br>
-      <img src="<?php echo BASE_URL ?>images/down-arrow.svg" alt="" class="down">
-    </p>
 
     <section>
-      <a id="details"></a>
-      <p>The World Freestyle Championships is back in 2019, and it will take place July 26-27th in Moszczenica, Poland!</p>
-      <p>The IMA is excited to see the WFC go to Poland this year, as the mountainboard scene there has been buzzing for many years now.</p>
+      <p>The 2019 WFC is behind us!</p>
+      <p>You can find the <a href="https://www.mountainboardworld.org/results/2019-world-freestyle-championship">
+          official results on the IMA site</a>, or check out
+        <a href="https://www.mountainboardworld.org/news/13-2019-wfc">the live coverage page</a>.
+      </p>
 
-      <div class="video-embed-wrapper">
-        <iframe class="embed" src="https://www.youtube.com/embed/D_2xNcpw7co" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-
-      <p>Dawid Rząca's home spot of Mosquito Park is the chosen venue for this year's competition, and it will have features for all levels of riding, so come join us in Poland!</p>
     </section>
 	</div>
 </div>

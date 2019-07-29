@@ -54,7 +54,7 @@ class PaymentConfigList
 
         break;
       case self::WFC_2019:
-        $config->status = self::OPEN;
+        $config->status = self::CLOSED;
         $config->jsBundle = BASE_URL.'scripts/registration-bundle.js';
         $config->poster = BASE_URL.'images/poster.jpg';
         $config->posterSmall = BASE_URL.'images/poster.jpg';
