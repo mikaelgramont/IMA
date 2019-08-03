@@ -4,3 +4,623 @@
 <meta property="article:published_time" content="2019-07-24"/>
 
 SEPARATOR
+
+<section>
+  <style>
+    .news-article p {
+    }
+
+    .news-title-wrapper {
+      margin-bottom: 1em;
+    }
+
+    @media screen and (min-width: 640px) {
+      .news-title-wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        margin-bottom: 0;
+      }
+
+      .news-date::before {
+        content: " - ";
+      }
+    }
+
+    .news-date {
+      margin-left: 0.5em;
+    }
+  </style>
+  <div class="news-article">
+    <style>
+      .live-main {
+        margin-top: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+
+      .live-main h2 {
+        background: #1A1705;
+        color: #fff;
+        margin-left: -.5em;
+        padding: .25em .5em;
+      }
+
+      .live-main .first .update-banner {
+        background: #E82020;
+        color: #fff;
+      }
+
+      .update-title {
+        margin: .5rem 0;
+        font-weight: bold;
+      }
+
+      .update-content {
+        font-family: 'Raleway';
+      }
+
+      .update-photo {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .stream {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .stream-photo {
+        flex: 200px 1 0;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .stream-photo.video .stream-photo-image::after {
+        content: " ";
+        display: block;
+        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNjAgNjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDYwIDYwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8cGF0aCBmaWxsPSIjZWVlIiBkPSJNNDUuNTYzLDI5LjE3NGwtMjItMTVjLTAuMzA3LTAuMjA4LTAuNzAzLTAuMjMxLTEuMDMxLTAuMDU4QzIyLjIwNSwxNC4yODksMjIsMTQuNjI5LDIyLDE1djMwDQoJCWMwLDAuMzcxLDAuMjA1LDAuNzExLDAuNTMzLDAuODg0QzIyLjY3OSw0NS45NjIsMjIuODQsNDYsMjMsNDZjMC4xOTcsMCwwLjM5NC0wLjA1OSwwLjU2My0wLjE3NGwyMi0xNQ0KCQlDNDUuODM2LDMwLjY0LDQ2LDMwLjMzMSw0NiwzMFM0NS44MzYsMjkuMzYsNDUuNTYzLDI5LjE3NHogTTI0LDQzLjEwN1YxNi44OTNMNDMuMjI1LDMwTDI0LDQzLjEwN3oiLz4NCgk8cGF0aCBmaWxsPSIjZWVlIiBkPSJNMzAsMEMxMy40NTgsMCwwLDEzLjQ1OCwwLDMwczEzLjQ1OCwzMCwzMCwzMHMzMC0xMy40NTgsMzAtMzBTNDYuNTQyLDAsMzAsMHogTTMwLDU4QzE0LjU2MSw1OCwyLDQ1LjQzOSwyLDMwDQoJCVMxNC41NjEsMiwzMCwyczI4LDEyLjU2MSwyOCwyOFM0NS40MzksNTgsMzAsNTh6Ii8+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg==');
+        background-size: 50%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+      }
+
+      .stream-photo img {
+        max-width: 100%;
+      }
+
+      .stream-photo a {
+        text-decoration: none;
+      }
+
+      .stream-photo .metadata {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        line-height: 1.3em;
+        vertical-align: middle;
+        background: rgba(0, 0, 0, .8);
+        color: #eee;
+        margin: 0;
+        padding: 0.5em;
+      }
+
+      @media screen and (min-width: 1000px) {
+        .live-content {
+          display: flex;
+          width: 100%;
+          flex-wrap: nowrap;
+        }
+        .live-main,
+        .ig-stream {
+          flex: 1 0;
+        }
+
+        .live-main {
+          margin-right: 20px;
+        }
+
+        .stream-photo {
+          height: 225px;
+        }
+      }
+    </style>
+
+
+    <section>
+      <h1 class="display-font">World Freestyle Championship 2019 (July 26th-27th) - live coverage</h1>
+      <p>We'll be adding updates as the event takes place, so come back often!</p>
+
+      <p>
+        For schedule information, check out <a href="https://wfc.mountainboardworld.org/competition" target="_blank">the timeline on the official event site</a>.
+      </p>
+
+      <div class="live-content">
+        <ul class="live-main">
+          <li class="first">
+            <h2 class="display-font update-banner">Latest update - July 28th - 11:49</h2>
+            <p class="update-title">Results are in!!</p>
+            <p class="update-content">Check them out at  <a href="https://www.mountainboardworld.org/results/2019-world-freestyle-championship">https://www.mountainboardworld.org/results/2019-world-freestyle-championship</a></p>
+            <p class="update-author">
+              Mika
+            </p>
+
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 28th - 00:10</h2>
+            <p class="update-title">And it's a wrap!</p>
+            <p class="update-content">2019 Freestyle is a wrap, and it was a good one!<br>
+              Lots of progression on tricks, a much stronger emphasis on rails, and when was the last time you saw two people pull double backflips within 5 seconds?!!<br>
+              The after party's just getting started, but for those who will be around tomorrow, Haero Boards is having a test ride of their new Bro Model deck at the Mosquito Spot venue, at 12:00. We'll see you there!</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/1edfae24-0293-4980-80c2-54874cc7532d.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 27th - 18:26</h2>
+            <p class="update-title">Pro final line-up</p>
+            <p class="update-content">Pro final is starting in 5 minutes! We've seen some pretty crazy stuff already, it's only gonna get crazier!</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/69eda2cd-398c-4455-9909-979907cd8c5a.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 27th - 16:47</h2>
+            <p class="update-title">Pro Jam 1 Results</p>
+            <p class="update-content">Results are in from the Pro Rail Jam! Nicky G takes the top spot and goes into the jumps jam with extra points and will drop last!</p>
+            <p class="update-author">
+              Matt
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/8acdd472-108a-4991-b980-e7563974cc47.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 27th - 13:32</h2>
+            <p class="update-title">Slalom comp is underway!</p>
+            <p class="update-content">Freestyle will take place later in the afternoon! Stay tuned!</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/2a376c33-ea20-4bb7-9026-f01dc803acef.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 26th - 21:28</h2>
+            <p class="update-title">Jib session under the floodlights</p>
+            <p class="update-content">A few people are already showing a lot of skills on the jib section!</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/f58705f5-8868-44f2-a581-8d36c94dae0b.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 26th - 19:50</h2>
+            <p class="update-title">Qualifying Results</p>
+            <p class="update-content">Qualifying results are in! A tie in 10th place means we take 11 athletes through to the Pro Finals tomorrow 💪</p>
+            <p class="update-author">
+              Matt
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/3fdd9fea-e449-4817-8292-bf4d2fa15e99.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 26th - 17:21</h2>
+            <p class="update-title">Riders meeting!</p>
+            <p class="update-content">We're about to start Freestyle qualifiers. 16 riders in the Pro category, coming from Poland, Ukraine, Czechy, the UK, France, Japan, and the Netherlands!</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/2b487a82-925b-45e9-8da3-5aeddffd129e.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 26th - 13:43</h2>
+            <p class="update-title">Practice is underway</p>
+            <p class="update-content">And here we see Dawid's board, the new Bro Model prototype from Haero Boards.</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/eb7cc534-4d4d-4a2b-bd2f-42092edeb0d6.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 26th - 11:02</h2>
+            <p class="update-title">Here's the program!</p>
+            <p class="update-content">Take it easy everyone!</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/822707c3-9095-4f3c-8db9-293fdf5a6f7c.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 26th - 09:58</h2>
+            <p class="update-title">Ready for training!</p>
+            <p class="update-content">We're expecting a light cloud cover today, which we're very grateful for seeing the temperatures throughout Europe lately!</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/b508f3b2-8a6d-45f7-ade2-48529a66d76d.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 26th - 00:32</h2>
+            <p class="update-title">It is on!</p>
+            <p class="update-content">Today is Friday, and that means the competition is officially starting!<br>
+              <br>
+              The weather is going to be a little cooler today so that will hopefully make it easier to get some training going.<br>
+              <br>
+              We'll see you at 16:00 for slalom and probably before that for training (more details soon).<br>
+              <br>
+              In the meantime, we'll leave you with a quick photo of a training run on Thursday. This is local rider Cezary Bik throwing a big frontside 3 off of the third jump. Steezy!</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/ab9300c9-dbc2-4b71-96b5-f48bf0568b90.jpg" alt="">
+          </li>
+          <li class="">
+            <h2 class="display-font update-banner">Update - July 25th - 15:28</h2>
+            <p class="update-title">We're almost ready!</p>
+            <p class="update-content">The weather is perfect, the jumps are ready and the anticipation for the event is building up!<br>
+              <br>
+              Check back here during the event for more updates!</p>
+            <p class="update-author">
+              Mika
+            </p>
+            <img class="update-photo" src="https://www.mountainboardworld.org//images/uploads/7d0c92f8-42f1-4d30-b967-d3c9bf0849f4.jpg" alt="">
+          </li>
+        </ul>
+        <div class="ig-stream">
+          <h2 class="display-font">The WFC on Instagram</h2>
+          <ul class="stream">    <li class="stream-photo">
+            <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0qNfato1-C">
+              <img data-id="2101551509713149826" src="https://scontent-lht6-1.cdninstagram.com/vp/3ddb4cb1d4804583a0bb0a765462c7ed/5DD33ECF/t51.2885-15/sh0.08/e35/c222.0.887.887a/s640x640/66297531_455621308612407_4381033944419962687_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+            </a>
+            <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0qNfato1-C">
+              <p class="metadata">68 likes</p>
+            </a>
+          </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0qImSJB6fo">
+                <img data-id="2101529991312812008" src="https://scontent-lht6-1.cdninstagram.com/vp/5e5105ec294669b7fe108cf65d3da217/5DCF1ECB/t51.2885-15/sh0.08/e35/s640x640/66301087_491768001394848_2881460646199167589_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0qImSJB6fo">
+                <p class="metadata">53 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo video">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0l4oQ8hV-d">
+                <img data-id="2100333858817138589" src="https://scontent-lht6-1.cdninstagram.com/vp/71f6dd90c0000fa8486baa2a65e52dac/5D4799C3/t51.2885-15/sh0.08/e35/s640x640/67024111_212778203007059_8775102403398477220_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0l4oQ8hV-d">
+                <p class="metadata">3 comments - 97 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0lp9wrh86d">
+                <img data-id="2100269365303168669" src="https://scontent-lht6-1.cdninstagram.com/vp/e245c07a466a7fd1a2ca3d4f952390a7/5DDE777D/t51.2885-15/sh0.08/e35/s640x640/67169299_135529660997200_5027239194389097190_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0lp9wrh86d">
+                <p class="metadata">125 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo video">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0lGI05jBO8">
+                <img data-id="2100111796073141180" src="https://scontent-lht6-1.cdninstagram.com/vp/db3ac2badf3797822175ea1fbabad415/5D47B41D/t51.2885-15/e35/c140.0.360.360a/67566117_117705489532752_5028275082871699406_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0lGI05jBO8">
+                <p class="metadata">5 comments - 89 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0jFpRto8wt">
+                <img data-id="2099546678035205165" src="https://scontent-lht6-1.cdninstagram.com/vp/13bce10e41c8e0a15e24b2eeadcf7c2f/5DE5F955/t51.2885-15/sh0.08/e35/s640x640/66496996_189850065344886_5845547659046861289_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0jFpRto8wt">
+                <p class="metadata">4 comments - 81 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0ikjayHvZb">
+                <img data-id="2099401139922335323" src="https://scontent-lht6-1.cdninstagram.com/vp/75fd047062eb1ceecdf508bf9f166775/5DEE60CC/t51.2885-15/sh0.08/e35/s640x640/65953516_148140726271857_3566628746199347457_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0ikjayHvZb">
+                <p class="metadata">2 comments - 42 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0hEyy_BAC7">
+                <img data-id="2098979984235561147" src="https://scontent-lht6-1.cdninstagram.com/vp/04b031d6f7584f2da88eaedc25a0d4e9/5DE22F8A/t51.2885-15/sh0.08/e35/s640x640/66766617_650372428773250_7530821247623337762_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0hEyy_BAC7">
+                <p class="metadata">99 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo video">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0gT0DnBEK-">
+                <img data-id="2098764566526968510" src="https://scontent-lht6-1.cdninstagram.com/vp/f1d1a7c2888287faeb5b0858acd4928b/5D480996/t51.2885-15/sh0.08/e35/s640x640/67517105_2177390555887614_4371881111714172766_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0gT0DnBEK-">
+                <p class="metadata">16 comments - 189 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo video">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0e6GLZBaAW">
+                <img data-id="2098369987646693398" src="https://scontent-lht6-1.cdninstagram.com/vp/4bb963d19ca3ac7b69c33cb637bf3db5/5D48078B/t51.2885-15/e35/66060786_823572721377309_2364257348722495956_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0e6GLZBaAW">
+                <p class="metadata">1 comment - 290 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo video">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0eG438hAkg">
+                <img data-id="2098144773042080032" src="https://scontent-lht6-1.cdninstagram.com/vp/5b6b0ece25654fa59899003be17ce3c8/5D47F0C7/t51.2885-15/sh0.08/e35/s640x640/65776986_2132531553706683_599386191785509612_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0eG438hAkg">
+                <p class="metadata">2 comments - 147 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0dbxKmIu5G">
+                <img data-id="2097955127311920710" src="https://scontent-lht6-1.cdninstagram.com/vp/9f3953123a29527a8014751ea87e9e28/5DCAC1B8/t51.2885-15/sh0.08/e35/s640x640/66853691_565825197283741_3117310226791075158_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0dbxKmIu5G">
+                <p class="metadata">1 comment - 35 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0dFa14oEwj">
+                <img data-id="2097856836221815843" src="https://scontent-lht6-1.cdninstagram.com/vp/92cda83410c0619822ed661c36496ee6/5DE0E038/t51.2885-15/sh0.08/e35/s640x640/66339483_2079428899018354_838325793165383100_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0dFa14oEwj">
+                <p class="metadata">1 comment - 95 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0b0463Igx_">
+                <img data-id="2097502661382376575" src="https://scontent-lht6-1.cdninstagram.com/vp/4d157fd863a1c36483506dc87b470cae/5DD6F33A/t51.2885-15/sh0.08/e35/s640x640/66279714_181058076240875_1325073674855393914_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0b0463Igx_">
+                <p class="metadata">5 comments - 121 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0bj_2Hoiub">
+                <img data-id="2097428370536147867" src="https://scontent-lht6-1.cdninstagram.com/vp/a89146233b32cf1197dc4ad03dea91e9/5DE5DA5F/t51.2885-15/sh0.08/e35/s640x640/67170376_130251778198029_6451500713131800120_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0bj_2Hoiub">
+                <p class="metadata">18 comments - 144 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0bUvCQo-rx">
+                <img data-id="2097361244643388145" src="https://scontent-lht6-1.cdninstagram.com/vp/3716c155fb9037a1dfee4da245e218c4/5DDF6233/t51.2885-15/sh0.08/e35/s640x640/66295078_927735274238016_2042485370754044153_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0bUvCQo-rx">
+                <p class="metadata">54 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo video">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0bMO2Khzbf">
+                <img data-id="2097323848260597471" src="https://scontent-lht6-1.cdninstagram.com/vp/c5ac0d06f909364797469cb3055ea0f1/5D47E0CB/t51.2885-15/e35/67176610_126354488621252_7753864602806011664_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0bMO2Khzbf">
+                <p class="metadata">5 comments - 190 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0ayhtyoOVu">
+                <img data-id="2097210795730462062" src="https://scontent-lht6-1.cdninstagram.com/vp/f702cf3c49837f35eb950d998e80d6c5/5DE28D49/t51.2885-15/sh0.08/e35/s640x640/65691715_423467071590667_3917229312479518956_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0ayhtyoOVu">
+                <p class="metadata">74 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0ayLALovWz">
+                <img data-id="2097209234929415603" src="https://scontent-lht6-1.cdninstagram.com/vp/1935a5f227b92983777a0589b8b58ca9/5DD36807/t51.2885-15/sh0.08/e35/s640x640/67237102_373461339981696_4846090375086580355_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0ayLALovWz">
+                <p class="metadata">3 comments - 48 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0aqnUCoE9H">
+                <img data-id="2097175996026343239" src="https://scontent-lht6-1.cdninstagram.com/vp/fd3061c4ac837a0bc239f5c1f7eeff0e/5DD37040/t51.2885-15/sh0.08/e35/s640x640/67391082_407356633208911_4640762384877870560_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0aqnUCoE9H">
+                <p class="metadata">63 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0aiatEo24s">
+                <img data-id="2097139945178361388" src="https://scontent-lht6-1.cdninstagram.com/vp/bda8c993fec2f343c542cba578261765/5DDB7697/t51.2885-15/sh0.08/e35/s640x640/67351779_1092510037604570_1009903135976701467_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0aiatEo24s">
+                <p class="metadata">164 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0ZXZEmoC-o">
+                <img data-id="2096809979517349800" src="https://scontent-lht6-1.cdninstagram.com/vp/9f7f181a278c41c4d068b03eefa583c7/5DD326A5/t51.2885-15/sh0.08/e35/s640x640/66632057_124757388788345_8938221181206669207_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0ZXZEmoC-o">
+                <p class="metadata">104 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0ZGE_1IZ-e">
+                <img data-id="2096733833211781022" src="https://scontent-lht6-1.cdninstagram.com/vp/6b12d32125f5024c069ad4c0f89d83da/5DD5760F/t51.2885-15/sh0.08/e35/s640x640/66435849_461894584634215_5266596810817807325_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0ZGE_1IZ-e">
+                <p class="metadata">91 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0YnjacIQRk">
+                <img data-id="2096599583925797988" src="https://scontent-lht6-1.cdninstagram.com/vp/1687c766e3c34a8fedff38e3684ecfef/5DEBC902/t51.2885-15/sh0.08/e35/s640x640/66447633_368179003846190_6154919934185227905_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0YnjacIQRk">
+                <p class="metadata">2 comments - 72 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0YgavbI8K2">
+                <img data-id="2096568201656910518" src="https://scontent-lht6-1.cdninstagram.com/vp/b3665f7e9fb0df9f7612565a80407fcf/5DC8DF7E/t51.2885-15/sh0.08/e35/s640x640/67066615_497942640978773_1098867247253091189_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0YgavbI8K2">
+                <p class="metadata">1 comment - 69 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0X3RLGId7N">
+                <img data-id="2096387224267513549" src="https://scontent-lht6-1.cdninstagram.com/vp/28b50ce81f7340f83a0d9fb731a083f1/5DE9889D/t51.2885-15/sh0.08/e35/s640x640/66313901_2246694072326996_7825965801520829718_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0X3RLGId7N">
+                <p class="metadata">2 comments - 71 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0X2XCgh1zz">
+                <img data-id="2096383229317045491" src="https://scontent-lht6-1.cdninstagram.com/vp/5fed1da50e359913e54465b1b34fb77c/5DD13EAF/t51.2885-15/sh0.08/e35/s640x640/66379796_148352122894513_3889098984946958123_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0X2XCgh1zz">
+                <p class="metadata">5 comments - 118 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo video">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0W314nH7M5">
+                <img data-id="2096108272063853369" src="https://scontent-lht6-1.cdninstagram.com/vp/0e971141d3f9f561a22af168b36dcb15/5D4790F8/t51.2885-15/sh0.08/e35/s640x640/65966309_447553815827161_6410274493418734323_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0W314nH7M5">
+                <p class="metadata">9 comments - 77 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0VHicOoVp3">
+                <img data-id="2095614354708847223" src="https://scontent-lht6-1.cdninstagram.com/vp/7868f7b7be6994aaccdd13f7c433a33c/5DECAABC/t51.2885-15/sh0.08/e35/c128.0.768.768/s640x640/67469707_461498891067920_4946928344526171534_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0VHicOoVp3">
+                <p class="metadata">2 comments - 54 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/B0DRSluIX_i">
+                <img data-id="2090590696273706978" src="https://scontent-lht6-1.cdninstagram.com/vp/45f2549d522e77f4e5dea82e00f3bf24/5DD23EF0/t51.2885-15/sh0.08/e35/s640x640/65737617_355955535299597_2850419743836222001_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/B0DRSluIX_i">
+                <p class="metadata">21 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo video">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/Bz8g0dQIJv6">
+                <img data-id="2088688669503298554" src="https://scontent-lht6-1.cdninstagram.com/vp/983e384a85e944e2f736740e9db93d5c/5D47931E/t51.2885-15/e35/c157.0.406.406a/65783638_356918058285648_4063947738831521615_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/Bz8g0dQIJv6">
+                <p class="metadata">5 comments - 40 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo video">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/BzkLXjjnLOi">
+                <img data-id="2081838924990034850" src="https://scontent-lht6-1.cdninstagram.com/vp/470edc78f2be546e5e09551c65d684ba/5D4782B7/t51.2885-15/e35/c157.0.406.406a/65218523_320925435529039_8787274920009387554_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/BzkLXjjnLOi">
+                <p class="metadata">2 comments - 58 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/Bziaf43ozPK">
+                <img data-id="2081342518374642634" src="https://scontent-lht6-1.cdninstagram.com/vp/91b8135748de21a40fd5a7bbab13c18a/5DE3C53D/t51.2885-15/sh0.08/e35/c180.0.720.720a/s640x640/65467873_179892943019672_4118455418776927157_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/Bziaf43ozPK">
+                <p class="metadata">1 comment - 86 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/BziXOUpoMt2">
+                <img data-id="2081328117114260342" src="https://scontent-lht6-1.cdninstagram.com/vp/467c2ecac045619e1a90ec607978fcc5/5DEEAC68/t51.2885-15/sh0.08/e35/c180.0.720.720a/s640x640/65043061_352648162067209_9016308175580127461_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/BziXOUpoMt2">
+                <p class="metadata">45 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo">
+              <a class="stream-photo-image" target="_blank" href="https://www.instagram.com/p/Bze-c8kI4tA">
+                <img data-id="2080374745951603520" src="https://scontent-lht6-1.cdninstagram.com/vp/30e8e531e2cc1265ce62dc3e69429089/5DC8EA4F/t51.2885-15/sh0.08/e35/c150.0.749.749/s640x640/65153843_145477106536197_5875803240008571111_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com">
+              </a>
+              <a class="stream-photo-metadata" target="_blank" href="https://www.instagram.com/p/Bze-c8kI4tA">
+                <p class="metadata">62 likes</p>
+              </a>
+            </li>
+
+            <li class="stream-photo placeholder"></li>
+          </ul>        </div>
+      </div>
+    </section>
+    <script>
+      let imageNodes = Array.prototype.slice.call(document.getElementsByTagName('img'));
+
+      const intersectionObserver = new IntersectionObserver(
+        onIntersectionObservation,
+        { rootMargin: '0px 0px 300px 0px' } // preload all images that are in the viewport and 1000px below "the fold".
+      );
+      imageNodes.forEach( ( imageNode ) => intersectionObserver.observe( imageNode ) );
+
+      function onIntersectionObservation( entries, observer ) {
+        entries
+          .filter(  ( entry ) => entry.target.hasAttribute( 'data-src' ) && entry.isIntersecting )
+          .forEach( ( entry ) => {
+            // swap data-src and src
+            entry.target.setAttribute( 'src', entry.target.getAttribute( 'data-src' ) );
+            entry.target.removeAttribute( 'data-src' );
+            observer.unobserve( entry.target );
+          } )
+        ;
+      }
+
+    </script></div>
+
+</section>
