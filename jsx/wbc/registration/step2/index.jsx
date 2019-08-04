@@ -139,8 +139,12 @@ class Step2 extends Component {
                                 {/* TODO: inject these from the root of the app in an array that we run through .map() */}
                                 <Boardercross name={name}/>
                               </div>
+                            </div>
+                          </div>
+                          <div className="form-item">
+                            <div className="rider-competitions">
+                              <span className="label"></span>
                               <div className="checkbox-wrapper">
-                                <span className="label"></span>
                                 <NotRiding name={name}/>
                               </div>
                             </div>
