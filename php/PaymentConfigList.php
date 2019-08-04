@@ -18,6 +18,7 @@ class PaymentConfigList
 
   const CDF_2019 = '1_cdf_2019';
   const WFC_2019 = '2_wfc_2019';
+  const WBC_2019 = '3_wbc_2019';
 
   static function getConfig($key) {
     $config = new stdClass();
@@ -69,12 +70,32 @@ class PaymentConfigList
         $config->costs = new stdClass();
         $config->costs->online = 35;
         $config->costs->onsite = 40;
-
         $config->deadline = '2019-07-18';
         $config->spreadSheetId = '1_EyP3om_4al0q_i6lo6pHg6Epw-kCvjUTi1ZRWmcCiI';
         // Order must match columns in the spreadsheet
         $config->competitions = array(self::SLALOM, self::FREESTYLE);
         $config->additionalTextFields = array();
+
+        break;
+
+      case self::WBC_2019:
+        $config->status = self::OPEN;
+        $config->jsBundle = BASE_URL.'scripts/registration-bundle.js';
+        $config->poster = BASE_URL.'images/poster.jpg';
+        $config->posterSmall = BASE_URL.'images/poster.jpg';
+        $config->languages = array('en');
+
+        $config->paymentType = self::PAYMENT_NONE;
+
+        $config->costs = new stdClass();
+        $config->costs->online = 40;
+        $config->costs->onsite = 50;
+
+        $config->deadline = '2019-09-04';
+        $config->spreadSheetId = '1EeaoK6dKd9Psamjt-BwMNCs91Fa_E70rtEnmB4T1TEg';
+        // Order must match columns in the spreadsheet
+        $config->competitions = array(self::BOARDERCROSS);
+        $config->additionalTextFields = array('comment');
 
         break;
       default:

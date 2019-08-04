@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Field } from "react-final-form";
 
+import messages from "./messages";
+import TranslateHOC from "../Translate.jsx";
+
 const countries = [
   "Afghanistan",
   "Åland Islands",
@@ -246,9 +249,9 @@ const countries = [
   "Zimbabwe"
 ];
 
-export default class Country extends Component {
+class Country extends Component {
   render() {
-    const { name } = this.props;
+    const { name, t } = this.props;
     return (
       <Field
         name={`${name}.country`}
@@ -257,7 +260,7 @@ export default class Country extends Component {
           return (
             <Fragment>
               <label htmlFor={`${name}.country`}>
-                Country
+                {t('country')}
                 {meta.touched &&
                   meta.error && <span className="error">{meta.error}</span>}
               </label>
@@ -267,7 +270,7 @@ export default class Country extends Component {
                 {...input}
                 className={emptyClass}
               >
-                <option value="">Choose the country they're riding for</option>
+                <option value="">{t('chooseCountry')}</option>
                 {countries.map(country => (
                   <option key={country} value={country}>
                     {country}
@@ -281,3 +284,5 @@ export default class Country extends Component {
     );
   }
 }
+
+export default TranslateHOC(messages)(Country);

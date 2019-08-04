@@ -4,20 +4,24 @@ import { Form } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 
+import Boardercross from "./Competitions/Boardercross.jsx";
+
 import Category from "./Category.jsx";
+import Comment from "./Comment.jsx";
 import Country from './Country.jsx';
 import FirstName from './FirstName.jsx';
 import LastName from './LastName.jsx';
+import NotRiding from "./NotRiding.jsx";
 import Number from "./Number.jsx";
 import RemoveRider from "./RemoveRider.jsx";
-import Freestyle from "./Competitions/Freestyle.jsx";
-import Slalom from "./Competitions/Slalom.jsx";
+import messages from './messages';
+import TranslateHOC from '../Translate.jsx';
 
 const MAX_RIDERS = 5;
 
-export default class Step2 extends Component {
+class Step2 extends Component {
   render() {
-    const { isCurrent, registrar, onNext, costPerRider } = this.props;
+    const { isCurrent, registrar, onNext, getCostPreview, t, stepId, titleClick } = this.props;
     const { firstName, lastName } = registrar;
 
     return (
@@ -35,23 +39,31 @@ export default class Step2 extends Component {
           values.riders.forEach((rider, index) => {
             const localErrors = {};
             if (!rider.firstName) {
-              localErrors.firstName = "Required";
+              localErrors.firstName = t('required')
             }
             if (!rider.lastName) {
-              localErrors.lastName = "Required";
-            }
-            if (!rider.category) {
-              localErrors.category = "Required";
-            }
-            if (!rider.country) {
-              localErrors.country = "Required";
+              localErrors.lastName = t('required')
             }
             if (rider.number && !rider.number.match(/\d{1,3}/)) {
-              localErrors.number = "Less than 1000";
+              localErrors.number = t('lessThan1000');
             }
-            if (!rider.slalom && !rider.freestyle) {
-              localErrors.competition = "Pick one or more";
+            if (rider.notRiding) {
+              if (rider.boardercross) {
+                localErrors.notRiding = t('conflict');
+              }
+            } else {
+              // Riding
+              if (!rider.country) {
+                localErrors.country = t('required');
+              }
+              if (!rider.category) {
+                localErrors.category = t('required');
+              }
+              if (!rider.boardercross) {
+                localErrors.boardercross = t('required');
+              }
             }
+
             riderErrors[index] = localErrors;
           });
           errors.riders = riderErrors;
@@ -73,16 +85,18 @@ export default class Step2 extends Component {
           const canAdd = values.riders.length < MAX_RIDERS;
 
           const riderCount = values.riders.length;
-          const totalCost = costPerRider * riderCount;
+          const totalCost = getCostPreview(values);
 
           return (
             <Fragment>
               <dt
                 className={classnames("step-title", {
-                  current: isCurrent
+                  current: isCurrent,
+                  clickable: !!titleClick
                 })}
+                onClick={() => {if (titleClick) {titleClick()} }}
               >
-                2 - Registered rider(s) and price
+                {`${stepId} - ${t('registeredRidersAndPrice')}`}
               </dt>
               <dd
                 className={classnames("step-content", {
@@ -90,7 +104,7 @@ export default class Step2 extends Component {
                 })}
               >
                 <form onSubmit={handleSubmit}>
-                  <p>You can register yourself or several riders.</p>
+                  <p>{t('youCanRegisterOthers')}</p>
 
                   <FieldArray name="riders">
                     {({ fields }) =>
@@ -112,7 +126,7 @@ export default class Step2 extends Component {
                           <div className="form-item">
                             <div className="rider-competitions">
                               <span className="label">
-                                Competing in
+                                {t('registeringFor')}
                                 {!pristine &&
                                 fields.error[index] &&
                                 fields.error[index].competition && (
@@ -122,13 +136,20 @@ export default class Step2 extends Component {
                                 )}
                               </span>
                               <div className="checkbox-wrapper">
-                                <Slalom name={name}/>
-                                <Freestyle name={name}/>
+                                {/* TODO: inject these from the root of the app in an array that we run through .map() */}
+                                <Boardercross name={name}/>
+                              </div>
+                              <div className="checkbox-wrapper">
+                                <span className="label"></span>
+                                <NotRiding name={name}/>
                               </div>
                             </div>
                           </div>
                           <div className="form-item">
                             <Number name={name} />
+                          </div>
+                          <div className="form-item">
+                            <Comment name={name}/>
                           </div>
                           <hr className="rider-separator" />
                         </div>
@@ -146,7 +167,7 @@ export default class Step2 extends Component {
                         className="action-button add"
                         disabled={!canAdd}
                       >
-                        Add Rider
+                        {t('addRider')}
                       </button>
                       <button
                         type="button"
@@ -154,17 +175,17 @@ export default class Step2 extends Component {
                         className="action-button remove"
                         disabled={!canRemove}
                       >
-                        Remove Rider
+                        {t('removeRider')}
                       </button>
                     </div>
                   </div>
                   <div className="summary2">
                     <span id="rider-count">
-                      {riderCount > 1 ? `${riderCount} riders` : `1 rider`}
+                      {t('riderCount')(riderCount)}
                     </span>{" "}
                     -{" "}
                     <span id="total">
-                      Total: <span id="total-cost">{`${totalCost}\u20AC`}</span>
+                      {t('total')}: <span id="total-cost">{`${totalCost}\u20AC`}</span>
                     </span>
                   </div>
 
@@ -174,7 +195,7 @@ export default class Step2 extends Component {
                       disabled={invalid}
                       className="action-button"
                     >
-                      Continue
+                      {t('continue')}
                     </button>
                   </div>
                 </form>
@@ -186,3 +207,4 @@ export default class Step2 extends Component {
     );
   }
 }
+export default TranslateHOC(messages)(Step2);

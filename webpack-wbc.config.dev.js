@@ -1,4 +1,4 @@
-const prodConfig = require("./webpack-wfc.config.js");
+const prodConfig = require("./webpack-wbc.config.js");
 
 module.exports = Object.assign({}, prodConfig, {
   mode: "development",

@@ -1,42 +1,51 @@
-import React, { Component, Fragment } from "react";
-import { Field } from "react-final-form";
+import React, {Component, Fragment} from "react";
+import {Field} from "react-final-form";
+import {JUNIOR, LADIES, MASTERS, PRO,} from '../Categories';
 
-const categories = [
-  "Junior",
-  "Ladies",
-  "Masters",
-  "Pro",
-];
+import messages from "./messages";
+import TranslateHOC from "../Translate.jsx";
 
-export default class Category extends Component {
+class Category extends Component {
   render() {
-    const {name} = this.props;
+    const {name, t} = this.props;
+    const categories = [
+      [t("junior"), JUNIOR],
+      [t("ladies"), LADIES],
+      [t("masters"), MASTERS],
+      [t("pro"), PRO],
+    ];
+
     return (
       <Field
         name={`${name}.category`}
-        render={({ input, meta }) => {
+        render={({input, meta}) => {
           const emptyClass = input.value === "" ? "emptySelect" : "";
           return (
-          <Fragment>
-            <label htmlFor={`${name}.category`}>
-              Category
-              {meta.touched &&
+            <Fragment>
+              <label htmlFor={`${name}.category`}>
+                {t("category")}
+                {meta.touched &&
                 meta.error && <span className="error">{meta.error}</span>}
-            </label>
-            <select
-              id={`${name}.category`}
-              name={`${name}.category`}
-              {...input}
-              className={emptyClass}
-            >
-              <option value="">Choose the rider's category</option>
-              {categories.map((category) => (
-                <option key={category} value={category}>{category}</option>
-              ))}
-            </select>
-          </Fragment>
-        )}}
+              </label>
+              <select
+                id={`${name}.category`}
+                name={`${name}.category`}
+                {...input}
+                className={emptyClass}
+              >
+                <option value="">{t("chooseCategory")}</option>
+                {categories.map(([label, value]) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
+            </Fragment>
+          );
+        }}
       />
     );
   }
 }
+
+export default TranslateHOC(messages)(Category);

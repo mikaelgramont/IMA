@@ -1,18 +1,23 @@
 import React, { Fragment } from "react";
 
-export default props => (
+import messages from './messages';
+import TranslateHOC from '../Translate.jsx';
+
+const Initial = ({onClick, t}) => (
   <Fragment>
     <div className="start-wrapper">
       <button
         type="button"
         className="start action-button"
-        onClick={props.onClick}
+        onClick={onClick}
       >
-        Start registering
+        {t('startRegistering')}
       </button>
     </div>
     <p className="tip">
-      You can register yourself and/or other riders.
+      {t('youCanRegisterOthers')}
     </p>
   </Fragment>
 );
+
+export default TranslateHOC(messages)(Initial);

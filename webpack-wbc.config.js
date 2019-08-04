@@ -4,10 +4,10 @@ const generalConfig = require("./webpack.config.js");
 
 module.exports = Object.assign({}, generalConfig, {
   entry: {
-    "registration": "./jsx/wfc/registration/index.jsx",
+    "registration": "./jsx/wbc/registration/index.jsx",
   },
   output: {
-    path: path.resolve(__dirname, "wfc/scripts"),
+    path: path.resolve(__dirname, "wbc/scripts"),
     filename: "[name]-bundle.js"
   }
 });
