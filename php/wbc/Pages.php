@@ -12,9 +12,9 @@ class Pages
 				'skipTitleInHead' => true,
 			],
 			(object) [
-				'title' => 'Venue',
-				'url' => 'venue',
-				'file' => 'venue.php',
+				'title' => 'Location',
+				'url' => 'location',
+				'file' => 'location.php',
 				'headerClass' => 'location',
 			],
 			(object) [

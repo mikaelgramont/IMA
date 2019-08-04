@@ -54,6 +54,20 @@
     height: 480px;
   }
 
+  .video-embed-wrapper {
+    position: relative;
+    height: 0;
+    padding-top: 56.25%;
+  }
+
+  .video-embed-wrapper iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
 </style>
 
 <div class="content-wrapper">
@@ -74,9 +88,16 @@
 
     <section>
       <a id="details"></a>
-      <p>The World Boardercross Championships is back in 2019, and it will take place September 6th-7th in Novi Sad, Serbia!</p>
+      <p>
+        The World Boardercross Championship is back in 2019, and it will take place September 6th-7th in Bukovac,
+        Serbia!
+      </p>
 
-      <p>INSERT VIDEO</p>
+      <div class="video-embed-wrapper">
+        <iframe class="embed" src="https://www.youtube.com/embed/k_QbR2aoClo" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+      </div>
 
     </section>
 	</div>

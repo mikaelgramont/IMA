@@ -5,7 +5,7 @@ ini_set('display_startup_errors', '0');
 ini_set('xdebug.default_enable', false);
 ini_set('xdebug.html_errors', false);
 
-require_once __DIR__.'/../php/config-wfc.php';
+require_once __DIR__.'/../php/config-wbc.php';
 session_start();
 $pages = Pages::getList();
 
