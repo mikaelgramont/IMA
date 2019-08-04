@@ -5,30 +5,6 @@
   .content-wrapper {
     flex-wrap: nowrap;
   }
-  .centered {
-    text-align: center;
-  }
-  .photo {
-    max-width: 100%;
-    margin: .5em 0;
-  }
-  .map {
-    display: block;
-    margin: 0 auto;
-    box-sizing: border-box;
-    padding: 0 10px;
-    width: 100%;
-    height: 60vh;
-  }
-	@media screen and (min-width: 640px) {
-		.content-wrapper {
-
-		}
-    .map {
-      width: 800px;
-      height: 600px;
-    }
-  }
   .nav-list li {
     margin: 15px 0
   }
@@ -39,7 +15,7 @@
 </style>
 
 <div class="content-wrapper">
-	<div class="content-main">
+  <div class="content-main">
     <h1 class="display-font">Location</h1>
 
     <p>Here is all the information you need to get to the venue, attend the 4 Down video contest premiere and register:</p>
@@ -247,5 +223,5 @@
       </ul>
     </section>
 
-	</div>
+  </div>
 </div>
