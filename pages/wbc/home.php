@@ -73,7 +73,7 @@
 <div class="content-wrapper">
 	<div class="content-main">
     <p class="sanctioned">
-      A mountainboard competition sanctioned by the <a href="<?php echo IMA_URL ?>">IMA</a>
+      An <a href="<?php echo IMA_URL ?>">IMA</a>-sanctioned Mountainboard competition
     </p>
     <p class="full">
       <img src="<?php echo BASE_URL ?>images/poster.jpg" alt="The official event poster">

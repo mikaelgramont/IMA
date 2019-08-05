@@ -66,7 +66,10 @@
               Athletes must collect their number in order to compete.<br>
               Location: <a href="https://goo.gl/maps/hQfqXReA5cJQoJX79">PUBeraj</a>
             </li>
-            <li>21:00 - 4 Down Project Premiere</li>
+            <li>
+              21:00 - <a href="https://www.mountainboardworld.org/news/12-the-2019-4-down-project">4 Down Project</a>
+              Premiere
+            </li>
           </ul>
         </li>
         <li>
@@ -77,7 +80,10 @@
             <li>15:00 - BoarderX Qualifying Round 1</li>
             <li>16:00 - BoarderX Qualifying Round 2</li>
             <li>17:00 - BoarderX Qualifying Round 3</li>
-            <li>18:00 - Tick Tack World Championships</li>
+            <li>
+              18:00 - <a href="https://www.mountainboardworld.org/news/16-tick-tack-world-championship">Tick Tack
+                World Championships</a>
+            </li>
           </ul>
         </li>
         <li>
