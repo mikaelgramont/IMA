@@ -237,29 +237,26 @@ $config = PaymentConfigList::getConfig(PaymentConfigList::WBC_2019);
 <div class="content-wrapper">
   <div class="content-main">
     <h1 class="display-font">Registration</h1>
-    <p>This is the official registration page.</p>
     <p>
-      Payment will take place at the <a href="./competition#schedule">registration booth on Thursday night</a>.
-      However, please pre-register online below (and save 10&euro;!).
+      This is the official registration page of the 2019 World Boardercross Championships.
     </p>
     <ul>
       <li>
-        Pre-registered athletes will each pay <b><?php echo $config->costs->online ?>&euro;</b>.
+        Pre-registration <b><?php echo $config->costs->online ?>&euro;</b>.
       </li>
       <li>
-        Other athletes will each pay <b><?php echo $config->costs->onsite ?>&euro;</b>.
+        Registration Onsite <b><?php echo $config->costs->onsite ?>&euro;</b>.
       </li>
     </ul>
     <p>
-      Registration includes:
+      Save 10€ by registering before September 4, 2019!
     </p>
-    <ul>
-      <li>entry to the competition</li>
-      <li>athlete dinner on friday and saturday evenings</li>
-      <li>drinks during the competition (water and sport drinks)</li>
-    </ul>
     <p>
-      The deadline for online registration is <b><?php echo $config->deadline ?></b>.
+      Payment and collection of your athlete number will happen Thursday September 5th at the
+      <a href="./competition#schedule">“4 Down Project” premiere</a>.
+    </p>
+    <p>
+      Again, pre-registration will close September 4th so be sure to save 10€ and register early!
     </p>
 
     <?php
