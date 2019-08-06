@@ -259,6 +259,15 @@ $config = PaymentConfigList::getConfig(PaymentConfigList::WBC_2019);
       Again, pre-registration will close September 4th so be sure to save 10€ and register early!
     </p>
 
+    <p>
+      Registration includes:
+    </p>
+    <ul>
+      <li>entry to the race</li>
+      <li>two dinners</li>
+      <li>event T-shirt</li>
+    </ul>
+
     <?php
     switch ($config->status) {
       case PaymentConfigList::NOT_OPEN_YET:
