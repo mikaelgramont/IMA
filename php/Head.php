@@ -11,7 +11,7 @@ class Head
 
 	private static function meta_($keywords, $pageInfo) {
 		$siteName = OG_SITE_NAME;
-		$url = FULL_URL;
+		$url = str_replace('http://', 'https://', FULL_URL);
 		$base = BASE_URL;
 		$defaultImage = OG_IMAGE;
 		$additionalOGImageMeta = "";
