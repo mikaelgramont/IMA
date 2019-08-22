@@ -148,6 +148,14 @@ $news = '<ul class="news">' . implode("\n", $newsItems) . '</ul>';
   }
 
   /* Rest of the page */
+  .special-announcement {
+    margin-bottom: 20px;
+  }
+
+  .special-announcement-button-wrapper {
+    text-align: center;
+  }
+
   .content-wrapper {
     flex-wrap: nowrap;
   }
@@ -246,6 +254,17 @@ $news = '<ul class="news">' . implode("\n", $newsItems) . '</ul>';
   </ul>
   <button class="prev" aria-label="Previous"></button>
   <button class="next" aria-label="Next"></button>
+</div>
+
+<div class="special-announcement">
+  <div class="homepage-title-container">
+    <h1 class="display-font">Special announcement</h1>
+  </div>
+  <p>The time has come for the 2019 World Boardercross Championship! Looking for information?</p>
+  <p>Find everything you need on our dedicated site:</p>
+  <div class="special-announcement-button-wrapper">
+    <a class="link-as-button" href="https://wbc.mountainboardworld.org" target="_blank">Go to the WBC site</a>
+  </div>
 </div>
 
 <div class="content-wrapper">
