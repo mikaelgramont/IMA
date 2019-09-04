@@ -1,5 +1,5 @@
 <?php
-  define('CURRENT_EVENT', 'WFC2019');
+  define('CURRENT_EVENT', 'WBC2019');
 
   $config = EventUpdates::getConfig(CURRENT_EVENT);
 

@@ -13,6 +13,14 @@ class EventUpdates {
         'range' => 'A2:E',
         'pagePath' => 'news/13-2019-wfc',
       ],
+      'WBC2019' => (object)[
+        'name' => 'WBC 2019 - Serbia',
+        'offset' => 0,
+        'spreadsheetId' => '1sdmC7PPg_L4sVHjiu7jHkfSJP4za8JOESglgzKyR9Ms',
+        'cacheId' => 'live-updates-2019',
+        'range' => 'A2:E',
+        'pagePath' => 'news/17-2019-wbc',
+      ],
     ];
 
     if (!isset($allEvents[$eventKey])) {
