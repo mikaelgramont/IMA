@@ -68,6 +68,19 @@
     top: 0;
   }
 
+  .live-coverage {
+    text-align: center;
+    display: block;
+    color: #F7F7F7;
+    text-decoration: none;
+    margin: 20px;
+  }
+
+  .live {
+    text-transform: uppercase;
+    color: #f00;
+  }
+
 </style>
 
 <div class="content-wrapper">
@@ -75,6 +88,11 @@
     <p class="sanctioned">
       An <a href="<?php echo IMA_URL ?>">IMA</a>-sanctioned Mountainboard competition
     </p>
+
+    <a class="live-coverage" href="https://www.mountainboardworld.org/news/17-2019-wbc" target="_blank">
+      Check out our <span class="live">live coverage</span> of the event on the IMA's main site!
+    </a>
+
     <p class="full">
       <img src="<?php echo BASE_URL ?>images/poster.jpg" alt="The official event poster">
     </p>
