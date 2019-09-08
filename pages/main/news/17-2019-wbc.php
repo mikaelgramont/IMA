@@ -12,15 +12,15 @@ define('USE_IG_CACHE', true);
 define('IG_IMA_USERNAME', INSTAGRAM_USERNAME);
 define('IG_IMA_CACHE_NAME', 'username-ima-photos');
 
-define('IG_ORGANISER_USERNAME', 'mountainboardinfo');
-define('IG_ORGANISER_CACHE_NAME', 'username-mountainboardinfo-photos');
-
 define('IG_TAG', 'wbc19');
 define('IG_TAG_CACHE_NAME', 'tag-mountainboard-photos');
 
+define('IG_TAG2', 'mwbc19');
+define('IG_TAG_CACHE_NAME2', 'tag-mountainboard-photos2');
+
 // https://www.epochconverter.com/
-//  Thursday, September 5, 2019 5:00:00 PM
-define('START_DATE_TIMESTAMP', 1567702800);
+// Thursday, September 12, 2019 9:00:00 AM
+define('START_DATE_TIMESTAMP', 1568278800);
 
 //  Sunday, September 8, 2019 9:00:00 AM
 define('END_DATE_TIMESTAMP', 1567933200);
@@ -98,14 +98,15 @@ function getPhotos($blacklist) {
     $IMAScraper = new Instagram(IG_IMA_USERNAME, $pool, $blacklist, USE_IG_CACHE, IG_IMA_CACHE_NAME);
     $IMAPhotos = $IMAScraper->getPhotos();
 
-    $organiserScraper = new Instagram(IG_ORGANISER_USERNAME, $pool, $blacklist, USE_IG_CACHE, IG_ORGANISER_CACHE_NAME);
-    $organiserPhotos = $organiserScraper->getPhotos();
-
     $tagScraper = new InstagramTag(IG_TAG, $pool, $blacklist, USE_IG_CACHE, IG_TAG_CACHE_NAME);
     $tagScraper->enforceTagPresence('mountainboard');
     $tagPhotos = $tagScraper->getPhotos();
 
-    $allPhotos = array_merge($IMAPhotos, $organiserPhotos, $tagPhotos);
+    $tagScraper2 = new InstagramTag(IG_TAG2, $pool, $blacklist, USE_IG_CACHE, IG_TAG_CACHE_NAME2);
+    $tagScraper2->enforceTagPresence('mountainboard');
+    $tagPhotos2 = $tagScraper2->getPhotos();
+
+    $allPhotos = array_merge($IMAPhotos, $tagPhotos, $tagPhotos2);
     $allPhotos = array_filter($allPhotos, function($photo) {
         return $photo->timestamp > START_DATE_TIMESTAMP && $photo->timestamp < END_DATE_TIMESTAMP;
     });

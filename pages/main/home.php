@@ -256,6 +256,9 @@ $news = '<ul class="news">' . implode("\n", $newsItems) . '</ul>';
   <button class="next" aria-label="Next"></button>
 </div>
 
+<?php
+/*
+?>
 <div class="special-announcement">
   <div class="homepage-title-container">
     <h1 class="display-font">Special announcement</h1>
@@ -266,6 +269,8 @@ $news = '<ul class="news">' . implode("\n", $newsItems) . '</ul>';
     <a class="link-as-button" href="https://wbc.mountainboardworld.org" target="_blank">Go to the WBC site</a>
   </div>
 </div>
+*/
+?>
 
 <div class="content-wrapper">
   <div class="content-main">
