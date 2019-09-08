@@ -24,6 +24,7 @@ try {
 
 $allNews = PageHelper::getNewsArticlesHTML();
 $newsItems = array();
+array_pop($allNews);
 for ($i = 0; $i < NEWS_COUNT; $i++) {
   $newsItems[] = array_pop($allNews);
 }
