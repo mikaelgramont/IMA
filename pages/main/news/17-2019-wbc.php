@@ -19,11 +19,11 @@ define('IG_TAG2', 'mwbc19');
 define('IG_TAG_CACHE_NAME2', 'tag-mountainboard-photos2');
 
 // https://www.epochconverter.com/
-// Thursday, September 12, 2019 9:00:00 AM
-define('START_DATE_TIMESTAMP', 1568278800);
+// Wednesday, September 4, 2019 9:00:26 AM
+define('START_DATE_TIMESTAMP', 1567587626);
 
-//  Sunday, September 8, 2019 9:00:00 AM
-define('END_DATE_TIMESTAMP', 1567933200);
+// Thursday, September 12, 2019 9:00:00 AM
+define('END_DATE_TIMESTAMP', 1568278800);
 
 define('LIVE_UPDATES_SPREADSHEET_ID', $config->spreadsheetId);
 define('LIVE_UPDATES_CACHE_NAME', $config->cacheId);
@@ -103,7 +103,6 @@ function getPhotos($blacklist) {
     $tagPhotos = $tagScraper->getPhotos();
 
     $tagScraper2 = new InstagramTag(IG_TAG2, $pool, $blacklist, USE_IG_CACHE, IG_TAG_CACHE_NAME2);
-    $tagScraper2->enforceTagPresence('mountainboard');
     $tagPhotos2 = $tagScraper2->getPhotos();
 
     $allPhotos = array_merge($IMAPhotos, $tagPhotos, $tagPhotos2);
