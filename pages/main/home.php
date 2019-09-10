@@ -24,7 +24,6 @@ try {
 
 $allNews = PageHelper::getNewsArticlesHTML();
 $newsItems = array();
-array_pop($allNews);
 for ($i = 0; $i < NEWS_COUNT; $i++) {
   $newsItems[] = array_pop($allNews);
 }
@@ -193,7 +192,7 @@ $news = '<ul class="news">' . implode("\n", $newsItems) . '</ul>';
 
     .content-aside {
       margin-left: 40px;
-      width: 250px;
+      flex-basis: 250px;
     }
   }
 
