@@ -272,8 +272,9 @@ $cachedVotes = null;
 <p>Before we even get into it, allow us to thank the athletes and the talented film makers who put a lot of work into this project!</p>
 
 <p>
-
+  This year's contest is sponsored by <a href="https://beta.surfingdirt.com" target="_blank">Surfing Dirt</a>, the new online community for mountainboarders! First prize gets 300&euro;, second prize gets 150&euro;!
 </p>
+
 <p class="hidden-after-animation-started">
   Because it was fun last year, let's reuse the little animation to let everyone go through the race! Click the button below:
 </p>
@@ -290,16 +291,22 @@ $cachedVotes = null;
 </div>
 
 <div id="results-content" class="visible-after-animation">
-    <h1 class="display-font">And the winner is: The Brazilan crew with “Terra NoZóio”!</h1>
+    <h1 class="display-font">And the winner is... oh my god we have two winners!!!</h1>
     <p>
-        Congratulations to Lucas Melo, Thiago Solon, and crew!
+        Incredibly, after a super tough battle, some ups and downs, we ended up with exactly 195 votes for both the Brazilian and the French videos!<br>
+        Note: we cut off voting at 23:59:59 Wednesday September 18th (Brazil time).
     </p>
     <p>
-        Second place goes to the French crew with “The Hangover", congratulations to them as well!
+        Congratulations to both the Brazilian and the French crews on the win! They produced massively different videos, but
+        both found their public, and we're very happy to see those videos out there.
     </p>
     <p>
-        Let's be honest, the videos are all great in their own right, and beyond the quality, a big factor into the results is how the videos
-        were shared on social media. So one lesson for the future: social media presence is important!
+        We also wish to congratulate Nicky and the Polish crew for their hard work! The IMA would also like to extend a
+        special thank you to Dawid who entered the video challenge even though he had his hands full with the WFC19.
+    </p>
+    <p>
+        In conclusion, let's be honest, the videos are all great in their own right, and beyond the quality, a big factor into the results is how the videos
+        were shared on social media. So one lesson for the future: social media presence is important! Keep posting!
     </p>
 </div>
 
