@@ -2,6 +2,8 @@
 <meta property="og:title" content="ATBA Switzerland Downhill Open 2019"/>
 <meta property="og:description" content="The Swiss ATBA celebrates their 10th anniversary with a downhill event"/>
 <meta property="og:image" content="$OG_URL/images/articles/2-atba-switzerland-downhill-open-2019/david.png"/>
+<meta property="article:published_time" content="2019-09-17"/>
+
 SEPARATOR
 
 <!-- SNIPPET -->
