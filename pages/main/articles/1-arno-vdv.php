@@ -6,7 +6,7 @@ SEPARATOR
 
 <!-- SNIPPET -->
 
-<h2 class="display-font">Thiago Solon</h2>
+<h2 class="display-font">Arno VDV</h2>
 <p>Arno VdV tells us about this one time he went mountainboarding</p>
 
 SEPARATOR
