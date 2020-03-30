@@ -31,8 +31,8 @@ try {
 $allNews = PageHelper::getNewsArticlesHTML();
 $newsItems = array();
 
-// Set this to 2 to skip displaying the last 2 news on the homepage
-$skipLast = 2;
+// Set this to 2 to skip displaying the last 2 news on the homepage (for example)
+$skipLast = 1;
 $newsList = $skipLast ? array_slice($allNews, 0, -$skipLast ) : $allNews;
 for ($i = 0; $i < NEWS_COUNT; $i++) {
   $newsItems[] = array_pop($newsList);
