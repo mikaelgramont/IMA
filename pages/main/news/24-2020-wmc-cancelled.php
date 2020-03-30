@@ -44,7 +44,12 @@
 
   <p>With that out of the way, here's another unpleasant bit of information:</p>
 
-  <h2 class="display-font">The 2020 WMC is cancelled</h2>
+  <h1 class="display-font">The 2020 World Mountainboard Championship is cancelled</h1>
+  <p>
+    This was not a fun decision, but in light of the developping COVID19 crisis, the AMC and the IMA have chosen to
+    cancel the 2020 WMC, originally planned to be held in Compiègne, France in July.
+  </p>
+
   <p>
     As the COVID19 crisis started to unfold, the discussion between the AMC and the IMA went from preparing for a
     possible postponement, to announcing the postponement to plain cancelling.
