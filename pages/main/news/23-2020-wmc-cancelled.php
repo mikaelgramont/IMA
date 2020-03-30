@@ -84,14 +84,18 @@
     </li>
   </ul>
 
-  <h2 class="display-font">The Before Camp and the 4 Down Project</h2>
+  <h2 class="display-font">The Before Camp, The Compiegne Summer Camp and the 4 Down Project</h2>
 
   <p>
-    Both of these events are continuing as planned!
+    These events are continuing as planned!
   </p>
 
   <p>
-    The Before Camp is Friday July 10th to Monday July 13th, 2020. Being a smaller regional event, it will go on as scheduled.
+    The Before Camp is Friday July 10th to Monday July 13th, 2020. Being a smaller regional event, it will go on as
+    scheduled.<br>
+    On top of that, the AMC will still host a more informal summer camp at the same time (July 15th-18th) and same place
+    as the WMC, but it won't be the World Championship anymore.<br>
+    This means that for those still willing and able to take a road trip, you can have a week of fun at the French parks.
   </p>
 
   <p>
