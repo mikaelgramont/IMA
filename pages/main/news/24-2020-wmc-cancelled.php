@@ -92,7 +92,8 @@
 
   <p>
     As we all know by now, 2020 is going to be a very strange year, and we're all adjusting to it. We're obviously sad
-    that we had to make this decision, but rest assured that there will
+    that we had to make this decision, and we will miss seeing everyone this summer, but rest assured we will make it up
+    to you next time!
   </p>
 
 </section>
