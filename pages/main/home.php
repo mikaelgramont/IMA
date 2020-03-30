@@ -14,6 +14,9 @@ if (!$cacheItem->isMiss()) {
   }
 }
 
+/*
+ * INSTAGRAM
+ */
 $photos = array();
 $scraper = new Instagram(INSTAGRAM_USERNAME, $pool, array(), true, 'homepage_ig');
 try {
@@ -22,10 +25,17 @@ try {
   $photos = [];
 }
 
+/*
+ * NEWS
+ */
 $allNews = PageHelper::getNewsArticlesHTML();
 $newsItems = array();
+
+// Set this to 2 to skip displaying the last 2 news on the homepage
+$skipLast = 2;
+$newsList = $skipLast ? array_slice($allNews, 0, -$skipLast ) : $allNews;
 for ($i = 0; $i < NEWS_COUNT; $i++) {
-  $newsItems[] = array_pop($allNews);
+  $newsItems[] = array_pop($newsList);
 }
 $news = '<ul class="news">' . implode("\n", $newsItems) . '</ul>';
 
