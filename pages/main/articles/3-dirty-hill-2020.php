@@ -1,7 +1,6 @@
 <!-- META -->
 <meta property="og:title" content="Dirty Hill 2020"/>
 <meta property="og:description" content="The First International Mountainboard Championship Costa Rica Dirty Hill 2020"/>
-<meta property="og:image" content="$OG_URL/images/articles/3-dirty-hill-2020/og.png"/>
 <meta property="article:published_time" content="2020-04-01"/>
 
 SEPARATOR
