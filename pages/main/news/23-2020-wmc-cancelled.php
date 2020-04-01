@@ -57,6 +57,13 @@
     monitoring the pandemic, watching other industries actions, and weighing all of the options for over a month the
     final move to cancel was made.
   </p>
+
+  <p>
+    Because some people have asked: this is not an April Fool's joke.<br>
+    First of all we would not joke about the big event we co-run every year, but most importantly, the COVID-19 crisis
+    is very real, and we treat it very seriously.
+  </p>
+
   <p>
     Here are the circumstances that led us to this conclusion:
   </p>
@@ -105,6 +112,15 @@
   </p>
 
   <h2 class="display-font">In conclusion</h2>
+
+  <p>
+    We apologize to the community. This is not what anyone wanted but please understand why this decision was made. We
+    are a family and in such we can lean on each other in these tough times. Many of us are in quarantine or isolation,
+    know we will get through this together. We are a strong, supportive, weird, dysfunctional group capable of amazing
+    things. If you feel lost, need motivation, accountability, or anything else contact myself, our team, or your fellow
+    athletes directly. Take this opportunity to grow, learn, and take care of yourself. We love each and every one of
+    you.
+  </p>
 
   <p>
     As we all know by now, 2020 is going to be a very strange year, and we're all adjusting to it. We're obviously sad
