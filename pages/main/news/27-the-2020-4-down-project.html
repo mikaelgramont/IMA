@@ -6,6 +6,33 @@
 SEPARATOR
 
 <style>
+.yt-video-wrapper {
+    margin: 2em auto 3em;
+    position: relative;
+    padding-top: 56.25%;
+    background: #ddd center center no-repeat url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNjAgNjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDYwIDYwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8cGF0aCBmaWxsPSIjZWVlIiBkPSJNNDUuNTYzLDI5LjE3NGwtMjItMTVjLTAuMzA3LTAuMjA4LTAuNzAzLTAuMjMxLTEuMDMxLTAuMDU4QzIyLjIwNSwxNC4yODksMjIsMTQuNjI5LDIyLDE1djMwDQoJCWMwLDAuMzcxLDAuMjA1LDAuNzExLDAuNTMzLDAuODg0QzIyLjY3OSw0NS45NjIsMjIuODQsNDYsMjMsNDZjMC4xOTcsMCwwLjM5NC0wLjA1OSwwLjU2My0wLjE3NGwyMi0xNQ0KCQlDNDUuODM2LDMwLjY0LDQ2LDMwLjMzMSw0NiwzMFM0NS44MzYsMjkuMzYsNDUuNTYzLDI5LjE3NHogTTI0LDQzLjEwN1YxNi44OTNMNDMuMjI1LDMwTDI0LDQzLjEwN3oiLz4NCgk8cGF0aCBmaWxsPSIjZWVlIiBkPSJNMzAsMEMxMy40NTgsMCwwLDEzLjQ1OCwwLDMwczEzLjQ1OCwzMCwzMCwzMHMzMC0xMy40NTgsMzAtMzBTNDYuNTQyLDAsMzAsMHogTTMwLDU4QzE0LjU2MSw1OCwyLDQ1LjQzOSwyLDMwDQoJCVMxNC41NjEsMiwzMCwyczI4LDEyLjU2MSwyOCwyOFM0NS40MzksNTgsMzAsNTh6Ii8+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg==');
+    background-size: 100px;
+}
+.yt-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.yt-video-caption {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    font-size: .825rem;
+}
+@media screen and (min-width: 640px) {
+    .yt-video-wrapper {
+        margin: 2em 10px;
+    }
+}
+
 .entries {
     list-style-type: none;
     padding: 0;
@@ -54,76 +81,81 @@ SEPARATOR
     text-align: center;
 }
 
+.details {
+    margin-bottom: 2rem;
+}
+.more {
+    display: inline;
+}
+
 </style>
 
-<h2 class="display-font">The rules</h2>
 <p>
-    Each team had 3 months to film 8 minute edits in ordered to be premiered online (initially set to be shown at the
-    WMC in Compiegne, which was pushed back to 2021).
-</p>
-
-<h2 class="display-font">The contestants</h2>
-<p>
-    The contest was extended to a handful of teams:
-</p>
-
-<ul class="contestants">
-    <li>António Macieira <span class="country">(Portugal)</span></li>
-    <li>Yuya Nakayama, Maaken, Champ Okada <span class="country">(Japan)</span></li>
-    <li>AJ Lawson and Jason Lee <span class="country">(USA)</span></li>
-    <li>Sonia Nicolau and Erica Pintea <span class="country">(Romania)</span></li>
-</ul>
-
-<h2 class="display-font">Actual videos!</h2>
-<p>
-    All edits were finished and premiered at the World Boardercross Championship in Novi Sad, Serbia on September 5th.
-</p>
-
-<p>
-    They are now available to you and public voting will take place from September 10th to the 18th! Enjoy the videos
-    and scroll down to vote for your favorite videos in this year’s 4 Down Project!
-</p>
-
-<ul class="entries">
-    <li>
-        <iframe id="ytplayer-2" type="text/html"
-                src="https://www.youtube.com/embed/sUFiqJ_ycRQ"
-                frameborder="0"></iframe>
-        <span class="entry-title">The Japanese crew's “Drifters”</span>
-    </li>
-    <li>
-        <iframe id="ytplayer-1" type="text/html"
-                src="https://www.youtube.com/embed/TEkt41v-MPc"
-                frameborder="0"></iframe>
-        <span class="entry-title">The US crew's “Summer Camp”</span>
-    </li>
-    <li>
-        <iframe id="ytplayer-3" type="text/html"
-                src="https://www.youtube.com/embed/CRDZlyfF2-Q"
-                frameborder="0"></iframe>
-        <span class="entry-title">The Portuguese crew's “Spirit”</span>
-    </li>
-    <li>
-        <iframe id="ytplayer-4" type="text/html"
-                src="https://www.youtube.com/embed/aFyFLfCMdFY"
-                frameborder="0"></iframe>
-        <span class="entry-title">The Romanian crew's<br>“The Cherries on Top of The Cake”</span>
-    </li>
-</ul>
-
-<h2 class="display-font">Go vote!</h2>
-<p>
-    Now that you've watched them all, head over to the voting form and pick your winner!
+    As you all know, we had to postpone this year's World Mountainboard Championship, and as a result, we've decided to
+    hold this year's 4 Down video contest here.
 </p>
 <p>
-    This year, the vote is going through our partner Surfing Dirt, who's sponsoring the contest with $500!<br>
-    So head out to Surfing Dirt and cast your vote!
+    So sit back and watch all 4 videos combined in the premiere below, before casting your vote for your favorite!
 </p>
+
+<figure class="yt-video-wrapper">
+    <iframe class="yt-video" src="https://www.youtube.com/embed/YIpF7UmD9Gs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <figcaption class="yt-video-caption">
+        Many thanks to Amon Shaw for the editing on this premiere video
+    </figcaption>
+</figure>
+
 <p class="button-container">
-    <a class="link-as-button" target="_blank" href="https://www.surfingdirt.com/the-4-down-video-contest">Vote for your favorite!</a>
+    <a class="link-as-button" target="_blank" href="https://www.surfingdirt.com/the-4-down-video-contest">Vote for your favorite video!</a>
 </p>
 
 <p>
-    If you like a certain video, or if you like them all, please share them on social media, we need the world to know
-    mountainboarding is the best!
+    The voting window is open until <b>September 13th</b>, please spread the word, we want the world to watch these videos!
 </p>
+<p>
+    Our sponsor for this year is <a href="https://www.surfingdirt.com" target="_blank">Surfing Dirt</a>, the up and coming community for mountainboarders!
+</p>
+
+<details class="details">
+    <summary><h2 class="display-font more">More about the contestants and their videos</h2></summary>
+    <div>
+        <p>
+            The contestants for 2020 are:
+        </p>
+
+        <ul class="contestants">
+            <li>António Macieira <span class="country">(Portugal)</span></li>
+            <li>Yuya Nakayama, Maaken, Champ Okada <span class="country">(Japan)</span></li>
+            <li>AJ Lawson and Jason Lee <span class="country">(USA)</span></li>
+            <li>Sonia Nicolau and Erica Pintea <span class="country">(Romania)</span></li>
+        </ul>
+
+        <ul class="entries">
+            <li>
+                <iframe id="ytplayer-1" type="text/html"
+                        src="https://www.youtube.com/embed/TEkt41v-MPc"
+                        frameborder="0"></iframe>
+                <span class="entry-title">The US crew's “Summer Camp”</span>
+            </li>
+            <li>
+                <iframe id="ytplayer-2" type="text/html"
+                        src="https://www.youtube.com/embed/sUFiqJ_ycRQ"
+                        frameborder="0"></iframe>
+                <span class="entry-title">The Japanese crew's “Drifters”</span>
+            </li>
+            <li>
+                <iframe id="ytplayer-3" type="text/html"
+                        src="https://www.youtube.com/embed/CRDZlyfF2-Q"
+                        frameborder="0"></iframe>
+                <span class="entry-title">The Portuguese crew's “Spirit”</span>
+            </li>
+            <li>
+                <iframe id="ytplayer-4" type="text/html"
+                        src="https://www.youtube.com/embed/aFyFLfCMdFY"
+                        frameborder="0"></iframe>
+                <span class="entry-title">The Romanian crew's<br>“The Cherries on Top of The Cake”</span>
+            </li>
+        </ul>
+
+    </div>
+</details>
