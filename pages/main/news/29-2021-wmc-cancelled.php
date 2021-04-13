@@ -93,10 +93,10 @@
     one!
   </p>
 
-  <h1 class="display-font">Looking To The Future!</h1>
+  <h1 class="display-font">Looking To The Future</h1>
   <p>
-    We know there will be questions about what happens next. There will be a flip flop in events. Australia will hold
-    the World Championships in 2022 and France will be the home of the Championship in 2023.
+    We know there will be questions about what happens next. There will be a flip-flop in events: <b>Australia will hold
+      the World Championships in 2022 and France will be the home of the Championship in 2023.</b>
   </p>
   <p>
     Australia will be coming off a hot year of building 2 new public parks that all athletes that join will have the
@@ -106,5 +106,14 @@
   <p>
     Many thanks to Ludo and the crew at Association Mountainboard Compiegne. They have been on a roller coaster ride
     with Covid19 and planning this contest. Thank you for being understanding and fluid to make all of this work.
+  </p>
+  <h1 class="display-font">In closing</h1>
+  <p>
+    In closing, we miss you. As variable as the past has been we look forward to seeing everyone in the future.
+    Through gatherings, sessions, and riding with your friends continue to push yourselves. Post on social media and
+    show all of us what you have been working on, large or small. You’ll find a community that loves what you’re doing
+    and you for being a part of it. We are all here for each other, if you have any questions or concerns reach out to
+    anyone here at the IMA and we’ll be happy to help. Otherwise, have fun, we wish you the best, and we will see you in
+    the dirt soon enough!
   </p>
 </section>
