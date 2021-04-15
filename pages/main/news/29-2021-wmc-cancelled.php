@@ -71,8 +71,8 @@
   <ul>
     <li>
       July 10th-13th: <a href="https://www.youtube.com/watch?v=LjqbyX2QrNg">LA Mountainboard park</a>,
-      <a href="https://www.youtube.com/watch?v=6keieQRNh7k">Nantes skatepark</a>,
-      <a href="https://www.youtube.com/watch?v=h_56YxcTc14">Abbaretz open mine</a>
+      <a href="https://www.youtube.com/watch?v=khWlBALFjSo">Nantes "Le Hangar" skatepark (depending on government restrictions of course)</a>,
+      <a href="https://www.dailymotion.com/video/xiukrk">Abbaretz open mine (1 hour away)</a>
     </li>
     <li>
       July 14th: on the road to Compiegne
