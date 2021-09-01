@@ -322,7 +322,7 @@ $cachedVotes = null;
 <div id="results-content" class="visible-after-animation">
     <h1 class="display-font">And the winner is... Del Cielo a la Tierra !!!</h1>
     <p>
-        Note: we cut off voting at 0:00 on Wednesday September 1st (Paris time).
+        Note: we cut off voting at 7:40 on Wednesday September 1st (Paris time).
     </p>
     <p>
       Congratulations to the Costa Rican team - James González Valle, Marco Dixon, Giancarlo Navas, Rolando Chinchilla
