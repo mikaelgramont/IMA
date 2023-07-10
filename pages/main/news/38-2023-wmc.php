@@ -45,51 +45,56 @@ $resultSections = json_decode(<<<JSON
       "label": "Freestyle",
       "items": [{
           "label": "Pro Qualifying",
-          "sheetLink": "",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1aXBywV6AvNLSCheePdsna3y9_f1hcEBFxI1ysk2fGo4/",
           "idInSheetValues": 0
         }, {
           "label": "Amateur Finals",
-          "sheetLink": "",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1aXBywV6AvNLSCheePdsna3y9_f1hcEBFxI1ysk2fGo4/#gid=294622686",
           "idInSheetValues": 1
         }, {
           "label": "Pro Finals",
-          "sheetLink": "",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1aXBywV6AvNLSCheePdsna3y9_f1hcEBFxI1ysk2fGo4/#gid=2046312317",
           "idInSheetValues": 2
         }]
     }, {
       "label": "Boardercross",
       "items": [{
           "label": "Qualifying Races",
-          "sheetLink": "",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1ZzPu23NpNDQBmyRrZ8gYMJhmfMqJgsUIvZYTi8vbWbk/#gid=2084874141",
           "idInSheetValues": 4
         }, {
           "label": "Qualifying Results",
-          "sheetLink": "",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1ZzPu23NpNDQBmyRrZ8gYMJhmfMqJgsUIvZYTi8vbWbk/#gid=177550960",
           "idInSheetValues": 5
         }, {
           "label": "Knockout Races",
-          "sheetLink": "",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1ZzPu23NpNDQBmyRrZ8gYMJhmfMqJgsUIvZYTi8vbWbk/#gid=287599021",
           "idInSheetValues": 6
         }, {
           "label": "Final Results",
-          "sheetLink": "",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1ZzPu23NpNDQBmyRrZ8gYMJhmfMqJgsUIvZYTi8vbWbk/#gid=1464872807",
           "idInSheetValues": 7
-        }]
-    }, {
-      "label": "Downhill",
-      "items": [{
-          "label": "Qualifying Results",
-          "sheetLink": "",
-          "idInSheetValues": 9
-        }, {
-          "label": "Final Results",
-          "sheetLink": "",
-          "idInSheetValues": 10
         }]
     }
   ]
 JSON
 );
+
+/*
+ Downhill event data:
+{
+      "label": "Downhill",
+      "items": [{
+          "label": "Qualifying Results",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1Vw3n6EPE_QL4nQaCefE8tAMJEpvnpqEvg4mRROCDfqo/#gid=1797972878",
+          "idInSheetValues": 9
+        }, {
+          "label": "Final Results",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1Vw3n6EPE_QL4nQaCefE8tAMJEpvnpqEvg4mRROCDfqo/#gid=1087506671",
+          "idInSheetValues": 10
+        }]
+    }
+ */
 
 function getUpdates() {
     $pool = Cache::getPool();
@@ -234,7 +239,7 @@ function renderResultItem($item, $results) {
   if (!$ready) {
     return "";
   }
-  $link = "<a href=\"$item->url\">{$item->label}</a>";
+  $link = "<a target=\"_blank\" href=\"$item->sheetLink\">{$item->label}</a>";
   $html = <<<HTML
     <li class="result-item">
       {$link}
@@ -332,7 +337,6 @@ $results = getResults();
         echo"No results available yet.";
       }
 ?>
-      </ul>
     </section>
 
     <section class="live-content">
