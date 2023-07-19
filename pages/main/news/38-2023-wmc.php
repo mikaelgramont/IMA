@@ -45,7 +45,7 @@ $resultSections = json_decode(<<<JSON
       "label": "Freestyle",
       "items": [{
           "label": "Pro Qualifying",
-          "sheetLink": "https://docs.google.com/spreadsheets/d/1aXBywV6AvNLSCheePdsna3y9_f1hcEBFxI1ysk2fGo4/",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1aXBywV6AvNLSCheePdsna3y9_f1hcEBFxI1ysk2fGo4/#gid=477256000",
           "idInSheetValues": 0
         }, {
           "label": "Amateur Finals",
@@ -55,25 +55,29 @@ $resultSections = json_decode(<<<JSON
           "label": "Pro Finals",
           "sheetLink": "https://docs.google.com/spreadsheets/d/1aXBywV6AvNLSCheePdsna3y9_f1hcEBFxI1ysk2fGo4/#gid=2046312317",
           "idInSheetValues": 2
+        }, {
+          "label": "Final Results",
+          "sheetLink": "https://docs.google.com/spreadsheets/d/1aXBywV6AvNLSCheePdsna3y9_f1hcEBFxI1ysk2fGo4/#gid=2080177581",
+          "idInSheetValues": 3
         }]
     }, {
       "label": "Boardercross",
       "items": [{
           "label": "Qualifying Races",
           "sheetLink": "https://docs.google.com/spreadsheets/d/1ZzPu23NpNDQBmyRrZ8gYMJhmfMqJgsUIvZYTi8vbWbk/#gid=2084874141",
-          "idInSheetValues": 4
+          "idInSheetValues": 5
         }, {
           "label": "Qualifying Results",
           "sheetLink": "https://docs.google.com/spreadsheets/d/1ZzPu23NpNDQBmyRrZ8gYMJhmfMqJgsUIvZYTi8vbWbk/#gid=177550960",
-          "idInSheetValues": 5
+          "idInSheetValues": 6
         }, {
           "label": "Knockout Races",
           "sheetLink": "https://docs.google.com/spreadsheets/d/1ZzPu23NpNDQBmyRrZ8gYMJhmfMqJgsUIvZYTi8vbWbk/#gid=287599021",
-          "idInSheetValues": 6
+          "idInSheetValues": 7
         }, {
           "label": "Final Results",
           "sheetLink": "https://docs.google.com/spreadsheets/d/1ZzPu23NpNDQBmyRrZ8gYMJhmfMqJgsUIvZYTi8vbWbk/#gid=1464872807",
-          "idInSheetValues": 7
+          "idInSheetValues": 8
         }]
     }
   ]
