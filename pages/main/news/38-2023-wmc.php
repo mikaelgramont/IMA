@@ -79,6 +79,13 @@ $resultSections = json_decode(<<<JSON
           "sheetLink": "https://docs.google.com/spreadsheets/d/1ZzPu23NpNDQBmyRrZ8gYMJhmfMqJgsUIvZYTi8vbWbk/#gid=1464872807",
           "idInSheetValues": 8
         }]
+    }, {
+      "label": "Overall",
+      "items": [{
+        "label": "Final Results",
+        "sheetLink": "https://docs.google.com/spreadsheets/d/1VkvchuQ9w3if7ASy75kC5hc0T9o2-oX8Jl6C5075vYc/edit?usp=drivesdk",
+        "idInSheetValues": 13        
+      }]
     }
   ]
 JSON
@@ -205,7 +212,7 @@ function retrieveResultObjects() {
 
     $client = Helpers::getGoogleClientForWeb($accessToken);
     $sheetsService = new Google_Service_Sheets($client);
-    $range = "Results!C2:C12";
+    $range = "Results!C2:C15";
     $sheetContentResponse = $sheetsService->spreadsheets_values->get(RESULTS_SPREADSHEET_ID, $range);
     $values = $sheetContentResponse->getValues();
     foreach ($values as $value) {

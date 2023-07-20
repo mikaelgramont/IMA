@@ -1,6 +1,6 @@
 <?php
 define('USE_UPDATE_CACHE', true);
-define('USE_RESULT_CACHE', false);
+define('USE_RESULT_CACHE', true);
 define('UPDATE_CACHE_DURATION', 3 * 60);
 define('RESULT_CACHE_DURATION', 3 * 60);
 define('USE_IG_CACHE', true);
@@ -30,7 +30,14 @@ $resultSections = json_decode(<<<JSON
           "sheetLink": "https://docs.google.com/spreadsheets/d/1Vw3n6EPE_QL4nQaCefE8tAMJEpvnpqEvg4mRROCDfqo/#gid=1087506671",
           "idInSheetValues": 1
         }]
-  }] 
+  }, {
+      "label": "Overall",
+      "items": [{
+        "label": "Final Results",
+        "sheetLink": "https://docs.google.com/spreadsheets/d/1VkvchuQ9w3if7ASy75kC5hc0T9o2-oX8Jl6C5075vYc/edit?usp=drivesdk",
+        "idInSheetValues": 3        
+      }]
+    }] 
 JSON
 );
 
@@ -139,7 +146,7 @@ function retrieveResultObjects() {
 
     $client = Helpers::getGoogleClientForWeb($accessToken);
     $sheetsService = new Google_Service_Sheets($client);
-    $range = "Results!C2:C12";
+    $range = "Results!C2:C5";
     $sheetContentResponse = $sheetsService->spreadsheets_values->get(RESULTS_SPREADSHEET_ID, $range);
     $values = $sheetContentResponse->getValues();
     foreach ($values as $value) {
